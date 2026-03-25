@@ -161,6 +161,10 @@ public:
         // set to nullptr, the video backend will run in headless mode.
         void* render_surface = nullptr;
 
+        // Native host view for APIs that need to attach their own presentation layer.
+        // On Apple platforms this points to the NSView backing the render widget.
+        void* render_view = nullptr;
+
         // Scale of the render surface. For hidpi systems, this will be >1.
         float render_surface_scale = 1.0f;
     };

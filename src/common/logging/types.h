@@ -96,6 +96,7 @@ enum class Class : u8 {
     Render_Software, ///< Software renderer backend
     Render_OpenGL,   ///< OpenGL backend
     Render_Vulkan,   ///< Vulkan backend
+    Render_Metal,    ///< Metal backend
     Audio,           ///< Audio emulation
     Audio_DSP,       ///< The HLE and LLE implementations of the DSP
     Audio_Sink,      ///< Emulator audio output backend

@@ -339,6 +339,24 @@ public:
 };
 #endif
 
+#ifdef ENABLE_METAL
+class MetalRenderWidget : public RenderWidget {
+public:
+    explicit MetalRenderWidget(GRenderWindow* parent) : RenderWidget(parent) {
+        setAttribute(Qt::WA_NativeWindow);
+        setAttribute(Qt::WA_PaintOnScreen);
+        if (GetWindowSystemType() == Frontend::WindowSystemType::Wayland) {
+            setAttribute(Qt::WA_DontCreateNativeAncestors);
+        }
+        windowHandle()->setSurfaceType(QWindow::MetalSurface);
+    }
+
+    QPaintEngine* paintEngine() const override {
+        return nullptr;
+    }
+};
+#endif
+
 #ifdef ENABLE_SOFTWARE_RENDERER
 struct SoftwareRenderWidget : public RenderWidget {
     explicit SoftwareRenderWidget(GRenderWindow* parent, Core::System& system_)
@@ -420,8 +438,9 @@ static Frontend::EmuWindow::WindowSystemInfo GetWindowSystemInfo(QWindow* window
         // Our Win32 Qt external doesn't have the private API.
         wsi.render_surface = reinterpret_cast<void*>(window->winId());
 #elif defined(__APPLE__)
+        wsi.render_view = reinterpret_cast<void*>(window->winId());
         wsi.render_surface = reinterpret_cast<void* (*)(id, SEL)>(objc_msgSend)(
-            reinterpret_cast<id>(window->winId()), sel_registerName("layer"));
+            reinterpret_cast<id>(wsi.render_view), sel_registerName("layer"));
 #else
         QPlatformNativeInterface* pni = QGuiApplication::platformNativeInterface();
         wsi.display_connection = pni->nativeResourceForWindow("display", window);
@@ -433,6 +452,7 @@ static Frontend::EmuWindow::WindowSystemInfo GetWindowSystemInfo(QWindow* window
         wsi.render_surface_scale = static_cast<float>(window->devicePixelRatio());
     } else {
         wsi.render_surface = nullptr;
+        wsi.render_view = nullptr;
         wsi.render_surface_scale = 1.0f;
     }
 
@@ -669,6 +689,11 @@ bool GRenderWindow::InitRenderTarget() {
         InitializeVulkan();
         break;
 #endif
+#ifdef ENABLE_METAL
+    case Settings::GraphicsAPI::Metal:
+        InitializeMetal();
+        break;
+#endif
     default:
         LOG_CRITICAL(Frontend,
                      "Unknown or unsupported graphics API {}, falling back to available default",
@@ -677,6 +702,8 @@ bool GRenderWindow::InitRenderTarget() {
         if (!InitializeOpenGL() || !LoadOpenGL()) {
             return false;
         }
+#elif defined(ENABLE_METAL)
+        InitializeMetal();
 #elif ENABLE_VULKAN
         InitializeVulkan();
 #elif ENABLE_SOFTWARE_RENDERER
@@ -810,6 +837,15 @@ bool GRenderWindow::LoadOpenGL() {
 #ifdef ENABLE_VULKAN
 void GRenderWindow::InitializeVulkan() {
     auto child = new VulkanRenderWidget(this);
+    child_widget = child;
+    child_widget->windowHandle()->create();
+    main_context = std::make_unique<DummyContext>();
+}
+#endif
+
+#ifdef ENABLE_METAL
+void GRenderWindow::InitializeMetal() {
+    auto child = new MetalRenderWidget(this);
     child_widget = child;
     child_widget->windowHandle()->create();
     main_context = std::make_unique<DummyContext>();

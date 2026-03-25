@@ -287,6 +287,9 @@ static constexpr retro_core_option_v2_definition option_definitions[] = {
 #ifdef ENABLE_VULKAN
             { "Vulkan", "Vulkan" },
 #endif
+#ifdef ENABLE_METAL
+            { "Metal", "Metal" },
+#endif
 #ifdef ENABLE_OPENGL
             { "OpenGL", "OpenGL" },
 #endif
@@ -891,6 +894,10 @@ static Settings::GraphicsAPI GetGraphicsAPI(const std::string& name) {
 #ifdef ENABLE_VULKAN
     if (name == "Vulkan")
         return Settings::GraphicsAPI::Vulkan;
+#endif
+#ifdef ENABLE_METAL
+    if (name == "Metal")
+        return Settings::GraphicsAPI::Metal;
 #endif
 #ifdef ENABLE_OPENGL
     if (name == "OpenGL")

@@ -204,6 +204,22 @@ if (ENABLE_VULKAN)
     )
     target_link_libraries(video_core PRIVATE vulkan-headers vma sirit SPIRV glslang)
 endif()
+if (ENABLE_METAL)
+    target_sources(video_core PRIVATE
+        renderer_metal/mt_instance.h
+        renderer_metal/mt_instance.mm
+        renderer_metal/mt_pipeline_cache.h
+        renderer_metal/mt_pipeline_cache.mm
+        renderer_metal/mt_present_window.h
+        renderer_metal/mt_present_window.mm
+        renderer_metal/mt_rasterizer.cpp
+        renderer_metal/mt_rasterizer.h
+        renderer_metal/mt_texture_runtime.h
+        renderer_metal/mt_texture_runtime.mm
+        renderer_metal/renderer_metal.h
+        renderer_metal/renderer_metal.mm
+    )
+endif()
 
 if(ENABLE_SDL2)
     target_link_libraries(video_core PRIVATE SDL2::SDL2)

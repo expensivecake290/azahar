@@ -3701,36 +3701,45 @@ void GMainWindow::UpdateVolumeUI() {
 
 void GMainWindow::UpdateAPIIndicator(bool update) {
     static std::array graphics_apis = {QStringLiteral("SOFTWARE"), QStringLiteral("OPENGL"),
-                                       QStringLiteral("VULKAN")};
+                                       QStringLiteral("VULKAN"), QStringLiteral("METAL")};
 
     static std::array graphics_api_colors = {QStringLiteral("#3ae400"), QStringLiteral("#00ccdd"),
-                                             QStringLiteral("#91242a")};
+                                             QStringLiteral("#91242a"), QStringLiteral("#b0b7c3")};
 
     u32 api_index = static_cast<u32>(Settings::values.graphics_api.GetValue());
     if (update) {
-        api_index = (api_index + 1) % graphics_apis.size();
-        // Skip past any disabled renderers.
+        const auto is_enabled = [this](u32 index) {
+            switch (static_cast<Settings::GraphicsAPI>(index)) {
 #ifndef ENABLE_SOFTWARE_RENDERER
-        if (api_index == static_cast<u32>(Settings::GraphicsAPI::Software)) {
-            api_index = (api_index + 1) % graphics_apis.size();
-        }
+            case Settings::GraphicsAPI::Software:
+                return false;
 #endif
 #ifndef ENABLE_OPENGL
-        if (api_index == static_cast<u32>(Settings::GraphicsAPI::OpenGL)) {
-            api_index = (api_index + 1) % graphics_apis.size();
-        }
+            case Settings::GraphicsAPI::OpenGL:
+                return false;
 #endif
 #ifndef ENABLE_VULKAN
-        if (api_index == static_cast<u32>(Settings::GraphicsAPI::Vulkan)) {
-            api_index = (api_index + 1) % graphics_apis.size();
-        }
+            case Settings::GraphicsAPI::Vulkan:
+                return false;
 #else
-        if (physical_devices.empty()) {
-            if (api_index == static_cast<u32>(Settings::GraphicsAPI::Vulkan)) {
-                api_index = (api_index + 1) % graphics_apis.size();
+            case Settings::GraphicsAPI::Vulkan:
+                return !physical_devices.empty();
+#endif
+#ifndef ENABLE_METAL
+            case Settings::GraphicsAPI::Metal:
+                return false;
+#endif
+            default:
+                return true;
+            }
+        };
+
+        for (std::size_t step = 0; step < graphics_apis.size(); step++) {
+            api_index = (api_index + 1) % graphics_apis.size();
+            if (is_enabled(api_index)) {
+                break;
             }
         }
-#endif
         Settings::values.graphics_api = static_cast<Settings::GraphicsAPI>(api_index);
     }
 

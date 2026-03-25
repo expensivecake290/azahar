@@ -68,6 +68,12 @@ ConfigureGraphics::ConfigureGraphics(QString gl_renderer, std::span<const QStrin
     }
 #endif
 
+#ifndef ENABLE_METAL
+    const auto metal_item =
+        graphics_api_combo_model->item(static_cast<u32>(Settings::GraphicsAPI::Metal));
+    metal_item->setFlags(metal_item->flags() & ~Qt::ItemIsEnabled);
+#endif
+
     connect(ui->graphics_api_combo, qOverload<int>(&QComboBox::currentIndexChanged), this,
             [this](int index) {
                 const auto graphics_api =
