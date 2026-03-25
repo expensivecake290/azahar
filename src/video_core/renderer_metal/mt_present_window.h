@@ -8,7 +8,9 @@
 #include <memory>
 
 #include "common/common_types.h"
+#include "common/math_util.h"
 #include "common/vector_math.h"
+#include "video_core/pica/regs_external.h"
 
 namespace Frontend {
 class EmuWindow;
@@ -24,10 +26,12 @@ class Instance;
 class PipelineCache;
 
 struct ScreenInfo {
-    const u8* pixels = nullptr;
+    void* buffer = nullptr;
     u32 width = 0;
     u32 height = 0;
-    float opacity = 1.0f;
+    u32 pixel_stride = 0;
+    Pica::PixelFormat pixel_format = Pica::PixelFormat::RGBA8;
+    Common::Rectangle<float> texcoords{0.0f, 0.0f, 1.0f, 1.0f};
     bool valid = false;
 };
 

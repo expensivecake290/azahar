@@ -4,7 +4,10 @@
 
 #pragma once
 
+#include "video_core/pica/regs_external.h"
+#include "video_core/pica/regs_lcd.h"
 #include "video_core/rasterizer_accelerated.h"
+#include "video_core/renderer_metal/mt_present_window.h"
 
 namespace Memory {
 class MemorySystem;
@@ -47,11 +50,16 @@ public:
     void InvalidateRegion(PAddr addr, u32 size) override;
     void FlushAndInvalidateRegion(PAddr addr, u32 size) override;
     void ClearAll(bool flush) override;
+    bool AccelerateDisplay(u32 screen_index, const Pica::FramebufferConfig& config,
+                           PAddr framebuffer_addr, u32 pixel_stride,
+                           const Pica::ColorFill& color_fill,
+                           ScreenInfo& screen_info);
 
 private:
     void LogUnsupported(const char* function_name);
 
 private:
+    TextureRuntime& runtime;
     bool warned = false;
 };
 

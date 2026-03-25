@@ -42,9 +42,18 @@ struct PresentVertexOut {
     float2 tex_coord;
 };
 
+struct PresentScreenUniform {
+    uint width;
+    uint height;
+    uint stride;
+    uint format;
+};
+
 struct PresentFragmentUniforms {
     float opacity;
     uint mode;
+    PresentScreenUniform left;
+    PresentScreenUniform right;
 };
 
 vertex PresentVertexOut azahar_present_vs(const device PresentVertex* vertices [[buffer(0)]],
@@ -55,24 +64,64 @@ vertex PresentVertexOut azahar_present_vs(const device PresentVertex* vertices [
     return out;
 }
 
+static float4 decode_pixel(const device uchar* data, PresentScreenUniform screen, float2 tex_coord) {
+    if (data == nullptr || screen.width == 0u || screen.height == 0u || screen.stride == 0u) {
+        return float4(0.0, 0.0, 0.0, 1.0);
+    }
+
+    const uint x = min(static_cast<uint>(tex_coord.x * float(screen.width)), screen.width - 1u);
+    const uint y = min(static_cast<uint>(tex_coord.y * float(screen.height)), screen.height - 1u);
+
+    switch (screen.format) {
+    case 0: {
+        const uint index = ((y * screen.stride) + x) * 4u;
+        return float4(float(data[index + 3u]) / 255.0, float(data[index + 2u]) / 255.0,
+                      float(data[index + 1u]) / 255.0, float(data[index]) / 255.0);
+    }
+    case 1: {
+        const uint index = ((y * screen.stride) + x) * 3u;
+        return float4(float(data[index + 2u]) / 255.0, float(data[index + 1u]) / 255.0,
+                      float(data[index]) / 255.0, 1.0);
+    }
+    case 2: {
+        const uint index = ((y * screen.stride) + x) * 2u;
+        const ushort pixel = ushort(data[index]) | (ushort(data[index + 1u]) << 8);
+        return float4(float((pixel >> 11) & 0x1Fu) / 31.0, float((pixel >> 5) & 0x3Fu) / 63.0,
+                      float(pixel & 0x1Fu) / 31.0, 1.0);
+    }
+    case 3: {
+        const uint index = ((y * screen.stride) + x) * 2u;
+        const ushort pixel = ushort(data[index]) | (ushort(data[index + 1u]) << 8);
+        return float4(float((pixel >> 11) & 0x1Fu) / 31.0, float((pixel >> 6) & 0x1Fu) / 31.0,
+                      float((pixel >> 1) & 0x1Fu) / 31.0, (pixel & 0x1u) ? 1.0 : 0.0);
+    }
+    case 4: {
+        const uint index = ((y * screen.stride) + x) * 2u;
+        const ushort pixel = ushort(data[index]) | (ushort(data[index + 1u]) << 8);
+        return float4(float((pixel >> 12) & 0xFu) / 15.0, float((pixel >> 8) & 0xFu) / 15.0,
+                      float((pixel >> 4) & 0xFu) / 15.0, float(pixel & 0xFu) / 15.0);
+    }
+    default:
+        return float4(1.0, 0.0, 1.0, 1.0);
+    }
+}
+
 fragment float4 azahar_present_fs(PresentVertexOut in [[stage_in]],
                                   float4 position [[position]],
-                                  texture2d<float> color_texture_l [[texture(0)]],
-                                  texture2d<float> color_texture_r [[texture(1)]],
-                                  sampler color_sampler [[sampler(0)]],
-                                  constant PresentFragmentUniforms& uniforms [[buffer(0)]]) {
-    const float4 left = color_texture_l.sample(color_sampler, in.tex_coord);
+                                  constant PresentFragmentUniforms& uniforms [[buffer(0)]],
+                                  const device uchar* color_buffer_l [[buffer(1)]],
+                                  const device uchar* color_buffer_r [[buffer(2)]]) {
+    const float4 left = decode_pixel(color_buffer_l, uniforms.left, in.tex_coord);
+    const float4 right =
+        color_buffer_r != nullptr ? decode_pixel(color_buffer_r, uniforms.right, in.tex_coord) : left;
     float4 color = left;
 
     switch (uniforms.mode) {
-    case 1: {
-        const float4 right = color_texture_r.sample(color_sampler, in.tex_coord);
+    case 1:
         color = float4(left.r, right.g, right.b, max(left.a, right.a));
         break;
-    }
     case 2:
     case 3: {
-        const float4 right = color_texture_r.sample(color_sampler, in.tex_coord);
         const bool odd_line = (static_cast<uint>(position.y) & 1u) != 0u;
         const bool use_right = uniforms.mode == 2 ? odd_line : !odd_line;
         color = use_right ? right : left;
@@ -111,7 +160,7 @@ static void SaveCacheMetadata(const Instance& instance, u64 shader_hash) {
     }
 
     const std::string metadata =
-        fmt::format("version=1\ndevice={}\nshader_hash={:016x}\n", instance.GetDeviceName(),
+        fmt::format("version=2\ndevice={}\nshader_hash={:016x}\n", instance.GetDeviceName(),
                     shader_hash);
     FileUtil::WriteStringToFile(true, GetCacheMetadataPath(), metadata);
 }

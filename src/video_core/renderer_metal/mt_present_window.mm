@@ -36,15 +36,27 @@ struct PresentVertex {
     simd_float2 tex_coord;
 };
 
+struct PresentScreenUniform {
+    u32 width;
+    u32 height;
+    u32 stride;
+    u32 format;
+};
+
 struct PresentFragmentUniforms {
     float opacity;
     u32 mode;
+    PresentScreenUniform left;
+    PresentScreenUniform right;
 };
 
-struct ScreenTexture {
-    id<MTLTexture> texture = nil;
+struct ScreenBuffer {
+    id<MTLBuffer> buffer = nil;
     u32 width = 0;
     u32 height = 0;
+    u32 pixel_stride = 0;
+    u32 pixel_format = 0;
+    Common::Rectangle<float> texcoords{0.0f, 0.0f, 1.0f, 1.0f};
 };
 
 static void UpdateDrawableSize(CAMetalLayer* metal_layer, NSView* host_view, float scale) {
@@ -57,81 +69,44 @@ static void UpdateDrawableSize(CAMetalLayer* metal_layer, NSView* host_view, flo
 static std::array<simd_float2, 4> MakeTexCoords(Layout::DisplayOrientation orientation) {
     switch (orientation) {
     case Layout::DisplayOrientation::Landscape:
-        return {{
-            {1.0f, 0.0f},
-            {1.0f, 1.0f},
-            {0.0f, 0.0f},
-            {0.0f, 1.0f},
-        }};
+        return {{{1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 0.0f}, {0.0f, 1.0f}}};
     case Layout::DisplayOrientation::Portrait:
-        return {{
-            {1.0f, 1.0f},
-            {0.0f, 1.0f},
-            {1.0f, 0.0f},
-            {0.0f, 0.0f},
-        }};
+        return {{{1.0f, 1.0f}, {0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f}}};
     case Layout::DisplayOrientation::LandscapeFlipped:
-        return {{
-            {0.0f, 1.0f},
-            {0.0f, 0.0f},
-            {1.0f, 1.0f},
-            {1.0f, 0.0f},
-        }};
+        return {{{0.0f, 1.0f}, {0.0f, 0.0f}, {1.0f, 1.0f}, {1.0f, 0.0f}}};
     case Layout::DisplayOrientation::PortraitFlipped:
-        return {{
-            {0.0f, 0.0f},
-            {1.0f, 0.0f},
-            {0.0f, 1.0f},
-            {1.0f, 1.0f},
-        }};
+        return {{{0.0f, 0.0f}, {1.0f, 0.0f}, {0.0f, 1.0f}, {1.0f, 1.0f}}};
     }
 
-    return {{
-        {1.0f, 0.0f},
-        {1.0f, 1.0f},
-        {0.0f, 0.0f},
-        {0.0f, 1.0f},
-    }};
+    return {{{1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 0.0f}, {0.0f, 1.0f}}};
 }
 
 static std::array<PresentVertex, 4> MakeVertices(const Layout::FramebufferLayout& layout, float x,
                                                  float y, float w, float h,
-                                                 Layout::DisplayOrientation orientation) {
+                                                 Layout::DisplayOrientation orientation,
+                                                 const Common::Rectangle<float>& texcoords) {
     const float left = (x / static_cast<float>(layout.width)) * 2.0f - 1.0f;
     const float right = ((x + w) / static_cast<float>(layout.width)) * 2.0f - 1.0f;
     const float top = 1.0f - (y / static_cast<float>(layout.height)) * 2.0f;
     const float bottom = 1.0f - ((y + h) / static_cast<float>(layout.height)) * 2.0f;
-    const auto tex_coords = MakeTexCoords(orientation);
+    const auto base_texcoords = MakeTexCoords(orientation);
+
+    auto map_coord = [&](const simd_float2& coord) {
+        return simd_make_float2(texcoords.left + (texcoords.right - texcoords.left) * coord.x,
+                                texcoords.top + (texcoords.bottom - texcoords.top) * coord.y);
+    };
 
     return {{
-        {{left, top}, tex_coords[0]},
-        {{right, top}, tex_coords[1]},
-        {{left, bottom}, tex_coords[2]},
-        {{right, bottom}, tex_coords[3]},
+        {{left, top}, map_coord(base_texcoords[0])},
+        {{right, top}, map_coord(base_texcoords[1])},
+        {{left, bottom}, map_coord(base_texcoords[2])},
+        {{right, bottom}, map_coord(base_texcoords[3])},
     }};
 }
 
 static Layout::DisplayOrientation GetOrientation(const Layout::FramebufferLayout& layout) {
     return layout.is_rotated ? Layout::DisplayOrientation::Landscape
                              : Layout::DisplayOrientation::Portrait;
-}
-
-static id<MTLSamplerState> CreateSampler(id<MTLDevice> device, MTLSamplerMinMagFilter filter) {
-    MTLSamplerDescriptor* descriptor = [[MTLSamplerDescriptor alloc] init];
-    descriptor.minFilter = filter;
-    descriptor.magFilter = filter;
-    descriptor.sAddressMode = MTLSamplerAddressModeClampToEdge;
-    descriptor.tAddressMode = MTLSamplerAddressModeClampToEdge;
-    id<MTLSamplerState> sampler = [device newSamplerStateWithDescriptor:descriptor];
-    [descriptor release];
-    return sampler;
-}
-
-static void ReleaseTexture(ScreenTexture& texture) {
-    [texture.texture release];
-    texture.texture = nil;
-    texture.width = 0;
-    texture.height = 0;
 }
 
 } // Anonymous namespace
@@ -142,8 +117,6 @@ struct PresentWindow::Impl {
     const PipelineCache& pipeline_cache;
     NSView* host_view = nil;
     CAMetalLayer* metal_layer = nil;
-    std::array<ScreenTexture, 3> screen_textures{};
-    std::array<id<MTLSamplerState>, 2> samplers{};
     bool valid = false;
 
     Impl(Frontend::EmuWindow& emu_window_, const Instance& instance_,
@@ -163,7 +136,6 @@ PresentWindow::PresentWindow(Frontend::EmuWindow& emu_window, const Instance& in
     }
 
     id<MTLDevice> device = (__bridge id<MTLDevice>)instance.GetDevice();
-
     impl->metal_layer = [[CAMetalLayer alloc] init];
     impl->metal_layer.device = device;
     impl->metal_layer.pixelFormat = MTLPixelFormatBGRA8Unorm;
@@ -172,30 +144,15 @@ PresentWindow::PresentWindow(Frontend::EmuWindow& emu_window, const Instance& in
     impl->metal_layer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
     impl->metal_layer.contentsGravity = kCAGravityTopLeft;
 
-    impl->samplers[0] = CreateSampler(device, MTLSamplerMinMagFilterNearest);
-    impl->samplers[1] = CreateSampler(device, MTLSamplerMinMagFilterLinear);
-    if (impl->samplers[0] == nil || impl->samplers[1] == nil) {
-        LOG_CRITICAL(Render_Metal, "Failed to create Metal present samplers");
-        return;
-    }
-
     [impl->host_view setWantsLayer:YES];
     [impl->host_view.layer addSublayer:impl->metal_layer];
     UpdateDrawableSize(impl->metal_layer, impl->host_view, window_info.render_surface_scale);
-
     impl->valid = true;
 }
 
 PresentWindow::~PresentWindow() {
     if (!impl) {
         return;
-    }
-
-    for (auto& texture : impl->screen_textures) {
-        ReleaseTexture(texture);
-    }
-    for (auto& sampler : impl->samplers) {
-        [sampler release];
     }
     [impl->metal_layer removeFromSuperlayer];
     [impl->metal_layer release];
@@ -209,55 +166,50 @@ void PresentWindow::NotifySurfaceChanged() {
     UpdateDrawableSize(impl->metal_layer, impl->host_view, window_info.render_surface_scale);
 }
 
-static bool EnsureTexture(ScreenTexture& screen_texture, id<MTLDevice> device, u32 width,
-                          u32 height) {
-    if (screen_texture.texture != nil && screen_texture.width == width &&
-        screen_texture.height == height) {
-        return true;
-    }
-
-    ReleaseTexture(screen_texture);
-
-    MTLTextureDescriptor* descriptor =
-        [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatRGBA8Unorm
-                                                           width:width
-                                                          height:height
-                                                       mipmapped:NO];
-    descriptor.usage = MTLTextureUsageShaderRead;
-    descriptor.storageMode = MTLStorageModeShared;
-    screen_texture.texture = [device newTextureWithDescriptor:descriptor];
-    screen_texture.width = width;
-    screen_texture.height = height;
-    return screen_texture.texture != nil;
-}
-
 static void DrawScreen(id<MTL4RenderCommandEncoder> encoder, const Layout::FramebufferLayout& layout,
-                       const Common::Rectangle<u32>& rect, const ScreenTexture& left_screen,
-                       const ScreenTexture& right_screen, float opacity, PresentMode mode,
-                       id<MTLSamplerState> sampler) {
-    if (left_screen.texture == nil) {
+                       const Common::Rectangle<u32>& rect, const ScreenBuffer& left_screen,
+                       const ScreenBuffer& right_screen, float opacity, PresentMode mode) {
+    if (left_screen.buffer == nil) {
         return;
     }
 
     const auto vertices =
         MakeVertices(layout, static_cast<float>(rect.left), static_cast<float>(rect.top),
                      static_cast<float>(rect.GetWidth()), static_cast<float>(rect.GetHeight()),
-                     GetOrientation(layout));
-    const PresentFragmentUniforms uniforms{opacity, static_cast<u32>(mode)};
-    id<MTLTexture> right_texture = right_screen.texture != nil ? right_screen.texture
-                                                               : left_screen.texture;
+                     GetOrientation(layout), left_screen.texcoords);
+
+    const PresentFragmentUniforms uniforms{
+        .opacity = opacity,
+        .mode = static_cast<u32>(mode),
+        .left =
+            {
+                .width = left_screen.width,
+                .height = left_screen.height,
+                .stride = left_screen.pixel_stride,
+                .format = left_screen.pixel_format,
+            },
+        .right =
+            {
+                .width = right_screen.buffer != nil ? right_screen.width : left_screen.width,
+                .height = right_screen.buffer != nil ? right_screen.height : left_screen.height,
+                .stride = right_screen.buffer != nil ? right_screen.pixel_stride
+                                                     : left_screen.pixel_stride,
+                .format = right_screen.buffer != nil ? right_screen.pixel_format
+                                                     : left_screen.pixel_format,
+            },
+    };
 
     [encoder setVertexBytes:vertices.data() length:sizeof(vertices) atIndex:0];
     [encoder setFragmentBytes:&uniforms length:sizeof(uniforms) atIndex:0];
-    [encoder setFragmentTexture:left_screen.texture atIndex:0];
-    [encoder setFragmentTexture:right_texture atIndex:1];
-    [encoder setFragmentSamplerState:sampler atIndex:0];
+    [encoder setFragmentBuffer:left_screen.buffer offset:0 atIndex:1];
+    [encoder setFragmentBuffer:(right_screen.buffer != nil ? right_screen.buffer : left_screen.buffer)
+                        offset:0
+                       atIndex:2];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
 }
 
 static void DrawTopScreen(id<MTL4RenderCommandEncoder> encoder, const Layout::FramebufferLayout& layout,
-                          const std::array<ScreenTexture, 3>& screen_textures,
-                          id<MTLSamplerState> sampler) {
+                          const std::array<ScreenBuffer, 3>& screen_buffers) {
     if (!layout.top_screen_enabled) {
         return;
     }
@@ -269,114 +221,102 @@ static void DrawTopScreen(id<MTL4RenderCommandEncoder> encoder, const Layout::Fr
     switch (layout.render_3d_mode) {
     case Settings::StereoRenderOption::Off: {
         const int eye = static_cast<int>(Settings::values.mono_render_option.GetValue());
-        DrawScreen(encoder, layout, rect, screen_textures[eye], screen_textures[eye], 1.0f,
-                   PresentMode::Mono, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[eye], screen_buffers[eye], 1.0f,
+                   PresentMode::Mono);
         break;
     }
-    case Settings::StereoRenderOption::SideBySide: {
+    case Settings::StereoRenderOption::SideBySide:
         DrawScreen(encoder, layout,
                    Common::Rectangle<u32>{rect.left / 2, rect.top, rect.right / 2, rect.bottom},
-                   screen_textures[leftside], screen_textures[leftside], 1.0f, PresentMode::Mono,
-                   sampler);
-        DrawScreen(
-            encoder, layout,
-            Common::Rectangle<u32>{(rect.left / 2) + (layout.width / 2), rect.top,
-                                   (rect.right / 2) + (layout.width / 2), rect.bottom},
-            screen_textures[rightside], screen_textures[rightside], 1.0f, PresentMode::Mono,
-            sampler);
-        break;
-    }
-    case Settings::StereoRenderOption::SideBySideFull: {
-        DrawScreen(encoder, layout, rect, screen_textures[leftside], screen_textures[leftside],
-                   1.0f, PresentMode::Mono, sampler);
+                   screen_buffers[leftside], screen_buffers[leftside], 1.0f, PresentMode::Mono);
         DrawScreen(encoder, layout,
-                   rect.TranslateX(static_cast<int>(layout.width / 2)), screen_textures[rightside],
-                   screen_textures[rightside], 1.0f, PresentMode::Mono, sampler);
+                   Common::Rectangle<u32>{(rect.left / 2) + (layout.width / 2), rect.top,
+                                          (rect.right / 2) + (layout.width / 2), rect.bottom},
+                   screen_buffers[rightside], screen_buffers[rightside], 1.0f, PresentMode::Mono);
         break;
-    }
-    case Settings::StereoRenderOption::CardboardVR: {
-        DrawScreen(encoder, layout, rect, screen_textures[leftside], screen_textures[leftside],
-                   1.0f, PresentMode::Mono, sampler);
-        DrawScreen(
-            encoder, layout,
-            Common::Rectangle<u32>{layout.cardboard.top_screen_right_eye + (layout.width / 2),
-                                   rect.top,
-                                   layout.cardboard.top_screen_right_eye + (layout.width / 2) +
-                                       rect.GetWidth(),
-                                   rect.bottom},
-            screen_textures[rightside], screen_textures[rightside], 1.0f, PresentMode::Mono,
-            sampler);
+    case Settings::StereoRenderOption::SideBySideFull:
+        DrawScreen(encoder, layout, rect, screen_buffers[leftside], screen_buffers[leftside], 1.0f,
+                   PresentMode::Mono);
+        DrawScreen(encoder, layout, rect.TranslateX(static_cast<int>(layout.width / 2)),
+                   screen_buffers[rightside], screen_buffers[rightside], 1.0f, PresentMode::Mono);
         break;
-    }
+    case Settings::StereoRenderOption::CardboardVR:
+        DrawScreen(encoder, layout, rect, screen_buffers[leftside], screen_buffers[leftside], 1.0f,
+                   PresentMode::Mono);
+        DrawScreen(encoder, layout,
+                   Common::Rectangle<u32>{layout.cardboard.top_screen_right_eye + (layout.width / 2),
+                                          rect.top,
+                                          layout.cardboard.top_screen_right_eye +
+                                              (layout.width / 2) + rect.GetWidth(),
+                                          rect.bottom},
+                   screen_buffers[rightside], screen_buffers[rightside], 1.0f, PresentMode::Mono);
+        break;
     case Settings::StereoRenderOption::Anaglyph:
-        DrawScreen(encoder, layout, rect, screen_textures[leftside], screen_textures[rightside],
-                   1.0f, PresentMode::Anaglyph, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[leftside], screen_buffers[rightside], 1.0f,
+                   PresentMode::Anaglyph);
         break;
     case Settings::StereoRenderOption::Interlaced:
-        DrawScreen(encoder, layout, rect, screen_textures[leftside], screen_textures[rightside],
-                   1.0f, PresentMode::Interlaced, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[leftside], screen_buffers[rightside], 1.0f,
+                   PresentMode::Interlaced);
         break;
     case Settings::StereoRenderOption::ReverseInterlaced:
-        DrawScreen(encoder, layout, rect, screen_textures[leftside], screen_textures[rightside],
-                   1.0f, PresentMode::ReverseInterlaced, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[leftside], screen_buffers[rightside], 1.0f,
+                   PresentMode::ReverseInterlaced);
         break;
     }
 }
 
 static void DrawBottomScreen(id<MTL4RenderCommandEncoder> encoder,
                              const Layout::FramebufferLayout& layout,
-                             const std::array<ScreenTexture, 3>& screen_textures, float opacity,
-                             id<MTLSamplerState> sampler) {
+                             const std::array<ScreenBuffer, 3>& screen_buffers, float opacity) {
     if (!layout.bottom_screen_enabled) {
         return;
     }
 
     const auto& rect = layout.bottom_screen;
-
     switch (layout.render_3d_mode) {
     case Settings::StereoRenderOption::Off:
-        DrawScreen(encoder, layout, rect, screen_textures[2], screen_textures[2], opacity,
-                   PresentMode::Mono, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[2], screen_buffers[2], opacity,
+                   PresentMode::Mono);
         break;
     case Settings::StereoRenderOption::SideBySide:
         DrawScreen(encoder, layout,
                    Common::Rectangle<u32>{rect.left / 2, rect.top, rect.right / 2, rect.bottom},
-                   screen_textures[2], screen_textures[2], opacity, PresentMode::Mono, sampler);
-        DrawScreen(
-            encoder, layout,
-            Common::Rectangle<u32>{(rect.left / 2) + (layout.width / 2), rect.top,
-                                   (rect.right / 2) + (layout.width / 2), rect.bottom},
-            screen_textures[2], screen_textures[2], opacity, PresentMode::Mono, sampler);
+                   screen_buffers[2], screen_buffers[2], opacity, PresentMode::Mono);
+        DrawScreen(encoder, layout,
+                   Common::Rectangle<u32>{(rect.left / 2) + (layout.width / 2), rect.top,
+                                          (rect.right / 2) + (layout.width / 2), rect.bottom},
+                   screen_buffers[2], screen_buffers[2], opacity, PresentMode::Mono);
         break;
     case Settings::StereoRenderOption::SideBySideFull:
-        DrawScreen(encoder, layout, rect, screen_textures[2], screen_textures[2], opacity,
-                   PresentMode::Mono, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[2], screen_buffers[2], opacity,
+                   PresentMode::Mono);
         DrawScreen(encoder, layout, rect.TranslateX(static_cast<int>(layout.width / 2)),
-                   screen_textures[2], screen_textures[2], opacity, PresentMode::Mono, sampler);
+                   screen_buffers[2], screen_buffers[2], opacity, PresentMode::Mono);
         break;
     case Settings::StereoRenderOption::CardboardVR:
-        DrawScreen(encoder, layout, rect, screen_textures[2], screen_textures[2], opacity,
-                   PresentMode::Mono, sampler);
-        DrawScreen(
-            encoder, layout,
-            Common::Rectangle<u32>{layout.cardboard.bottom_screen_right_eye + (layout.width / 2),
-                                   rect.top,
-                                   layout.cardboard.bottom_screen_right_eye + (layout.width / 2) +
-                                       rect.GetWidth(),
-                                   rect.bottom},
-            screen_textures[2], screen_textures[2], opacity, PresentMode::Mono, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[2], screen_buffers[2], opacity,
+                   PresentMode::Mono);
+        DrawScreen(encoder, layout,
+                   Common::Rectangle<u32>{layout.cardboard.bottom_screen_right_eye +
+                                              (layout.width / 2),
+                                          rect.top,
+                                          layout.cardboard.bottom_screen_right_eye +
+                                              (layout.width / 2) + rect.GetWidth(),
+                                          rect.bottom},
+                   screen_buffers[2], screen_buffers[2], opacity, PresentMode::Mono);
         break;
     case Settings::StereoRenderOption::Anaglyph:
-        DrawScreen(encoder, layout, rect, screen_textures[2], screen_textures[2], opacity,
-                   PresentMode::Anaglyph, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[2], screen_buffers[2], opacity,
+                   PresentMode::Anaglyph);
         break;
     case Settings::StereoRenderOption::Interlaced:
-        DrawScreen(encoder, layout, rect, screen_textures[2], screen_textures[2], opacity,
-                   PresentMode::Interlaced, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[2], screen_buffers[2], opacity,
+                   PresentMode::Interlaced);
         break;
     case Settings::StereoRenderOption::ReverseInterlaced:
-        DrawScreen(encoder, layout, rect, screen_textures[2], screen_textures[2], opacity,
-                   PresentMode::ReverseInterlaced, sampler);
+        DrawScreen(encoder, layout, rect, screen_buffers[2], screen_buffers[2], opacity,
+                   PresentMode::ReverseInterlaced);
         break;
     }
 }
@@ -390,6 +330,19 @@ void PresentWindow::Present(const Layout::FramebufferLayout& layout, const Commo
     const auto& window_info = impl->emu_window.GetWindowInfo();
     UpdateDrawableSize(impl->metal_layer, impl->host_view, window_info.render_surface_scale);
 
+    std::array<ScreenBuffer, 3> draw_screens{};
+    for (std::size_t i = 0; i < screen_infos.size(); i++) {
+        const auto& screen = screen_infos[i];
+        draw_screens[i] = {
+            .buffer = screen.valid ? (__bridge id<MTLBuffer>)screen.buffer : nil,
+            .width = screen.width,
+            .height = screen.height,
+            .pixel_stride = screen.pixel_stride,
+            .pixel_format = static_cast<u32>(screen.pixel_format),
+            .texcoords = screen.texcoords,
+        };
+    }
+
     id<CAMetalDrawable> drawable = [impl->metal_layer nextDrawable];
     if (drawable == nil) {
         LOG_ERROR(Render_Metal, "Failed to acquire CAMetalDrawable");
@@ -397,34 +350,13 @@ void PresentWindow::Present(const Layout::FramebufferLayout& layout, const Commo
     }
 
     id<MTLDevice> device = (__bridge id<MTLDevice>)impl->instance.GetDevice();
-
-    for (std::size_t i = 0; i < screen_infos.size(); i++) {
-        const auto& screen = screen_infos[i];
-        if (!screen.valid || screen.pixels == nullptr || screen.width == 0 || screen.height == 0) {
-            continue;
-        }
-        if (!EnsureTexture(impl->screen_textures[i], device, screen.width, screen.height)) {
-            LOG_ERROR(Render_Metal, "Failed to allocate Metal screen texture {} ({}x{})", i,
-                      screen.width, screen.height);
-            continue;
-        }
-
-        MTLRegion region = MTLRegionMake2D(0, 0, screen.width, screen.height);
-        [impl->screen_textures[i].texture replaceRegion:region
-                                            mipmapLevel:0
-                                              withBytes:screen.pixels
-                                            bytesPerRow:screen.width * 4];
-    }
-
     id<MTL4CommandAllocator> allocator =
         (__bridge id<MTL4CommandAllocator>)impl->instance.GetCommandAllocator();
     id<MTL4CommandQueue> queue = (__bridge id<MTL4CommandQueue>)impl->instance.GetCommandQueue();
     id<MTLRenderPipelineState> pipeline =
         (__bridge id<MTLRenderPipelineState>)impl->pipeline_cache.GetPresentPipeline();
-    id<MTLSamplerState> sampler = impl->samplers[Settings::values.filter_mode.GetValue() ? 1 : 0];
-
-    if (pipeline == nil || sampler == nil) {
-        LOG_ERROR(Render_Metal, "Metal present resources are not ready");
+    if (pipeline == nil) {
+        LOG_ERROR(Render_Metal, "Metal present pipeline is not ready");
         return;
     }
 
@@ -447,22 +379,21 @@ void PresentWindow::Present(const Layout::FramebufferLayout& layout, const Commo
         [encoder setCullMode:MTLCullModeNone];
 
         if (!Settings::values.swap_screen.GetValue()) {
-            DrawTopScreen(encoder, layout, impl->screen_textures, sampler);
-            DrawBottomScreen(encoder, layout, impl->screen_textures, layout.bottom_opacity,
-                             sampler);
+            DrawTopScreen(encoder, layout, draw_screens);
+            DrawBottomScreen(encoder, layout, draw_screens, layout.bottom_opacity);
         } else {
-            DrawBottomScreen(encoder, layout, impl->screen_textures, 1.0f, sampler);
-            DrawTopScreen(encoder, layout, impl->screen_textures, sampler);
+            DrawBottomScreen(encoder, layout, draw_screens, 1.0f);
+            DrawTopScreen(encoder, layout, draw_screens);
         }
 
         if (layout.additional_screen_enabled) {
             const auto& additional_screen = layout.additional_screen;
             if (!Settings::values.swap_screen.GetValue()) {
-                DrawScreen(encoder, layout, additional_screen, impl->screen_textures[0],
-                           impl->screen_textures[1], 1.0f, PresentMode::Mono, sampler);
+                DrawScreen(encoder, layout, additional_screen, draw_screens[0], draw_screens[1],
+                           1.0f, PresentMode::Mono);
             } else {
-                DrawScreen(encoder, layout, additional_screen, impl->screen_textures[2],
-                           impl->screen_textures[2], 1.0f, PresentMode::Mono, sampler);
+                DrawScreen(encoder, layout, additional_screen, draw_screens[2], draw_screens[2],
+                           1.0f, PresentMode::Mono);
             }
         }
 
