@@ -4,8 +4,10 @@
 
 #pragma once
 
+#include <array>
 #include <memory>
 
+#include "common/common_types.h"
 #include "common/vector_math.h"
 
 namespace Frontend {
@@ -21,6 +23,14 @@ namespace Metal {
 class Instance;
 class PipelineCache;
 
+struct ScreenInfo {
+    const u8* pixels = nullptr;
+    u32 width = 0;
+    u32 height = 0;
+    float opacity = 1.0f;
+    bool valid = false;
+};
+
 class PresentWindow {
 public:
     explicit PresentWindow(Frontend::EmuWindow& emu_window, const Instance& instance,
@@ -28,7 +38,8 @@ public:
     ~PresentWindow();
 
     void NotifySurfaceChanged();
-    void Present(const Layout::FramebufferLayout& layout, const Common::Vec4f& clear_color);
+    void Present(const Layout::FramebufferLayout& layout, const Common::Vec4f& clear_color,
+                 const std::array<ScreenInfo, 3>& screen_infos);
 
     [[nodiscard]] bool IsValid() const;
 

@@ -4,6 +4,7 @@
 
 #include "video_core/renderer_metal/mt_texture_runtime.h"
 
+#include "common/common_paths.h"
 #include "common/file_util.h"
 
 namespace Metal {

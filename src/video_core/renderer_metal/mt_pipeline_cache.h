@@ -18,6 +18,7 @@ public:
 
     [[nodiscard]] bool IsValid() const;
     [[nodiscard]] void* GetPresentPipeline() const;
+    [[nodiscard]] u64 GetPresentShaderHash() const;
 
 private:
     struct Impl;

@@ -11,6 +11,7 @@
 
 #include <fmt/format.h>
 
+#include "common/common_paths.h"
 #include "common/file_util.h"
 #include "common/hash.h"
 #include "common/logging/log.h"
@@ -21,6 +22,7 @@ namespace Metal {
 struct PipelineCache::Impl {
     id<MTLLibrary> present_library = nil;
     id<MTLRenderPipelineState> present_pipeline = nil;
+    u64 present_shader_hash = 0;
     bool valid = false;
 };
 
@@ -30,24 +32,58 @@ constexpr std::string_view PRESENT_SHADER = R"(
 #include <metal_stdlib>
 using namespace metal;
 
-struct PresentVertexOut {
-    float4 position [[position]];
+struct PresentVertex {
+    float2 position;
+    float2 tex_coord;
 };
 
-vertex PresentVertexOut azahar_present_vs(uint vertex_id [[vertex_id]]) {
-    const float2 positions[3] = {
-        float2(-1.0, -1.0),
-        float2( 3.0, -1.0),
-        float2(-1.0,  3.0),
-    };
+struct PresentVertexOut {
+    float4 position [[position]];
+    float2 tex_coord;
+};
 
+struct PresentFragmentUniforms {
+    float opacity;
+    uint mode;
+};
+
+vertex PresentVertexOut azahar_present_vs(const device PresentVertex* vertices [[buffer(0)]],
+                                          uint vertex_id [[vertex_id]]) {
     PresentVertexOut out;
-    out.position = float4(positions[vertex_id], 0.0, 1.0);
+    out.position = float4(vertices[vertex_id].position, 0.0, 1.0);
+    out.tex_coord = vertices[vertex_id].tex_coord;
     return out;
 }
 
-fragment float4 azahar_present_fs() {
-    return float4(0.0, 0.0, 0.0, 1.0);
+fragment float4 azahar_present_fs(PresentVertexOut in [[stage_in]],
+                                  float4 position [[position]],
+                                  texture2d<float> color_texture_l [[texture(0)]],
+                                  texture2d<float> color_texture_r [[texture(1)]],
+                                  sampler color_sampler [[sampler(0)]],
+                                  constant PresentFragmentUniforms& uniforms [[buffer(0)]]) {
+    const float4 left = color_texture_l.sample(color_sampler, in.tex_coord);
+    float4 color = left;
+
+    switch (uniforms.mode) {
+    case 1: {
+        const float4 right = color_texture_r.sample(color_sampler, in.tex_coord);
+        color = float4(left.r, right.g, right.b, max(left.a, right.a));
+        break;
+    }
+    case 2:
+    case 3: {
+        const float4 right = color_texture_r.sample(color_sampler, in.tex_coord);
+        const bool odd_line = (static_cast<uint>(position.y) & 1u) != 0u;
+        const bool use_right = uniforms.mode == 2 ? odd_line : !odd_line;
+        color = use_right ? right : left;
+        break;
+    }
+    default:
+        break;
+    }
+
+    color.a *= uniforms.opacity;
+    return color;
 }
 )";
 
@@ -64,16 +100,19 @@ static bool EnsureDirectories() {
            FileUtil::CreateDir(GetMetalShaderDir());
 }
 
-static void SaveCacheMetadata(const Instance& instance) {
+static u64 GetShaderHash() {
+    return Common::ComputeHash64<Common::HashAlgo64::CityHash>(PRESENT_SHADER.data(),
+                                                               PRESENT_SHADER.size());
+}
+
+static void SaveCacheMetadata(const Instance& instance, u64 shader_hash) {
     if (!EnsureDirectories()) {
         return;
     }
 
-    const u64 shader_hash =
-        Common::ComputeHash64<Common::HashAlgo64::CityHash>(PRESENT_SHADER.data(),
-                                                            PRESENT_SHADER.size());
     const std::string metadata =
-        fmt::format("device={}\nshader_hash={:016x}\n", instance.GetDeviceName(), shader_hash);
+        fmt::format("version=1\ndevice={}\nshader_hash={:016x}\n", instance.GetDeviceName(),
+                    shader_hash);
     FileUtil::WriteStringToFile(true, GetCacheMetadataPath(), metadata);
 }
 
@@ -90,6 +129,8 @@ PipelineCache::PipelineCache(const Instance& instance) : impl{} {
     if (compiler == nil) {
         return;
     }
+
+    impl->present_shader_hash = GetShaderHash();
 
     NSError* error = nil;
 
@@ -137,7 +178,7 @@ PipelineCache::PipelineCache(const Instance& instance) : impl{} {
         return;
     }
 
-    SaveCacheMetadata(instance);
+    SaveCacheMetadata(instance, impl->present_shader_hash);
     impl->valid = true;
 }
 
@@ -155,6 +196,10 @@ bool PipelineCache::IsValid() const {
 
 void* PipelineCache::GetPresentPipeline() const {
     return impl ? (__bridge void*)impl->present_pipeline : nullptr;
+}
+
+u64 PipelineCache::GetPresentShaderHash() const {
+    return impl ? impl->present_shader_hash : 0;
 }
 
 } // namespace Metal
