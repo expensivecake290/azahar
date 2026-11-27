@@ -1,0 +1,58 @@
+{
+  "phase": "062",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-062-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 149,
+        "symbol": "PipelineCache::~PipelineCache() {"
+      },
+      "contract": "Native compiler, headers, link and dependency graph must be real.",
+      "native_mapping": "Compile actual Apple Silicon Metal 4 SDK and offline PICA MSL corpus, native CMake link with zero Vulkan dependency.",
+      "expected_result": "PICA200 48 cases/801 assertions, native host and CTest regressions.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "MTL-062-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 155,
+        "symbol": "void PipelineCache::LoadCache(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Adversarial state, progress and lifecycle oracle independent of physical GPU.",
+      "native_mapping": "Controlled SDK callbacks explicitly isolated in host tests with real filesystem, no fabricated native runs.",
+      "expected_result": "Cold/steady/async/switch, duplicate, invalid archive, stale device/result and early-cancel verification.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "MTL-062-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 409,
+        "symbol": "bool PipelineCache::BindPipeline(PipelineInfo& info, bool wait_built) {"
+      },
+      "contract": "Real Metal 4 render equivalence, cache replay capture and scope under validation.",
+      "native_mapping": "Run actual GPU output fixture with independent sync, async, archived and fallback paths with identical known pixels.",
+      "expected_result": "Validate native draw/argument/table lifetimes and capture reuse.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5f140c493814299c4e62e4c70cd5ca30195845621e384e7b89e9b326b9072e09"
+}

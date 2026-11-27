@@ -1,0 +1,79 @@
+{
+  "phase": "005",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-SPATIAL-RESTORE",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 219,
+        "symbol": "values.graphics_api.SetGlobal(true);"
+      },
+      "contract": "Reset applicable per-game renderer settings only when emulation is stopped.",
+      "native_mapping": "Restore the Spatial switch alongside other renderer settings.",
+      "expected_result": "Powered-on restore leaves per-game selection intact; powered-off restore selects global value and keeps per-game value.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> metal",
+      "evidence_path": "005/implementation-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-SPATIAL-LOG",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 104,
+        "symbol": "log_setting(\"Renderer_UseResolutionFactor\", values.resolution_factor.GetValue());"
+      },
+      "contract": "Renderer settings participate in the same configuration logging.",
+      "native_mapping": "Report MetalFX Spatial choice in native builds with the existing log setting helper.",
+      "expected_result": "Live source compiles with the canonical native key and helper, and existing logs remain unchanged outside Metal.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> metal",
+      "evidence_path": "005/implementation-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-OTHER-BEHAVIOR",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 1,
+        "symbol": "// Copyright 2014-2026 Citra Emulator Project / Azahar Emulator Project"
+      },
+      "contract": "Audio, profiling, layout, inputs and video settings remain stable.",
+      "native_mapping": "Keep unrelated definitions and the Android selection special case unchanged.",
+      "expected_result": "Every baseline line is retained; the existing non-Metal consumer still builds and executes.",
+      "dependency_owner": "005",
+      "command": "python3 docs/metaliris/004/verify.py source-implementation <build-dir> off",
+      "evidence_path": "005/source-implementation-off.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-PERSISTENCE",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 94,
+        "symbol": "log_setting(\"Renderer_GraphicsAPI\", GetGraphicsAPIName(values.graphics_api.GetValue()));"
+      },
+      "contract": "Frontend serialization persists the numeric renderer setting and switchable settings.",
+      "native_mapping": "Use Phase 004 enum values and Phase 005A key. Actual frontend persistence is owned by Phase 085.",
+      "expected_result": "Phase 085 verifies missing key and true/false round trips in actual config files.",
+      "dependency_owner": "085",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> metal",
+      "evidence_path": "005/implementation-metal.log",
+      "status": "PASS",
+      "actual_result": "Real Qt INI native selection, global/per-title Spatial and stable global save during title override passed.",
+      "actual_evidence": [
+        "085/reopen-086-retarget.log",
+        "091/qt-persistence.log"
+      ]
+    }
+  ],
+  "owner_sha256_after": "34604c1b62edc5d12a2d2949c8ef7a61b9406f78909a444ffe650c2225cfc448"
+}

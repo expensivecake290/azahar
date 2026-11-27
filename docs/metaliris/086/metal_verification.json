@@ -1,0 +1,41 @@
+{
+  "phase": "086",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-086-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_instance.mm",
+        "sha256": "7dc902471844752bd54a4dbe4f7e26f23a2eeb15bb8ac90be4c645fd48b5a9f0",
+        "line": 182,
+        "symbol": "const DeviceInfo& Instance::SelectDevice(std::span<const DeviceInfo> devices, u32 index,"
+      },
+      "contract": "Validate selected device index, Metal4/unified-memory support and independent Spatial availability before native Core startup.",
+      "native_mapping": "Probe through shared bridge and retain final strict renderer validation. No legacy adapter is used.",
+      "expected_result": "Real no-device Qt rejection, support/menu/status behavior and real app compiler/link pass.",
+      "dependency_owner": "012/014/079/090/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-086-02",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 4868,
+        "symbol": ""
+      },
+      "contract": "Application startup runs native capture/validation, Qt surface and presentation through actual SDK GPU handles.",
+      "native_mapping": "Run full Qt Cocoa with real Metal4 device taking validation and trace settings, boot games, resume from pause and change screen/presentation configuration.",
+      "expected_result": "Drive real Metal trace, API Validation, settings and frame output. Host Qt offscreen proof remains separate.",
+      "dependency_owner": "081/084/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "75f297bc618598e8435eacb947d21ac601e6abe04c9324d1114b80c6ca26bffa"
+}

@@ -1,0 +1,111 @@
+{
+  "provisional_specification_graph": {
+    "nodes": 91,
+    "edges": 162,
+    "later_owner_edges": [
+      [
+        "008",
+        "013"
+      ],
+      [
+        "008",
+        "022"
+      ],
+      [
+        "008",
+        "028"
+      ],
+      [
+        "008",
+        "067"
+      ],
+      [
+        "008",
+        "072"
+      ],
+      [
+        "029",
+        "065"
+      ],
+      [
+        "060",
+        "061"
+      ],
+      [
+        "064",
+        "065"
+      ],
+      [
+        "083",
+        "088"
+      ]
+    ],
+    "cycles": [],
+    "native_graph": "Unresolved. Production Metal source does not exist. These are Revision 11's provisional edges."
+  },
+  "compiler_scans": {
+    "vulkan": {
+      "units": 41,
+      "failed": [],
+      "resolved_paths": 4511,
+      "registry_classifications": {
+        "apple-sdk": 1309,
+        "standard-library": 961,
+        "excluded-frontend": 680,
+        "external-candidate": 1272,
+        "vulkan-private": 53,
+        "azahar-candidate": 236
+      },
+      "observed_repeated_include_paths": 77,
+      "observed_project_repeated_include_paths": 0,
+      "scope": "Targeted baseline translation-unit scans. Header candidates require transitive neutrality review.",
+      "superseded_by": "vulkan-compiler-dependencies.tar.gz"
+    },
+    "pica": {
+      "units": 13,
+      "failed": [],
+      "resolved_paths": 2378,
+      "registry_classifications": {
+        "apple-sdk": 215,
+        "standard-library": 869,
+        "external-candidate": 1150,
+        "azahar-candidate": 144
+      },
+      "observed_repeated_include_paths": 44,
+      "observed_project_repeated_include_paths": 0,
+      "scope": "Targeted baseline translation-unit scans. Header candidates require transitive neutrality review.",
+      "superseded_by": "pica-compiler-dependencies.tar.gz"
+    },
+    "pica_all_project": {
+      "units": 388,
+      "failed": [],
+      "resolved_paths": 4820,
+      "evidence_archive": "pica-compiler-dependencies.tar.gz",
+      "scope": "All configured source-tree translation units under src/, one command per source path.",
+      "registry_classifications": {
+        "apple-sdk": 1392,
+        "standard-library": 968,
+        "external-candidate": 1979,
+        "unresolved": 1,
+        "azahar-candidate": 480
+      }
+    },
+    "vulkan_all_project": {
+      "units": 486,
+      "failed": [],
+      "resolved_paths": 5833,
+      "evidence_archive": "vulkan-compiler-dependencies.tar.gz",
+      "scope": "All configured source-tree translation units under src/, one command per source path.",
+      "registry_classifications": {
+        "apple-sdk": 1404,
+        "standard-library": 974,
+        "external-candidate": 2074,
+        "excluded-frontend": 818,
+        "vulkan-private": 64,
+        "azahar-candidate": 487,
+        "excluded-shader-reference": 11,
+        "unresolved": 1
+      }
+    }
+  }
+}

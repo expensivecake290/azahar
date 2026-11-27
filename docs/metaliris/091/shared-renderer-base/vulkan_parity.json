@@ -1,0 +1,24 @@
+{
+  "phase": "091/shared-renderer-base",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-SHARED-091-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1194,
+        "symbol": "void RendererVulkan::RenderScreenshot() {"
+      },
+      "contract": "A screenshot request sets one destination, layout and callback. Completion callback receives the orientation once the renderer owns copied pixels.",
+      "native_mapping": "Retain the shared single-request policy and serialize request publishers; native renderer continues holding the flag through completion.",
+      "expected_result": "Concurrent producers are admitted one at a time with self-consistent destination/layout and callback. Pending native pixel verification stays with 091.",
+      "dependency_owner": "081/091",
+      "command": "python3 docs/metaliris/091/shared-renderer-base/verify.py <native-core> <scratch>",
+      "evidence_path": "091/shared-renderer-base/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native and feature-off compile, 1024 real concurrent screenshot publish pairs, final native/Qt link and regression baseline passed."
+    }
+  ],
+  "owner_sha256_after": "2dd25449cdb08f095198e66780b146286472b328045eddb995812dad416cbe27"
+}

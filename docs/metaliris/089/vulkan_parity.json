@@ -1,0 +1,58 @@
+{
+  "phase": "089",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-089-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.ui",
+        "sha256": "d76c814203d1f7286dce57154a414db3dab4bca4450ed5e23f6b007e4867ced4",
+        "line": 52,
+        "symbol": "<widget class=\"QComboBox\" name=\"graphics_api_combo\">"
+      },
+      "contract": "Graphics API enum ordinals follow Qt combo layout and an unavailable compiled backend is barred by the model.",
+      "native_mapping": "Expose one native Metal option in the Designer form and preserve ordering and backend conditional availability from the owner 083.",
+      "expected_result": "Generated Ui exposes one Metal entry at ordinal 3. Runtime Metal chooses correct per-game offsets, and feature-off omits the native option.",
+      "dependency_owner": "083/088",
+      "command": "zsh docs/metaliris/089/verify.sh <Qt build> <core> <output>",
+      "evidence_path": "089/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real UIC and MOC plus Qt application link. Duplicate interim controls reproduced and repaired, tested one native item and one field, supported and unsupported state, per-game retranslation, native/off compile, real INI round-trip, PICA 48/801 and CTest 64."
+    },
+    {
+      "id": "VK-089-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.ui",
+        "sha256": "d76c814203d1f7286dce57154a414db3dab4bca4450ed5e23f6b007e4867ced4",
+        "line": 130,
+        "symbol": "<widget class=\"QCheckBox\" name=\"spirv_shader_gen\">"
+      },
+      "contract": "Backend-specific native controls belong to the frontend and remain separate from texture assignments.",
+      "native_mapping": "Declare a native MetalFX Spatial checkbox with translated accessible label. Old backend widgets retain settings on their own effective API.",
+      "expected_result": "Widget appears only on Metal; supported device allows toggling, unsupported can clear stale enabled value and existing filter/async settings remain independent.",
+      "dependency_owner": "083/084/088",
+      "command": "zsh docs/metaliris/089/verify.sh <Qt build> <core> <output>",
+      "evidence_path": "089/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real UIC and MOC plus Qt application link. Duplicate interim controls reproduced and repaired, tested one native item and one field, supported and unsupported state, per-game retranslation, native/off compile, real INI round-trip, PICA 48/801 and CTest 64."
+    },
+    {
+      "id": "VK-089-03",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.ui",
+        "sha256": "d76c814203d1f7286dce57154a414db3dab4bca4450ed5e23f6b007e4867ced4",
+        "line": 232,
+        "symbol": "<widget class=\"QCheckBox\" name=\"toggle_async_present\">"
+      },
+      "contract": "Existing async presentation and frame-skipping controls apply to native equivalents.",
+      "native_mapping": "Use shared renderer terminology in the relevant tooltips, retaining existing widget IDs, configuration values and semantics.",
+      "expected_result": "UIC compiles both variants, no changed slider/group/selector object names or effect on independent settings targets.",
+      "dependency_owner": "083/091",
+      "command": "zsh docs/metaliris/089/verify.sh <Qt build> <core> <output>",
+      "evidence_path": "089/uic.log",
+      "status": "PASS",
+      "actual_result": "Real UIC and MOC plus Qt application link. Duplicate interim controls reproduced and repaired, tested one native item and one field, supported and unsupported state, per-game retranslation, native/off compile, real INI round-trip, PICA 48/801 and CTest 64."
+    }
+  ],
+  "owner_sha256_after": "1732844292221360d2c84380dc6c32c55e56ee90548b636f02ceb7a2532892d7"
+}

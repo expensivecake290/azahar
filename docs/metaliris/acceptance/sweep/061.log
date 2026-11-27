@@ -1,0 +1,8 @@
+Command: zsh docs/metaliris/061/verify.sh /tmp/metaliris-r12.lKARZLkI/metal /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061
++docs/metaliris/061/verify.sh:12> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -DENABLE_SOFTWARE_RENDERER -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -isystem /Users/anthonygarcia/azahar/externals/xxHash -isystem /Users/anthonygarcia/azahar/externals/nihstro/include -Wall -Wextra -Werror -Wno-unused-parameter -MD -MF /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061/consumer.d -c /Users/anthonygarcia/azahar/docs/metaliris/061/verify.mm -o /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061/consumer.o
++docs/metaliris/061/verify.sh:14> xcrun --sdk macosx clang++ -arch arm64 '-mmacosx-version-min=26.0' /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061/consumer.o -framework Metal -framework Foundation -o /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061/pipeline-cache-contract
++docs/metaliris/061/verify.sh:15> /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061/pipeline-cache-contract
+PASS 3072 Metal 4 geometry routes, indexed strip restart, title identity, immutable argument ABI and required pipeline signatures
++docs/metaliris/061/verify.sh:16> rg -i 'renderer_vulkan|moltenvk|vulkan\.h|shaderc|spirv' /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061/consumer.d
+
+Fixture exit status 0; 3.66 seconds

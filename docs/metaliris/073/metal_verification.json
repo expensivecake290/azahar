@@ -1,0 +1,58 @@
+{
+  "phase": "073",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-073-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 101,
+        "symbol": "Scheduler& scheduler_, bool low_refresh_rate_)"
+      },
+      "contract": "Real Apple SDK compile, native shader source and SDK dependency closure.",
+      "native_mapping": "Compile actual native ObjC++ ARC and native MSL 4. Link scheduler, timer, memory budget and real cache contract. Run exact regression.",
+      "expected_result": "PASS host and compile, no Vulkan/MoltenVK or legacy execution.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native Apple ARC target and fixture link, offline MSL 4 executable for scaling, host copy policy/lease compile, neutral dependencies, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "MTL-073-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 249,
+        "symbol": ""
+      },
+      "contract": "Pool and worker lifecycle observable with checked actual resources.",
+      "native_mapping": "Run complete 3-slot frame fixture, 4th blocked, headless, release on removal, explicit 4x resolve, real source completion.",
+      "expected_result": "Physical Metal 4 device and actual readback with API validation.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-073-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 367,
+        "symbol": ""
+      },
+      "contract": "Physical visible native nearest/linear present, queue policy, resize and teardown.",
+      "native_mapping": "Use window and renderer fixtures in matching physical environment, retain swapchain and present allocation through visible GPU work.",
+      "expected_result": "Native exact display/texture results and timing.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "86d6571b77185af5b2f5c38427f98f29cfee1c30dc858c5cd87157d0d5566662"
+}

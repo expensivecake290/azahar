@@ -1,0 +1,126 @@
+{
+  "phase": "029",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-029-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 5,
+        "symbol": "#include <limits>"
+      },
+      "contract": "Standard limits and neutral optional Boost static_vector source dependency.",
+      "native_mapping": "Use std::array for bounded attachment list and shared rectangle and format helpers.",
+      "expected_result": "Compiler include registry identifies standard/shared/Apple SDK only.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native link passed; production scissored clear MSL and GPU oracle compiled to Metal 4 libraries."
+    },
+    {
+      "id": "AZ-029-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 7,
+        "symbol": "#include \"common/assert.h\""
+      },
+      "contract": "Shared asserts/pixel-format compatibility checked, Vulkan-private headers excluded.",
+      "native_mapping": "Use checked public arguments, existing FormatTable and real scheduler.",
+      "expected_result": "Native source builds with no Vulkan dependency.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native link passed; production scissored clear MSL and GPU oracle compiled to Metal 4 libraries."
+    },
+    {
+      "id": "AZ-029-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 113,
+        "symbol": "scheduler.RegisterOnSubmit([&renderpass_cache] { renderpass_cache.EndRendering(); });"
+      },
+      "contract": "Close current pass before scheduler submits and reset graphics state when pass changes.",
+      "native_mapping": "RenderManager owns weak submit hook and dirties pipeline and argument table caches on new encoder.",
+      "expected_result": "068 real rasterizer pass lifecycle fixture.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-029-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 423,
+        "symbol": "surface.type != VideoCore::SurfaceType::DepthStencil;"
+      },
+      "contract": "Partial render-area clears preserve pixels outside subset, MSAA clears update regular/resolve targets.",
+      "native_mapping": "Use scissor, native clear shader, independent depth/stencil mask and real resolve actions; full uses load clear.",
+      "expected_result": "066 exact partial clear and invalidated region output.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-029-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 410,
+        "symbol": "renderpass_cache.BeginRendering(depth_pass);"
+      },
+      "contract": "Utilities render to depth-only framebuffer and preserve the required source views.",
+      "native_mapping": "Typed native draw callback against active encoder, actual attachment subset.",
+      "expected_result": "064 depth data matches reference.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-029-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 299,
+        "symbol": ".renderPass = renderpass_cache.GetRenderpass(info.state.attachments.color,"
+      },
+      "contract": "Graphics pipeline builds for current color/depth sample combinations.",
+      "native_mapping": "Native render formats key and actual Metal 4 render pipeline.",
+      "expected_result": "058 maps all required pipeline compatibility combinations.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MSAA-033-029",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.mm",
+        "sha256": "78585b1a1222459601b0bb1e0b8055d9556b91a3e17543045d0b6aa5741b92da",
+        "line": 632,
+        "symbol": "void RenderManager::CopyForFeedback(const RenderTexture& source, const RenderTexture& destination,"
+      },
+      "contract": "A resolved MSAA color snapshot loses per-sample values needed by framebuffer logic and factor-aware min/max. Metal 4 supports same-sample texture copies.",
+      "native_mapping": "Copy equal-format, equal-sample subresources to a distinct native snapshot and retain both through feedback.",
+      "expected_result": "Native compile and fixture verifies every copied sample individually.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/reopen-033.log",
+      "status": "PENDING",
+      "actual_result": "Native same-sample copy and readback compiled as MSL4, linked and passed PICA regression. GPU samples remain unverified."
+    }
+  ],
+  "owner_sha256_after": "a777ba9a63ac1319f543bb2c25879653bca7033665fa7d99a38883a543b7fc72"
+}

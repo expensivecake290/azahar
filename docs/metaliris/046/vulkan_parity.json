@@ -1,0 +1,58 @@
+{
+  "phase": "046",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-046-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/y_gradient.frag",
+        "sha256": "8817caab5b6b346435f249c915bdf0bcc8ed0e948f40bde5a8ce0850a2720974",
+        "line": 26,
+        "symbol": "layout(location = 0) in vec2 tex_coord;"
+      },
+      "contract": "Location-0 normalized UV samples RG float intermediate texture at binding 2.",
+      "native_mapping": "Native float2 user(locn0), RG16Float read at texture(2), normalized clamp and LOD0 offset sampler.",
+      "expected_result": "Use true source slot, odd extents, positive and negative offset, no clamp to normalized byte.",
+      "dependency_owner": "046",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-046-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/y_gradient.frag",
+        "sha256": "8817caab5b6b346435f249c915bdf0bcc8ed0e948f40bde5a8ce0850a2720974",
+        "line": 31,
+        "symbol": "void main() {"
+      },
+      "contract": "Use plus Y, current, minus Y at exact native texel offsets.",
+      "native_mapping": "Apple MSL native texture sample offset overload and identical ordering of both channels.",
+      "expected_result": "Independently compute expected values for a signed synthetic X result.",
+      "dependency_owner": "046",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-046-03",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/y_gradient.frag",
+        "sha256": "8817caab5b6b346435f249c915bdf0bcc8ed0e948f40bde5a8ce0850a2720974",
+        "line": 36,
+        "symbol": "vec2 grad = vec2(t.x + 2.0 * c.x + b.x, b.y - t.y);"
+      },
+      "contract": "Smooth prior X difference and take difference of prior smoothed Y channels, subtract gradient length from 1.",
+      "native_mapping": "Float32 vector length and native R16Float preserving signed output.",
+      "expected_result": "CPU squared-magnitude verification and live negative values, sign and edge checks.",
+      "dependency_owner": "046",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "ba140819b36bb26210b1d1d1c1b0def1db3b9ea738b801b8f4a36d3284e8384d"
+}

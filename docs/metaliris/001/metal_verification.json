@@ -1,0 +1,194 @@
+{
+  "phase": "001",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-ARC-SDK",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 1398,
+        "symbol": "newMTL4CommandQueue"
+      },
+      "contract": "The selected macOS SDK must supply native Metal 4 queue, command buffer, allocator, compiler, argument tables and residency declarations under ARC.",
+      "native_mapping": "Compile and link an ARM64 Objective-C++20 configure probe using SDK frameworks. It is not executed during configuration.",
+      "expected_result": "Current SDK links successfully; unavailable declarations or ARC produce a hard, specific configuration failure.",
+      "command": "python3 docs/metaliris/001/verify.py metal <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/metal.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "MTL-MESH",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderCommandEncoder.h",
+        "sha256": "30a4ef6d30a363b6a0df94eb44873c2a1718a96b3091e7edfa9f1082824ec47f",
+        "line": 552,
+        "symbol": "drawMeshThreadgroups"
+      },
+      "contract": "The SDK exposes native object/mesh declarations. Physical feature support is queried separately.",
+      "native_mapping": "Compile SDK declarations and build object/mesh MSL4 directly. GPU output is verified by the separate smoke fixture.",
+      "expected_result": "Native object/mesh MSL compiles. On hardware supporting the fixture, pixel at (1,1) equals RGBA (255,0,0,255).",
+      "command": "python3 docs/metaliris/001/verify.py native <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/native.log",
+      "status": "PENDING",
+      "actual_result": "Native compile/link passed. No process-visible Metal device, so hardware output was not verified."
+    },
+    {
+      "id": "MTL-SPATIAL",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h",
+        "sha256": "4c45d9f30fa889a6b0df6b92660fbdd0a82d7eb7fe6c479832a50ee54f783075",
+        "line": 77,
+        "symbol": "newSpatialScalerWithDevice:compiler:"
+      },
+      "contract": "MetalFX Spatial exposes a Metal 4 creation and capability route.",
+      "native_mapping": "Validate the MTL4FXSpatialScaler protocol and command buffer encoding type at configure time. Run deterministic native output on GPU if available.",
+      "expected_result": "SDK link works. On a capable device the RGBA (255,0,0,255) input scales to the same expected output pixel.",
+      "command": "python3 docs/metaliris/001/verify.py native <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/native.log",
+      "status": "PENDING",
+      "actual_result": "Native compile/link passed. No process-visible Metal device, so hardware output was not verified."
+    },
+    {
+      "id": "MTL-DEPLOYMENT",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "b45008450cddbb5ddb9d96475aa3a24f62b8969b82b39eb2e1f8da1b9a60ac81",
+        "line": 65,
+        "symbol": "CMAKE_OSX_DEPLOYMENT_TARGET"
+      },
+      "contract": "Metal 4 declarations are available at macOS 26.0; unrelated builds keep their existing deployment parameters.",
+      "native_mapping": "Use an opt-in scope and a 26.0 floor with explicit validation before checking SDK declarations.",
+      "expected_result": "26.0 and 26.1 configure successfully; 15.0 fails with the deployment diagnostic.",
+      "command": "python3 docs/metaliris/001/verify.py deployment <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/deployment.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "MTL-FAILURE",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "b45008450cddbb5ddb9d96475aa3a24f62b8969b82b39eb2e1f8da1b9a60ac81",
+        "line": 24,
+        "symbol": "compiler and SDK provisioning"
+      },
+      "contract": "An SDK without usable declarations or a compiler without ARC must fail before consumers build.",
+      "native_mapping": "Use the real configure-time compile/link test and inject a forced header error on a fresh and cached build.",
+      "expected_result": "Both injected failures are rejected. Removing the injected failure from the same cache allows successful reconfiguration.",
+      "command": "python3 docs/metaliris/001/verify.py failure <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/failure.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "MTL-GPU-COMPUTE",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 255,
+        "symbol": "MTLGPUFamilyMetal4"
+      },
+      "contract": "A physical Metal 4 GPU, command submission, shared output and API validation are distinct from compilation.",
+      "native_mapping": "Run the existing native-only fixture. Absent device leaves the GPU check pending and does not block CMake.",
+      "expected_result": "Metal API validation is enabled; shared memory readback equals 0x4d544c34 with no validation errors.",
+      "command": "python3 docs/metaliris/001/verify.py native <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/native.log",
+      "status": "PENDING",
+      "actual_result": "Native compile/link passed. No process-visible Metal device, so hardware output was not verified."
+    },
+    {
+      "id": "MTL-CAPTURE",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLCaptureManager.h",
+        "sha256": "9959a7ede12a79911972b88409dfc7fede14472b342ea690256a4b5d60bf180c",
+        "line": 1,
+        "symbol": "MTLCaptureManager"
+      },
+      "contract": "GPU capture requires an accessible Metal GPU and writable output.",
+      "native_mapping": "Run native fixture with MTL_CAPTURE_ENABLED and save workload.gputrace, preserving an exact trigger if unavailable.",
+      "expected_result": "A GPU trace is created and readable after successful native workload submission.",
+      "command": "python3 docs/metaliris/001/verify.py native <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/native.log",
+      "status": "PENDING",
+      "actual_result": "Native compile/link passed. No process-visible Metal device, so hardware output was not verified."
+    },
+    {
+      "id": "MTL-PICA",
+      "source": {
+        "path": "src/tests/CMakeLists.txt",
+        "sha256": "2efb9a8954a29247df66af7ba4dff154a526020152987a5d4b5bb668807d5585",
+        "line": 1,
+        "symbol": "tests"
+      },
+      "contract": "CMake opt-in must preserve shared CPU-side PICA200 behavior.",
+      "native_mapping": "Build and run real test target and standalone [video_core] suite with Vulkan disabled.",
+      "expected_result": "PICA baseline remains 48 cases and 801 assertions. CTest passes available cases and independently reports fixture skips.",
+      "command": "python3 docs/metaliris/001/verify.py pica <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/pica.log",
+      "status": "PASS",
+      "actual_result": "Fresh project link and PICA tests passed: 48 cases and 801 assertions. CTest passed 64 and skipped 5."
+    },
+    {
+      "id": "REOPEN-001-078",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "eb3e2f9e0f8a40c528a413145a0716c30d96715dc09141a221c58b6f0d96dd2e",
+        "line": 467,
+        "symbol": "check_native_metal_sdk()"
+      },
+      "contract": "CMake enables native sources and SDK checks but actual settings.cpp and Qt frontend compile commands omit ENABLE_METAL; native settings selectors and conditional bridge would be inactive.",
+      "native_mapping": "Publish ENABLE_METAL to actual targets only after successful native mode and Apple SDK checks.",
+      "expected_result": "Native settings and Qt compile actual conditional code; off mode lacks modifier, native dependency graph has no Vulkan unit. PICA 48/801 and 64 CTest.",
+      "dependency_owner": "078",
+      "command": "cmake configure, SDK probe, build native tests and native Qt consumers",
+      "evidence_path": "001/reopen-078.log",
+      "status": "PASS",
+      "actual_result": "SDK arm64 ARC check and full native target rebuild; actual -DENABLE_METAL in settings and Qt compile commands; native GetWorkingGraphicsAPI/default Spatial and Software verified by linked fixture; off graph unchanged; no Vulkan compilation; PICA 48/801 and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "REOPEN-001-079",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "f427d83fff7ffd252a3c0b18a2b4905b7501016b17cb4a116ecda1d47b437a04",
+        "line": 715,
+        "symbol": "add_subdirectory(src)"
+      },
+      "contract": "The same native Qt Apple bridge is compiled by both citra_qt and citra_meta without ARC, which is incompatible with the retained Metal device handles returned by the ARC native platform interface.",
+      "native_mapping": "Enable ARC only on the existing Metal Qt bridge in its two source-owning target directories when ENABLE_METAL is selected.",
+      "expected_result": "Both native actual compile entries use ARC, opt-out remains independent, native SDK and regression continue to pass.",
+      "dependency_owner": "079",
+      "command": "cmake configure Qt and native tests; compile exact source entry",
+      "evidence_path": "001/reopen-079.log",
+      "status": "PASS",
+      "actual_result": "Native SDK configure succeeded and both actual Qt/Meta compile entries include ARC exactly once and ENABLE_METAL. Native-only per-source flag, no Vulkan units; real Qt bridge compile and link evidence follows in 079."
+    },
+    {
+      "id": "AZ-001-REOPEN-087",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "8c07f6c5908bf9eb949266b1d469dd6017d900c9b16ea8e0b9150565e95e4938",
+        "line": 719,
+        "symbol": "TARGET_DIRECTORY citra_qt citra_meta"
+      },
+      "contract": "Native MetalARC bridge belongs to the Qt target alone.",
+      "native_mapping": "Remove the broad inherited root ARC property after ownership moves to citra_qt private build registration. Preserve native backend option and platform framework checks.",
+      "expected_result": "Compiler graph contains one Qt Objective-C++ ARC bridge, legacy feature-off Apple source registrations are unchanged, build and regression evidence passes.",
+      "dependency_owner": "087",
+      "command": "zsh docs/metaliris/087/verify.sh <source-mirror> <Qt build> <scratch>",
+      "evidence_path": "001/reopen-087.log",
+      "status": "PASS",
+      "actual_result": "Verified native/off Qt graph, role-local ARC and complete native target link."
+    }
+  ],
+  "owner_sha256_after": "f427d83fff7ffd252a3c0b18a2b4905b7501016b17cb4a116ecda1d47b437a04"
+}

@@ -1,0 +1,789 @@
+{
+  "phase": "003",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-SHADER-06",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 6,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "format_reinterpreter/d24s8_to_rgba8.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-07",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 7,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "format_reinterpreter/d24s8_to_rgba8_ms.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-08",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 8,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "format_reinterpreter/rgba4_to_rgb5a1.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-09",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 9,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "format_reinterpreter/rgba4_to_rgb5a1_ms.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-10",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 10,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "format_reinterpreter/vulkan_d24s8_to_rgba8.comp"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-11",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 11,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-12",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 12,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/bicubic.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-13",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 13,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/refine.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-14",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 14,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/scale_force.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-15",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 15,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/xbrz_freescale.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-16",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 16,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/mmpx.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-17",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 17,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/x_gradient.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-18",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 18,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "texture_filtering/y_gradient.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-19",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 19,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "full_screen_triangle.vert"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-20",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 20,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "opengl_present.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-21",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 21,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "opengl_present.vert"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-22",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 22,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "opengl_present_anaglyph.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-23",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 23,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "opengl_present_interlaced.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-24",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 24,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_depth_to_buffer.comp"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-25",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 25,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_present.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-26",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 26,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_present.vert"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-27",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 27,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_present_anaglyph.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-28",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 28,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_present_interlaced.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-29",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 29,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_blit_depth_stencil.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-30",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 30,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_cursor.frag"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-SHADER-31",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 31,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "vulkan_cursor.vert"
+      },
+      "contract": "Legacy GLSL shader asset is embedded as a deterministic header by host_shaders.",
+      "native_mapping": "Preserve the existing build rule outside Metal. Native rules consume only explicit MSL assets.",
+      "expected_result": "Non-Metal graph still has existing shader rules. Native graph has no Vulkan/OpenGL shader inputs and builds the independent MSL fixture.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "VK-TEXT-GENERATION",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "line": 41,
+        "sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+        "symbol": "foreach(FILENAME IN ITEMS ${SHADER_FILES})"
+      },
+      "contract": "Text embedding rewrites each GLSL source and sets a required generated header.",
+      "native_mapping": "MSL4 compiler produces a native binary. Read its exact bytes and expose them through a generated C++ header for backend-independent asset location.",
+      "expected_result": "Generated byte array equals all bytes on disk and a real Objective-C++ consumer compiles and runs.",
+      "dependency_owner": "003",
+      "command": "python3 docs/metaliris/003/verify.py <scratch-dir>",
+      "evidence_path": "003/build.log",
+      "status": "PASS",
+      "actual_result": "Fixture passed, including a dependency-triggered rebuild and recovery. See build.log."
+    },
+    {
+      "id": "HOST-003-036",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "f82386f00cc29d13006ba3bcaf5f7042869e5e00ebb060c169a7b07063e5f17a",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library d24s8_to_rgba8_comp is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "036",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-036.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-037",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "cf39bca43d6301442541afc15828904c9f5065dccc03e228de905f51a62f7088",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library d24s8_to_rgba8_ms_comp is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "037",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-037.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-038",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "089735ced86bdcbb6a220016bbaa31ad61ce29f57794e7e0f61ef2e489e605bd",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library full_screen_triangle_vert is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "038",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-038.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-039",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "02c160ab7a2f7e93c36d9c08dea5ef0c8b33b9a53ab6d207e53a3e97c6f78dd9",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library bicubic_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "039",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-039.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-040",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "5fabad942a8cf3f9f71d952eeb13d1205e360abd13d7658381fc51d6bc48be0c",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library mmpx_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "040",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-040.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-041",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "63fa6dbfd3d0965e19f611b5ddfe55c743593c5f731560f58a8d732ed1c5f316",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library refine_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "041",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-041.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-042",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "94aac190b569c0b9a2b67b7476b176476c9e7f9cbc5ac0c2b119137701ba5408",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library scale_force_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "042",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-042.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-043",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "e7078f2d1a66144300999db78a8f6e0e1b4183dd354760d84c9bba64175ca005",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library tex_coord_vert is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "043",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-043.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-044",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "c673b6e58ca1e5143b282d194be0990508f8e5a28648cf51197426e2bc9da2c8",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library x_gradient_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "044",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-044.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-045",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "add0d3f9280c1902a1f380549bce54f6ab901c5b668b807ab1e38c69b8077ddc",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library xbrz_freescale_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "045",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-045.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-046",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "beedf46efc49ea01f96a95e1949f8409c5bf3e7439a35a3f7027b49b68e40515",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library y_gradient_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "046",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-046.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-047",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "6d70a575f0dc318a158da130124d301e8275af9ac11bda4ed921bf1556190c76",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library blit_depth_stencil_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "047",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-047.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-048",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "6d3cb7d12117040532fa4722222adb356e888b55dd2775c25363ab99d22bb5fc",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library cursor_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "048",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-048.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-049",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "f38b8a725934bf81b45b6200748f9015f21d6543c15c859cfbb2e79a16e7325f",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library cursor_vert is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "049",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-049.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-050",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "83e92bb718e5c0abf71832e05b773923e16fbcfcbf9597dbdb525b74a8aaeb88",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library depth_to_buffer_comp is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "050",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-050.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-051",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "36463c524014ac130e4623872ed09927384176b196d77ac1bbc3f2908f6245ff",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library present_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "051",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-051.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-052",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "e49b54c9f3ddc16facead90b08b6ffa60ec641e3da8f7be413d6a36d9a059408",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library present_vert is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "052",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-052.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-053",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "4c10bf630ad17b13f2fc7898cc975bbc1147dc656fd1c472bfa98410b5f47162",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library present_anaglyph_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "053",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-053.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    },
+    {
+      "id": "HOST-003-054",
+      "source": {
+        "path": "src/video_core/host_shaders/CMakeLists.txt",
+        "sha256": "4623ae06cf546766f9d55a6838c7c3c64b07c57b44f48f2cb7172f99a367b015",
+        "line": 112,
+        "symbol": "# Register completed Metal shader sources here."
+      },
+      "contract": "Native host library present_interlaced_frag is complete and requires explicit production packaging.",
+      "native_mapping": "Only register this native Metal 4 host shader.",
+      "expected_result": "The library and exact generated embedded bytes exist and the PICA regression succeeds.",
+      "dependency_owner": "054",
+      "command": "CMake native host-shader registration build and linked PICA regression",
+      "evidence_path": "003/reopen-054.log",
+      "status": "PASS",
+      "actual_result": "Native Apple Metal 4 compile, exact embedded library equality, isolated native target link and PICA passed."
+    }
+  ],
+  "owner_sha256_after": "f9bf85cf42fc280a7ae6f1988bf8c836404100bd0a3fd1ff52a4b92171fbee55"
+}

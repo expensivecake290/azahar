@@ -1,0 +1,296 @@
+{
+  "phase": "031",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-031-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_decompiler.cpp",
+        "sha256": "69b25d0a3cb27885a3afde8c7fc2306112e605d05a5dc6c92e30008093a61e5f",
+        "line": 68,
+        "symbol": ""
+      },
+      "contract": "Entry, conditional exits and absolute guest branch addresses.",
+      "native_mapping": "Reachable PC graph with straight-line optimization and scoped MSL state machine.",
+      "expected_result": "Compile all fixture kernels, including loops, calls and invalid paths.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_decompiler.cpp",
+        "sha256": "69b25d0a3cb27885a3afde8c7fc2306112e605d05a5dc6c92e30008093a61e5f",
+        "line": 268,
+        "symbol": "const SwizzleData& swizzle_data, u32 main_offset,"
+      },
+      "contract": "Register classes, out-of-range relative uniform sentinel, direct sources, and masked outputs.",
+      "native_mapping": "Use literal native MSL register expressions and bounded signed-eight-bit relative addressing.",
+      "expected_result": "Oracle verifies offsets -128,127,128 and uniform slots 95/96.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-03",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 124,
+        "symbol": "// end instruction crashing the emulator due to the program counter"
+      },
+      "contract": "Default END at final/out-of-range program counter; unknown encoding reports without modifying state.",
+      "native_mapping": "Preserve implicit final END and no-op diagnostic for interpreter-unsupported guest encoding.",
+      "expected_result": "Reserved opcode preserves state and reports original PC/word.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-04",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 199,
+        "symbol": "src1[3] = -src1[3];"
+      },
+      "contract": "Source swizzle and negate; inversion determines long indexed operand; retain untouched destination lanes.",
+      "native_mapping": "Assign native temporaries before writing mask; source registers use actual stage data.",
+      "expected_result": "Compare aliasing register, destination mask and negated sources.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-05",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 225,
+        "symbol": "case OpCode::Id::ADD: {"
+      },
+      "contract": "ADD/MUL/FLR/MIN/MAX preserve host f24 and guest NaN ordering.",
+      "native_mapping": "Use precise float32 working representation with special 0*Inf product and conditional select.",
+      "expected_result": "Exact zero/infinity, NaN, and finite arithmetic test vectors.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-06",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 297,
+        "symbol": "case OpCode::Id::DP3:"
+      },
+      "contract": "DP3/DP4/DPH/DPHI accumulate in order with homogeneous 1; RCP/RSQ broadcast X result.",
+      "native_mapping": "Native sequential dot accumulation and precise scalar divide/sqrt.",
+      "expected_result": "Cancellation vectors and exact powers-of-two broadcasts.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-07",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 352,
+        "symbol": "case OpCode::Id::MOVA: {"
+      },
+      "contract": "MOVA uses truncation, two writable address lanes. MOV/SGE/SGEI/SLT/SLTI with masks.",
+      "native_mapping": "Typed native comparisons and valid signed address truncation.",
+      "expected_result": "Positive/negative and invalid effective address tests.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-08",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 407,
+        "symbol": "case OpCode::Id::CMP:"
+      },
+      "contract": "Six per-lane CMP modes, invalid comparison retains that lane only.",
+      "native_mapping": "Emit comparator symbols; diagnose invalid lane while correctly executing valid lane.",
+      "expected_result": "CMP X/Y and unsupported encoding retain correct conditions.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-09",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 449,
+        "symbol": "case OpCode::Id::EX2: {"
+      },
+      "contract": "EX2/LG2 take only first lane and replicate.",
+      "native_mapping": "Native scalar exponent and logarithm; no premature quantization.",
+      "expected_result": "Power-of-two and signed edge oracle.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-10",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 494,
+        "symbol": "case OpCode::Type::MultiplyAdd: {"
+      },
+      "contract": "MAD/MADI own swizzle lookup, inversion and separate multiply/add; reserved destination writes ignored.",
+      "native_mapping": "Native literal swizzle code and no FP contraction.",
+      "expected_result": "NaN and exact unfused MAD compare, invalid destination leaves registers.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-11",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 583,
+        "symbol": "case OpCode::Id::JMPC:"
+      },
+      "contract": "JMPC/JMPU conditional reduction and inverted bool.",
+      "native_mapping": "Emit native conditional branch assignments, guard pathological unstructured backward execution.",
+      "expected_result": "Conditional branches and typed runaway result.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-12",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 600,
+        "symbol": "case OpCode::Id::CALL:"
+      },
+      "contract": "CALL/CALLC/CALLU and NOP; native circular stack used for callee.",
+      "native_mapping": "Emit actual return and end addresses; NOP advances; scope stack handles wrap.",
+      "expected_result": "Nested scopes match interpreter oracle.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-13",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 622,
+        "symbol": "case OpCode::Id::IFU: {"
+      },
+      "contract": "IFU/IFC true push and skip else, false jump to else.",
+      "native_mapping": "Native if-scope stack and correct last-instruction precedence.",
+      "expected_result": "All branch outcomes and nested block return tested.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-14",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 638,
+        "symbol": "case OpCode::Id::LOOP: {"
+      },
+      "contract": "LOOP count+1, address assignment/restoration and BREAK/BREAKC.",
+      "native_mapping": "Native counted loops match interpreter restart/end ordering.",
+      "expected_result": "Nested loops, address update and explicit/conditional breaks.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-15",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 656,
+        "symbol": "case OpCode::Id::BREAKC: {"
+      },
+      "contract": "SETEMIT/EMIT geometry slot/winding/primitives and output bank alternation.",
+      "native_mapping": "Typed geometry emitter callback and checked illegal stage/slot/overflow status.",
+      "expected_result": "Geometry slots and bank cycles match PICA oracle.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-031-16",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 685,
+        "symbol": "(int)instr.opcode.Value().EffectiveOpCode(),"
+      },
+      "contract": "CALL then IF then LOOP unwind, fourth call does not update PC.",
+      "native_mapping": "Bounded generated native scope state matches exact precedence and compares original PC.",
+      "expected_result": "Combined branch/return/loop fixture outcomes match.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "GEOMETRY-035-031",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_decompiler.mm",
+        "sha256": "c2a1fda04616191994a50777e4af5a704584a53f5b8d17e2777b977275c99217",
+        "line": 110,
+        "symbol": "inline float4 RelativeUniform(constant Uniforms& uniforms, int base, int offset) {"
+      },
+      "contract": "Programmable geometry needs a private dynamically modified uniform copy, with the same relative read semantics as the immutable default.",
+      "native_mapping": "Add thread-addressed compile path and preserve the prior default signatures and shader output.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "031/reopen-035.log",
+      "status": "PENDING",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "e02121ee5d9ae4edccb0dba416ad1c35b40edd0ca8f26b201d82a63da11e22cb"
+}

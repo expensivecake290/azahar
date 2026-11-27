@@ -1,0 +1,41 @@
+{
+  "phase": "054",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-054-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present_interlaced.frag",
+        "sha256": "7b25a4e86e205684537b4e06484676e35dfe8a92c0e4e9b7d09c69f5029075e6",
+        "line": 40,
+        "symbol": "if (int(screen_row) % 2 == reverse_interlaced)"
+      },
+      "contract": "Actual Metal 4 shader, SDK host pair and native format support.",
+      "native_mapping": "Compile and package current owned stage, validate native library bytes and regressions.",
+      "expected_result": "Embedded native host graph, arm64 fixture and CPU record.",
+      "dependency_owner": "054",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 054 <native-build-dir> <scratch-dir> <present-vertex-library>",
+      "evidence_path": "054/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native MSL4 and SDK host fixture, exact CMake embedding, independent signed parity/orientation oracle and complete baseline regressions passed."
+    },
+    {
+      "id": "MTL-054-02",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present_interlaced.frag",
+        "sha256": "7b25a4e86e205684537b4e06484676e35dfe8a92c0e4e9b7d09c69f5029075e6",
+        "line": 38,
+        "symbol": "void main() {"
+      },
+      "contract": "Check exact presented RGBA and signed interval orientation on hardware.",
+      "native_mapping": "Independent integer-pixel even/odd pattern over 9x7, reverse flag, rotation and invalid one eye.",
+      "expected_result": "Native render readback, all boundaries and preserved contribution bit-for-bit.",
+      "dependency_owner": "054",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 054 <native-build-dir> <scratch-dir> <present-vertex-library>",
+      "evidence_path": "054/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "bdf8265375f027b6a8c5da738b2c305375d7f42ff315864a1d8b8e0d10a08a33"
+}

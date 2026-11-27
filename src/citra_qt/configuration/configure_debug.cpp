@@ -17,6 +17,9 @@
 #ifdef ENABLE_VULKAN
 #include "video_core/renderer_vulkan/vk_instance.h"
 #endif
+#ifdef ENABLE_METAL
+#include "citra_qt/util/metal_util.h"
+#endif
 
 // The QSlider doesn't have an easy way to set a custom step amount,
 // so we can just convert from the sliders range (0 - 79) to the expected
@@ -33,6 +36,22 @@ ConfigureDebug::ConfigureDebug(bool is_powered_on_, QWidget* parent)
     : QWidget(parent), ui(std::make_unique<Ui::ConfigureDebug>()), is_powered_on{is_powered_on_} {
     ui->setupUi(this);
     SetConfiguration();
+
+#ifdef ENABLE_METAL
+    RetranslateUI();
+    connect(ui->toggle_renderer_debug, &QCheckBox::clicked, this, [this](bool checked) {
+        if (checked && qEnvironmentVariableIntValue("MTL_DEBUG_LAYER") != 1) {
+            QMessageBox::information(this, tr("Relaunch Required"),
+                                     tr("Relaunch Azahar to enable Metal API Validation."));
+        }
+    });
+    connect(ui->toggle_dump_command_buffers, &QCheckBox::clicked, this, [this](bool checked) {
+        if (checked && !MetalUtil::CanCaptureGPUTrace()) {
+            QMessageBox::information(this, tr("Relaunch Required"),
+                                     tr("Relaunch Azahar to enable Metal GPU trace capture."));
+        }
+    });
+#endif
 
     connect(ui->toggle_gdbstub, &QCheckBox::clicked,
             [this](bool checked) { ui->debug_next_process->setEnabled(checked); });
@@ -221,4 +240,12 @@ void ConfigureDebug::SetupPerGameUI() {
 
 void ConfigureDebug::RetranslateUI() {
     ui->retranslateUi(this);
+#ifdef ENABLE_METAL
+    ui->toggle_renderer_debug->setText(tr("Enable Metal API Validation"));
+    ui->toggle_renderer_debug->setToolTip(
+        tr("Check native Metal API usage from application startup."));
+    ui->toggle_dump_command_buffers->setText(tr("Capture a Metal GPU Trace"));
+    ui->toggle_dump_command_buffers->setToolTip(tr(
+        "Save the first rendered frame of a Metal session as a GPU trace in the log directory."));
+#endif
 }

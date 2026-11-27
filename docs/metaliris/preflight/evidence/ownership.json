@@ -1,0 +1,765 @@
+[
+  {
+    "phase": "001",
+    "file": "CMakeLists.txt",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "002",
+    "file": "src/video_core/CMakeLists.txt",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "003",
+    "file": "src/video_core/host_shaders/CMakeLists.txt",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "004",
+    "file": "src/common/settings.h",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "005",
+    "file": "src/common/settings.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004"
+    ]
+  },
+  {
+    "phase": "006",
+    "file": "src/core/frontend/emu_window.h",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "007",
+    "file": "src/core/frontend/emu_window.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006"
+    ]
+  },
+  {
+    "phase": "008",
+    "file": "src/video_core/renderer_metal/renderer_metal.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "022",
+      "028",
+      "067",
+      "072"
+    ]
+  },
+  {
+    "phase": "009",
+    "file": "src/video_core/renderer_metal/mtl_common.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "010",
+    "file": "src/video_core/renderer_metal/mtl_common.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "011",
+    "file": "src/video_core/renderer_metal/mtl_platform.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "012",
+    "file": "src/video_core/renderer_metal/mtl_platform.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "011"
+    ]
+  },
+  {
+    "phase": "013",
+    "file": "src/video_core/renderer_metal/mtl_instance.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "011"
+    ]
+  },
+  {
+    "phase": "014",
+    "file": "src/video_core/renderer_metal/mtl_instance.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "011",
+      "013"
+    ]
+  },
+  {
+    "phase": "015",
+    "file": "src/video_core/renderer_metal/pica_to_metal.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "016",
+    "file": "src/video_core/renderer_metal/mtl_memory_util.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "017",
+    "file": "src/video_core/renderer_metal/mtl_memory_util.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "016"
+    ]
+  },
+  {
+    "phase": "018",
+    "file": "src/video_core/renderer_metal/mtl_master_semaphore.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "019",
+    "file": "src/video_core/renderer_metal/mtl_master_semaphore.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "018"
+    ]
+  },
+  {
+    "phase": "020",
+    "file": "src/video_core/renderer_metal/mtl_resource_pool.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "021",
+    "file": "src/video_core/renderer_metal/mtl_resource_pool.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "018",
+      "020"
+    ]
+  },
+  {
+    "phase": "022",
+    "file": "src/video_core/renderer_metal/mtl_scheduler.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "018",
+      "020"
+    ]
+  },
+  {
+    "phase": "023",
+    "file": "src/video_core/renderer_metal/mtl_scheduler.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "022"
+    ]
+  },
+  {
+    "phase": "024",
+    "file": "src/video_core/renderer_metal/mtl_stream_buffer.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "025",
+    "file": "src/video_core/renderer_metal/mtl_stream_buffer.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "016",
+      "022",
+      "024"
+    ]
+  },
+  {
+    "phase": "026",
+    "file": "src/video_core/renderer_metal/mtl_descriptor_update_queue.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "027",
+    "file": "src/video_core/renderer_metal/mtl_descriptor_update_queue.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "026"
+    ]
+  },
+  {
+    "phase": "028",
+    "file": "src/video_core/renderer_metal/mtl_render_manager.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "029",
+    "file": "src/video_core/renderer_metal/mtl_render_manager.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "022",
+      "028",
+      "065"
+    ]
+  },
+  {
+    "phase": "030",
+    "file": "src/video_core/renderer_metal/shader/msl_shader_decompiler.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "031",
+    "file": "src/video_core/renderer_metal/shader/msl_shader_decompiler.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "032",
+    "file": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "033",
+    "file": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "034",
+    "file": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "035",
+    "file": "src/video_core/renderer_metal/shader/msl_shader_gen.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "036",
+    "file": "src/video_core/host_shaders/metal/d24s8_to_rgba8_comp.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "037",
+    "file": "src/video_core/host_shaders/metal/d24s8_to_rgba8_ms_comp.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "038",
+    "file": "src/video_core/host_shaders/metal/full_screen_triangle_vert.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "039",
+    "file": "src/video_core/host_shaders/metal/bicubic_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "040",
+    "file": "src/video_core/host_shaders/metal/mmpx_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "041",
+    "file": "src/video_core/host_shaders/metal/refine_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "042",
+    "file": "src/video_core/host_shaders/metal/scale_force_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "043",
+    "file": "src/video_core/host_shaders/metal/tex_coord_vert.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "044",
+    "file": "src/video_core/host_shaders/metal/x_gradient_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "045",
+    "file": "src/video_core/host_shaders/metal/xbrz_freescale_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "046",
+    "file": "src/video_core/host_shaders/metal/y_gradient_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "047",
+    "file": "src/video_core/host_shaders/metal/blit_depth_stencil_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "048",
+    "file": "src/video_core/host_shaders/metal/cursor_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "049",
+    "file": "src/video_core/host_shaders/metal/cursor_vert.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "050",
+    "file": "src/video_core/host_shaders/metal/depth_to_buffer_comp.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "051",
+    "file": "src/video_core/host_shaders/metal/present_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "052",
+    "file": "src/video_core/host_shaders/metal/present_vert.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "053",
+    "file": "src/video_core/host_shaders/metal/present_anaglyph_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "054",
+    "file": "src/video_core/host_shaders/metal/present_interlaced_frag.metal",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "055",
+    "file": "src/video_core/renderer_metal/mtl_shader_util.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "056",
+    "file": "src/video_core/renderer_metal/mtl_shader_util.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "055"
+    ]
+  },
+  {
+    "phase": "057",
+    "file": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "058",
+    "file": "src/video_core/renderer_metal/mtl_graphics_pipeline.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "015",
+      "028",
+      "055",
+      "057"
+    ]
+  },
+  {
+    "phase": "059",
+    "file": "src/video_core/renderer_metal/mtl_shader_disk_cache.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "057"
+    ]
+  },
+  {
+    "phase": "060",
+    "file": "src/video_core/renderer_metal/mtl_shader_disk_cache.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "013",
+      "055",
+      "059",
+      "061"
+    ]
+  },
+  {
+    "phase": "061",
+    "file": "src/video_core/renderer_metal/mtl_pipeline_cache.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "020",
+      "057",
+      "059"
+    ]
+  },
+  {
+    "phase": "062",
+    "file": "src/video_core/renderer_metal/mtl_pipeline_cache.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "013",
+      "015",
+      "022",
+      "026",
+      "028",
+      "055",
+      "061"
+    ]
+  },
+  {
+    "phase": "063",
+    "file": "src/video_core/renderer_metal/mtl_blit_helper.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "020"
+    ]
+  },
+  {
+    "phase": "064",
+    "file": "src/video_core/renderer_metal/mtl_blit_helper.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "013",
+      "022",
+      "026",
+      "028",
+      "055",
+      "063",
+      "065"
+    ]
+  },
+  {
+    "phase": "065",
+    "file": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "024",
+      "063"
+    ]
+  },
+  {
+    "phase": "066",
+    "file": "src/video_core/renderer_metal/mtl_texture_runtime.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "013",
+      "015",
+      "022",
+      "024",
+      "026",
+      "028",
+      "063",
+      "065"
+    ]
+  },
+  {
+    "phase": "067",
+    "file": "src/video_core/renderer_metal/mtl_rasterizer.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "024",
+      "026",
+      "028",
+      "061",
+      "065"
+    ]
+  },
+  {
+    "phase": "068",
+    "file": "src/video_core/renderer_metal/mtl_rasterizer.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "008",
+      "013",
+      "015",
+      "022",
+      "067"
+    ]
+  },
+  {
+    "phase": "069",
+    "file": "src/video_core/renderer_metal/mtl_rasterizer_cache.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "065"
+    ]
+  },
+  {
+    "phase": "070",
+    "file": "src/video_core/renderer_metal/mtl_swapchain.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "009"
+    ]
+  },
+  {
+    "phase": "071",
+    "file": "src/video_core/renderer_metal/mtl_swapchain.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "013",
+      "070"
+    ]
+  },
+  {
+    "phase": "072",
+    "file": "src/video_core/renderer_metal/mtl_present_window.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "070"
+    ]
+  },
+  {
+    "phase": "073",
+    "file": "src/video_core/renderer_metal/mtl_present_window.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "011",
+      "013",
+      "022",
+      "070",
+      "072"
+    ]
+  },
+  {
+    "phase": "074",
+    "file": "src/video_core/renderer_metal/mtl_metalfx_spatial.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "008",
+      "011",
+      "013",
+      "016",
+      "022",
+      "055",
+      "070",
+      "072"
+    ]
+  },
+  {
+    "phase": "075",
+    "file": "src/video_core/renderer_metal/mtl_metalfx_spatial.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "008",
+      "011",
+      "013",
+      "016",
+      "022",
+      "055",
+      "070",
+      "072"
+    ]
+  },
+  {
+    "phase": "076",
+    "file": "src/video_core/renderer_metal/mtl_surface_adapter.h",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "011"
+    ]
+  },
+  {
+    "phase": "077",
+    "file": "src/video_core/renderer_metal/mtl_surface_adapter.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "011"
+    ]
+  },
+  {
+    "phase": "078",
+    "file": "src/citra_qt/util/metal_util.h",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "079",
+    "file": "src/citra_qt/util/metal_util.mm",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "080",
+    "file": "src/citra_qt/bootmanager.h",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "006"
+    ]
+  },
+  {
+    "phase": "081",
+    "file": "src/citra_qt/bootmanager.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "078",
+      "080"
+    ]
+  },
+  {
+    "phase": "082",
+    "file": "src/citra_qt/util/graphics_device_info.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "013"
+    ]
+  },
+  {
+    "phase": "083",
+    "file": "src/citra_qt/configuration/configure_graphics.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "013",
+      "088"
+    ]
+  },
+  {
+    "phase": "084",
+    "file": "src/citra_qt/configuration/configure_debug.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "013"
+    ]
+  },
+  {
+    "phase": "085",
+    "file": "src/citra_qt/configuration/config.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004"
+    ]
+  },
+  {
+    "phase": "086",
+    "file": "src/citra_qt/citra_qt.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "080"
+    ]
+  },
+  {
+    "phase": "087",
+    "file": "src/citra_qt/CMakeLists.txt",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "088",
+    "file": "src/citra_qt/configuration/configure_graphics.h",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "089",
+    "file": "src/citra_qt/configuration/configure_graphics.ui",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": []
+  },
+  {
+    "phase": "090",
+    "file": "src/video_core/video_core.cpp",
+    "exists_in_checkout": true,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "008"
+    ]
+  },
+  {
+    "phase": "091",
+    "file": "src/video_core/renderer_metal/renderer_metal.mm",
+    "exists_in_checkout": false,
+    "provisional_source_owner_dependencies": [
+      "004",
+      "006",
+      "008",
+      "016",
+      "055"
+    ]
+  }
+]

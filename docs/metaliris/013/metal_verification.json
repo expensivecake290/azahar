@@ -1,0 +1,41 @@
+{
+  "phase": "013",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_instance-039",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 39,
+        "symbol": "class Instance {"
+      },
+      "contract": "Own complete ARC-compatible interface and inline behavior",
+      "native_mapping": "Use SDK MTLPixelFormat, MTLVertexFormat and concrete MTLDevice protocol",
+      "expected_result": "Compile and execute type and sample-count boundary tests",
+      "dependency_owner": "013",
+      "command": "zsh docs/metaliris/013/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "013/header.log",
+      "status": "PASS",
+      "actual_result": "ARC C++20 compile and sample-count fixture passed."
+    },
+    {
+      "id": "vk_instance-048",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 48,
+        "symbol": "const FormatTraits& GetTraits(VideoCore::PixelFormat pixel_format) const;"
+      },
+      "contract": "Actual trait tables, invalid branches and device selection link",
+      "native_mapping": "Compile actual Objective-C++ companion, execute complete CPU mapping; query hardware when present",
+      "expected_result": "Reference fixtures cover formats, vertex fallback, selection and limits",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    }
+  ],
+  "owner_sha256_after": "98e46dbc761d5d5cb24517897d5429e18a497f20c77e7d0bbac723b2b9a2efa4"
+}

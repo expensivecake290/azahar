@@ -1,0 +1,58 @@
+{
+  "phase": "008",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-RENDERER-BASE",
+      "source": {
+        "path": "src/video_core/renderer_base.h",
+        "sha256": "bf19a0fa354cff938f67233c41c5e7ac96864c2ac6d36d2a61ec5abcca1570fb",
+        "line": 41,
+        "symbol": "Frontend::EmuWindow* secondary_window);"
+      },
+      "contract": "Shared base defines rasterizer, swap, presentation and lifetime entry points.",
+      "native_mapping": "Use the existing base and implement all abstract entry points.",
+      "expected_result": "C++20 type check verifies inheritance, complete interface and both presentation overloads.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "AZ-PICA-SYSTEM",
+      "source": {
+        "path": "src/video_core/video_core.h",
+        "sha256": "17503208711835dd70f25266f8aa802e870cefb06e531f4666b9d183b98c4c2c",
+        "line": 25,
+        "symbol": "std::unique_ptr<RendererBase> CreateRenderer(Frontend::EmuWindow& emu_window,"
+      },
+      "contract": "Renderer factory receives core, PICA and independent window roles.",
+      "native_mapping": "Constructor matches base integration without importing platform types.",
+      "expected_result": "Header consumer verifies construction parameters and lack of unsupported transitive dependencies.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "AZ-FRONTEND-INDEPENDENCE",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 172,
+        "symbol": "// An empty handle selects headless rendering."
+      },
+      "contract": "Shared frontend is based on C++ portable native contract.",
+      "native_mapping": "Host-only resources remain in the private implementation and dependency owners.",
+      "expected_result": "C++ consumer resolves no Objective-C, Metal, Qt or Vulkan headers.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    }
+  ],
+  "owner_sha256_after": "5ee39efd95de023540559fbe13380f510b39f6475f075746d3e1da0669357e24"
+}

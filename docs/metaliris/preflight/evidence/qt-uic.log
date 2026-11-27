@@ -1,0 +1,3 @@
++zsh:8> /opt/homebrew/opt/qtbase/share/qt/libexec/uic -o /tmp/metaliris-gate0-84oi2too/vulkan-build/src/citra_qt/citra_qt_autogen/include/ui_main.h /tmp/metaliris-gate0-84oi2too/source/src/citra_qt/main.ui
++zsh:9> /opt/homebrew/opt/qtbase/share/qt/libexec/uic -o /tmp/metaliris-gate0-84oi2too/vulkan-build/src/citra_qt/citra_qt_autogen/include/ui_configure_graphics.h /tmp/metaliris-gate0-84oi2too/source/src/citra_qt/configuration/configure_graphics.ui
++zsh:10> /opt/homebrew/opt/qtbase/share/qt/libexec/uic -o /tmp/metaliris-gate0-84oi2too/vulkan-build/src/citra_qt/citra_qt_autogen/include/ui_configure_debug.h /tmp/metaliris-gate0-84oi2too/source/src/citra_qt/configuration/configure_debug.ui

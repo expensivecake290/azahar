@@ -1,0 +1,24 @@
+{
+  "phase": "091/shared-renderer-base",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-SHARED-091-01",
+      "source": {
+        "path": "src/video_core/renderer_base.h",
+        "sha256": "bf19a0fa354cff938f67233c41c5e7ac96864c2ac6d36d2a61ec5abcca1570fb",
+        "line": 29,
+        "symbol": "std::atomic_bool screenshot_requested{false};"
+      },
+      "contract": "Native rendering holds the atomic request active through screenshot readback and completion.",
+      "native_mapping": "Verify shared writer guard with native and feature-off compiler flags and real shared implementation linkage. Physical render/readback remains pending.",
+      "expected_result": "Host request coherence, existing PICA 48/801 and CTest 64 plus native construction/link.",
+      "dependency_owner": "091",
+      "command": "python3 docs/metaliris/091/shared-renderer-base/verify.py <native-core> <scratch>",
+      "evidence_path": "091/shared-renderer-base/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native and feature-off compile, 1024 real concurrent screenshot publish pairs, final native/Qt link and regression baseline passed."
+    }
+  ],
+  "owner_sha256_after": "2dd25449cdb08f095198e66780b146286472b328045eddb995812dad416cbe27"
+}

@@ -1,0 +1,92 @@
+{
+  "phase": "081",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-081-01",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 695,
+        "symbol": "bool GRenderWindow::InitRenderTarget() {"
+      },
+      "contract": "Boot creates the appropriate backend target, resets first-frame state, sets physical dimensions and preserves defaults.",
+      "native_mapping": "Add a guarded native QWidget/MacOS surface and shared context selection. Cocoa attachment failure is reported to the normal Qt ROM load path.",
+      "expected_result": "Actual native and feature-off bootmanager compilation and real Qt host target selection/link when the native target consumer exists.",
+      "dependency_owner": "078/079/080",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/compile.log",
+      "status": "PASS",
+      "actual_result": "Real native and off Qt bootmanager and MOC compilation. Shared native surface concurrent host test and settings/atomic layout fixture, CTest 64 passes and PICA 48/801."
+    },
+    {
+      "id": "VK-081-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "The macOS backend obtains the frontend native layer, with drawable size and scale owned outside the GPU renderer.",
+      "native_mapping": "Use per-window Cocoa SurfaceAdapter capturing retained generation and proper physical pixels, no direct Qt layer synthesis on native path.",
+      "expected_result": "Qt/AppKit host covers separate primary and secondary owners, valid and zero drawables, layout settings and detach.",
+      "dependency_owner": "077/079/080/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-081-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 1,
+        "symbol": "// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project"
+      },
+      "contract": "Presentation responds to changes in window extent and does not advance after ownership is destroyed.",
+      "native_mapping": "Observe platform-surface teardown synchronously and queue resize, screen, expose, show/hide and fullscreen updates after Qt applies them. Headless retirement retains old leases.",
+      "expected_result": "Native display change and fullscreen test confirms no stale drawable and independent secondary presentation.",
+      "dependency_owner": "070/071/073/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-081-04",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 658,
+        "symbol": "bool GRenderWindow::event(QEvent* event) {"
+      },
+      "contract": "Touch, keyboard, frame display signals, GL/Vulkan/software and pause/shutdown conventions are shared by frontend.",
+      "native_mapping": "Preserve event forwarding, main existing callbacks, layout minimums and first frame behavior. Native paint is handled by the native renderer, Qt remains UI-thread-only.",
+      "expected_result": "Native and disabled real MOC and bootmanager compile and applicable existing test suites pass.",
+      "dependency_owner": "004/080",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/compile.log",
+      "status": "PASS",
+      "actual_result": "Real native and off Qt bootmanager and MOC compilation. Shared native surface concurrent host test and settings/atomic layout fixture, CTest 64 passes and PICA 48/801."
+    },
+    {
+      "id": "AZ-081-REOPEN-091",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "0fecef4ca0be7533eae05ef1b7b2872bdb087cc11938d13c7e2ed7dbd8faa6f9",
+        "line": 846,
+        "symbol": "screenshot_image = QImage(QSize(layout.width, layout.height), QImage::Format_RGB32);"
+      },
+      "contract": "Repeated screenshot requests cannot replace pending Qt readback memory.",
+      "native_mapping": "Test IsScreenshotPending before any QImage replacement. Existing renderer holds the flag through native readback and callback.",
+      "expected_result": "Native/off Qt bridge compile and real Qt target link. Physical first result guard bytes and repeated capture pending exposed GPU.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/080/verify.sh <native Qt> <scratch>",
+      "evidence_path": "081/reopen-091.log",
+      "status": "PENDING",
+      "actual_result": "Actual native/off Qt compile passed. Retained QImage guard behavior across physical screenshot requests is unverified until the 091 fixture runs."
+    }
+  ],
+  "owner_sha256_after": "d14695724e1a6af2be87cea59776587485a7b48e387c8181f95345e05c62bd7e"
+}

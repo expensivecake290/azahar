@@ -1,0 +1,92 @@
+{
+  "phase": "027",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-027-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+        "sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+        "line": 20,
+        "symbol": "device.updateDescriptorSets({std::span(descriptor_writes.get(), descriptor_write_end)}, {});"
+      },
+      "contract": "Use native MTL4ArgumentTable descriptor counts and initialization.",
+      "native_mapping": "Create exact immutable layout, check SDK setters and bind with native stage masks.",
+      "expected_result": "SDK/ARC compiles and links real compute and rendering consumers.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC native host compilation and linking passed. MSL 4 typed fixture compiled and linked to a real Metal library."
+    },
+    {
+      "id": "MTL-027-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+        "sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+        "line": 24,
+        "symbol": "void DescriptorUpdateQueue::AddStorageImage(vk::DescriptorSet target, u8 binding,"
+      },
+      "contract": "Residency and hazard metadata precede shader commands across draw/dispatch.",
+      "native_mapping": "Pass active stage intersection to EncodingContext; retained native table, resources and backing buffer.",
+      "expected_result": "Storage and texel shader with Metal API validation matches independent output.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-027-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+        "sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+        "line": 46,
+        "symbol": "void DescriptorUpdateQueue::AddImageSampler(vk::DescriptorSet target, u8 binding, u8 array_index,"
+      },
+      "contract": "Distinct captured generations require snapshot ARC ownership and cannot bind old foreign contexts.",
+      "native_mapping": "Compare snapshot WorkLease through actual active EncodingContext and preserve work scope across binding.",
+      "expected_result": "Capture A, mutate/flush B; two outputs A/B match; foreign context and stale lease fail.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-027-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+        "sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+        "line": 69,
+        "symbol": "void DescriptorUpdateQueue::AddBuffer(vk::DescriptorSet target, u8 binding, vk::Buffer buffer,"
+      },
+      "contract": "Use checked byte ranges, null validation and address/stride identity. Genuinely exhaust pool.",
+      "native_mapping": "Exact arguments and full key using identity/range/stride; immutable transient table on pool saturation.",
+      "expected_result": "Capacity-one pool binds two different real tables in one native submit with exact bytes and no map corruption.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-027-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+        "sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+        "line": 91,
+        "symbol": "void DescriptorUpdateQueue::AddTexelBuffer(vk::DescriptorSet target, u8 binding,"
+      },
+      "contract": "Retain native image/texture-buffer, sampler and imported resources through real feedback.",
+      "native_mapping": "Strong resources in immutable data, same device checked, callbacks own table and snapshot.",
+      "expected_result": "API validation sees no early release on generation churn or canceled work.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5eb2ba27a8e52afce970564c4c588693b53916926e05b22fe3819f2ef861d9d3"
+}

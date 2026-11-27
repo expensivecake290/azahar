@@ -1,0 +1,41 @@
+{
+  "phase": "004",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-CPU-HEADER",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+        "line": 22,
+        "symbol": "enum class GraphicsAPI {"
+      },
+      "contract": "Settings header is backend neutral and requires no GPU.",
+      "native_mapping": "Compile and execute real C++20 consumer using normal include paths and definitions.",
+      "expected_result": "Metal-off compile and enum/default regression pass.",
+      "command": "python3 docs/metaliris/004/verify.py header <build-dir> off",
+      "dependency_owner": "004",
+      "evidence_path": "004/header-off.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "MTL-NATIVE-HEADER",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+        "line": 586,
+        "symbol": "SwitchableSetting<u32, true> resolution_factor{1, 0, 18, Keys::resolution_factor};"
+      },
+      "contract": "Native settings need real generated declarations.",
+      "native_mapping": "After 005A generate real keys and compile native header fixture using normal source build flags.",
+      "expected_result": "Metal setting, bounded enum, key label, defaults and per-game/global behavior pass.",
+      "command": "python3 docs/metaliris/004/verify.py header <build-dir> metal",
+      "dependency_owner": "005A",
+      "evidence_path": "004/header-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    }
+  ],
+  "owner_sha256_after": "cc458c3fbd5e6ae2465c03cb78f567fcd148ae419e3e37baa4e5306735659b64"
+}

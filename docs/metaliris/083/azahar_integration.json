@@ -1,0 +1,92 @@
+{
+  "phase": "083",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-083-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configuration_shared.cpp",
+        "sha256": "5459a103f6e799b7f2a9c922d67fd6aed985153666971d76e970be4c78cb0e0f",
+        "line": 47,
+        "symbol": "void ConfigurationShared::SetColoredTristate(QCheckBox* checkbox,"
+      },
+      "contract": "Per-game checkbox uses shared three-state tracking and restore/retains global defaults.",
+      "native_mapping": "Use the same tracker for MetalFX Spatial, with independent renderer preference that never overwrites guest texture sampling.",
+      "expected_result": "Qt global and per-game setting propagation, deselection and labels, correct disabled behavior when the device does not support Spatial.",
+      "dependency_owner": "004/005/088/089",
+      "command": "python3 docs/metaliris/083/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "083/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt offscreen UI, no-device discovery, deterministic available/unavailable device variants, global and per-game Spatial, independent guest filtering, native and feature-off compile plus PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-083-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.ui",
+        "sha256": "d76c814203d1f7286dce57154a414db3dab4bca4450ed5e23f6b007e4867ced4",
+        "line": 74,
+        "symbol": "<widget class=\"QWidget\" name=\"physical_device_group\" native=\"true\">"
+      },
+      "contract": "Physical-device widget remains centralized in ConfigureGraphics with the existing window power lockout.",
+      "native_mapping": "Keep same model/accessor, disable unavailable individual native adapters without reindexing and preserve inherited choices.",
+      "expected_result": "Emulated global/per-game/device model and absent-device index retention are tested in a real Qt widget fixture.",
+      "dependency_owner": "079/082/086",
+      "command": "python3 docs/metaliris/083/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "083/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt offscreen UI, no-device discovery, deterministic available/unavailable device variants, global and per-game Spatial, independent guest filtering, native and feature-off compile plus PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-083-03",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "cc458c3fbd5e6ae2465c03cb78f567fcd148ae419e3e37baa4e5306735659b64",
+        "line": 595,
+        "symbol": "SwitchableSetting<bool> use_metalfx_spatial{false, Keys::use_metalfx_spatial};"
+      },
+      "contract": "Default off independent MetalFX toggle and per-game storage.",
+      "native_mapping": "Bind the control to use_metalfx_spatial and allow existing per-game override and reset machinery; no dependency on screen sampling option.",
+      "expected_result": "Toggling the native preference leaves filtering, resolution and async unchanged; settings workflow persists in 085/089.",
+      "dependency_owner": "004/005A/085/089",
+      "command": "python3 docs/metaliris/083/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "083/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt offscreen UI, no-device discovery, deterministic available/unavailable device variants, global and per-game Spatial, independent guest filtering, native and feature-off compile plus PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-083-REOPEN-088",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.cpp",
+        "sha256": "56160892dbd05c66bc493942b618525c586a7c74e6efb7fc11c6f11762e1242a",
+        "line": 390,
+        "symbol": "spatial->setEnabled(is_metal && supports_spatial && setting_editable);"
+      },
+      "contract": "An enabled preference can be turned off after a switch to a device without native Spatial.",
+      "native_mapping": "Define the Phase 088 update method and shared check state, allow enabled preference opt-out as a state transition and prevent re-enabling with unsupported hardware.",
+      "expected_result": "Qt fixture reproduces then passes supported to unsupported to opt-out and supported again, with global/per-game independence and no filter changes.",
+      "dependency_owner": "088",
+      "command": "python3 docs/metaliris/083/verify.py <Qt> <core> <out>",
+      "evidence_path": "088/runtime.log",
+      "status": "PASS",
+      "actual_result": "Reproduced Qt assertion before fix. Native/off compile, link, exact unsupported-device opt-out fixture, PICA and CTest retested."
+    },
+    {
+      "id": "AZ-083-REOPEN-089",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.cpp",
+        "sha256": "6a9c68d99753d7eef5a7bdf6fffd6992156670fd2d860ab9cba79e86e83db8ac",
+        "line": 45,
+        "symbol": "ui->graphics_api_combo->addItem(QStringLiteral(\"Metal\"));"
+      },
+      "contract": "The generated Designer form owns one Metal entry and one Spatial checkbox with stable Qt API ordinals.",
+      "native_mapping": "Consume generated fields directly and keep disabled builds free of the Metal API choice. Reapply translated names at the model\u2019s per-game offset.",
+      "expected_result": "Actual duplicate-control failure then success for UIC field identity, per-game retranslation and opt-out.",
+      "dependency_owner": "089",
+      "command": "python3 docs/metaliris/083/verify.py <Qt> <core> <out>",
+      "evidence_path": "089/runtime.log",
+      "status": "PASS",
+      "actual_result": "Reproduced duplicate UI identity with new UIC. Native/off compile, actual Qt linkage, Designer, per-game and independent settings tests passed."
+    }
+  ],
+  "owner_sha256_after": "d6405bcc52900daf1388106f3dcaed4ad84b2f7fc1503b7ff33ed08915865c5d"
+}

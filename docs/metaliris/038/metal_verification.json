@@ -1,0 +1,41 @@
+{
+  "phase": "038",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-038-01",
+      "source": {
+        "path": "src/video_core/host_shaders/full_screen_triangle.vert",
+        "sha256": "25632a1dbe608ef035dd01de3137ee45fe8ec716c4e6ea8c0a5170ab97a90c72",
+        "line": 12,
+        "symbol": "#ifdef VULKAN"
+      },
+      "contract": "Metal 4 arm64 shader and native SDK draw with no stage_in input.",
+      "native_mapping": "Compile and embed real native MSL, use built-in IDs from a vertex range [0,3).",
+      "expected_result": "Metal library and native fixture compilation, host CPU triangle checks.",
+      "dependency_owner": "038",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 038 <native-build-dir> <scratch-dir>",
+      "evidence_path": "038/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiled native fullscreen vertex and matching fixture fragment; packaging byte validation, CPU analytic viewport/affine oracle and PICA/CTest passed."
+    },
+    {
+      "id": "MTL-038-02",
+      "source": {
+        "path": "src/video_core/host_shaders/full_screen_triangle.vert",
+        "sha256": "25632a1dbe608ef035dd01de3137ee45fe8ec716c4e6ea8c0a5170ab97a90c72",
+        "line": 31,
+        "symbol": "gl_Position = vec4(x - 1.0, y - 1.0, 0.0, 1.0);"
+      },
+      "contract": "Preserve original viewport alignment in Metal window coordinates.",
+      "native_mapping": "CPU screen-space affine and coverage oracle, native RGBA16Float export of UV from linked stage.",
+      "expected_result": "Check flipped axes, offsets, zero scale, 7x5 viewport and 4x3 inset scissor.",
+      "dependency_owner": "038",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 038 <native-build-dir> <scratch-dir>",
+      "evidence_path": "038/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "9460ae0544bdd423a38d925c657a1bf32278255d5c74104fcc0f3aafc6d6c3ef"
+}

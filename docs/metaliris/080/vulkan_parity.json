@@ -1,0 +1,58 @@
+{
+  "phase": "080",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-080-01",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 461,
+        "symbol": "static Frontend::EmuWindow::WindowSystemInfo GetWindowSystemInfo(QWindow* window) {"
+      },
+      "contract": "Qt creates a native surface, records its scale, and avoids obtaining native objects when the window is absent.",
+      "native_mapping": "GRenderWindow owns one SurfaceAdapter per instance and declares native initialization, publication and teardown.",
+      "expected_result": "Native-enabled header exposes lifecycle to the existing Qt class and leaves neutral renderer unaware of Qt.",
+      "dependency_owner": "076/079/081",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt MOC and bootmanager compilation in native and disabled modes. Linked native event virtual is owned by Phase 081."
+    },
+    {
+      "id": "VK-080-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Existing macOS path requires a live frontend-provided surface; window ownership is separate from the renderer.",
+      "native_mapping": "The Qt header observes the platform-surface lifetime via eventFilter and declares attach/detach publication methods.",
+      "expected_result": "Recreate the drawable owner on surface replacement, preserve the old retained layer until work retires, and publish headless on destruction.",
+      "dependency_owner": "077/081/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-080-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 1,
+        "symbol": "// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project"
+      },
+      "contract": "Presentation remains behind the window-system abstraction, with separate windows and renderer-controlled queueing.",
+      "native_mapping": "Frontend adds no Qt type to native renderer and does not expose a present callback or retain the GPU renderer.",
+      "expected_result": "Current bootmanager consumer and generated real Qt MOC compile without Vulkan, MoltenVK or backend-neutral renderer imports from Qt.",
+      "dependency_owner": "073/081",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt MOC and bootmanager compilation in native and disabled modes. Linked native event virtual is owned by Phase 081."
+    }
+  ],
+  "owner_sha256_after": "8a07eaa6863a6e1e919d2b60aa27f00441fccb712ee9cb76deb1020a385d362b"
+}

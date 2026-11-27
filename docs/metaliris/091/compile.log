@@ -1,0 +1,44 @@
++ /usr/bin/clang++ -I/Users/anthonygarcia/azahar/src -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_GDBSTUB -DENABLE_METAL -DENABLE_QT_TRANSLATION -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/metal/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -O3 -DNDEBUG -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -fobjc-arc -w -Wno-invalid-specialization -o /tmp/metaliris-r12.lKARZLkI/phase091/renderer_metal.o -c /Users/anthonygarcia/azahar/src/video_core/renderer_metal/renderer_metal.mm -MD -MF /tmp/metaliris-r12.lKARZLkI/phase091/renderer_metal.d
+/Users/anthonygarcia/azahar/src/video_core/renderer_metal/renderer_metal.mm:815:40: error: invalid operands to binary expression ('const value_type' (aka 'const VideoCore::Extent') and 'const VideoCore::Extent')
+  815 |                                 output != extent && extent.width && extent.height;
+      |                                 ~~~~~~ ^  ~~~~~~
+/Users/anthonygarcia/azahar/src/core/hle/result.h:237:16: note: candidate function not viable: no known conversion from 'const value_type' (aka 'const VideoCore::Extent') to 'const Result' for 1st argument
+  237 | constexpr bool operator==(const Result& a, const Result& b) {
+      |                ^          ~~~~~~~~~~~~~~~
+/Users/anthonygarcia/azahar/src/core/hle/result.h:241:16: note: candidate function not viable: no known conversion from 'const value_type' (aka 'const VideoCore::Extent') to 'const Result' for 1st argument
+  241 | constexpr bool operator!=(const Result& a, const Result& b) {
+      |                ^          ~~~~~~~~~~~~~~~
+/Users/anthonygarcia/azahar/src/common/swap.h:496:6: note: candidate template ignored: could not match 'swap_struct_t<T, F>' against 'VideoCore::Extent'
+  496 | bool operator!=(const S& p, const swap_struct_t<T, F> v) {
+      |      ^
+/Users/anthonygarcia/azahar/src/common/swap.h:500:6: note: candidate template ignored: could not match 'swap_struct_t<T, F>' against 'VideoCore::Extent'
+  500 | bool operator==(const S& p, const swap_struct_t<T, F> v) {
+      |      ^
+/Users/anthonygarcia/azahar/src/video_core/renderer_metal/renderer_metal.mm:817:70: error: invalid operands to binary expression ('const VideoCore::Extent' and 'VideoCore::Extent')
+  817 |             const bool upscale = spatial_enabled && larger && extent != VideoCore::Extent{1, 1};
+      |                                                               ~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/anthonygarcia/azahar/src/core/hle/result.h:237:16: note: candidate function not viable: no known conversion from 'const VideoCore::Extent' to 'const Result' for 1st argument
+  237 | constexpr bool operator==(const Result& a, const Result& b) {
+      |                ^          ~~~~~~~~~~~~~~~
+/Users/anthonygarcia/azahar/src/core/hle/result.h:241:16: note: candidate function not viable: no known conversion from 'const VideoCore::Extent' to 'const Result' for 1st argument
+  241 | constexpr bool operator!=(const Result& a, const Result& b) {
+      |                ^          ~~~~~~~~~~~~~~~
+/Users/anthonygarcia/azahar/src/common/swap.h:496:6: note: candidate template ignored: could not match 'swap_struct_t<T, F>' against 'VideoCore::Extent'
+  496 | bool operator!=(const S& p, const swap_struct_t<T, F> v) {
+      |      ^
+/Users/anthonygarcia/azahar/src/common/swap.h:500:6: note: candidate template ignored: could not match 'swap_struct_t<T, F>' against 'VideoCore::Extent'
+  500 | bool operator==(const S& p, const swap_struct_t<T, F> v) {
+      |      ^
+2 errors generated.
+Traceback (most recent call last):
+  File "<stdin>", line 11, in <module>
+  File "/Users/anthonygarcia/azahar/docs/metaliris/082/verify.py", line 38, in compile_unit
+    run([*command, "-MD", "-MF", dependency, *flags], build)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anthonygarcia/azahar/docs/metaliris/082/verify.py", line 21, in run
+    subprocess.run(command, cwd=build, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/usr/bin/clang++', '-I/Users/anthonygarcia/azahar/src', '-DBOOST_ALL_NO_LIB', '-DBOOST_ASIO_DISABLE_CONCEPTS', '-DBOOST_DATE_TIME_NO_LIB', '-DBOOST_ERROR_CODE_HEADER_ONLY', '-DBOOST_NO_CXX98_FUNCTION_BASE', '-DBOOST_REGEX_NO_LIB', '-DBOOST_SYSTEM_NO_LIB', '-DENABLE_BUILTIN_KEYBLOB', '-DENABLE_GDBSTUB', '-DENABLE_METAL', '-DENABLE_QT_TRANSLATION', '-DENABLE_ROOM', '-DENABLE_SCRIPTING', '-DENABLE_SCRIPTING_SYNC', '-DENABLE_SDL2', '-DENABLE_SOFTWARE_RENDERER', '-DHAVE_FASTINTERP', '-DMICROPROFILE_ENABLED=0', '-DNDEBUG', '-I/tmp/metaliris-r12.lKARZLkI/source/src/.', '-I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include', '-I/opt/homebrew/include/SDL2', '-I/tmp/metaliris-r12.lKARZLkI/metal/src', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile', '-I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/..', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/./json', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include', '-I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include', '-F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks', '-x', 'objective-c++', '-O3', '-DNDEBUG', '-std=gnu++2a', '-arch', 'arm64', '-isysroot', '/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk', '-mmacosx-version-min=26.0', '-Wall', '-Wno-unused-command-line-argument', '-fstack-protector-strong', '-Wp,-D_GLIBCXX_ASSERTIONS', '-fstack-clash-protection', '-Werror', '-fobjc-arc', '-w', '-Wno-invalid-specialization', '-o', '/tmp/metaliris-r12.lKARZLkI/phase091/renderer_metal.o', '-c', '/Users/anthonygarcia/azahar/src/video_core/renderer_metal/renderer_metal.mm', '-MD', '-MF', '/tmp/metaliris-r12.lKARZLkI/phase091/renderer_metal.d']' returned non-zero exit status 1.

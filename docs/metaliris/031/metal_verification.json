@@ -1,0 +1,92 @@
+{
+  "phase": "031",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-031-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_decompiler.cpp",
+        "sha256": "69b25d0a3cb27885a3afde8c7fc2306112e605d05a5dc6c92e30008093a61e5f",
+        "line": 931,
+        "symbol": "std::string DecompileProgram(const ProgramCode& program_code, const SwizzleData& swizzle_data,"
+      },
+      "contract": "Generate MSL directly in validated units.",
+      "native_mapping": "Emit runnable MSL, compile a native library of arithmetic, branches and geometry using Apple MSL 4 toolchain.",
+      "expected_result": "Actual native libraries, no run-time translator.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PASS",
+      "actual_result": "Eight programs generated to MSL. CPU PICA interpreter and independent expected results passed. MSL4 SDK produced a real Metal library without fast math."
+    },
+    {
+      "id": "MTL-031-02",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 172,
+        "symbol": "};"
+      },
+      "contract": "Preserve float24 input decoding and float32 arithmetic.",
+      "native_mapping": "Shared raw decode and precise helper operations; use existing PICA interpreter for fixture outputs.",
+      "expected_result": "Exact independent raw values and generated functions compiled for GPU readback.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-031-03",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 295,
+        "symbol": "break;"
+      },
+      "contract": "Adversarial arithmetic, swizzle and nested-flow output.",
+      "native_mapping": "Link the actual interpreter and compare exact valid input fixtures plus independent expected states.",
+      "expected_result": "CPU oracle and live comparison rows tracked separately.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-031-04",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 657,
+        "symbol": "Record<DebugDataRecord::COND_CMP_IN>(debug_data, iteration, state.conditional_code);"
+      },
+      "contract": "Geometry emission bank and handler order plus malformed/overflow handling.",
+      "native_mapping": "Instantiate generated template in native kernel, compare actual output and status.",
+      "expected_result": "Native compile locally and real GPU exact output pending when no device visible.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "GEOMETRY-035-031",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_decompiler.mm",
+        "sha256": "c2a1fda04616191994a50777e4af5a704584a53f5b8d17e2777b977275c99217",
+        "line": 110,
+        "symbol": "inline float4 RelativeUniform(constant Uniforms& uniforms, int base, int offset) {"
+      },
+      "contract": "Programmable geometry needs a private dynamically modified uniform copy, with the same relative read semantics as the immutable default.",
+      "native_mapping": "Add thread-addressed compile path and preserve the prior default signatures and shader output.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "031/reopen-035.log",
+      "status": "PENDING",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "e02121ee5d9ae4edccb0dba416ad1c35b40edd0ca8f26b201d82a63da11e22cb"
+}

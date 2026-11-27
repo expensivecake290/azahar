@@ -1,0 +1,194 @@
+{
+  "phase": "071",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-071-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 18,
+        "symbol": "Swapchain::Swapchain(const Instance& instance_, u32 width, u32 height, vk::SurfaceKHR surface_,"
+      },
+      "contract": "Construction binds the device and initial native format/mode; destruction owns active state.",
+      "native_mapping": "Construct with the selected device and presentation scheduler, bind only after a published surface is available, close idempotently while scheduler leases retain committed backing.",
+      "expected_result": "Production link and headless/acquire/close lifecycle.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 31,
+        "symbol": "void Swapchain::Create(u32 width_, u32 height_, vk::SurfaceKHR surface_, bool low_refresh_rate_) {"
+      },
+      "contract": "Recreate after resize or changed surface, reset transition flags, retain previous GPU correctness.",
+      "native_mapping": "Immutable frontend-generation validation and independent work-lease snapshot. Refresh all native layer properties on a changed native surface or policy. Publish replacement only after accepted metadata.",
+      "expected_result": "Resize same layer with old drawable held, retain old layer, reject stale snapshots and allow live settings change.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 55,
+        "symbol": "const bool exclusive = queue_family_indices[0] == queue_family_indices[1];"
+      },
+      "contract": "Configure drawable size, count, format, present mode, mode constraints and attachment/transfer usage.",
+      "native_mapping": "Configure exact drawable pixel size bounded to validated Metal Apple current family, native BGRA8 sRGB color space, opaque alpha and bounded two/three drawables. Permit supported explicit native output copies.",
+      "expected_result": "Actual drawable format, view scale, physical size and no Y inversion.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 79,
+        "symbol": "swapchain = instance.GetDevice().createSwapchainKHR(swapchain_info);"
+      },
+      "contract": "Recover lost or unsupported surface during creation.",
+      "native_mapping": "Treat headless, minimized and suspended as benign and permit retry after a newer snapshot; reject malformed configuration before mutating active state.",
+      "expected_result": "Non-layer, invalid metadata, nil default device and restoration.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 93,
+        "symbol": "bool Swapchain::AcquireNextImage() {"
+      },
+      "contract": "Acquire waits for usable drawable and distinguishes normal/suboptimal/lost/out-of-date.",
+      "native_mapping": "Single producer performs bounded native nextDrawable; nil is typed backpressure, changed native size/format is typed retry, and stale device/work generation is unavailable.",
+      "expected_result": "Hold all drawables, occlude then acquire again, resize between acquire/present and advance device lease.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 121,
+        "symbol": "void Swapchain::Present() {"
+      },
+      "contract": "Present synchronizes acquired image and observable presentation with queued rendering.",
+      "native_mapping": "Validate lease before recording. Native scheduler routes waitForDrawable, commit, signalDrawable, then normal or minimum-duration present. Keep device, layer, drawable and texture alive.",
+      "expected_result": "Actual native known-answer drawable clear, ticket and present callback behavior across resize and close.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 147,
+        "symbol": "void Swapchain::FindPresentFormat() {"
+      },
+      "contract": "Select nonlinear sRGB-compatible RGBA8 or BGRA8 presentation format.",
+      "native_mapping": "Use CAMetalLayer BGRA8 unorm, mark output content as sRGB; don't ask native to apply an extra format transfer on already display-coded bytes.",
+      "expected_result": "Audit native pixelFormat/colorspace; compare known colors in live compositing.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 173,
+        "symbol": "void Swapchain::SetPresentMode() {"
+      },
+      "contract": "Select FIFO, mailbox, immediate and fallback using settings and low refresh.",
+      "native_mapping": "Use 070 policy. Core Animation display sync is disabled when immediate, mailbox wins when synchronized fast/unthrottled/low refresh, bounded pacing hint only on FIFO.",
+      "expected_result": "64 host policy cases and 30/60/120-Hz physical cadence and latest queued frames.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 224,
+        "symbol": "void Swapchain::SetSurfaceProperties() {"
+      },
+      "contract": "Configure size using current surface capabilities and device limits; prefer identity orientation and opacity.",
+      "native_mapping": "Use published physical width and height exactly unless exceeding native texture range, set contents scale, opaque and no implicit animation; orientation remains neutral layout.",
+      "expected_result": "Validated 1x/2x physical size and opaque deterministic pixel pipeline.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-071-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 254,
+        "symbol": "// Opaque is not supported everywhere."
+      },
+      "contract": "Destroy old image/semaphore backing and rebuild native pool tracking.",
+      "native_mapping": "Release surface generation local references, allow old drawables to retire through scheduler completion. Actual layer pool owns rotating images; no fabricated indices or semaphore substitution.",
+      "expected_result": "Repeated reconfiguration and close with committed and abandoned move-only leases.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-071-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.mm",
+        "sha256": "337abd301177598201caa6a0996d3ca261b7162cfe6a4ea0bb86e33589d1c500",
+        "line": 92,
+        "symbol": "bool Swapchain::UpdateSurface(Frontend::EmuWindow::NativeSurfaceSnapshot snapshot,"
+      },
+      "contract": "Phase 070 pacing now carries the actual double frame limit, which has non-finite and negative invalid representations.",
+      "native_mapping": "Reject invalid pacing in UpdateSurface before changing the native layer or live generation.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/reopen-073.log",
+      "status": "PENDING",
+      "actual_result": "Actual SDK compiler and available targeted fixture passed. Live pacing or frame retirement still requires Metal 4 hardware."
+    }
+  ],
+  "owner_sha256_after": "35d626209c97f6a4b533eb4db2972f17e300b949cae94902fcc86242b24601b6"
+}

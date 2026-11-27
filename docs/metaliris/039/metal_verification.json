@@ -1,0 +1,41 @@
+{
+  "phase": "039",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-039-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/bicubic.frag",
+        "sha256": "db2a1104b24eb4cab345ec11a0ef6c4cc9ff31bb44350c653dd6716336c587a0",
+        "line": 34,
+        "symbol": "vec4 ycubic = cubic(fxy.y);"
+      },
+      "contract": "Use compiled Apple MSL 4 four-pair kernel and shader library packaging.",
+      "native_mapping": "Native SDK build, complete file, CPU oracle and link with exact embedded stage dependencies.",
+      "expected_result": "Metal compiler plus CMake embedded header byte equality.",
+      "dependency_owner": "039",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 039 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "039/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native MSL compiler, wrapped executable, independent 16-tap CPU oracle and embedded library verification passed with PICA/CTest."
+    },
+    {
+      "id": "MTL-039-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/bicubic.frag",
+        "sha256": "db2a1104b24eb4cab345ec11a0ef6c4cc9ff31bb44350c653dd6716336c587a0",
+        "line": 49,
+        "symbol": "float sy = s.z / (s.z + s.w);"
+      },
+      "contract": "Independent double-weight oracle for all four channels and exact edge samples.",
+      "native_mapping": "Compute direct 16 taps to compare render output within one RGBA8 unit.",
+      "expected_result": "Array checks include solid 1x1, 5x3 ramp, 9x7 target and UV beyond edge.",
+      "dependency_owner": "039",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 039 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "039/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "19f16f0e8ed2311b57083b980735275c0415683d4920c8a4157ee7eb89173de7"
+}

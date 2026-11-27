@@ -1,0 +1,415 @@
+{
+  "phase": "014",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_instance-020",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 20,
+        "symbol": "namespace {"
+      },
+      "contract": "Native color and depth format map",
+      "native_mapping": "Choose native RGBA8, Metal renderable packed formats, native D16 and depth32/stencil fallback",
+      "expected_result": "CPU checks every color/depth mapping and exact guest metadata",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-045",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 45,
+        "symbol": "}"
+      },
+      "contract": "Custom formats and invalid fallback",
+      "native_mapping": "Preserve RGBA8, BC and ASTC 8x6 footprint. Decline BC if unsupported while retaining original metadata",
+      "expected_result": "Check every enum, unsupported BC, invalid sentinel",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-070",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 70,
+        "symbol": "}"
+      },
+      "contract": "Normalized/scaled and integer shader input alternatives",
+      "native_mapping": "Select unnormalized integer vertex traits and flag numeric conversion; preserve float formats",
+      "expected_result": "Compare every vertex type/count including scalar and 3-component",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-097",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 97,
+        "symbol": "}"
+      },
+      "contract": "Color/depth/stencil aspect selection",
+      "native_mapping": "Explicit aspects and invalid reserved slot",
+      "expected_result": "Depth and stencil can be accessed separately",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-117",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 117,
+        "symbol": "std::vector<std::string> GetSupportedExtensions(vk::PhysicalDevice physical) {"
+      },
+      "contract": "Extension discovery / driver version decode",
+      "native_mapping": "Native device capabilities and OS identity; no extension lists or foreign driver formatting",
+      "expected_result": "SDK identity and limits agree",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-134",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 134,
+        "symbol": "Instance::Instance(bool enable_validation, bool dump_command_buffers)"
+      },
+      "contract": "Discovery independent of layer",
+      "native_mapping": "Reuse platform enumeration",
+      "expected_result": "Headless/no device path yields consistent no device error",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-140",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 140,
+        "symbol": "Instance::Instance(Frontend::EmuWindow& window, u32 physical_device_index)"
+      },
+      "contract": "Index check, API compatibility, table creation",
+      "native_mapping": "Select exact retained device. Validate index, Metal 4, memory and requested Spatial before creating context",
+      "expected_result": "CPU invalid matrix and positive hardware fixture",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-169",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 169,
+        "symbol": "Instance::~Instance() {"
+      },
+      "contract": "Allocator/device lifetime",
+      "native_mapping": "Instance explicitly closes context; allocator and scheduler own their objects",
+      "expected_result": "The existing work-lease tests cover guard/cancellation ordering",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-173",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 173,
+        "symbol": "const FormatTraits& Instance::GetTraits(VideoCore::PixelFormat pixel_format) const {"
+      },
+      "contract": "Invalid format, custom and attribute indices",
+      "native_mapping": "Bounded tables and stable null traits",
+      "expected_result": "Upper/negative/sentinel/count boundaries are safe",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-212",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 212,
+        "symbol": "FormatTraits Instance::DetermineTraits(VideoCore::PixelFormat pixel_format, vk::Format format) {"
+      },
+      "contract": "Sampled, render-target and shader-write usages, transfer aspect",
+      "native_mapping": "Use Metal texture usage independently from guest packing; shader write only for RGBA8 guest shadow path",
+      "expected_result": "CPU usage matrix and GPU descriptor creation",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-271",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 271,
+        "symbol": "void Instance::CreateFormatTable() {"
+      },
+      "contract": "Native fallback and forced conversions",
+      "native_mapping": "Use equivalent native 16-bit color layouts with explicit repack and depth32 conversion; use existing decode for guest texture formats",
+      "expected_result": "Exact mapped native formats; conversion shaders exercised by their owners",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-314",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 314,
+        "symbol": "void Instance::CreateCustomFormatTable() {"
+      },
+      "contract": "Compressed custom formats sampled without attachment/destination scaling",
+      "native_mapping": "Use sample-only compressed formats and native BC capability",
+      "expected_result": "No invalid compressed format requested on device without BC",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-350",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 350,
+        "symbol": "void Instance::DetermineEmulation(Pica::PipelineRegs::VertexAttributeFormat format,"
+      },
+      "contract": "3-component attribute emulation",
+      "native_mapping": "Metal native 3-component unnormalized formats plus numeric integer conversion",
+      "expected_result": "All sixteen formats exist, including short3; shader value fixtures in owning phase",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-397",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 397,
+        "symbol": "bool Instance::CreateDevice() {"
+      },
+      "contract": "Logical device features and extension gates",
+      "native_mapping": "Metal capabilities immutable, direct SDK optional features; queue creation reserved to scheduler",
+      "expected_result": "SDK feature/limit queries, no Vulkan or VMA dependencies",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-424",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 424,
+        "symbol": "boost::container::static_vector<const char*, 16> enabled_extensions;"
+      },
+      "contract": "Extension insertion, blacklist and missing cases",
+      "native_mapping": "Use direct Apple capability queries; no foreign driver blacklists",
+      "expected_result": "BC and sample predicates measured per device",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-451",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 451,
+        "symbol": "add_extension(VK_KHR_SWAPCHAIN_EXTENSION_NAME);"
+      },
+      "contract": "Swapchain, image views, depth/stencil resolve, shader stencil and import",
+      "native_mapping": "Native layer, documented texture usages and explicit owner-specific allocation/ordering paths",
+      "expected_result": "No foreign extension references in compiled dependency set",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-459",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 459,
+        "symbol": "const bool has_timeline_semaphores ="
+      },
+      "contract": "Timeline, dynamic state, custom border and uint8 indices",
+      "native_mapping": "Native shared event, encoder state and independent guest metadata; PICA mapping handles uint8 widening",
+      "expected_result": "Downstream CPU and GPU fixture ownership in 015/019/023",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-472",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 472,
+        "symbol": "const bool has_robustness2 = add_extension(VK_EXT_ROBUSTNESS_2_EXTENSION_NAME);"
+      },
+      "contract": "Robustness/null bindings, interlock, cache compile and barycentrics",
+      "native_mapping": "Native null/fallback resources and raster ordering. Query barycentrics and raster order groups",
+      "expected_result": "Native feature values reported; consumers verify fallback paths",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-483",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 483,
+        "symbol": "const auto family_properties = physical_device.getQueueFamilyProperties();"
+      },
+      "contract": "Queue-family search failure and LibRetro exclusion",
+      "native_mapping": "Metal 4 queue creation actual errors belong to scheduler",
+      "expected_result": "Scheduler rejects missing native queue without startup fallback",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-545",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 545,
+        "symbol": "#define PROP_GET(structName, prop, property) property = properties_chain.get<structName>().prop;"
+      },
+      "contract": "Feature/property chaining with absent-branch fallbacks",
+      "native_mapping": "Direct capability queries; shader/texture capabilities taken from exact SDK",
+      "expected_result": "Hardware tests compare Metal families, per-device format gate and support bits",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-631",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 631,
+        "symbol": "// Check layered rendering support on MoltenVK"
+      },
+      "contract": "Layered rendering via translation-specific gate",
+      "native_mapping": "Native Metal 4 array render targets in render manager",
+      "expected_result": "No translation-specific feature gates; actual native layered fixture",
+      "dependency_owner": "028",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-645",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 645,
+        "symbol": "#ifdef HAVE_LIBRETRO"
+      },
+      "contract": "LibRetro/external devices, Vulkan creation/dispatch/queues",
+      "native_mapping": "No LibRetro initialization. Use selected retained Metal device and queue owner",
+      "expected_result": "No loader; compile actual implementation against ARC",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "vk_instance-666",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 666,
+        "symbol": "void Instance::CreateAllocator() {"
+      },
+      "contract": "VMA allocator creation and loader function pointers",
+      "native_mapping": "Native allocator/retirement in 016/017",
+      "expected_result": "Native ownership and independent memory-budget tests",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_instance-686",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 686,
+        "symbol": "void Instance::CollectToolingInfo() {"
+      },
+      "contract": "Tool detection and diagnostics",
+      "native_mapping": "Capture manager answers live tracing support and active capture; log actual identity and OS",
+      "expected_result": "CPU no-device plus real device/tooling tests when available",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "7dc902471844752bd54a4dbe4f7e26f23a2eeb15bb8ac90be4c645fd48b5a9f0"
+}

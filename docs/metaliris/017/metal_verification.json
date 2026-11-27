@@ -1,0 +1,58 @@
+{
+  "phase": "017",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_memory_util-013",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_memory_util.cpp",
+        "sha256": "0970a8daa0cd7fbb1cf2821ab8b56a3333938a84734cfdcb7751ceac019a79d5",
+        "line": 13,
+        "symbol": "if (!memory_type_mask.test(i)) {"
+      },
+      "contract": "Native page requirements",
+      "native_mapping": "Validate entire writable single VM region with process query and actual page size",
+      "expected_result": "mmap and mprotect independent fixture reject misaligned, readonly and cross-region ranges",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU budget/reservation concurrency and independently queried Mach VM boundaries passed."
+    },
+    {
+      "id": "vk_memory_util-017",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_memory_util.cpp",
+        "sha256": "0970a8daa0cd7fbb1cf2821ab8b56a3333938a84734cfdcb7751ceac019a79d5",
+        "line": 17,
+        "symbol": "if (((flags & wanted) == wanted) && (!(flags & excluded))) {"
+      },
+      "contract": "Budget and life invariants run without GPU",
+      "native_mapping": "Check all bounded claims and move/destruction paths",
+      "expected_result": "CPU tests pass and physical/logical balances return to zero",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_memory_util-021",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_memory_util.cpp",
+        "sha256": "0970a8daa0cd7fbb1cf2821ab8b56a3333938a84734cfdcb7751ceac019a79d5",
+        "line": 21,
+        "symbol": "return std::nullopt;"
+      },
+      "contract": "Native allocations, imports and GPU access retirement",
+      "native_mapping": "Run actual Metal buffers in shared/private modes and compare native allocated sizes and original zero-copy pointer",
+      "expected_result": "Available CPU passes; GPU-dependent ranges, pressure and retirement await visible device",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "831fe4e96775d44a875136a43db2d62cf07ab17b0197daae7daf9619749d0a88"
+}

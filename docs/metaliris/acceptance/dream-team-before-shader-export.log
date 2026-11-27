@@ -1,0 +1,40 @@
+Workspace Metaliris Verification desktop build, arm64 macOS, Qt 6.12.0. Application launched with a scratch portable profile.
+[  36.350955] Config <Info> common/settings.cpp:operator():87: Renderer_GraphicsAPI: Metal
+[  36.350955] Config <Info> common/settings.cpp:operator():87: Renderer_AsyncShaders: false
+[  36.350955] Config <Info> common/settings.cpp:operator():87: Renderer_AsyncPresentation: true
+[  36.350958] Config <Info> common/settings.cpp:operator():87: Renderer_UseResolutionFactor: 1
+[  36.350958] Config <Info> common/settings.cpp:operator():87: Renderer_UseMetalFXSpatial: false
+[  55.470948] Frontend <Info> citra_qt/citra_qt.cpp:BootGame:1676: Azahar starting...
+[  55.524712] Frontend <Info> citra_qt/citra_qt.cpp:BootGame:1700: Loading per application config file for title 00040000000D5A00
+[  55.613973] Config <Info> common/settings.cpp:operator():87: Renderer_GraphicsAPI: Metal
+[  55.613974] Config <Info> common/settings.cpp:operator():87: Renderer_AsyncShaders: false
+[  55.613974] Config <Info> common/settings.cpp:operator():87: Renderer_AsyncPresentation: true
+[  55.613977] Config <Info> common/settings.cpp:operator():87: Renderer_UseResolutionFactor: 1
+[  55.613977] Config <Info> common/settings.cpp:operator():87: Renderer_UseMetalFXSpatial: false
+[  56.185026] Render <Info> video_core/renderer_metal/mtl_instance.mm:Instance:216: Metal 4 device: Apple M1 (registry ID 4294969049), Version 27.2 (Build 26B5086k)
+[  56.194059] Render <Info> video_core/renderer_metal/mtl_stream_buffer.mm:AllocateStorage:56: Created Metal Stream stream with 524288 bytes
+[  56.202031] Render <Info> video_core/renderer_metal/mtl_stream_buffer.mm:AllocateStorage:56: Created Metal Stream stream with 2097152 bytes
+[  56.483155] Loader <Info> core/loader/ncch.cpp:Load:345: Program ID: 00040000000D5A00
+[  57.769808] Render <Error> video_core/renderer_metal/mtl_rasterizer.mm:Draw:808: Unable to compile Metal PICA pipeline: Missing requested Metal shader entry
+[  57.801293] Render <Error> video_core/renderer_metal/mtl_rasterizer.mm:Draw:808: Unable to compile Metal PICA pipeline: Missing requested Metal shader entry
+
+macOS crash report extracts
+EXC_CRASH SIGABRT
+__pthread_kill
+pthread_kill
+abort
+__abort_message
+demangling_terminate_handler()
+_objc_terminate()
+std::__terminate(void (*)())
+__cxxabiv1::failed_throw(__cxxabiv1::__cxa_exception*)
+__cxa_throw
+Metal::RasterizerMetal::State::Draw(Metal::(anonymous namespace)::GuestVertices const*, bool)
+Metal::RasterizerMetal::DrawTriangles()
+Pica::PicaCore::DrawArrays(bool)
+Pica::PicaCore::WriteInternalReg(unsigned int, unsigned int, unsigned int, bool&)
+Pica::PicaCore::ProcessCmdList(unsigned int, unsigned int, bool)
+VideoCore::GPU::SubmitCmdList(unsigned int)
+VideoCore::GPU::Execute(Service::GSP::Command const&)
+Service::GSP::GSP_GPU::TriggerCmdReqQueue(Kernel::HLERequestContext&)
+Kernel::ServerSession::HandleSyncRequest(std::__1::shared_ptr<Kernel::Thread>)

@@ -1,0 +1,80 @@
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/source -B /private/tmp/metaliris-r12.lKARZLkI/libretro -G Ninja -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_SYSROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=/opt/homebrew -DENABLE_TESTS=ON -DENABLE_LTO=OFF -DENABLE_FFMPEG=OFF -DENABLE_QT=OFF -DENABLE_VULKAN=OFF -DUSE_SYSTEM_OPENSSL=ON -DUSE_SYSTEM_SDL2=ON -DCITRA_USE_PRECOMPILED_HEADERS=OFF -DENABLE_METAL=ON -DENABLE_LIBRETRO=ON
+-- The C compiler identification is AppleClang 21.0.0.21000320
+-- The CXX compiler identification is AppleClang 21.0.0.21000320
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+-- The OBJC compiler identification is AppleClang 21.0.0.21000320
+-- The OBJCXX compiler identification is AppleClang 21.0.0.21000320
+-- Detecting OBJC compiler ABI info
+-- Detecting OBJC compiler ABI info - done
+-- Check for working OBJC compiler: /usr/bin/clang - skipped
+-- Detecting OBJCXX compiler ABI info
+-- Detecting OBJCXX compiler ABI info - done
+-- Check for working OBJCXX compiler: /usr/bin/clang++ - skipped
+CMake Error at CMakeLists.txt:53 (message):
+  ENABLE_METAL is supported only for desktop macOS builds outside LibRetro.
+
+
+-- Configuring incomplete, errors occurred!
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/source -B /private/tmp/metaliris-r12.lKARZLkI/ios -G Ninja -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_SYSROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=/opt/homebrew -DENABLE_TESTS=ON -DENABLE_LTO=OFF -DENABLE_FFMPEG=OFF -DENABLE_QT=OFF -DENABLE_VULKAN=OFF -DUSE_SYSTEM_OPENSSL=ON -DUSE_SYSTEM_SDL2=ON -DCITRA_USE_PRECOMPILED_HEADERS=OFF -DENABLE_METAL=ON -DIOS=ON
+-- The C compiler identification is AppleClang 21.0.0.21000320
+-- The CXX compiler identification is AppleClang 21.0.0.21000320
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+-- The OBJC compiler identification is AppleClang 21.0.0.21000320
+-- The OBJCXX compiler identification is AppleClang 21.0.0.21000320
+-- Detecting OBJC compiler ABI info
+-- Detecting OBJC compiler ABI info - done
+-- Check for working OBJC compiler: /usr/bin/clang - skipped
+-- Detecting OBJCXX compiler ABI info
+-- Detecting OBJCXX compiler ABI info - done
+-- Check for working OBJCXX compiler: /usr/bin/clang++ - skipped
+CMake Error at CMakeLists.txt:53 (message):
+  ENABLE_METAL is supported only for desktop macOS builds outside LibRetro.
+
+
+-- Configuring incomplete, errors occurred!
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/source -B /private/tmp/metaliris-r12.lKARZLkI/generic-platform -G Ninja -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_SYSROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=/opt/homebrew -DENABLE_TESTS=ON -DENABLE_LTO=OFF -DENABLE_FFMPEG=OFF -DENABLE_QT=OFF -DENABLE_VULKAN=OFF -DUSE_SYSTEM_OPENSSL=ON -DUSE_SYSTEM_SDL2=ON -DCITRA_USE_PRECOMPILED_HEADERS=OFF -DENABLE_METAL=ON -DCMAKE_SYSTEM_NAME=Generic
+-- The C compiler identification is AppleClang 21.0.0.21000320
+-- The CXX compiler identification is AppleClang 21.0.0.21000320
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/cc - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+CMake Error at CMakeLists.txt:53 (message):
+  ENABLE_METAL is supported only for desktop macOS builds outside LibRetro.
+
+
+-- Configuring incomplete, errors occurred!
+PASS platform

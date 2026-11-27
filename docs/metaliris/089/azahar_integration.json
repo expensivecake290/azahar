@@ -1,0 +1,41 @@
+{
+  "phase": "089",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-089-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.h",
+        "sha256": "2a735768e47e408506639c0e1107a7c0f21eb6a05d32d32a6be56a4e39919d12",
+        "line": 35,
+        "symbol": "void SetupPerGameUI();"
+      },
+      "contract": "The Qt graphics class owns independent MetalFX per-game tracking, with generated Designer form supplying actual controls.",
+      "native_mapping": "Controlled reopen 083 for UIC-owned field instead of creating duplicates. Hide native option and Spatial checkbox when feature is disabled.",
+      "expected_result": "Real Qt UIC/MOC/app compile and actual control identity/count plus native/off compile, standalone Qt setting fixture.",
+      "dependency_owner": "083/088",
+      "command": "zsh docs/metaliris/089/verify.sh <Qt build> <core> <output>",
+      "evidence_path": "089/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real UIC and MOC plus Qt application link. Duplicate interim controls reproduced and repaired, tested one native item and one field, supported and unsupported state, per-game retranslation, native/off compile, real INI round-trip, PICA 48/801 and CTest 64."
+    },
+    {
+      "id": "AZ-089-02",
+      "source": {
+        "path": "src/citra_qt/configuration/config.cpp",
+        "sha256": "66d304b42486704c243d8aed74eac20e0d776087220dced8fd238c14ba23a975",
+        "line": 733,
+        "symbol": "auto& device = Settings::values.physical_device;"
+      },
+      "contract": "Qt settings route persists the native selection and per-game Spatial independently from PICA filtering.",
+      "native_mapping": "Reuse existing generated settings serialization. Test inherited and explicit values across final widget and INI ownership.",
+      "expected_result": "Qt model fixture exercises scope and same process global saves; actual output selection is deferred to final renderer.",
+      "dependency_owner": "085/091",
+      "command": "zsh docs/metaliris/089/verify.sh <Qt build> <core> <output>",
+      "evidence_path": "089/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real UIC and MOC plus Qt application link. Duplicate interim controls reproduced and repaired, tested one native item and one field, supported and unsupported state, per-game retranslation, native/off compile, real INI round-trip, PICA 48/801 and CTest 64."
+    }
+  ],
+  "owner_sha256_after": "1732844292221360d2c84380dc6c32c55e56ee90548b636f02ceb7a2532892d7"
+}

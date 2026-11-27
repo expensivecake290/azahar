@@ -1,0 +1,41 @@
+Command: python3 docs/metaliris/090/verify.py /tmp/metaliris-r12.lKARZLkI/metal /tmp/metaliris-r12.lKARZLkI/qt-single-software /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/090
++ /usr/bin/c++ -I/Users/anthonygarcia/azahar/src -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_GDBSTUB -DENABLE_METAL -DENABLE_QT_TRANSLATION -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/metal/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -O3 -DNDEBUG -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -fvisibility=default -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -w -Wno-invalid-specialization -o /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/090/native.o -c /Users/anthonygarcia/azahar/src/video_core/video_core.cpp -MD -MF /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/090/native.d
+__Unwind_Resume
+__ZN10SwRenderer16RendererSoftwareC1ERN4Core6SystemERN4Pica8PicaCoreERN8Frontend9EmuWindowE
+__ZN3fmt3v1212report_errorEPKc
+__ZN3fmt3v126detail12is_printableEj
+__ZN3fmt3v126detail9write_locENS0_14basic_appenderIcEENS0_9loc_valueERKNS0_12format_specsENS0_10locale_refE
+__ZN5Metal13RendererMetalC1ERN4Core6SystemERN4Pica8PicaCoreERN8Frontend9EmuWindowEPS8_
+__ZN6Common3Log17FmtLogMessageImplENS0_5ClassENS0_5LevelEPKcjS4_N3fmt3v1217basic_string_viewIcEERKNS6_17basic_format_argsINS6_7contextEEE
+__ZN8Settings21GetWorkingGraphicsAPIEv
+__ZdlPv
+__Znwm
+___gxx_personality_v0
+___stack_chk_fail
+___stack_chk_guard
+_memcmp
+_memcpy
+_strlen
+
++ /usr/bin/c++ -I/Users/anthonygarcia/azahar/src -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_FREECAM -DENABLE_GDBSTUB -DENABLE_QT -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/qt-single-software/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/qt-single-software/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -O3 -DNDEBUG -std=gnu++20 -flto=thin -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=13.4 -fvisibility=default -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -w -Wno-invalid-specialization -o /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/090/off.o -c /Users/anthonygarcia/azahar/src/video_core/video_core.cpp -MD -MF /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/090/off.d
+                 U __ZN10SwRenderer16RendererSoftwareC1ERN4Core6SystemERN4Pica8PicaCoreERN8Frontend9EmuWindowE
+                 U __ZN3fmt3v1212report_errorEPKc
+                 U __ZN3fmt3v126detail12is_printableEj
+                 U __ZN3fmt3v126detail9write_locENS0_14basic_appenderIcEENS0_9loc_valueERKNS0_12format_specsENS0_10locale_refE
+                 U __ZN6Common3Log17FmtLogMessageImplENS0_5ClassENS0_5LevelEPKcjS4_N3fmt3v1217basic_string_viewIcEERKNS6_17basic_format_argsINS6_7contextEEE
+                 U __ZN8Settings21GetWorkingGraphicsAPIEv
+                 U __ZdlPv
+                 U __Znwm
+                 U ___gxx_personality_v0
+                 U _memcmp
+                 U _strlen
+
+PASS actual native and Software-only dispatcher objects and symbol isolation
++ /private/tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests '[video_core]' --rng-seed 225818237
+Filters: [video_core]
+Randomness seeded to: 225818237
+===============================================================================
+All tests passed (801 assertions in 48 test cases)
+
+
+Fixture exit status 0; 5.19 seconds

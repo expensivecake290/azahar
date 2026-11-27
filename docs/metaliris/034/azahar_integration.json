@@ -1,0 +1,92 @@
+{
+  "phase": "034",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-034-01",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 27,
+        "symbol": "enum Attributes {"
+      },
+      "contract": "Existing stage semantics, register types and position/color/texture/quaternion/view interfaces.",
+      "native_mapping": "Consume shared shader_gen.h and ShaderSetup declarations; align with fragment varying producer and existing uniform ABI.",
+      "expected_result": "Clang compile a real native consumer and verify identical host and shader offsets.",
+      "dependency_owner": "034",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PASS",
+      "actual_result": "Objective-C++ SDK consumer and CPU native ABI, geometry path, topology/order and checked bounds checks passed."
+    },
+    {
+      "id": "AZ-034-02",
+      "source": {
+        "path": "src/video_core/shader/generator/pica_fs_config.h",
+        "sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+        "line": 396,
+        "symbol": "struct FSConfig {"
+      },
+      "contract": "Shader configuration and cache keys use shared PICA state.",
+      "native_mapping": "Use stage-specific selections with shared configs, no cache or settings layout changes, no private Vulkan include.",
+      "expected_result": "Real include scan and later revision-stable MSL source cache key.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-034-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 20,
+        "symbol": "#else"
+      },
+      "contract": "Uniforms and optional FreeCam preserving host layout and viewport flip.",
+      "native_mapping": "Reuse VSUniformData and VSPicaUniformData; generator owns MSL definitions and invariant output.",
+      "expected_result": "Both compile-time variants, clip plane edges and FreeCam skip2d produce expected pixels.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-034-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_instance.h",
+        "sha256": "98e46dbc761d5d5cb24517897d5429e18a497f20c77e7d0bbac723b2b9a2efa4",
+        "line": 97,
+        "symbol": ""
+      },
+      "contract": "Native capabilities select exact path and bounds.",
+      "native_mapping": "Consumer supplies capability and order guarantee before mesh/object, explicit compute fallback; no SDK objects in reusable struct definitions.",
+      "expected_result": "Header works with SDK and does not depend on Vulkan types.",
+      "dependency_owner": "034",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PASS",
+      "actual_result": "Objective-C++ SDK consumer and CPU native ABI, geometry path, topology/order and checked bounds checks passed."
+    },
+    {
+      "id": "GEOMETRY-035-034",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+        "sha256": "b2a5886c9f82a39fa81ae23bf74cb058883442a3004410a3105cd3b5f9eff72a",
+        "line": 119,
+        "symbol": "struct alignas(16) VertexTransformParams {"
+      },
+      "contract": "The fixed and programmable consumers need the per-vertex native transform status to distinguish Metal input/state errors from valid zero outputs.",
+      "native_mapping": "Define compact transformed-vertex result with exact status and offsets; no silent publication of failed transformations.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "034/reopen-035.log",
+      "status": "PASS",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "876af4b9f60f0c87293945f2026e261209a7b3b4c4060014aa8226567027f330"
+}

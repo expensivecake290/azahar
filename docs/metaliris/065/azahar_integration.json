@@ -1,0 +1,126 @@
+{
+  "phase": "065",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-065-01",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/surface_base.h",
+        "sha256": "9c9d686f5d0bd893f1b59cde7b4426c785d14ef86bca8c4293e5d80e31ae89e1",
+        "line": 31,
+        "symbol": ""
+      },
+      "contract": "Guest coherence belongs to existing shared SurfaceBase spans and modification ticks.",
+      "native_mapping": "Use inheritance and shared transfer structs, use exact native allocation lifetimes at GPU handoff.",
+      "expected_result": "Compile direct shared consumer with no private Vulkan include.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-065-02",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/framebuffer_base.h",
+        "sha256": "b9584ea3b8f1dc584a37b76ed1a1e5e9a62d24e55e114452d7396716eac201e6",
+        "line": 22,
+        "symbol": "};"
+      },
+      "contract": "FramebufferParams format mapping and subregion levels enter GPU pass.",
+      "native_mapping": "Retain actual parameter levels and active representations. Expose required shared Scale, Samples and Image methods.",
+      "expected_result": "Compatibility through shared RasterizerCache, dirty intervals and pass owner.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-065-03",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 1084,
+        "symbol": "const auto staging = runtime.FindStaging("
+      },
+      "contract": "Existing callers synchronously prepare upload/download staging spans around shared texture conversion.",
+      "native_mapping": "Retain caller mapping lifetime and check byte/pitch bounds from transfer request. Complete download before CPU encode.",
+      "expected_result": "Compile actual FindStaging and Upload/Download contract; CPU and GPU fixture in 066.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-065-04",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/sampler_params.h",
+        "sha256": "89959bb6fd2e533a4ab2b90b94ef926dbbc502a16d7cb0fcff3d02b4db31b420",
+        "line": 13,
+        "symbol": "struct SamplerParams {"
+      },
+      "contract": "SamplerParams typed wrap, filter, border and LOD.",
+      "native_mapping": "Expose immutable payload derived from PICA registers with exact color byte order.",
+      "expected_result": "Test border and special wrap values through actual repository declarations.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-065-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_blit_helper.h",
+        "sha256": "7dc030a3870f26872a497a357cfe2f4d5fdbad60502d8e85e9c168e320c1fb01",
+        "line": 117,
+        "symbol": "}"
+      },
+      "contract": "Native utility blits/copies/filter pass and resolve helpers.",
+      "native_mapping": "Connect TextureRuntime to actual BlitHelper with native devices and scheduler completion; all native bytes.",
+      "expected_result": "GPU effects tested under implementation pairing.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-065-06",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_memory_util.h",
+        "sha256": "909f728e61d457777aae531ee72bf0a41464e201160e86a609eacfd8ce406531",
+        "line": 32,
+        "symbol": "/// A shared physical budget with separate logical accounting by resource use."
+      },
+      "contract": "Texture allocation budget and shared heap budget for staging.",
+      "native_mapping": "Strong native resource owns the allocation reservation, retained as part of command recording.",
+      "expected_result": "ARC move and lifecycle checked by concrete runtime integration.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-065-068",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "2e983c7981823d32951465b9ba383d095a56ab44a0f350eafc351d174a69277b",
+        "line": 200,
+        "symbol": "[[nodiscard]] id<MTLTexture> StorageView();"
+      },
+      "contract": "Fragment sampling needs a retained converted R32 shadow image on devices whose writes use the atomic buffer path. StorageView currently requires texture atomics and drops the budget owner.",
+      "native_mapping": "Expose and implement a strong read-only R32 shadow binding independent of native texture-atomic write capability.",
+      "expected_result": "Compile retained image against the SDK. Confirm actual shadow contents and no atomic requirement with Metal API validation when a device is accessible.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/reopen-068.log",
+      "status": "PENDING",
+      "actual_result": "Actual arm64 native SDK compilation and applicable host tests passed. Physical R32 sampling and read/write storage lifetime require Metal 4 device output."
+    }
+  ],
+  "owner_sha256_after": "5266a1c9f09253a13a24d14dd9927b4cea2be2da2aed1cad9d4928619d47bf65"
+}

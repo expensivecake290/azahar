@@ -68,12 +68,6 @@ add_library(video_core STATIC EXCLUDE_FROM_ALL
     right_eye_disabler.cpp
     right_eye_disabler.h
     shader/debug_data.h
-    shader/generator/glsl_fs_shader_gen.cpp
-    shader/generator/glsl_fs_shader_gen.h
-    shader/generator/glsl_shader_decompiler.cpp
-    shader/generator/glsl_shader_decompiler.h
-    shader/generator/glsl_shader_gen.cpp
-    shader/generator/glsl_shader_gen.h
     shader/generator/pica_fs_config.cpp
     shader/generator/pica_fs_config.h
     shader/generator/profile.h
@@ -99,6 +93,81 @@ add_library(video_core STATIC EXCLUDE_FROM_ALL
     video_core.cpp
     video_core.h
 )
+
+if (ENABLE_METAL)
+    target_sources(video_core PRIVATE
+        renderer_metal/renderer_metal.h
+        renderer_metal/renderer_metal.mm
+        renderer_metal/mtl_common.h
+        renderer_metal/mtl_common.mm
+        renderer_metal/mtl_platform.h
+        renderer_metal/mtl_platform.mm
+        renderer_metal/mtl_instance.h
+        renderer_metal/mtl_instance.mm
+        renderer_metal/pica_to_metal.h
+        renderer_metal/mtl_memory_util.h
+        renderer_metal/mtl_memory_util.mm
+        renderer_metal/mtl_master_semaphore.h
+        renderer_metal/mtl_master_semaphore.mm
+        renderer_metal/mtl_resource_pool.h
+        renderer_metal/mtl_resource_pool.mm
+        renderer_metal/mtl_scheduler.h
+        renderer_metal/mtl_scheduler.mm
+        renderer_metal/mtl_stream_buffer.h
+        renderer_metal/mtl_stream_buffer.mm
+        renderer_metal/mtl_descriptor_update_queue.h
+        renderer_metal/mtl_descriptor_update_queue.mm
+        renderer_metal/mtl_render_manager.h
+        renderer_metal/mtl_render_manager.mm
+        renderer_metal/shader/msl_shader_decompiler.h
+        renderer_metal/shader/msl_shader_decompiler.mm
+        renderer_metal/shader/msl_fs_shader_gen.h
+        renderer_metal/shader/msl_fs_shader_gen.mm
+        renderer_metal/shader/msl_shader_gen.h
+        renderer_metal/shader/msl_shader_gen.mm
+        renderer_metal/mtl_shader_util.h
+        renderer_metal/mtl_shader_util.mm
+        renderer_metal/mtl_graphics_pipeline.h
+        renderer_metal/mtl_graphics_pipeline.mm
+        renderer_metal/mtl_shader_disk_cache.h
+        renderer_metal/mtl_shader_disk_cache.mm
+        renderer_metal/mtl_pipeline_cache.h
+        renderer_metal/mtl_pipeline_cache.mm
+        renderer_metal/mtl_blit_helper.h
+        renderer_metal/mtl_blit_helper.mm
+        renderer_metal/mtl_texture_runtime.h
+        renderer_metal/mtl_texture_runtime.mm
+        renderer_metal/mtl_rasterizer.h
+        renderer_metal/mtl_rasterizer.mm
+        renderer_metal/mtl_rasterizer_cache.mm
+        renderer_metal/mtl_swapchain.h
+        renderer_metal/mtl_swapchain.mm
+        renderer_metal/mtl_present_window.h
+        renderer_metal/mtl_present_window.mm
+        renderer_metal/mtl_metalfx_spatial.h
+        renderer_metal/mtl_metalfx_spatial.mm
+        renderer_metal/mtl_surface_adapter.h
+        renderer_metal/mtl_surface_adapter.mm
+    )
+    set_target_properties(video_core PROPERTIES
+        OBJCXX_STANDARD ${CMAKE_CXX_STANDARD}
+        OBJCXX_STANDARD_REQUIRED ON
+    )
+    target_compile_options(video_core PRIVATE $<$<COMPILE_LANGUAGE:OBJCXX>:-fobjc-arc>)
+    find_library(METAL_COREGRAPHICS_LIBRARY CoreGraphics REQUIRED)
+    find_library(METAL_APPKIT_LIBRARY AppKit REQUIRED)
+    target_link_libraries(video_core PRIVATE
+        ${METAL_LIBRARIES} ${METAL_COREGRAPHICS_LIBRARY} ${METAL_APPKIT_LIBRARY})
+else()
+    target_sources(video_core PRIVATE
+        shader/generator/glsl_fs_shader_gen.cpp
+        shader/generator/glsl_fs_shader_gen.h
+        shader/generator/glsl_shader_decompiler.cpp
+        shader/generator/glsl_shader_decompiler.h
+        shader/generator/glsl_shader_gen.cpp
+        shader/generator/glsl_shader_gen.h
+    )
+endif()
 
 if (ENABLE_SOFTWARE_RENDERER)
     target_sources(video_core PRIVATE

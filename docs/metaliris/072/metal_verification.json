@@ -1,0 +1,58 @@
+{
+  "phase": "072",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-072-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 27,
+        "symbol": "u32 height;"
+      },
+      "contract": "Native frame contract including scoped resource ownership and copy route.",
+      "native_mapping": "Compile ARC consumer against Apple SDK. Run every defined transfer-mode candidate including invalid extents and formats.",
+      "expected_result": "Host deterministic policy, path and nominal framebuffer format checks.",
+      "dependency_owner": "072",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header compile, native resolve descriptor, 68 exact independent transfer selection cases and neutral include closure. PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "MTL-072-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 263,
+        "symbol": "return result;"
+      },
+      "contract": "Link native worker and frame pool consumers; verify actual 4x output resolve and both presentation paths.",
+      "native_mapping": "Run known pixels, multiple async/native deadlines, fullscreen, separate windows, headless, shutdown, GPU pressure.",
+      "expected_result": "Verified output via visible Metal 4 device and actual submission.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-072-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_present_window.h",
+        "sha256": "404e9952a169e228b0c4575a06f23910a4e8139fbcc6128f60b3e48107d45130",
+        "line": 67,
+        "symbol": "void Retain(EncodingContext& context) const;"
+      },
+      "contract": "The renderer records asynchronous commands before handing the frame to Present. A Retain call on the original Frame inside the worker can race with moving the Frame into Present.",
+      "native_mapping": "Pin the exact allocation in a producer-side scheduler command before any consumer ownership transfer.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/reopen-073.log",
+      "status": "PENDING",
+      "actual_result": "Actual SDK compiler and available targeted fixture passed. Live pacing or frame retirement still requires Metal 4 hardware."
+    }
+  ],
+  "owner_sha256_after": "ba42b6faea81f93543fbe19bafe0cabee2b7fcfe78dced0d38991c9de004a88e"
+}

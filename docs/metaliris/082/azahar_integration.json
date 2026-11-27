@@ -1,0 +1,41 @@
+{
+  "phase": "082",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-082-01",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.h",
+        "sha256": "baaf9fd93733694dea844adebf6d3db9c947ff9fff56d21d2427d3da661b2f0f",
+        "line": 40,
+        "symbol": "std::vector<QString> GetMetalPhysicalDevices();"
+      },
+      "contract": "Existing Qt frontend consumes one name vector with ordinal device selection.",
+      "native_mapping": "Implement the declared GetMetalPhysicalDevices using per-platform device ordering.",
+      "expected_result": "Return QString vector suitable for Qt startup and config device labels, no Qt import into native renderer.",
+      "dependency_owner": "078/083/086",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native Qt and feature-off compile, real empty list (0 visible devices) and five-entry deterministic UTF-8, duplicate and unsupported-slot fixture, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-082-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_instance.mm",
+        "sha256": "7dc902471844752bd54a4dbe4f7e26f23a2eeb15bb8ac90be4c645fd48b5a9f0",
+        "line": 182,
+        "symbol": "const DeviceInfo& Instance::SelectDevice(std::span<const DeviceInfo> devices, u32 index,"
+      },
+      "contract": "Saved selected device index identifies the same adapter at renderer creation.",
+      "native_mapping": "Preserve indices even for unsupported devices and leave their capability state to graphics preferences.",
+      "expected_result": "Live discovery, menu and Instance::SelectDevice agree for every physical device in a device-capable environment.",
+      "dependency_owner": "013/014/083/086",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e166c43351e8b9305a1c1bbc56ed5300b194eb16c0c13f422a94c8f185c96cc7"
+}

@@ -1,0 +1,41 @@
+{
+  "phase": "046",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-046-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/y_gradient.frag",
+        "sha256": "8817caab5b6b346435f249c915bdf0bcc8ed0e948f40bde5a8ce0850a2720974",
+        "line": 31,
+        "symbol": "void main() {"
+      },
+      "contract": "Native actual Metal 4 scalar attachment and base sampling offsets.",
+      "native_mapping": "Compile and package correct stage, link SDK fixture and execute CPU and baseline regressions.",
+      "expected_result": "Native library bytes and app target dependency check prove Metal-only packaging.",
+      "dependency_owner": "046",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiled production Metal 4, linked positive-oracle fixture and exact CMake packaged bytes; independent CPU vector norm and PICA/CTest passed."
+    },
+    {
+      "id": "MTL-046-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/y_gradient.frag",
+        "sha256": "8817caab5b6b346435f249c915bdf0bcc8ed0e948f40bde5a8ce0850a2720974",
+        "line": 36,
+        "symbol": "vec2 grad = vec2(t.x + 2.0 * c.x + b.x, b.y - t.y);"
+      },
+      "contract": "GPU capture must cover independent Y values and X->Y actual integration while preserving negatives.",
+      "native_mapping": "Direct synthetic RG test and existing X library fed to native pass and sample readback with Apple validation.",
+      "expected_result": "R16Float native output matches scalar norm for all pixels, odd/degenerate boundary cases.",
+      "dependency_owner": "046",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "ba140819b36bb26210b1d1d1c1b0def1db3b9ea738b801b8f4a36d3284e8384d"
+}

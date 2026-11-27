@@ -3,6 +3,7 @@
 // Refer to the LICENSE.txt file included.
 
 #include <cmath>
+#include <limits>
 #include <mutex>
 #include "common/settings.h"
 #include "core/3ds.h"
@@ -66,6 +67,55 @@ EmuWindow::EmuWindow(bool is_secondary_) : is_secondary{is_secondary_} {
 
 EmuWindow::~EmuWindow() = default;
 
+EmuWindow::NativeSurfaceSnapshot EmuWindow::GetNativeSurface() const {
+    std::scoped_lock lock(native_surface_mutex);
+    return native_surface;
+}
+
+bool EmuWindow::PublishNativeSurface(NativeSurface surface, Layout::FramebufferLayout layout) {
+    if (!std::isfinite(surface.scale) || surface.scale <= 0.0f ||
+        !std::isfinite(surface.refresh_rate) || surface.refresh_rate < 0.0 ||
+        (surface.width == 0) != (surface.height == 0) ||
+        (surface.handle && surface.handle.use_count() == 0)) {
+        return false;
+    }
+    if (!surface.handle) {
+        surface.handle.reset();
+    }
+
+    // Release the old owner outside the lock. Its deleter can call into the frontend.
+    std::shared_ptr<void> retired_handle;
+    {
+        std::scoped_lock lock(native_surface_mutex);
+        const auto& current = native_surface.surface;
+        const bool ownership_changed = current.handle.owner_before(surface.handle) ||
+                                       surface.handle.owner_before(current.handle);
+        if (ownership_changed || current != surface) {
+            if (native_surface.generation == std::numeric_limits<u64>::max()) {
+                return false;
+            }
+            retired_handle = std::move(native_surface.surface.handle);
+            native_surface.surface = std::move(surface);
+            ++native_surface.generation;
+        }
+        native_surface.layout = layout;
+        framebuffer_layout = layout;
+    }
+    return true;
+}
+
+bool EmuWindow::UpdateNativeSurface(NativeSurface surface, u32 fallback_width, u32 fallback_height) {
+    const auto [layout, min_size] =
+        CalculateFramebufferLayout(surface.width ? surface.width : fallback_width,
+                                   surface.height ? surface.height : fallback_height,
+                                   surface.portrait);
+    if (!PublishNativeSurface(std::move(surface), layout)) {
+        return false;
+    }
+    UpdateMinimumWindowSize(min_size);
+    return true;
+}
+
 Settings::StereoRenderOption EmuWindow::get3DMode() const {
     Settings::StereoRenderOption render_3d_mode = Settings::values.render_3d.GetValue();
 #ifndef ANDROID
@@ -125,6 +175,7 @@ void EmuWindow::CreateTouchState() {
 }
 
 bool EmuWindow::TouchPressed(unsigned framebuffer_x, unsigned framebuffer_y) {
+    std::scoped_lock layout_lock(native_surface_mutex);
     if (!framebuffer_layout.IsWithinTouchscreen(framebuffer_x, framebuffer_y))
         return false;
     Settings::StereoRenderOption render_3d_mode = get3DMode();
@@ -178,16 +229,30 @@ void EmuWindow::TouchReleased() {
 }
 
 void EmuWindow::TouchMoved(unsigned framebuffer_x, unsigned framebuffer_y) {
-    if (!touch_state->touch_pressed)
-        return;
-
-    if (!framebuffer_layout.IsWithinTouchscreen(framebuffer_x, framebuffer_y))
-        std::tie(framebuffer_x, framebuffer_y) = ClipToTouchScreen(framebuffer_x, framebuffer_y);
+    {
+        std::scoped_lock guard(touch_state->mutex);
+        if (!touch_state->touch_pressed) {
+            return;
+        }
+    }
+    {
+        std::scoped_lock layout_lock(native_surface_mutex);
+        if (!framebuffer_layout.IsWithinTouchscreen(framebuffer_x, framebuffer_y)) {
+            std::tie(framebuffer_x, framebuffer_y) = ClipToTouchScreen(framebuffer_x, framebuffer_y);
+        }
+    }
 
     TouchPressed(framebuffer_x, framebuffer_y);
 }
 
 void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) {
+    const auto [layout, min_size] = CalculateFramebufferLayout(width, height, is_portrait_mode);
+    UpdateMinimumWindowSize(min_size);
+    NotifyFramebufferLayoutChanged(layout);
+}
+
+EmuWindow::WindowLayout EmuWindow::CalculateFramebufferLayout(u32 width, u32 height,
+                                                              bool is_portrait_mode) const {
     Layout::FramebufferLayout layout;
     const Settings::LayoutOption layout_option = Settings::values.layout_option.GetValue();
     const Settings::StereoRenderOption stereo_option = get3DMode();
@@ -277,13 +342,11 @@ void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_po
     if (render_full_stereo) {
         layout.width = width * 2;
     }
-    UpdateMinimumWindowSize(min_size);
-
     if (Settings::values.render_3d.GetValue() == Settings::StereoRenderOption::CardboardVR) {
         layout = Layout::GetCardboardSettings(layout);
     }
     layout.render_3d_mode = stereo_option;
-    NotifyFramebufferLayoutChanged(layout);
+    return {layout, min_size};
 }
 
 void EmuWindow::UpdateMinimumWindowSize(std::pair<unsigned, unsigned> min_size) {

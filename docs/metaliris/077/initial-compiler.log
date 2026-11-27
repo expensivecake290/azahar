@@ -1,0 +1,4 @@
+src/video_core/renderer_metal/mtl_surface_adapter.mm:81:5: error: 'auto' deduced as 'id' in declaration of 'candidate' [-Werror,-Wauto-var-id]
+   81 |     auto candidate = (__bridge id)native_view;
+      |     ^~~~~~~~~~~~~~
+1 error generated.

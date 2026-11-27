@@ -1,0 +1,92 @@
+{
+  "phase": "007",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-PORTABLE-LIFECYCLE",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 65,
+        "symbol": "}"
+      },
+      "contract": "Layer ownership and publication map to thread-safe C++20 logic.",
+      "native_mapping": "Deterministic retained handle, reentrant deleter, headless, fullscreen, portrait and suspension fixtures.",
+      "expected_result": "Existing layout and software behavior preserved and all lifecycle oracles pass.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "MTL-INVALID-METADATA",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 65,
+        "symbol": "}"
+      },
+      "contract": "Malformed native metadata must not invalidate the current binding.",
+      "native_mapping": "Reject nonfinite and invalid numeric ranges, unowned pointers and inconsistent dimensions.",
+      "expected_result": "Four malformed requests fail without modifying previously published active snapshot.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "MTL-CONCURRENT-SNAPSHOT",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 65,
+        "symbol": "}"
+      },
+      "contract": "Renderer may acquire and retain snapshots during frontend resizes.",
+      "native_mapping": "Guard state and layout, transfer old ownership outside the mutex.",
+      "expected_result": "1000 publications have monotonic generations and all observed geometry/layout and retained handle values agree.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "MTL-LIVE-DRAWABLE",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 198,
+        "symbol": ""
+      },
+      "contract": "Real layer publication and acquisition require native adapters and a device.",
+      "native_mapping": "Reopen on native CAMetalLayer adapter and CPU/GPU integration.",
+      "expected_result": "Real platform test samples before resize, after resize, after detach and while old work completes.",
+      "dependency_owner": "077",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PENDING",
+      "actual_result": "Live drawable test awaits platform adapter and GPU."
+    },
+    {
+      "id": "AZ-007-REOPEN-081",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "5777f4fa3a6b7bd510cedff6e4db88c474213a1364f4ef52c08775f61e13b837",
+        "line": 236,
+        "symbol": "void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) {"
+      },
+      "contract": "Atomic native surface and shared touch/render layout including layout-only settings updates.",
+      "native_mapping": "Use shared layout derivation for Qt native surface ownership transitions and update the native snapshot for regular framebuffer layout requests.",
+      "expected_result": "New and existing surface lifecycle, generation, retention, touch/layout and PICA regression fixtures pass.",
+      "dependency_owner": "081",
+      "command": "python3 docs/metaliris/007/verify.py <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "007/reopen-081.log",
+      "status": "PASS",
+      "actual_result": "Compiled native and host targets, exact atomic surface and layout-only refresh fixture passed."
+    }
+  ],
+  "owner_sha256_after": "2d80217b0f60be75e966bb2cae099bdeab186761ebf5651392536a802c052539"
+}

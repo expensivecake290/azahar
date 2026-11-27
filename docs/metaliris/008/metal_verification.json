@@ -1,0 +1,41 @@
+{
+  "phase": "008",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-PORTABLE-HEADER",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 69,
+        "symbol": "class RendererVulkan : public VideoCore::RendererBase {"
+      },
+      "contract": "New renderer is integrated into the common C++ interface.",
+      "native_mapping": "Compile real header consumer and obtain compiler include graph.",
+      "expected_result": "Complete, constructible, noncopyable declarations compile in C++20 without foreign backend imports.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "MTL-RENDERER-LINK",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 73,
+        "symbol": "explicit RendererVulkan(Core::System& system, Pica::PicaCore& pica, Frontend::EmuWindow& window,"
+      },
+      "contract": "Native backend object is complete only with its real owner definitions.",
+      "native_mapping": "Link after Phase 091 implementation and 090 dispatch, with earlier build-owner reopening.",
+      "expected_result": "Real native implementation link and guest/emulator integration pass with no prohibited symbols.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    }
+  ],
+  "owner_sha256_after": "5ee39efd95de023540559fbe13380f510b39f6475f075746d3e1da0669357e24"
+}

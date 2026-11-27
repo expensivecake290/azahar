@@ -1,0 +1,177 @@
+{
+  "phase": "030",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-030-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_decompiler.h",
+        "sha256": "9d29d385f4e37347bc1dd26a8e18fbce9ec0ae30eb057dd5999665ab5054f5cd",
+        "line": 13,
+        "symbol": "using RegGetter = std::function<std::string(u32)>;"
+      },
+      "contract": "Register getters are shared emitter interfaces in GLSL; read input and write output registers across calls.",
+      "native_mapping": "Typed Metal shader-visible register file with explicit indices, matching PICA input, temp and output banks.",
+      "expected_result": "Host layout and generated MSL compiled with matching offsets.",
+      "dependency_owner": "030",
+      "command": "zsh docs/metaliris/030/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "030/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header consumer, invariant ABI offsets and raw f24 boundary oracle passed."
+    },
+    {
+      "id": "VK-030-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_decompiler.h",
+        "sha256": "9d29d385f4e37347bc1dd26a8e18fbce9ec0ae30eb057dd5999665ab5054f5cd",
+        "line": 15,
+        "symbol": "std::string DecompileProgram(const Pica::ProgramCode& program_code,"
+      },
+      "contract": "Decompile original guest instruction and swizzle arrays at the configured entry point; source reports failures.",
+      "native_mapping": "Return direct MSL function source and structured instruction/flow diagnostics with offset and original word.",
+      "expected_result": "Valid narrow program generates; invalid entry/name is typed failure; source SHA remains unchanged.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-030-03",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 21,
+        "symbol": "enum ProgramType : u32 {"
+      },
+      "contract": "VS/FS/GS numeric identities are disk cache API.",
+      "native_mapping": "Native program decode selects vertex or geometry for executable PICA opcodes, leaves fragment combination to 032/033 and never changes source ordinals.",
+      "expected_result": "Correct geometry Emit paths and original shader config hash unchanged.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-030-04",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 63,
+        "symbol": "struct PicaGSConfigState {"
+      },
+      "contract": "Geometry signatures arrange source/output maps and semantic components.",
+      "native_mapping": "Decompile yields restricted emitted slot/bank contracts; semantic map and mesh/compute are consumers.",
+      "expected_result": "035 packs exact output registers into native geometry output.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-030-05",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 99,
+        "symbol": "struct PicaVSConfigState {"
+      },
+      "contract": "Vertex signature orders entry hash, swizzle hash, outputs and input attributes.",
+      "native_mapping": "Select exact instruction/swizzle data at main offset and preserve caller register mapping and cache signature.",
+      "expected_result": "034 GPU stage reads/writes expected register slots and entry.",
+      "dependency_owner": "034",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-030-06",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 156,
+        "symbol": "struct ExtraVSConfig {"
+      },
+      "contract": "Clip planes, geometry and sanitization flags affect stage generation.",
+      "native_mapping": "Geometry instruction target is explicit; always preserve interpreter multiply and sane FP semantics. Clip/separable loading applied by 034.",
+      "expected_result": "Verify zero times infinity, NaN selectors, and signed offstage data via independent fixture.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-030-07",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 48,
+        "symbol": "static void RunInterpreter(const ShaderSetup& setup, ShaderUnit& state,"
+      },
+      "contract": "CPU oracle has 8 if, 4 call, 4 loop scopes, entry point and implicit trailing END.",
+      "native_mapping": "Generated MSL function uses equivalent bounded scopes, typed status for invalid or excessive unstructured execution, exact register bank ABI.",
+      "expected_result": "Nested scopes and malformed execution return expected status.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-030-08",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 199,
+        "symbol": "src1[3] = -src1[3];"
+      },
+      "contract": "Swizzle then negate operands; destination write masking and float24 arithmetic preserve old unaffected lanes.",
+      "native_mapping": "Host float register ABI follows Float<16,7> interpreter values and emitted component masks.",
+      "expected_result": "CPU ABI and raw float24 denorm, infinities, NaN and signed zero boundaries match.",
+      "dependency_owner": "030",
+      "command": "zsh docs/metaliris/030/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "030/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header consumer, invariant ABI offsets and raw f24 boundary oracle passed."
+    },
+    {
+      "id": "VK-030-09",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 656,
+        "symbol": "case OpCode::Id::BREAKC: {"
+      },
+      "contract": "Geometry Emit calls vertex slot/winding handler and switches output banks.",
+      "native_mapping": "Typed template emitter receives active register bank, vertex slot, primitive and winding before switching banks.",
+      "expected_result": "Geometry instruction fixture checks bank alternation and reserved invalid slot handling.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "GEOMETRY-035-030",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_decompiler.h",
+        "sha256": "6fac1a12d5f77512fed1e286285b4b4171e9d334c1a3727f5e2f79a2fd5f2596",
+        "line": 22,
+        "symbol": "struct ProgramOptions {"
+      },
+      "contract": "Mutable Fixed/Variable GS inputs write PICA uniforms per invocation, and every GS updates b15. The existing generator exposes only the immutable constant uniform address space.",
+      "native_mapping": "Native explicit constant/thread uniform selection with stable default ABI.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "031/reopen-035.log",
+      "status": "PENDING",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "83de5e2c0d6b06562000ef5da080cb20dd51d5b9df2920a26b57679046e682d3"
+}

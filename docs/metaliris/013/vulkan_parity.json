@@ -1,0 +1,585 @@
+{
+  "phase": "013",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_instance-025",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 25,
+        "symbol": "struct FormatTraits {"
+      },
+      "contract": "Texture transfer, blit, attachment, storage, guest conversion and aspect",
+      "native_mapping": "FormatTraits separates native backing, usage and guest format; compare traits by value",
+      "expected_result": "Invalid format has no access; legal guest color/depth and custom formats have exact mapped format and capabilities",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "vk_instance-041",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 41,
+        "symbol": "struct NoInit {};"
+      },
+      "contract": "LibRetro NoInit and headless device-only discovery",
+      "native_mapping": "Exclude LibRetro; reuse platform's non-owning discovery via EnumerateDevices; no partially initialized Instance",
+      "expected_result": "Discovery and actual selected instance have separate APIs",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-043",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 43,
+        "symbol": "explicit Instance(Frontend::EmuWindow& window, u32 physical_device_index);"
+      },
+      "contract": "Window-bound instance validates and initializes a chosen physical device",
+      "native_mapping": "Instance selects retained device independently of windows; unusable settings fail before creation",
+      "expected_result": "Out-of-range index and missing requested Spatial reject; headless and GUI choose same device",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-045",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 45,
+        "symbol": "virtual ~Instance();"
+      },
+      "contract": "Destroy owned device resources",
+      "native_mapping": "Own DeviceContext; close before device/traits teardown while work leases still retain state",
+      "expected_result": "Closing invalidates subsequent queue submissions",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-048",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 48,
+        "symbol": "const FormatTraits& GetTraits(VideoCore::PixelFormat pixel_format) const;"
+      },
+      "contract": "Guest lookup including invalid enum",
+      "native_mapping": "Bounded FormatTable getter returns immutable invalid traits",
+      "expected_result": "Invalid sentinel, reserved depth slot, and out-of-range lookup are safe",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "vk_instance-049",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 49,
+        "symbol": "const FormatTraits& GetTraits(VideoCore::CustomPixelFormat pixel_format) const;"
+      },
+      "contract": "Custom lookup by original enum",
+      "native_mapping": "Custom traits retain independent custom format metadata and compression block geometry",
+      "expected_result": "RGBA8 custom is linear RGBA, ASTC8 is 8x6, unsupported BC is recognized but unusable",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "vk_instance-052",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 52,
+        "symbol": "const FormatTraits& GetTraits(Pica::PipelineRegs::VertexAttributeFormat format,"
+      },
+      "contract": "Vertex lookup by type and component count",
+      "native_mapping": "Separate native vertex attribute traits and integer-to-float decode decision",
+      "expected_result": "All sixteen combinations and invalid counts match PICA scalar contract",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "vk_instance-055",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 55,
+        "symbol": "const std::array<FormatTraits, 16>& GetAllTraits() const {"
+      },
+      "contract": "Full sixteen-entry attributes table",
+      "native_mapping": "Preserve fixed-size immutable table",
+      "expected_result": "Order is four component counts per guest type",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "vk_instance-060",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 60,
+        "symbol": "std::string GetDriverVersionName();"
+      },
+      "contract": "Driver/version diagnostics",
+      "native_mapping": "Device info plus OS build and actual native probes; no fabricated Apple driver number",
+      "expected_result": "Capture status and selected device identity are queryable",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-063",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 63,
+        "symbol": "virtual vk::Instance GetInstance() const {"
+      },
+      "contract": "Instance/device/physical-device/allocator access and queue families, device list",
+      "native_mapping": "Use retained MTLDevice/DeviceContext; platform discovery; scheduler and allocator own their resources",
+      "expected_result": "ARC consumer has no Vk/VMA/queue-family dependencies",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-105",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 105,
+        "symbol": "bool HasDebuggingToolAttached() const {"
+      },
+      "contract": "Attached render debugging tools",
+      "native_mapping": "MTLCaptureManager live capture and trace support, preserve config intent independently",
+      "expected_result": "CAP trace availability agrees with SDK; current capture queried dynamically",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-115",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 115,
+        "symbol": "bool NeedsLogicOpEmulation() const {"
+      },
+      "contract": "Logic op capability or equivalent",
+      "native_mapping": "Use destination-read native shader emulation; do not claim direct Metal logic operations",
+      "expected_result": "Later blend fixture verifies each operation with sample mask and writes",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-119",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 119,
+        "symbol": "bool UseGeometryShaders() const {"
+      },
+      "contract": "Geometry shader path, tiler fallback",
+      "native_mapping": "DeviceInfo mesh capability; native compute expands when optional mesh path unavailable",
+      "expected_result": "Later mesh/compute fixture matches PICA order and interpolation",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-130",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 130,
+        "symbol": "bool IsAnisotropicFilteringSupported() const {"
+      },
+      "contract": "Optional anisotropy",
+      "native_mapping": "Metal sampler maxAnisotropy in sampler owner",
+      "expected_result": "Later native sampler fixture checks disabled, enabled and cap",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-135",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 135,
+        "symbol": "bool IsTimelineSemaphoreSupported() const {"
+      },
+      "contract": "Timeline/fence fallback",
+      "native_mapping": "Native shared events and completion state managed by semaphore/scheduler owners",
+      "expected_result": "Later semaphore verification exercises wait and cross queue",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-140",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 140,
+        "symbol": "bool IsExtendedDynamicStateSupported() const {"
+      },
+      "contract": "Dynamic versus pipeline state",
+      "native_mapping": "Use native encoder dynamic state, complete pipeline keys for remaining inputs",
+      "expected_result": "Later pipeline verifies fixed state cache keys and dynamic invalidation",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-145",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 145,
+        "symbol": "bool IsCustomBorderColorSupported() const {"
+      },
+      "contract": "Custom border colors",
+      "native_mapping": "Preserve original colors for MSL border evaluation; use native fixed values when equivalent",
+      "expected_result": "Later PICA sampler verifies every border color and wrap axis",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-150",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 150,
+        "symbol": "bool IsIndexTypeUint8Supported() const {"
+      },
+      "contract": "Uint8 index or expansion",
+      "native_mapping": "Native Metal index input uses ushort/uint; widen unsigned byte without sign extension",
+      "expected_result": "Later rasterizer fixture verifies 0 and 255",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-155",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 155,
+        "symbol": "bool IsNullDescriptorSupported() const {"
+      },
+      "contract": "Null descriptor or dummy resources",
+      "native_mapping": "Native argument table validation and typed zero resources for missing guest bindings",
+      "expected_result": "Later descriptor tests verify clearing and absent resources",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-160",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 160,
+        "symbol": "bool IsFragmentShaderInterlockSupported() const {"
+      },
+      "contract": "Fragment interlock",
+      "native_mapping": "Native raster order groups when available; otherwise ordered native pass/compute where required",
+      "expected_result": "Query SDK capability and exercise guest feedback in later native rasterizer",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-165",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 165,
+        "symbol": "bool IsImageFormatListSupported() const {"
+      },
+      "contract": "Format reinterpretation",
+      "native_mapping": "Pixel view compatibility recorded by actual native usages in texture owner",
+      "expected_result": "Later texture fixture verifies prohibited reinterpretation fails",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-170",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 170,
+        "symbol": "bool IsPipelineCreationCacheControlSupported() const {"
+      },
+      "contract": "Pipeline cache control",
+      "native_mapping": "Native Metal 4 compiler tasks and archive outcomes",
+      "expected_result": "Later compiler fixtures exercise misses, hits and failures",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-175",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 175,
+        "symbol": "bool IsShaderStencilExportSupported() const {"
+      },
+      "contract": "Shader stencil export",
+      "native_mapping": "Metal fragment stencil reference and aspect-specific upload/readback; native utility owner handles unsupported cases",
+      "expected_result": "Validate depth/stencil packing and preserved stencil refs in later native shaders",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-180",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 180,
+        "symbol": "bool IsExternalMemoryHostSupported() const {"
+      },
+      "contract": "Host external memory",
+      "native_mapping": "Explicit page-aligned shared allocation in phase 017; no assumption of coherent execution ordering",
+      "expected_result": "Later memory tests validate import bounds, ownership and visibility",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-185",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 185,
+        "symbol": "bool IsFragmentShaderBarycentricSupported() const {"
+      },
+      "contract": "Optional fragment barycentrics",
+      "native_mapping": "Query supportsShaderBarycentricCoordinates and use shader generation fallback if absent",
+      "expected_result": "SDK capability comparison and later interpolant fixture",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-190",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 190,
+        "symbol": "u32 GetVendorID() const {"
+      },
+      "contract": "Vendor, device, driver and API identity",
+      "native_mapping": "Use actual device name, registry ID, native family and OS version for diagnostics/cache identity",
+      "expected_result": "Registry ID and OS release match the selected device and platform",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-230",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 230,
+        "symbol": "const auto GetPipelineCacheUUID() const {"
+      },
+      "contract": "Pipeline cache identity",
+      "native_mapping": "Cache provenance incorporates registry ID, OS build and renderer ABI in owner",
+      "expected_result": "Later cache fixture rejects wrong device or version",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-235",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 235,
+        "symbol": "vk::DeviceSize UniformMinAlignment() const {"
+      },
+      "contract": "Uniform and host memory alignments, texel limits",
+      "native_mapping": "Expose SDK-specific buffer and working-set limits; per-format alignment queries in allocator/texture owners",
+      "expected_result": "Reported limits match device; later import fixture rejects misalignment",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-249",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 249,
+        "symbol": "/// Returns true if shaders can declare the ClipDistance attribute"
+      },
+      "contract": "Clip-distance, triangle fans, sample and image array capabilities",
+      "native_mapping": "Use MSL clip decisions and native fan expansion; expose actual native sample-count and shader feature data",
+      "expected_result": "No unsupported fan descriptor; sample count matrix matches SDK",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-272",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 272,
+        "symbol": "bool IsLayeredRenderingSupported() const {"
+      },
+      "contract": "Layered rendering / minimum strides and host import alignment",
+      "native_mapping": "Native array layers and argument layouts, device limits queried where used",
+      "expected_result": "Later layer and vertex fixture verifies ABI and slice selection",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-287",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 287,
+        "symbol": "bool ShouldFlush() const {"
+      },
+      "contract": "Foreign-driver flush workaround",
+      "native_mapping": "Exclude GPU-specific foreign-driver condition; native hazard scheduling uses true dependency edges",
+      "expected_result": "No injected full-device flush or driver-name blacklist",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-294",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 294,
+        "symbol": "[[nodiscard]] FormatTraits DetermineTraits(VideoCore::PixelFormat pixel_format,"
+      },
+      "contract": "Build format, custom, and vertex trait tables",
+      "native_mapping": "Phase 014 implements bounded table with Metal formats using documented Apple tables",
+      "expected_result": "Run complete CPU table and GPU fixture when available",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "vk_instance-308",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 308,
+        "symbol": "bool CreateDevice();"
+      },
+      "contract": "Logical device creation, VMA lifetime and tool info",
+      "native_mapping": "Instance owns selected native context; scheduler and allocator registration separate",
+      "expected_result": "Device may be absent, no initialization side effects for rejected index",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    },
+    {
+      "id": "vk_instance-317",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 317,
+        "symbol": "std::shared_ptr<Common::DynamicLibrary> library;"
+      },
+      "contract": "Backend-private member state and protected LibRetro inheritance",
+      "native_mapping": "Use immutable Metal selection/traits plus explicit native work leases and capabilities",
+      "expected_result": "No extension or mutable PICA-visible global state introduced",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    }
+  ],
+  "owner_sha256_after": "98e46dbc761d5d5cb24517897d5429e18a497f20c77e7d0bbac723b2b9a2efa4"
+}

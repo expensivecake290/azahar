@@ -1,0 +1,41 @@
+{
+  "phase": "082",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-082-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 53,
+        "symbol": "std::vector<DeviceInfo> EnumerateDevices() {"
+      },
+      "contract": "Only native device capabilities and names are needed to populate the device picker.",
+      "native_mapping": "Compile against Qt Cocoa and arm64 macOS SDK and link actual native bridge from Phase 079, plus deterministic conversion fixture.",
+      "expected_result": "Isolation and index order match actual device enumeration. PICA 48/801 and CTest current available regressions.",
+      "dependency_owner": "012/079/082",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native Qt and feature-off compile, real empty list (0 visible devices) and five-entry deterministic UTF-8, duplicate and unsupported-slot fixture, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "MTL-082-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 53,
+        "symbol": "std::vector<DeviceInfo> EnumerateDevices() {"
+      },
+      "contract": "Enumerate real device properties on Apple hardware and exercise renderer selection.",
+      "native_mapping": "Check list order, selecting supported and refusing unsupported entries without off-by-one error.",
+      "expected_result": "Run live with exposed Metal4 GPU, including registry ordering and selection with customized physical_device.",
+      "dependency_owner": "083/086/091",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e166c43351e8b9305a1c1bbc56ed5300b194eb16c0c13f422a94c8f185c96cc7"
+}

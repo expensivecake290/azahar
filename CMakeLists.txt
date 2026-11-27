@@ -21,6 +21,15 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/externals/cmake-modul
 include(DownloadExternals)
 include(CMakeDependentOption)
 
+option(ENABLE_METAL "Enables the native Metal 4 renderer on Apple Silicon" OFF)
+if (ENABLE_METAL AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+    if (DEFINED ENV{MACOSX_DEPLOYMENT_TARGET} AND NOT "$ENV{MACOSX_DEPLOYMENT_TARGET}" STREQUAL "")
+        set(CMAKE_OSX_DEPLOYMENT_TARGET "$ENV{MACOSX_DEPLOYMENT_TARGET}")
+    else()
+        set(CMAKE_OSX_DEPLOYMENT_TARGET "26.0")
+    endif()
+endif()
+
 project(citra LANGUAGES C CXX ASM)
 # must be invoked after project() command when using CMAKE_TOOLCHAIN_FILE
 include(FindPkgConfig)
@@ -38,6 +47,18 @@ if (BSD STREQUAL "OpenBSD")
 endif()
 
 option(ENABLE_LIBRETRO "Build as a LibRetro core" OFF)
+
+if (ENABLE_METAL)
+    if (NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin" OR IOS OR ENABLE_LIBRETRO)
+        message(FATAL_ERROR "ENABLE_METAL is supported only for desktop macOS builds outside LibRetro.")
+    endif()
+    if (CMAKE_OSX_ARCHITECTURES AND NOT CMAKE_OSX_ARCHITECTURES STREQUAL "arm64")
+        message(FATAL_ERROR "ENABLE_METAL requires an arm64 macOS target. Set CMAKE_OSX_ARCHITECTURES=arm64.")
+    endif()
+    if (CMAKE_OSX_DEPLOYMENT_TARGET VERSION_LESS "26.0")
+        message(FATAL_ERROR "ENABLE_METAL requires a macOS deployment target of 26.0 or later.")
+    endif()
+endif()
 
 # Some submodules like to pick their own default build type if not specified.
 # Make sure we default to Release build type always, unless the generator has custom types.
@@ -61,8 +82,10 @@ if (APPLE AND NOT ENABLE_LIBRETRO)
         set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE BOTH)
         set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE BOTH)
     else()
-        # Minimum macOS 13
-        set(CMAKE_OSX_DEPLOYMENT_TARGET "13.4")
+        if (NOT ENABLE_METAL)
+            # Minimum macOS 13
+            set(CMAKE_OSX_DEPLOYMENT_TARGET "13.4")
+        endif()
 
         # Catch compiler issue on AppleClang versions below 15.0
         # TODO: Remove this check when we drop macOS 13 Ventura
@@ -148,8 +171,8 @@ CMAKE_DEPENDENT_OPTION(ENABLE_FFMPEG "Enable features which require FFmpeg to fu
 
 CMAKE_DEPENDENT_OPTION(ENABLE_SOFTWARE_RENDERER "Enables the software renderer" ON "NOT ANDROID" OFF)
 CMAKE_DEPENDENT_OPTION(ENABLE_OPENGL "Enables the OpenGL renderer" ${DEFAULT_ENABLE_OPENGL} "NOT APPLE" OFF)
-# NetBSD doesn't support Vulkan yet, remove this check when it does.
-CMAKE_DEPENDENT_OPTION(ENABLE_VULKAN "Enables the Vulkan renderer" ON "NOT (BSD MATCHES \"NetBSD\")" OFF)
+# NetBSD doesn't support Vulkan yet. Native Metal builds do not include Vulkan.
+CMAKE_DEPENDENT_OPTION(ENABLE_VULKAN "Enables the Vulkan renderer" ON "NOT (BSD MATCHES \"NetBSD\");NOT ENABLE_METAL" OFF)
 
 option(ENABLE_DISCORD_RPC "Enables Discord Rich Presence" OFF)
 
@@ -381,6 +404,69 @@ add_definitions(-DBOOST_ASIO_DISABLE_CONCEPTS)
 add_definitions(-DBOOST_NO_CXX98_FUNCTION_BASE)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if (ENABLE_METAL)
+    find_library(METAL_LIBRARY Metal REQUIRED)
+    find_library(METALFX_LIBRARY MetalFX REQUIRED)
+    find_library(QUARTZCORE_LIBRARY QuartzCore REQUIRED)
+    set(METAL_LIBRARIES "${METAL_LIBRARY}" "${METALFX_LIBRARY}" "${QUARTZCORE_LIBRARY}")
+
+    include(CheckOBJCXXSourceCompiles)
+    include(CMakePushCheckState)
+
+    function(check_native_metal_sdk)
+        cmake_push_check_state(RESET)
+        set(CMAKE_OBJCXX_STANDARD ${CMAKE_CXX_STANDARD})
+        set(CMAKE_OBJCXX_STANDARD_REQUIRED ON)
+        set(CMAKE_TRY_COMPILE_TARGET_TYPE EXECUTABLE)
+        set(CMAKE_REQUIRED_FLAGS "-fobjc-arc -Werror=unguarded-availability")
+        set(CMAKE_REQUIRED_LIBRARIES ${METAL_LIBRARIES})
+        # Recheck on reconfiguration because the effective SDK or compiler flags can change.
+        unset(AZAHAR_METAL4_SDK CACHE)
+        check_objcxx_source_compiles([=[
+            #include <TargetConditionals.h>
+            #import <Metal/Metal.h>
+            #import <MetalFX/MetalFX.h>
+            #import <QuartzCore/CAMetalLayer.h>
+
+            #if !TARGET_OS_OSX || !defined(__arm64__) || !__has_feature(objc_arc)
+            #error Native Metal 4 requires macOS arm64 and Objective-C ARC.
+            #endif
+
+            int main() {
+                @autoreleasepool {
+                    id<MTLDevice> device = MTLCreateSystemDefaultDevice();
+                    id<MTL4CommandQueue> queue = [device newMTL4CommandQueue];
+                    id<MTL4CommandAllocator> allocator = [device newCommandAllocator];
+                    id<MTL4CommandBuffer> command = [device newCommandBuffer];
+                    id<MTL4ArgumentTable> arguments =
+                        [device newArgumentTableWithDescriptor:[MTL4ArgumentTableDescriptor new]
+                                                         error:nullptr];
+                    id<MTLResidencySet> residency =
+                        [device newResidencySetWithDescriptor:[MTLResidencySetDescriptor new]
+                                                        error:nullptr];
+                    id<MTL4Compiler> compiler =
+                        [device newCompilerWithDescriptor:[MTL4CompilerDescriptor new] error:nullptr];
+                    MTLFXSpatialScalerDescriptor* spatial = [MTLFXSpatialScalerDescriptor new];
+                    id<MTL4FXSpatialScaler> scaler =
+                        [spatial newSpatialScalerWithDevice:device compiler:compiler];
+                    [scaler encodeToCommandBuffer:command];
+                    CAMetalLayer* layer = [CAMetalLayer layer];
+                    return !(queue && allocator && arguments && residency && layer &&
+                             [device supportsFamily:MTLGPUFamilyMetal4] &&
+                             [MTLFXSpatialScalerDescriptor supportsMetal4FX:device]);
+                }
+            }
+        ]=] AZAHAR_METAL4_SDK)
+        cmake_pop_check_state()
+        if (NOT AZAHAR_METAL4_SDK)
+            message(FATAL_ERROR "ENABLE_METAL requires a Metal-enabled Apple Silicon SDK "
+                                "with Metal 4 and MetalFX Spatial declarations and Objective-C++ ARC.")
+        endif()
+    endfunction()
+    check_native_metal_sdk()
+    add_compile_definitions(ENABLE_METAL)
+endif()
 
 # Apply consistent visibility settings.
 set(CMAKE_CXX_VISIBILITY_PRESET default)

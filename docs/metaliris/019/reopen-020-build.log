@@ -1,0 +1,4 @@
+[1/3] Building OBJCXX object src/video_core/CMakeFiles/video_core.dir/renderer_metal/mtl_master_semaphore.mm.o
+[2/3] Linking CXX static library src/video_core/libvideo_core.a
+[3/3] Linking CXX executable bin/Release/tests
+ld: warning: ignoring duplicate libraries: 'src/audio_core/libaudio_core.a', 'src/common/libcitra_common.a', 'src/core/libcitra_core.a', 'src/input_common/libinput_common.a', 'src/network/libnetwork.a', 'src/video_core/libvideo_core.a', 'src/web_service/libweb_service.a'

@@ -1,0 +1,75 @@
+{
+  "phase": "015",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "sw_texturing-015",
+      "source": {
+        "path": "src/video_core/renderer_software/sw_texturing.cpp",
+        "sha256": "89b14ef9d4b0db7a47c9a5c44d1cc22bff8b57245c2a00447cb4fe9a76e4a26b",
+        "line": 15,
+        "symbol": ""
+      },
+      "contract": "Software PICA wrap and signed-to-unsigned coordinates for NPOT",
+      "native_mapping": "Match 32-bit unsigned wrap for repeat and mirror and preserve positive-side border rules",
+      "expected_result": "Compare all modes at negative/positive and integer boundaries",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "sw_framebuffer-336",
+      "source": {
+        "path": "src/video_core/renderer_software/sw_framebuffer.cpp",
+        "sha256": "d47383f44a6b71c5e0a7fe09795d980e8a8fce8a6d2a1b388bbbbb8e32eb912d",
+        "line": 336,
+        "symbol": "switch (op) {"
+      },
+      "contract": "Shared software logic oracle",
+      "native_mapping": "Metal translation uses exact per-lane bitwise operations",
+      "expected_result": "Exhaustive two-byte operand pairs",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "vk_rasterizer-521",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 521,
+        "symbol": "const bool native_u8 = index_u8 && instance.IsIndexTypeUint8Supported();"
+      },
+      "contract": "u8 index upload fallback",
+      "native_mapping": "Widen u8 indices to native UInt16 without numeric or packing changes",
+      "expected_result": "All 256 byte indices widen",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "vk_instance-048",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.h",
+        "sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+        "line": 48,
+        "symbol": "const FormatTraits& GetTraits(VideoCore::PixelFormat pixel_format) const;"
+      },
+      "contract": "Original PICA and custom texture format metadata",
+      "native_mapping": "Keep native table in 013/014 and use mapping with downstream texture consumer",
+      "expected_result": "Direct fixture has no Vk dependency",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    }
+  ],
+  "owner_sha256_after": "22fd550501cc6b56b16052ae828cb2af5c9b6920953e5a7f4bfb12baef15fb83"
+}

@@ -1,0 +1,75 @@
+{
+  "phase": "041",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-041-01",
+      "source": {
+        "path": "src/video_core/host_shaders/metal/full_screen_triangle_vert.metal",
+        "sha256": "9460ae0544bdd423a38d925c657a1bf32278255d5c74104fcc0f3aafc6d6c3ef",
+        "line": 15,
+        "symbol": ""
+      },
+      "contract": "Native full-screen UV is location 0 and uses viewport-relative coordinates.",
+      "native_mapping": "Compatible direct MSL varying and normalized clamped linear sampler binding.",
+      "expected_result": "Native GPU fixture uses Phase 038 actual library, odd dimensions and different-sized inputs.",
+      "dependency_owner": "041",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-041-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 45,
+        "symbol": ""
+      },
+      "contract": "Offsets apply to each actual bound resource size, so differently sized scalar planes remain valid.",
+      "native_mapping": "Use the Metal native texture.sample level and texel-offset overload at both native textures.",
+      "expected_result": "MSL4 compiler verifies both resource reads, no reinterpretation of source alpha.",
+      "dependency_owner": "041",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-041-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 952,
+        "symbol": "void BlitHelper::FilterPassThreeTextures(Surface& surface, vk::Pipeline pipeline,"
+      },
+      "contract": "Texture selection and resource retention are host responsibilities.",
+      "native_mapping": "Use explicit native fragment read bindings and track separate or alias views once.",
+      "expected_result": "Argument-table binding, scissor and lifetime coverage in Phase 064.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "LICENSE-044-041",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 21,
+        "symbol": "// SOFTWARE."
+      },
+      "contract": "Restore the final line of the source MIT notice in the packaged native port.",
+      "native_mapping": "Preserve all source notice lines.",
+      "expected_result": "Exact source notice plus regenerated Metal library and PICA check.",
+      "dependency_owner": "044",
+      "command": "Compare source notice and rebuild exact embedded native library.",
+      "evidence_path": "041/reopen-044-source-notice.log",
+      "status": "PASS",
+      "actual_result": "Exact originating notice, repackaged native Metal 4 library and established PICA baseline passed."
+    }
+  ],
+  "owner_sha256_after": "89c61868e5eebb8febaad755fa8e9b9a793da7542ea7dd63fcfe0a5ab2782b45"
+}

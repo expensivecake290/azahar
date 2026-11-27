@@ -1,0 +1,538 @@
+{
+  "phase": "002",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-CXX20-ARC",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "line": 4,
+        "sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+        "symbol": "custom_textures/custom_format.cpp"
+      },
+      "contract": "video_core is an existing C++ static target.",
+      "native_mapping": "Set target-local Objective-C++20 and ARC for OBJCXX compile language.",
+      "expected_result": "Injected test-only Metal 4 ObjC++ consumer compiles in real target while existing C++ uses unchanged flags.",
+      "dependency_owner": "002",
+      "command": "python3 docs/metaliris/002/verify.py <scratch-dir>",
+      "evidence_path": "002/graph.log",
+      "status": "PASS",
+      "actual_result": "Successful build-graph/compile verification. See graph.log and pica.log."
+    },
+    {
+      "id": "MTL-LINK",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "line": 217,
+        "sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+        "symbol": "target_link_libraries(video_core PUBLIC citra_common citra_core)"
+      },
+      "contract": "The video_core target propagates required link dependencies to its consumers.",
+      "native_mapping": "Attach SDK framework list from Phase 001 privately. Preserve Qt independence.",
+      "expected_result": "Real tests link graph contains Metal, MetalFX and QuartzCore. Vulkan/MoltenVK dependency closure is absent.",
+      "dependency_owner": "001",
+      "command": "python3 docs/metaliris/002/verify.py <scratch-dir>",
+      "evidence_path": "002/pica.log",
+      "status": "PASS",
+      "actual_result": "Real tests link succeeded; SDK linkage and external dependency closure captured."
+    },
+    {
+      "id": "MTL-INTEGRATED-RENDERER-LINK",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "line": 217,
+        "sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+        "symbol": "target_link_libraries(video_core PUBLIC citra_common citra_core)"
+      },
+      "contract": "Native renderer integration depends on real production ObjC++ sources and dispatch.",
+      "native_mapping": "After Phase 091, rebuild native video_core and link real targets, using controlled reopening.",
+      "expected_result": "Every implemented native file appears exactly once and produces successful native project link and dependency closure evidence.",
+      "dependency_owner": "091",
+      "command": "python3 docs/metaliris/002/verify.py <scratch-dir>",
+      "evidence_path": "002/graph.log",
+      "status": "PASS",
+      "actual_result": "Every native translation unit is registered once, actual native core and Qt link and SDK framework/symbol audits passed.",
+      "actual_evidence": [
+        "091/link-audit.log",
+        "002/reopen-091.log"
+      ]
+    },
+    {
+      "id": "AZ-002-REOPEN-008",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "3c7c1d9f102a668bc7a64de84fd522c28fd664330acdfc7af00b6a41cc8a890c",
+        "line": 92,
+        "symbol": "set_target_properties(video_core PROPERTIES)"
+      },
+      "contract": "A newly completed native header needs explicit real target registration.",
+      "native_mapping": "Register only renderer_metal/renderer_metal.h in the native target.",
+      "expected_result": "The native file API includes the real owner header once; there is no missing backend source in the graph.",
+      "dependency_owner": "008",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-008.log",
+      "status": "PASS",
+      "actual_result": "Native target has the real renderer header exactly once. Rebuild and PICA test succeeded."
+    },
+    {
+      "id": "AZ-002-REOPEN-010",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "1d3ca6fa9c4e8851ff7ac4a6316b881c58fe65f2db4a1d4537414aa991b5e119",
+        "line": 93,
+        "symbol": "renderer_metal/renderer_metal.h"
+      },
+      "contract": "Phases 009 and 010 have completed two real Metal files.",
+      "native_mapping": "Register both explicit paths and compile the implementation as a real video_core target consumer.",
+      "expected_result": "The OBJ-C++ compiler receives ARC and C++20. The actual project graph includes each path once and retains all existing tests.",
+      "dependency_owner": "010",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-010.log",
+      "status": "PASS",
+      "actual_result": "Actual mtl_common.mm compiled as a real ARC target source. PICA regression passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-012",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "44996edc5eea4f9a17cd6f74ba89c5dbbe72f56e6355ae7227c9c8f98a32150c",
+        "line": 95,
+        "symbol": "renderer_metal/mtl_common.mm"
+      },
+      "contract": "Each implemented native file is registered by the build owner.",
+      "native_mapping": "Register and compile mtl_platform.h and mtl_platform.mm explicitly.",
+      "expected_result": "Real native platform files appear once and native target and PICA regression build successfully.",
+      "dependency_owner": "012",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-012.log",
+      "status": "PASS",
+      "actual_result": "Native files compile under Objective-C++20 ARC; exact registration, target link and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-014",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "f1db7641133c61483df0b903a7f13ba8e0c49ed3d8fc80040fd2498072acf997",
+        "line": 105,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_instance.h, mtl_instance.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "014",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-014.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-015",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "362c285a5bd7b3251c463ba8db9089eae3ffc7d54ff4f11a5c8b4907d6656458",
+        "line": 107,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register pica_to_metal.h",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "015",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-015.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-017",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "ff42cb843d369724016a55a21b13ef5fd3cc7acf017ec80d86a3838ac8087f45",
+        "line": 108,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_memory_util.h, mtl_memory_util.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "017",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-017.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-019",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "0c65c0c99464999876d23b2ca2ec53954b534b3ec4c617f28c90f2818278444c",
+        "line": 110,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_master_semaphore.h, mtl_master_semaphore.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "019",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-019.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-021",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "b296e8b643264ffb44a1ff08565335149119f5afc555f09776b17c73aaa10d64",
+        "line": 112,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_resource_pool.h, mtl_resource_pool.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "021",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-021.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-023",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "2491e2b32e9f96df86c6fb60eaf258dd973072f13791563ac5290b00b878e707",
+        "line": 114,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_scheduler.h, mtl_scheduler.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "023",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-023.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-025",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "42e6a1c66d0bb4965bf9d0de2fc6096cce18690c6e0d0b64ea418855b2d4b0c2",
+        "line": 116,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_stream_buffer.h, mtl_stream_buffer.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "025",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-025.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-027",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "2629e8479970b9337dc51cb5bd8056b65496b2fbf55da0a5a05f924cf1473add",
+        "line": 118,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_descriptor_update_queue.h, mtl_descriptor_update_queue.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "027",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-027.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-029",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "4c6bad9233776658505677e35e3958c077d60c5381577ac6a8e099c09048e785",
+        "line": 120,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register mtl_render_manager.h, mtl_render_manager.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "029",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-029.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-031",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "a271fe12d3988fc57f50f2d6aa30641805032093df5e500a01b65d4a5f507210",
+        "line": 122,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register shader/msl_shader_decompiler.h, shader/msl_shader_decompiler.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "031",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-031.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-033",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "412e7c29796af150ef6f8ff368cbd1e90e55764c22cd11048bb46b6947870794",
+        "line": 124,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/shader/msl_fs_shader_gen.h, renderer_metal/shader/msl_fs_shader_gen.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "033",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-033.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-035",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "7cb15becf9a11d08434452f0dc9d62171c80bbb9c15f0f98d9d26fb7c32e0022",
+        "line": 126,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/shader/msl_shader_gen.h, renderer_metal/shader/msl_shader_gen.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "035",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-035.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-056",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "f233fd4fe67eddb8d3e02a44f01e5b50f5a13d867beda84823a77602c5e5302f",
+        "line": 128,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_shader_util.h, renderer_metal/mtl_shader_util.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "056",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-056.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-058",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "20342690e52df14654f1ba4142509861f5e9f8ddaaae490ec78813b15a2fc24b",
+        "line": 130,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_graphics_pipeline.h, renderer_metal/mtl_graphics_pipeline.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "058",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-058.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-060",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "7a58e88d9bf0f789aa7a0995e85b2fcad746de09cb501088776bd0850fbac160",
+        "line": 132,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_shader_disk_cache.h, renderer_metal/mtl_shader_disk_cache.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "060",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-060.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-062",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "b286a51c0099d72c90f68f7d6f56af1fe4208dc75c13d1694268a68d50dc3658",
+        "line": 134,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_pipeline_cache.h, renderer_metal/mtl_pipeline_cache.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "062",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-064",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "2d5b6b27f65f52cca2def4859448a17eb274674c866c171d648f7ffd60263afc",
+        "line": 136,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_blit_helper.h, renderer_metal/mtl_blit_helper.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "064",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-064.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-066",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "b6a6c81fd9786c3ab4c0a0c0b846cdf1585089f2537708c9d3751ed0ed03be22",
+        "line": 138,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_texture_runtime.h, renderer_metal/mtl_texture_runtime.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "066",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-066.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-068",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "43816b9346fc3799ff101292bf2c5bce54e11b5619cfd504968f18f0a2e233c2",
+        "line": 140,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_rasterizer.h, renderer_metal/mtl_rasterizer.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "068",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-068.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-069",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "2caacc395b6f3ed71f78dce35fb27ff61ec4abcb26a93e9921b6c48e8115a8c1",
+        "line": 142,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_rasterizer_cache.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "069",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-069.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-071",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "1e8dc8878decdea58c5785e4a0235b306c4e1387a761f4949999ab8cdcfe3987",
+        "line": 143,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files. Link the required CoreGraphics framework directly for the swapchain color space.",
+      "native_mapping": "Register renderer_metal/mtl_swapchain.h, renderer_metal/mtl_swapchain.mm; add the native CoreGraphics framework independent of optional audio and frontend links.",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "071",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-071.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-073",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "134b7e43c8dd62267965f2c7eafd1a8ce8694d2da545330c92ab8d4ec8937278",
+        "line": 145,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_present_window.h, renderer_metal/mtl_present_window.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "073",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-073.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-075",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "821875693b4155fdb57e4d8861136fd7edb19204ab0c2e91380e7b361ec5b24c",
+        "line": 147,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_metalfx_spatial.h, renderer_metal/mtl_metalfx_spatial.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "075",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-075.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-077",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "8b8549bd14ac44212e22b0dd690a4a75b9446ecd91cbf25207c290e735c08b54",
+        "line": 149,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal/mtl_surface_adapter.h, renderer_metal/mtl_surface_adapter.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "077",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-077.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    },
+    {
+      "id": "AZ-002-REOPEN-091",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "1bd49f5690aa67269aec32c4b9390e1d9de063a49dde5e8d478afc8f1f34446e",
+        "line": 151,
+        "symbol": "set_target_properties(video_core PROPERTIES"
+      },
+      "contract": "Explicitly register completed native source files.",
+      "native_mapping": "Register renderer_metal.mm",
+      "expected_result": "CMake's native target contains each file once and PICA passes.",
+      "dependency_owner": "091",
+      "command": "cmake --build <native-build-dir> --target tests",
+      "evidence_path": "002/reopen-091.log",
+      "status": "PASS",
+      "actual_result": "Native registration/build and PICA passed."
+    }
+  ],
+  "owner_sha256_after": "519fa5b5347c2b9c655f2e7c088b03a773a0216840792705d3245acb87f6eb8e"
+}

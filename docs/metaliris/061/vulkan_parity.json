@@ -1,0 +1,177 @@
+{
+  "phase": "061",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-061-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 30,
+        "symbol": "enum class DescriptorHeapType : u32 {"
+      },
+      "contract": "Separate descriptor namespaces and offsets need equivalent per-stage resources.",
+      "native_mapping": "Pass a validated immutable native argument snapshot with each stage group. ResourcePool applies positions, offsets and residency on the active encoder.",
+      "expected_result": "Real Objective-C++ compile of cache/descriptor integration contracts and pending end-to-end range/residency tests.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "VK-061-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 62,
+        "symbol": "/// Loads the driver pipeline cache and the disk shader cache"
+      },
+      "contract": "Persistent pipeline warmup, title switch, per-title crash detection and real completion.",
+      "native_mapping": "Expose synchronous warmup with cancel and Azahar disk progress, plus scoped title identity and saved/failed/recovered result counters.",
+      "expected_result": "Cold-empty, cancel, title switch, lifecycle without preloaded cache and stale-disk guard in paired implementation.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-061-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 73,
+        "symbol": "/// Binds a pipeline using the provided information"
+      },
+      "contract": "Build or resolve the complete correct pipeline before binding.",
+      "native_mapping": "A required result returns fully compiled retained states or an explicit compiler error/cancel. Equivalent shader fallbacks are routed by shader selection, compiled sync independently.",
+      "expected_result": "Type-check real cache/encoder contract and deadline/generation adversarial tests.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "VK-061-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 76,
+        "symbol": "Pica::Shader::Generator::ExtraVSConfig CalcExtraConfig("
+      },
+      "contract": "Stage input profile and stride conversion, guest float behavior and draw topology.",
+      "native_mapping": "Capture the full layout and PICA shader setup by call-scoped reference. Carry validated typed integer flags and native vertex ABI.",
+      "expected_result": "Shader key variation independent of host memory identity; expected signed/unsigned and constant defaults.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "VK-061-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 79,
+        "symbol": "/// Binds a PICA decompiled vertex shader"
+      },
+      "contract": "Programmable decompiled vertex path and trivial passthrough.",
+      "native_mapping": "Selection accepts interpreted HardwareVertex batches or programmable vertex code. Unsupported guest shader details return explicit diagnostics for the caller to resolve through its equivalent guest path.",
+      "expected_result": "Validate typed results and interaction with existing MSL generators; runtime known-answer draws in dependent owner.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-061-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 86,
+        "symbol": "/// Binds a PICA decompiled geometry shader"
+      },
+      "contract": "Optional fixed geometry, programmable geometry, and trivial path required by state/topology/lighting.",
+      "native_mapping": "Select a fully specified native vertex/mesh/object/compute route, guaranteeing required primitive ordering. Indexed strip expansion flag and verified limited mesh equivalence owned by selector.",
+      "expected_result": "64-case route suite for topology, geometry unit, lights, barycentrics, feedback and order requirement across bounds.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "VK-061-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 92,
+        "symbol": "/// Binds a fragment shader generated from PICA state"
+      },
+      "contract": "Fragment config, cacheability and separate alpha/RGB min-max emulation.",
+      "native_mapping": "Capture complete native fragment requirements, generated GLSL-free MSL, feedback/shadow and true user cacheability.",
+      "expected_result": "Verify the native fragment state variant binding, exact fallback and feedback order both compile paths.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-061-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 99,
+        "symbol": "/// Gets the current program ID"
+      },
+      "contract": "State changes before native publication are tracked.",
+      "native_mapping": "Title identity and generation guarded retained result, plus worker bound/settings, explicit synchronous path when asynchronous disabled.",
+      "expected_result": "Foreign title and device results cannot bind or gain a cache hit.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-061-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 115,
+        "symbol": "/// Loads the driver pipeline cache"
+      },
+      "contract": "Driver archive load/save, compatibility and failure recovery.",
+      "native_mapping": "PipelineCache owns title-scoped native serializer, disk cache and pipeline compiler in implementation. Only completed stages can update durable state.",
+      "expected_result": "Valid/rejected archive and persistent cache load test with physical Apple GPU.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-061-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+        "sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+        "line": 157,
+        "symbol": "private:"
+      },
+      "contract": "Scheduler, render, and descriptor lifetimes; clean wait and erased applet state.",
+      "native_mapping": "Resources bind through phase 027 snapshots with cache-owned build ticket, descriptor device validation and scheduler retention.",
+      "expected_result": "Test exact resource-stage handoff and safe title cache eviction, close and async teardown.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e5daa2eb9a96e28045885db7702d156f2f114f1a1b0f197c047d09ba629ca4c9"
+}

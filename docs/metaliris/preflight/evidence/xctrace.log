@@ -1,0 +1,22 @@
++zsh:4> xcrun xctrace list templates
+*** Terminating app due to uncaught exception 'Fatal', reason: 'Cannot create temporary directory for Instruments Analysis Core: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “path_manager” in the folder “com.apple.dt.InstrumentsCLI”." UserInfo={NSFilePath=/Users/anthonygarcia/Library/Caches/com.apple.dt.InstrumentsCLI/path_manager, NSURL=file:///Users/anthonygarcia/Library/Caches/com.apple.dt.InstrumentsCLI/path_manager, NSUnderlyingError=0x7b5a5b2b80 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x000000018dec57b0 __exceptionPreprocess + 176
+	1   libobjc.A.dylib                     0x000000018d92060c objc_exception_throw + 88
+	2   CoreFoundation                      0x000000018dec56a0 +[NSException exceptionWithName:reason:userInfo:] + 0
+	3   DVTInstrumentsAnalysisCore          0x00000001024f0638 swift_XRFrameActivityYieldFlagTest + 27636
+	4   DVTInstrumentsAnalysisCore          0x00000001024f0ecc swift_XRFrameActivityYieldFlagTest + 29832
+	5   libdispatch.dylib                   0x000000018dbed5a0 _dispatch_client_callout + 16
+	6   libdispatch.dylib                   0x000000018dbe3490 _dispatch_lane_barrier_sync_invoke_and_complete + 56
+	7   DVTInstrumentsAnalysisCore          0x00000001024f0e50 swift_XRFrameActivityYieldFlagTest + 29708
+	8   InstrumentsPlugIn                   0x00000001036c95b4 __PFTInitializeSharedFrameworks_block_invoke + 1132
+	9   libdispatch.dylib                   0x000000018dbed5a0 _dispatch_client_callout + 16
+	10  libdispatch.dylib                   0x000000018dbd6624 _dispatch_once_callout + 32
+	11  InstrumentsPlugIn                   0x00000001036c9144 PFTInitializeSharedFrameworks + 160
+	12  XCTraceCore                         0x000000010222ed68 $s11XCTraceCore6RunnerC3runyAC9RunResultOAA7CommandVF + 1348
+	13  XCTraceCore                         0x000000010222e5cc $s11XCTraceCore6RunnerC3run4withAC9RunResultOSaySSG_tF + 704
+	14  xctrace                             0x00000001020a8f64 xctrace + 3940
+	15  dyld                                0x000000018d9bbef0 start + 6688
+)
+libc++abi: terminating due to uncaught exception of type NSException

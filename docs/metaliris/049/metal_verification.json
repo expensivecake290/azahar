@@ -1,0 +1,41 @@
+{
+  "phase": "049",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-049-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_cursor.vert",
+        "sha256": "8862f9cc779a90253cfb9ba229a087adfb560e758e4e7d9a9c4091c9a588d6f2",
+        "line": 10,
+        "symbol": "void main() {"
+      },
+      "contract": "Compile actual Metal 4 stage and embed exact Metal library.",
+      "native_mapping": "SDK vertex descriptor, offline MSL and library packaging, CMake target verification plus regression.",
+      "expected_result": "Native SDK fixture linking and CPU positional oracle.",
+      "dependency_owner": "049",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 049 <native-build-dir> <scratch-dir> <cursor-fragment-library>",
+      "evidence_path": "049/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native MSL4 vertex, exact registered library bytes, full packed/native fixture compile and CPU vertex oracle, PICA and CTest passed."
+    },
+    {
+      "id": "MTL-049-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1094,
+        "symbol": "const float vb = std::fmin(cy + rh, bb);"
+      },
+      "contract": "Render positioned and clipped bars with exact RGBA outcomes.",
+      "native_mapping": "Compute the native coordinates independently and read every actual shaded byte.",
+      "expected_result": "Odd target, overlapping ordered triangles and nonzero start.",
+      "dependency_owner": "049",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 049 <native-build-dir> <scratch-dir> <cursor-fragment-library>",
+      "evidence_path": "049/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "75e9823fa7f4eebd62d255817e23aee61459019a7f6f0409e76a0e06385f7eaf"
+}

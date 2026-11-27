@@ -1,0 +1,143 @@
+{
+  "phase": "023",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-023-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 50,
+        "symbol": "Scheduler::Scheduler(const Instance& instance)"
+      },
+      "contract": "Use MTL4 command queue and command buffer selectors available at macOS 26 minimum.",
+      "native_mapping": "Native Apple SDK declarations and device-generation submission guard.",
+      "expected_result": "Compiler and linker resolve native declarations; stale generation refuses commit.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native linking passed. Native device gated fixture returned 2 because no Metal device was exposed."
+    },
+    {
+      "id": "MTL-023-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 62,
+        "symbol": "void Scheduler::Flush(vk::Semaphore signal, vk::Semaphore wait) {"
+      },
+      "contract": "Callbacks and resource leases outlive recording and commit.",
+      "native_mapping": "Feedback payload retains allocator, argument generations, residency, Metal objects and memory range leases before terminal completion.",
+      "expected_result": "Read map fails during lease, then exact sentinel is available with validation.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-023-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 93,
+        "symbol": "void Scheduler::Wait(u64 tick) {"
+      },
+      "contract": "Explicit cross-queue ordering and CPU/GPU visibility.",
+      "native_mapping": "Use native queue GPU event signals and wait only after success is observed for a required dependency; existing completion timeline handles CPU visibility.",
+      "expected_result": "Shared sentinel transfer between both queues, same-range hazards and retired tickets.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-023-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 101,
+        "symbol": "void Scheduler::DispatchWork() {"
+      },
+      "contract": "Metal 4 device-scope cache coherency only on overlapping real hazards; aliased resources need alias visibility.",
+      "native_mapping": "Encode intra-pass and consumer queue stage-scoped barriers based on conflicting resource/range/stage metadata; avoid read/read fences.",
+      "expected_result": "Same-pass and between-pass blit copy exact expected bytes; disjoint ranges overlap without a blanket barrier.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-023-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 150,
+        "symbol": "// Perform the work, tracking whether the chunk was a submission"
+      },
+      "contract": "No implicit Metal 4 residency by referencing the object.",
+      "native_mapping": "Create committed residency set snapshot for indirectly and directly used resources; retain to feedback.",
+      "expected_result": "Real buffer operations run with Metal API validation.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-023-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 170,
+        "symbol": "void Scheduler::AllocateWorkerCommandBuffers() {"
+      },
+      "contract": "Provenance for observed submission errors and reached GPU checkpoints.",
+      "native_mapping": "Native Metal 4 timestamps with CPU resolution only after feedback; errors tagged by queue, issuing generation and submission stage.",
+      "expected_result": "Observe at least one exact nonzero timestamp and deterministic encoding, context, and native driver fault records.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-023-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 186,
+        "symbol": "MICROPROFILE_SCOPE(Vulkan_Submit);"
+      },
+      "contract": "Preserve command-buffer and queue event order during device shutdown.",
+      "native_mapping": "Generation guard surrounds actual commit; canceled encoder work drops only after it stops; committed work remains leased.",
+      "expected_result": "Stop while pending and verify no premature retirement; predictable stage for fault.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "CONTEXT-026-023",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.mm",
+        "sha256": "7e050db18b2c3238da44f3b3ba41f7ed4f7fb654c123d6279b8b218fd6b84e96",
+        "line": 166,
+        "symbol": "struct EncodingContext::Impl {"
+      },
+      "contract": "Argument table preparation requires the active batch's originating device context generation and resource pool.",
+      "native_mapping": "Validate a snapshot's WorkLease against the actual encoding context without exposing or retaining its former wrapper; return its own resource pool.",
+      "expected_result": "Ordinary Metal 4 consumers compile and the scheduler fixture links the accessors; descriptor fixture rejects foreign contexts.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/reopen-026.log",
+      "status": "PENDING",
+      "actual_result": "Exact SDK consumer compiled, linked and passed PICA regression; cross-context native bind remains pending in Phase 027."
+    }
+  ],
+  "owner_sha256_after": "bc005db6fbe2b972a12c5d3a08a41be31a8e23a11130394d24475063a08f7204"
+}

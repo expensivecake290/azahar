@@ -1,0 +1,126 @@
+{
+  "phase": "025",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-025-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 9,
+        "symbol": "#include <algorithm>"
+      },
+      "contract": "Algorithm and limits are standard; checked alignment handles native sizes.",
+      "native_mapping": "Compiler-resolved shared C++20 headers; no need for unchecked integer padding.",
+      "expected_result": "Native compiler and include audit.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "AZ-025-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 11,
+        "symbol": "#include \"common/alignment.h\""
+      },
+      "contract": "Shared alignment, assertions and literals are candidates; Vulkan context and memory excluded.",
+      "native_mapping": "Use checked header policy, Common log and literal 8_KiB; explicit checked exceptions with no user-input asserts.",
+      "expected_result": "C++ and Apple SDK includes resolved; dependency graph contains no Vulkan private headers.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "AZ-025-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 14,
+        "symbol": "#include \"video_core/renderer_vulkan/vk_instance.h\""
+      },
+      "contract": "Device and memory properties from Vulkan mapper are private.",
+      "native_mapping": "Use existing native same-device MTLBuffer and scheduler timeline.",
+      "expected_result": "Cross-device native range rejected.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-025-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 529,
+        "symbol": "auto [index_ptr, index_offset, _] = stream_buffer.Map(index_buffer_size, 2);"
+      },
+      "contract": "Index staging maps with two-byte alignment and binds view plus byte offset.",
+      "native_mapping": "Use exact committed Slice and GPUBufferAccess, preserve wrap invalidation to consumer.",
+      "expected_result": "068 native index draws match PICA vertex ordering.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-025-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 1044,
+        "symbol": "uniform_buffer.Map(uniform_size, uniform_buffer_alignment);"
+      },
+      "contract": "Uniform updates use required shader alignment and actual used bytes.",
+      "native_mapping": "Range align and acquire when binding buffers; expire when overwritten.",
+      "expected_result": "068 real buffer address and uniform offset matches workload.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-025-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1074,
+        "symbol": "scheduler.Finish();"
+      },
+      "contract": "CPU texture read waits for GPU readback and exact bytes.",
+      "native_mapping": "ReadDownload waits on native validation feedback and returns a tracked CPU map.",
+      "expected_result": "066 compare native texture readback against independent byte fixture.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-025-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 278,
+        "symbol": "scheduler.Wait(watch.tick);"
+      },
+      "contract": "Use scheduler to flush current watch ticket, correctly treat failed and unknown tickets.",
+      "native_mapping": "Scheduler::Wait checks current and physical feedback, SuccessTick authorizes reserve.",
+      "expected_result": "GPU test detects stale generation submission fault and denies unsafe overlap.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "cae6c57377d97817d87fdeef6caab3a4cf3a7dd2c74f53355be8722d6ec840f0"
+}

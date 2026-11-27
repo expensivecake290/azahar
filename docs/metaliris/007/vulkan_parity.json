@@ -1,0 +1,58 @@
+{
+  "phase": "007",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-SURFACE-REPLACE",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 59,
+        "symbol": "EmuWindow::EmuWindow() {"
+      },
+      "contract": "Window lifecycle begins without any owned hardware surface.",
+      "native_mapping": "Start headless. Publish an owned object and generation on attach or geometry changes, and detach explicitly.",
+      "expected_result": "Headless, attach, same publication, suspend, resume geometry, detach and old lease all pass.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "VK-PRESENT-LAYOUT",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 198,
+        "symbol": ""
+      },
+      "contract": "Framebuffer layout is calculated from dual screen roles, orientation and stereo options.",
+      "native_mapping": "Preserve existing calculation. Put the complete supplied layout in the same immutable native snapshot as surface geometry.",
+      "expected_result": "Layout matches its native geometry throughout resize and concurrent sampling.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-007-REOPEN-081",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "5777f4fa3a6b7bd510cedff6e4db88c474213a1364f4ef52c08775f61e13b837",
+        "line": 236,
+        "symbol": "void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) {"
+      },
+      "contract": "Atomic native surface and shared touch/render layout including layout-only settings updates.",
+      "native_mapping": "Use shared layout derivation for Qt native surface ownership transitions and update the native snapshot for regular framebuffer layout requests.",
+      "expected_result": "New and existing surface lifecycle, generation, retention, touch/layout and PICA regression fixtures pass.",
+      "dependency_owner": "081",
+      "command": "python3 docs/metaliris/007/verify.py <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "007/reopen-081.log",
+      "status": "PASS",
+      "actual_result": "Compiled native and host targets, exact atomic surface and layout-only refresh fixture passed."
+    }
+  ],
+  "owner_sha256_after": "2d80217b0f60be75e966bb2cae099bdeab186761ebf5651392536a802c052539"
+}

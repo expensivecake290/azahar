@@ -1,0 +1,75 @@
+{
+  "phase": "071",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-071-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 55,
+        "symbol": "const bool exclusive = queue_family_indices[0] == queue_family_indices[1];"
+      },
+      "contract": "SDK platform API includes CAMetalLayer, sRGB color space, device identity and queue presenter.",
+      "native_mapping": "Native CMake and ARC compile with actual framework links; SDK header declarations and neutral dependencies.",
+      "expected_result": "Compiled phase source, fixture and no unsupported command buffer API.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual compile/link to native Apple ARC, Metal 4 and CoreGraphics, isolated native target registration, physical fixture compiled, 64 host pacing cases, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "MTL-071-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 173,
+        "symbol": "void Swapchain::SetPresentMode() {"
+      },
+      "contract": "Verify host configuration and independent policy choices with no GPU requirement.",
+      "native_mapping": "Run actual CAMetalLayer shape and lookup verification repeated from 070, and independent build checks.",
+      "expected_result": "64 policy combinations and clean reported regression.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual compile/link to native Apple ARC, Metal 4 and CoreGraphics, isolated native target registration, physical fixture compiled, 64 host pacing cases, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "MTL-071-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 93,
+        "symbol": "bool Swapchain::AcquireNextImage() {"
+      },
+      "contract": "Hardware verifies repeated acquire exhaustion, occlusion, resize and native presentation.",
+      "native_mapping": "Physical live window with Metal validation, register old lease before replacement and expected 9x7 native encoding.",
+      "expected_result": "Confirmed Metal ticket, stale rejection, active state and exact retirement.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-071-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.mm",
+        "sha256": "337abd301177598201caa6a0996d3ca261b7162cfe6a4ea0bb86e33589d1c500",
+        "line": 92,
+        "symbol": "bool Swapchain::UpdateSurface(Frontend::EmuWindow::NativeSurfaceSnapshot snapshot,"
+      },
+      "contract": "Phase 070 pacing now carries the actual double frame limit, which has non-finite and negative invalid representations.",
+      "native_mapping": "Reject invalid pacing in UpdateSurface before changing the native layer or live generation.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/reopen-073.log",
+      "status": "PENDING",
+      "actual_result": "Actual SDK compiler and available targeted fixture passed. Live pacing or frame retirement still requires Metal 4 hardware."
+    }
+  ],
+  "owner_sha256_after": "35d626209c97f6a4b533eb4db2972f17e300b949cae94902fcc86242b24601b6"
+}

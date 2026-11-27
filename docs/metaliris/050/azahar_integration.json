@@ -1,0 +1,41 @@
+{
+  "phase": "050",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-050-01",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/utils.h",
+        "sha256": "2e9492e05e4f344a07f070c75843ab1da6f42d75c649dc0e9797b580831c93d1",
+        "line": 57,
+        "symbol": "struct BufferTextureCopy {"
+      },
+      "contract": "Neutral BufferTextureCopy chooses subresource, rect and byte region.",
+      "native_mapping": "Native host uses selected source mip/layer views, tight or padded row stride in 32-bit words, and an explicit output GPU address/range.",
+      "expected_result": "CPU layout and range arithmetic and real binding fixture.",
+      "dependency_owner": "050",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 050 <native-build-dir> <scratch-dir>",
+      "evidence_path": "050/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-050-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 607,
+        "symbol": ""
+      },
+      "contract": "The previous vk dispatch group size represents workgroup tiling, not the true output pixel width.",
+      "native_mapping": "Host may overdispatch 8x8 groups; shader requires real width/height and preserves row padding.",
+      "expected_result": "Native odd 7x5 copy and untouched guard words in padded/partial buffer.",
+      "dependency_owner": "050",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 050 <native-build-dir> <scratch-dir>",
+      "evidence_path": "050/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "66a8cf48a3c20b92336fcf419789403f89860cd2d26ad86a925ac68a0263ae54"
+}

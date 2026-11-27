@@ -1,0 +1,5 @@
+[1/4] Building CXX object src/video_core/CMakeFiles/video_core.dir/video_core.cpp.o
+[2/4] Building OBJCXX object src/video_core/CMakeFiles/video_core.dir/renderer_metal/renderer_metal.mm.o
+[3/4] Linking CXX static library src/video_core/libvideo_core.a
+[4/4] Linking CXX executable bin/Release/tests
+ld: warning: ignoring duplicate libraries: 'src/audio_core/libaudio_core.a', 'src/common/libcitra_common.a', 'src/core/libcitra_core.a', 'src/input_common/libinput_common.a', 'src/network/libnetwork.a', 'src/video_core/libvideo_core.a', 'src/web_service/libweb_service.a'

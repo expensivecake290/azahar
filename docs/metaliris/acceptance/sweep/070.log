@@ -1,0 +1,10 @@
+Command: zsh docs/metaliris/070/verify.sh /tmp/metaliris-r12.lKARZLkI/metal /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070
++docs/metaliris/070/verify.sh:12> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -DENABLE_SOFTWARE_RENDERER -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -isystem /Users/anthonygarcia/azahar/externals/xxHash -isystem /Users/anthonygarcia/azahar/externals/nihstro/include -Wall -Wextra -Wno-ignored-qualifiers -Werror -Wno-unused-parameter -MD -MF /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070/consumer.d -c /Users/anthonygarcia/azahar/docs/metaliris/070/verify.mm -o /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070/consumer.o
++docs/metaliris/070/verify.sh:14> xcrun --sdk macosx clang++ -arch arm64 '-mmacosx-version-min=26.0' /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070/consumer.o -framework Metal -framework QuartzCore -framework Foundation -o /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070/drawable-contract
++docs/metaliris/070/verify.sh:15> /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070/drawable-contract
+2026-11-27 14:11:45.548 drawable-contract[8706:37915552] IOSurfaceSharedEventAddEventListener failed: 10000003
+PASS native drawable ABI, 96 pacing cases and CAMetalLayer size/pool configuration
+PENDING physical Metal 4 drawable lifecycle and pacing tests
++docs/metaliris/070/verify.sh:16> rg -i 'renderer_vulkan|moltenvk|vulkan\.h|shaderc|spirv' /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070/consumer.d
+
+Fixture exit status 0; 4.06 seconds

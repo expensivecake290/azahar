@@ -8,22 +8,56 @@
 #include "citra_qt/configuration/configure_graphics.h"
 #include "common/settings.h"
 #include "ui_configure_graphics.h"
+#ifdef ENABLE_METAL
+#include "citra_qt/util/metal_util.h"
+#endif
 #ifdef ENABLE_VULKAN
 #include "video_core/renderer_vulkan/vk_instance.h"
 #endif
+
+namespace {
+
+int PerGameOffset() {
+    return Settings::IsConfiguringGlobal() ? 0 : ConfigurationShared::USE_GLOBAL_OFFSET;
+}
+
+Settings::GraphicsAPI EffectiveGraphicsAPI(int index) {
+    if (!Settings::IsConfiguringGlobal() && index == ConfigurationShared::USE_GLOBAL_INDEX) {
+        return Settings::values.graphics_api.GetValue(true);
+    }
+    return static_cast<Settings::GraphicsAPI>(index - PerGameOffset());
+}
+
+} // Anonymous namespace
 
 ConfigureGraphics::ConfigureGraphics(QString gl_renderer, std::span<const QString> physical_devices,
                                      bool is_powered_on, QWidget* parent)
     : QWidget(parent), ui(std::make_unique<Ui::ConfigureGraphics>()) {
     ui->setupUi(this);
 
+#ifdef ENABLE_METAL
+    const auto devices = MetalUtil::EnumerateDevices();
+    for (const auto& device : devices) {
+        ui->physical_device_combo->addItem(QString::fromStdString(device.name),
+                                           device.spatial_scaling);
+    }
+#else
+    ui->graphics_api_combo->removeItem(static_cast<int>(Settings::GraphicsAPI::Metal));
+    ui->toggle_metalfx_spatial->hide();
+#ifdef ENABLE_VULKAN
+    for (const QString& name : physical_devices) {
+        ui->physical_device_combo->addItem(name);
+    }
+#endif
+#endif
+
     SetupPerGameUI();
 
-    ui->graphics_api_combo->setEnabled(!is_powered_on);
-    ui->physical_device_combo->setEnabled(!is_powered_on);
-    ui->toggle_accurate_mul->setEnabled(!is_powered_on);
-    ui->toggle_async_shaders->setEnabled(!is_powered_on);
-    ui->toggle_async_present->setEnabled(!is_powered_on);
+    ui->graphics_api_combo->setEnabled(!is_powered_on && ui->graphics_api_combo->isEnabled());
+    ui->physical_device_combo->setEnabled(!is_powered_on && ui->physical_device_combo->isEnabled());
+    ui->toggle_accurate_mul->setEnabled(!is_powered_on && ui->toggle_accurate_mul->isEnabled());
+    ui->toggle_async_shaders->setEnabled(!is_powered_on && ui->toggle_async_shaders->isEnabled());
+    ui->toggle_async_present->setEnabled(!is_powered_on && ui->toggle_async_present->isEnabled());
     ui->toggle_display_refresh_rate_detection->setEnabled(!is_powered_on);
     // Set the index to -1 to ensure the below lambda is called with setCurrentIndex
     ui->graphics_api_combo->setCurrentIndex(-1);
@@ -34,44 +68,50 @@ ConfigureGraphics::ConfigureGraphics(QString gl_renderer, std::span<const QStrin
 
     auto graphics_api_combo_model =
         qobject_cast<QStandardItemModel*>(ui->graphics_api_combo->model());
+    const auto disable_api = [graphics_api_combo_model](Settings::GraphicsAPI api) {
+        auto* item = graphics_api_combo_model->item(static_cast<int>(api) + PerGameOffset());
+        item->setEnabled(false);
+    };
 #ifndef ENABLE_SOFTWARE_RENDERER
-    const auto software_item =
-        graphics_api_combo_model->item(static_cast<u32>(Settings::GraphicsAPI::Software));
-    software_item->setFlags(software_item->flags() & ~Qt::ItemIsEnabled);
+    disable_api(Settings::GraphicsAPI::Software);
 #endif
 
 #ifndef ENABLE_OPENGL
-    const auto opengl_item =
-        graphics_api_combo_model->item(static_cast<u32>(Settings::GraphicsAPI::OpenGL));
-    opengl_item->setFlags(opengl_item->flags() & ~Qt::ItemIsEnabled);
+    disable_api(Settings::GraphicsAPI::OpenGL);
 #else
     ui->opengl_renderer_name_label->setText(gl_renderer);
 #endif
 
 #ifndef ENABLE_VULKAN
-    const auto vulkan_item =
-        graphics_api_combo_model->item(static_cast<u32>(Settings::GraphicsAPI::Vulkan));
-    vulkan_item->setFlags(vulkan_item->flags() & ~Qt::ItemIsEnabled);
+    disable_api(Settings::GraphicsAPI::Vulkan);
 #else
     if (physical_devices.empty()) {
-        const auto vulkan_item =
-            graphics_api_combo_model->item(static_cast<u32>(Settings::GraphicsAPI::Vulkan));
-        vulkan_item->setFlags(vulkan_item->flags() & ~Qt::ItemIsEnabled);
-
-        ui->physical_device_combo->setVisible(false);
-        ui->spirv_shader_gen->setVisible(false);
-        ui->disable_spirv_optimizer->setVisible(false);
-    } else {
-        for (const QString& name : physical_devices) {
-            ui->physical_device_combo->addItem(name);
-        }
+        disable_api(Settings::GraphicsAPI::Vulkan);
     }
+#endif
+#ifdef ENABLE_METAL
+    auto* device_model = qobject_cast<QStandardItemModel*>(ui->physical_device_combo->model());
+    bool has_compatible_device = false;
+    for (int i = 0; i < static_cast<int>(devices.size()); ++i) {
+        auto* item = device_model->item(i + PerGameOffset());
+        item->setEnabled(devices[i].supported);
+        has_compatible_device |= devices[i].supported;
+    }
+    if (!has_compatible_device) {
+        disable_api(Settings::GraphicsAPI::Metal);
+    }
+    connect(ui->physical_device_combo, &QComboBox::currentIndexChanged, this,
+            [this] { SetPhysicalDeviceComboVisibility(ui->graphics_api_combo->currentIndex()); });
+    connect(ui->toggle_metalfx_spatial, &QCheckBox::toggled, this, [this] {
+        UpdateMetalFXSpatialAvailability(
+            EffectiveGraphicsAPI(ui->graphics_api_combo->currentIndex()) ==
+            Settings::GraphicsAPI::Metal);
+    });
 #endif
 
     connect(ui->graphics_api_combo, qOverload<int>(&QComboBox::currentIndexChanged), this,
             [this](int index) {
-                const auto graphics_api =
-                    ConfigurationShared::GetComboboxSetting(index, &Settings::values.graphics_api);
+                const auto graphics_api = EffectiveGraphicsAPI(index);
                 const bool is_software = graphics_api == Settings::GraphicsAPI::Software;
 
                 ui->hw_renderer_group->setEnabled(!is_software);
@@ -153,6 +193,11 @@ void ConfigureGraphics::SetConfiguration() {
     ui->toggle_async_shaders->setChecked(Settings::values.async_shader_compilation.GetValue());
     ui->toggle_async_present->setChecked(Settings::values.async_presentation.GetValue());
 
+#ifdef ENABLE_METAL
+    ui->toggle_metalfx_spatial->setChecked(Settings::values.use_metalfx_spatial.GetValue());
+    SetPhysicalDeviceComboVisibility(ui->graphics_api_combo->currentIndex());
+#endif
+
     if (Settings::IsConfiguringGlobal()) {
         ui->toggle_shader_jit->setChecked(Settings::values.use_shader_jit.GetValue());
         ui->toggle_display_refresh_rate_detection->setChecked(
@@ -164,8 +209,23 @@ void ConfigureGraphics::SetConfiguration() {
 void ConfigureGraphics::ApplyConfiguration() {
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.graphics_api,
                                              ui->graphics_api_combo);
+#ifdef ENABLE_METAL
+    if (ui->physical_device_combo->count() > PerGameOffset() &&
+        ui->physical_device_combo->currentIndex() >= 0) {
+        ConfigurationShared::ApplyPerGameSetting(&Settings::values.physical_device,
+                                                 ui->physical_device_combo);
+    }
+    const auto* spatial = ui->toggle_metalfx_spatial;
+    if ((!spatial->isChecked() || spatial->isEnabled()) &&
+        EffectiveGraphicsAPI(ui->graphics_api_combo->currentIndex()) ==
+            Settings::GraphicsAPI::Metal) {
+        ConfigurationShared::ApplyPerGameSetting(&Settings::values.use_metalfx_spatial, spatial,
+                                                 use_metalfx_spatial);
+    }
+#else
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.physical_device,
                                              ui->physical_device_combo);
+#endif
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.async_shader_compilation,
                                              ui->toggle_async_shaders, async_shader_compilation);
     ConfigurationShared::ApplyPerGameSetting(&Settings::values.async_presentation,
@@ -205,7 +265,15 @@ void ConfigureGraphics::ApplyConfiguration() {
 }
 
 void ConfigureGraphics::RetranslateUI() {
+    auto* api_combo = ui->graphics_api_combo;
+    const int offset = PerGameOffset();
+    const auto inherited_label = api_combo->itemText(ConfigurationShared::USE_GLOBAL_INDEX);
     ui->retranslateUi(this);
+    if (offset) {
+        // UIC translates Software. Backend names are constants in the form.
+        api_combo->setItemText(offset, api_combo->itemText(0));
+        api_combo->setItemText(ConfigurationShared::USE_GLOBAL_INDEX, inherited_label);
+    }
 }
 
 void ConfigureGraphics::SetupPerGameUI() {
@@ -285,28 +353,46 @@ void ConfigureGraphics::SetupPerGameUI() {
     ConfigurationShared::SetColoredTristate(ui->simulate_3ds_gpu_timings,
                                             Settings::values.simulate_3ds_gpu_timings,
                                             simulate_3ds_gpu_timings);
+#ifdef ENABLE_METAL
+    ConfigurationShared::SetColoredTristate(
+        ui->toggle_metalfx_spatial, Settings::values.use_metalfx_spatial, use_metalfx_spatial);
+#endif
 }
 
-void ConfigureGraphics::SetPhysicalDeviceComboVisibility(int index) {
-    Settings::GraphicsAPI effective_api{};
-
-    // When configuring per-game the physical device combo should be
-    // shown either when the global api is used and that is Vulkan or
-    // Vulkan is set as the per-game api.
-    if (!Settings::IsConfiguringGlobal()) {
-        const bool using_global = index == 0;
-        if (using_global) {
-            effective_api = Settings::values.graphics_api.GetValue(true);
-        } else {
-            effective_api =
-                static_cast<Settings::GraphicsAPI>(index - ConfigurationShared::USE_GLOBAL_OFFSET);
+#ifdef ENABLE_METAL
+void ConfigureGraphics::UpdateMetalFXSpatialAvailability(bool is_metal) {
+    auto* spatial = ui->toggle_metalfx_spatial;
+    int device_index = ui->physical_device_combo->currentIndex();
+    if (!Settings::IsConfiguringGlobal() && device_index == ConfigurationShared::USE_GLOBAL_INDEX) {
+        const auto global = Settings::values.physical_device.GetValue(true);
+        if (global < static_cast<u32>(ui->physical_device_combo->count() - PerGameOffset())) {
+            device_index = static_cast<int>(global) + PerGameOffset();
         }
-    } else {
-        effective_api = static_cast<Settings::GraphicsAPI>(index);
     }
+    const bool supports_spatial = ui->physical_device_combo->itemData(device_index).toBool();
+    const bool setting_editable =
+        !Settings::IsConfiguringGlobal() || Settings::values.use_metalfx_spatial.UsingGlobal();
+    spatial->setVisible(is_metal);
+    spatial->setEnabled(is_metal && (supports_spatial || spatial->isChecked()) && setting_editable);
+}
+#endif
 
-    ui->physical_device_group->setVisible(effective_api == Settings::GraphicsAPI::Vulkan);
-    ui->spirv_shader_gen->setVisible(effective_api == Settings::GraphicsAPI::Vulkan);
-    ui->disable_spirv_optimizer->setVisible(effective_api == Settings::GraphicsAPI::Vulkan);
+void ConfigureGraphics::SetPhysicalDeviceComboVisibility(int index) {
+    const auto effective_api = EffectiveGraphicsAPI(index);
+    bool is_vulkan = false;
+#ifdef ENABLE_VULKAN
+    is_vulkan = effective_api == Settings::GraphicsAPI::Vulkan &&
+                ui->physical_device_combo->count() > PerGameOffset();
+#endif
+    bool has_devices = is_vulkan;
+#ifdef ENABLE_METAL
+    const bool is_metal = effective_api == Settings::GraphicsAPI::Metal;
+    has_devices |= is_metal && ui->physical_device_combo->count() > PerGameOffset();
+    UpdateMetalFXSpatialAvailability(is_metal);
+#endif
+
+    ui->physical_device_group->setVisible(has_devices);
+    ui->spirv_shader_gen->setVisible(is_vulkan);
+    ui->disable_spirv_optimizer->setVisible(is_vulkan);
     ui->opengl_renderer_group->setVisible(effective_api == Settings::GraphicsAPI::OpenGL);
 }

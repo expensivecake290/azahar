@@ -1,0 +1,75 @@
+{
+  "phase": "032",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-032-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 36,
+        "symbol": "void WriteShadow();"
+      },
+      "contract": "Choose capability-scoped native feedback, precise logic storage packing and native CAS.",
+      "native_mapping": "Stable requirements and role layout tested as host C++ header with Metal 4 device integration planned.",
+      "expected_result": "CPU checks feedback behavior and linear shadow row/pitch width bounds.",
+      "dependency_owner": "032",
+      "command": "zsh docs/metaliris/032/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "032/header.log",
+      "status": "PASS",
+      "actual_result": "Native C++ consumer, Metal shader resource-layout declarations and sample-aware framebuffer contracts passed."
+    },
+    {
+      "id": "MTL-032-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 44,
+        "symbol": "/// Returns the specified TEV stage source component(s)"
+      },
+      "contract": "Use native fragment math and SDK-compatible resource, stage and barycentric signatures.",
+      "native_mapping": "MSL to Metal library compilation for each shader variant; native visual fixtures when possible.",
+      "expected_result": "Typed framebuffer feedback, shadow, lighting, TEV, fog, alpha and procedural configurations compile.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-032-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 71,
+        "symbol": ""
+      },
+      "contract": "Compare exact input mode, layout, and usage consequences against existing shader source behavior.",
+      "native_mapping": "Shader variants processed fully within one owner and capture model preserved.",
+      "expected_result": "CPU oracles and actual Metal texture read after feedback.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MSAA-032-FEEDBACK",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 897,
+        "symbol": "void FragmentModule::WriteBlending() {"
+      },
+      "contract": "Framebuffer destination value is the active sample; resolving before applying logic or factor-aware min/max loses information.",
+      "native_mapping": "Include sample count in the fragment profile and specialize readback to the same native sample.",
+      "expected_result": "032 host compatibility tests include the sample count. 033 compiles single and multi-sample snapshot variants.",
+      "dependency_owner": "032",
+      "command": "zsh docs/metaliris/032/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "032/header.log",
+      "status": "PASS",
+      "actual_result": "Native C++ consumer, Metal shader resource-layout declarations and sample-aware framebuffer contracts passed."
+    }
+  ],
+  "owner_sha256_after": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398"
+}

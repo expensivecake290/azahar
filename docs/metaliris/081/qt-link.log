@@ -1,0 +1,26 @@
+[1/27] Copying OS X Content bin/Release/azahar.app/Contents/Resources/azahar.icns
+[2/27] Copying OS X Content bin/Release/azahar.app/Contents/Resources/launch_logo.png
+[3/27] Building CXX object src/citra_cli/CMakeFiles/citra_cli.dir/__/common/apple_utils.cpp.o
+[4/27] Building CXX object src/citra_room/CMakeFiles/citra_room.dir/__/common/apple_utils.cpp.o
+[5/27] Building CXX object src/citra_cli/CMakeFiles/citra_cli.dir/citra_cli.cpp.o
+[6/27] Automatic MOC and UIC for target citra_qt
+[7/26] Building OBJCXX object src/citra_cli/CMakeFiles/citra_cli.dir/__/common/apple_utils.mm.o
+[8/26] Building OBJCXX object src/citra_room/CMakeFiles/citra_room.dir/__/common/apple_utils.mm.o
+[9/26] Building CXX object src/citra_room/CMakeFiles/citra_room.dir/__/common/apple_authorization.cpp.o
+[10/26] Building CXX object src/citra_cli/CMakeFiles/citra_cli.dir/__/common/apple_authorization.cpp.o
+[11/26] Building CXX object src/citra_meta/CMakeFiles/citra_meta.dir/__/common/apple_utils.cpp.o
+[12/26] Building OBJCXX object src/citra_meta/CMakeFiles/citra_meta.dir/__/common/apple_utils.mm.o
+[13/26] Building CXX object src/citra_meta/CMakeFiles/citra_meta.dir/__/common/apple_authorization.cpp.o
+[14/26] Building CXX object src/citra_room/CMakeFiles/citra_room.dir/citra_room.cpp.o
+[15/26] Building CXX object src/citra_cli/CMakeFiles/citra_cli.dir/compression_cli.cpp.o
+[16/26] Linking CXX static library src/citra_room/libcitra_room.a
+[17/26] Linking CXX static library src/citra_cli/libcitra_cli.a
+[18/26] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/aboutdialog.cpp.o
+[19/26] Building OBJCXX object src/citra_meta/CMakeFiles/citra_meta.dir/__/citra_qt/qt_swizzle.mm.o
+[20/26] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/configuration/configure_graphics.cpp.o
+[21/26] Building OBJCXX object src/citra_meta/CMakeFiles/citra_meta.dir/__/citra_qt/util/metal_util.mm.o
+[22/26] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/loading_screen.cpp.o
+[23/26] Building CXX object src/citra_meta/CMakeFiles/citra_meta.dir/main.cpp.o
+[24/26] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/citra_qt.cpp.o
+[25/26] Linking CXX static library src/citra_qt/libcitra_qt.a
+[26/26] Linking CXX executable bin/Release/azahar.app/Contents/MacOS/azahar

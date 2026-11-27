@@ -1,0 +1,75 @@
+{
+  "phase": "079",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-079-01",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.mm",
+        "sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+        "line": 13,
+        "symbol": "// with a CAMetalLayer immediately; MoltenVK 1.3+ aborts in"
+      },
+      "contract": "Existing Cocoa Qt handle creates a layer and preserves the old consumer contract.",
+      "native_mapping": "Keep original CreateMetalLayer source path behavior, with a typed pointer cast that builds in ARC and existing off configuration. Native branch uses scoped adapter.",
+      "expected_result": "Compile native/off .mm and verify existing Cocoa bridge forwards life correctly.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "VK-079-02",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.mm",
+        "sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+        "line": 17,
+        "symbol": "NSView* view = (__bridge NSView*)winId;"
+      },
+      "contract": "WId represents an NSView selected by frontend and owns the layer after attachment.",
+      "native_mapping": "Forward to real adapter Attach and pass native geometry and allowance decisions to its main-thread owner. Reject zero and invalid/off-main through real adapter.",
+      "expected_result": "Actual Qt WId runtime conversion and real AppKit attach, retain and release.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "VK-079-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Mac source wraps a usable actual Cocoa layer for presentation.",
+      "native_mapping": "Expose only validated RetainLayer-compatible existing neutral availability. Device enumeration uses actual default-first native devices and support flags, without driver initialization.",
+      "expected_result": "Compare typed device list to native source enumeration and preserve indices.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-079-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 416,
+        "symbol": "};"
+      },
+      "contract": "Debug availability is queried based on selected capabilities.",
+      "native_mapping": "Expose actual native capture destination support through native helper, keeping Qt independent from GPU protocol.",
+      "expected_result": "Host checks concrete binding; supported physical trace remains pending.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    }
+  ],
+  "owner_sha256_after": "013592956db3ee1c389d9560ba0925467d4b55f5964187ceabb677b6d1f6765e"
+}

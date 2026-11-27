@@ -1,0 +1,30 @@
+-- LTO disabled
+-- Target architecture: arm64
+-- Performing Test AZAHAR_METAL4_SDK
+-- Performing Test AZAHAR_METAL4_SDK - Success
+-- Could NOT find Qt6Multimedia (missing: Qt6Multimedia_DIR)
+CMake Error at CMakeLists.txt:507 (find_package):
+  Found package configuration file:
+
+    /opt/homebrew/Cellar/qtbase/6.11.1/lib/cmake/Qt6/Qt6Config.cmake
+
+  but it set Qt6_FOUND to FALSE so package "Qt6" is considered to be NOT
+  FOUND.  Reason given by package:
+
+  Failed to find required Qt component "Multimedia".
+
+  Expected Config file at
+  "/opt/homebrew/Cellar/qtbase/6.11.1/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake"
+  does NOT exist
+
+
+
+  Configuring with --debug-find-pkg=Qt6Multimedia might reveal details why
+  the package was not found.
+
+  Configuring with -DQT_DEBUG_FIND_PACKAGE=ON will print the values of some
+  of the path variables that find_package uses to try and find the package.
+
+
+
+-- Configuring incomplete, errors occurred!

@@ -1,0 +1,86 @@
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-headless -DENABLE_QT=OFF
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-headless
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-headless -DENABLE_QT=OFF
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-headless
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-headless -DENABLE_QT=OFF
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-headless
+PASS generation headless 150
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-qt -DENABLE_QT=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-qt
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-qt -DENABLE_QT=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-qt
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-qt -DENABLE_QT=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-qt
+PASS generation qt 237
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-native -DENABLE_QT=OFF -DENABLE_METAL=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-native
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native -DENABLE_QT=OFF -DENABLE_METAL=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native -DENABLE_QT=OFF -DENABLE_METAL=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native
+PASS generation native 151
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-native-qt -DENABLE_QT=ON -DENABLE_METAL=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    ENABLE_METAL
+
+
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-native-qt
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native-qt -DENABLE_QT=ON -DENABLE_METAL=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native-qt
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native-qt -DENABLE_QT=ON -DENABLE_METAL=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native-qt
+PASS generation native-qt 238
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-android -DANDROID=ON
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-android
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-android -DANDROID=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-android
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-android -DANDROID=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-android
+PASS generation android 198
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-libretro -DENABLE_LIBRETRO=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/before-libretro
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-libretro -DENABLE_LIBRETRO=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-libretro
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/phase005A/templates -B /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-libretro -DENABLE_LIBRETRO=ON
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-libretro
+PASS generation libretro 160
++ xcrun --sdk macosx clang++ -std=c++20 -fsyntax-only -F /opt/homebrew/opt/qtbase/lib -I /opt/homebrew/opt/qtbase/lib/QtCore.framework/Headers -I /private/tmp/metaliris-r12.lKARZLkI/phase005A/after-native-qt/citra_qt /private/tmp/metaliris-r12.lKARZLkI/phase005A/qt_key.cpp
+PASS Qt compile and all settings key generation variants

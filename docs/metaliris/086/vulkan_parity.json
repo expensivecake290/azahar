@@ -1,0 +1,92 @@
+{
+  "phase": "086",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-086-01",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 4066,
+        "symbol": "static std::array graphics_apis = {QStringLiteral(\"SOFTWARE\"), QStringLiteral(\"OPENGL\"),"
+      },
+      "contract": "Status API chooser tracks the active setting and cycles compiled, available backends, retaining existing colors and locks.",
+      "native_mapping": "Add Metal 4 enum display and robust cyclic search. Use Qt native enumerated capabilities and current working settings; skip unavailable native hardware without introducing an automatic renderer fallback.",
+      "expected_result": "Actual Qt status update and button cycle with empty native adapters, plus fixture on device-enabled Macs.",
+      "dependency_owner": "004/005/082/086",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-086-02",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 1477,
+        "symbol": "if (!render_window->InitRenderTarget() || !secondary_window->InitRenderTarget()) {"
+      },
+      "contract": "Boot initializes both targets and game loader; failures must show why and release frontend state via existing BootGame.",
+      "native_mapping": "Precheck selected native adapter and essential Spatial request; surface init uses Phase 081 lifecycle. Catch Metal startup exceptions, shut down partial core initialization and use existing caller target cleanup.",
+      "expected_result": "Real Qt no-device or unacceptable device dialog while shortcut may still manually choose Software. Later linked real renderer handles accepted device and failure fixture.",
+      "dependency_owner": "080/081/085/090/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-086-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 110,
+        "symbol": "RendererVulkan::RendererVulkan(Core::System& system, Pica::PicaCore& pica_,"
+      },
+      "contract": "Renderer initializes native frontend-independent lifecycle and follows callbacks established by shared Core.",
+      "native_mapping": "Delegate to current EmuThread/Core startup and allow existing Qt pause/suspend/fullscreen/separate-screen sequences. Native flags set before Qt renderer probes.",
+      "expected_result": "Final native ROM, separate views, pause/resize/restore and orderly shutdown with GPU validation.",
+      "dependency_owner": "081/090/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-086-04",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 3789,
+        "symbol": "if (Settings::values.graphics_api.GetValue() == Settings::GraphicsAPI::Vulkan) {"
+      },
+      "contract": "Video dumping is rejected explicitly where the reference renderer cannot deliver backend frames.",
+      "native_mapping": "Reject a Metal video-dump request through GUI and queued startup using effective API; preserve OpenGL/Software behavior. Keep screenshots on the normal renderer request path.",
+      "expected_result": "Compiler test applicable FFmpeg feature branch and native diagnostic message; no packet stream or rendered result fabricated.",
+      "dependency_owner": "091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/feature-conditions.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-086-05",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 4234,
+        "symbol": "} else if (result == Core::System::ResultStatus::ErrorShaderCacheCrash) {"
+      },
+      "contract": "Driver shader cache errors are reported with backend identity and recovery context.",
+      "native_mapping": "Use native diagnostics for native API; retain Vulkan text only in the old branch. Native texture filtering and geometry selection handled by their owned runtime.",
+      "expected_result": "Host message scope and core bootstrap compile; live error/rebuild exercised on actual Metal cache when available.",
+      "dependency_owner": "060/061/066/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "75f297bc618598e8435eacb947d21ac601e6abe04c9324d1114b80c6ca26bffa"
+}

@@ -266,6 +266,12 @@ void QtConfig::WriteBasicSetting(const Settings::Setting<Type, ranged>& setting)
 template <typename Type, bool ranged>
 void QtConfig::WriteGlobalSetting(const Settings::SwitchableSetting<Type, ranged>& setting) {
     const QString name = QString::fromStdString(setting.GetLabel());
+    if (global && !setting.UsingGlobal()) {
+        Settings::Setting<Type> global_setting{setting.GetDefault(), setting.GetLabel()};
+        global_setting.SetValue(setting.GetValue(true));
+        WriteBasicSetting(global_setting);
+        return;
+    }
     if (!global) {
         qt_config->setValue(name + QStringLiteral("/use_global"), setting.UsingGlobal());
     }
@@ -722,6 +728,19 @@ void QtConfig::ReadRendererValues() {
 
     ReadGlobalSetting(Settings::values.graphics_api);
     ReadGlobalSetting(Settings::values.physical_device);
+#ifdef ENABLE_METAL
+    auto& api = Settings::values.graphics_api;
+    auto& device = Settings::values.physical_device;
+    const auto working_api = Settings::GetWorkingGraphicsAPI();
+    if ((global || !api.UsingGlobal()) && api.GetValue() != working_api) {
+        api.SetValue(working_api);
+        if (global || !device.UsingGlobal()) {
+            // An ordinal from another API does not identify a Metal device.
+            device.SetValue(device.GetDefault());
+        }
+    }
+    ReadGlobalSetting(Settings::values.use_metalfx_spatial);
+#endif
     ReadGlobalSetting(Settings::values.spirv_shader_gen);
     ReadGlobalSetting(Settings::values.disable_spirv_optimizer);
     ReadGlobalSetting(Settings::values.async_shader_compilation);
@@ -1132,6 +1151,9 @@ void QtConfig::SaveDebuggingValues() {
     WriteBasicSetting(Settings::values.gdbstub_port);
     WriteBasicSetting(Settings::values.renderer_debug);
     WriteBasicSetting(Settings::values.pica_debugging);
+#ifdef ENABLE_METAL
+    WriteBasicSetting(Settings::values.dump_command_buffers);
+#endif
     WriteBasicSetting(Settings::values.instant_debug_log);
     WriteBasicSetting(Settings::values.deterministic_async_operations);
     WriteBasicSetting(Settings::values.enable_rpc_server);
@@ -1283,6 +1305,9 @@ void QtConfig::SaveRendererValues() {
 
     WriteGlobalSetting(Settings::values.graphics_api);
     WriteGlobalSetting(Settings::values.physical_device);
+#ifdef ENABLE_METAL
+    WriteGlobalSetting(Settings::values.use_metalfx_spatial);
+#endif
     WriteGlobalSetting(Settings::values.spirv_shader_gen);
     WriteGlobalSetting(Settings::values.disable_spirv_optimizer);
     WriteGlobalSetting(Settings::values.async_shader_compilation);

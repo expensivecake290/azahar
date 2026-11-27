@@ -1,0 +1,41 @@
+{
+  "phase": "047",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-047-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_blit_depth_stencil.frag",
+        "sha256": "e04693a4e55351834673a8800f3566ac9d644faf2f73bbc72ac82b681fcde7c2",
+        "line": 6,
+        "symbol": "#extension GL_ARB_shader_stencil_export : require"
+      },
+      "contract": "Compile native Metal 4 stencil reference export and depth(any).",
+      "native_mapping": "Actual Xcode compiler, 26.0 minimum and native CMake embed, compiled readback shader and fixture.",
+      "expected_result": "Verify source ABI, exact CMake metal library bytes and no Vulkan dependencies.",
+      "dependency_owner": "047",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 047 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "047/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native shader stencil and depth export compiled and packaged byte-for-byte. Independent nearest/bounds oracle, actual native linkage and PICA/CTest passed."
+    },
+    {
+      "id": "MTL-047-02",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_blit_depth_stencil.frag",
+        "sha256": "e04693a4e55351834673a8800f3566ac9d644faf2f73bbc72ac82b681fcde7c2",
+        "line": 14,
+        "symbol": "gl_FragDepth = textureLod(depth_tex, texcoord, 0).r;"
+      },
+      "contract": "Live exact depth and stencil output with odd sizes and region protection.",
+      "native_mapping": "Independent expected nearest calculation and native bit/byte readback for unsigned aspects.",
+      "expected_result": "5x3 native depth/stencil source, 9x7 target, scissor, reversed/out-of-range sampling and untouched destination sentinel.",
+      "dependency_owner": "047",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 047 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "047/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "29722ac991739650c606e8b47862cce300484a8a3cb0562651e299264a8c8fe6"
+}

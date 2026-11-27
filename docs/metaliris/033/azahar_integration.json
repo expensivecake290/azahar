@@ -1,0 +1,109 @@
+{
+  "phase": "033",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-033-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 5,
+        "symbol": "#include \"video_core/shader/generator/glsl_fs_shader_gen.h\""
+      },
+      "contract": "Shared FS state and native includes only. Source GLSL and SPIR-V/Vulkan private envelopes excluded.",
+      "native_mapping": "Use shared Pica FSConfig, pixel_format.h, shader_uniforms.h, common logging and standard/fmt.",
+      "expected_result": "Host dependency scan has no Vulkan or SPIR-V references.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ compiled and linked, 28 direct MSL 4 variants compiled, host logic/metadata oracle passed, and PICA/CTest passed."
+    },
+    {
+      "id": "AZ-033-02",
+      "source": {
+        "path": "src/video_core/shader/generator/pica_fs_config.h",
+        "sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+        "line": 24,
+        "symbol": "* If the struct is modified in a way that results in the exact same layout"
+      },
+      "contract": "Shared state contains exact cache struct revisions and profile inputs.",
+      "native_mapping": "Consume full captured FSConfig, leave its on-disk layout and existing users intact.",
+      "expected_result": "Native source and selected modes remain deterministic when each relevant key changes.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-033-03",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 27,
+        "symbol": "enum Attributes {"
+      },
+      "contract": "Shared PICA shader semantics map vertex outputs into MSL fragment.",
+      "native_mapping": "Use public native varying declaration and differentiate per-vertex quaternion input where supported.",
+      "expected_result": "034/035 attribute stage consumers preserve original interpolation and tile behavior.",
+      "dependency_owner": "034",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-033-04",
+      "source": {
+        "path": "src/video_core/shader/generator/spv_fs_shader_gen.cpp",
+        "sha256": "9e04dba353abb10073c6954412c7c7fec633e33892ff487ce7d5f2fdfcb86f8e",
+        "line": 1534,
+        "symbol": "void FragmentModule::DefineUniformStructs() {"
+      },
+      "contract": "Existing FS uniforms layout including packed light directions, slot offsets and LUT roles.",
+      "native_mapping": "Keep existing FSUniformData host layout and MSL offset asserts.",
+      "expected_result": "Compile true shader types and verify exact byte mapping.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-033-05",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 903,
+        "symbol": "return;"
+      },
+      "contract": "Framebuffer aliases require active sample and ordered feedback, including overlapping primitives.",
+      "native_mapping": "Native tile-local raster-order path or an exact same-sample snapshot of stored framebuffer; rasterizer splits interdependent primitives when no ROG.",
+      "expected_result": "068 checks overlapping primitives and per-sample fallback on actual GPU.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-033-06",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 1342,
+        "symbol": "const auto sampler ="
+      },
+      "contract": "Utility textures and storage fallback need same resource lifetimes and GPU ownership.",
+      "native_mapping": "Use immutable argument-table roles with declared write access and StageFragment.",
+      "expected_result": "062/068 layout and 066 shadow surface views/resources remain coherent.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5075c3b02cca31033a6bc3af15b37cb0ea6c9ba88586bfe32a0ee00a34faecb2"
+}

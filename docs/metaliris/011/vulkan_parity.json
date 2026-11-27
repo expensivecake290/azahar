@@ -1,0 +1,75 @@
+{
+  "phase": "011",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-API-REQUIREMENT",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.h",
+        "sha256": "4795f853b0b98730fcd659945ef01de529dd34f05b184c2eed7eabc80949cbd8",
+        "line": 21,
+        "symbol": ""
+      },
+      "contract": "Reference API sets a minimum version and loads its own dynamic entry points.",
+      "native_mapping": "Use SDK-linked native Metal 4. Return a typed availability assessment without a dynamic loader.",
+      "expected_result": "Missing device, insufficient Metal family and absent unified memory can be distinguished.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    },
+    {
+      "id": "VK-SURFACE",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.h",
+        "sha256": "4795f853b0b98730fcd659945ef01de529dd34f05b184c2eed7eabc80949cbd8",
+        "line": 29,
+        "symbol": ""
+      },
+      "contract": "Reference associates the window system with a drawable representation.",
+      "native_mapping": "Retain the already-owned CAMetalLayer and paired frontend surface state in the private native view.",
+      "expected_result": "Native view distinguishes headless and suspended and preserves referenced layout.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "VK-DEBUG",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.h",
+        "sha256": "4795f853b0b98730fcd659945ef01de529dd34f05b184c2eed7eabc80949cbd8",
+        "line": 35,
+        "symbol": ""
+      },
+      "contract": "Reference sets debug callback behavior per available facilities.",
+      "native_mapping": "Native Metal validation is configured by supported Xcode/runtime facilities; query native GPU trace availability.",
+      "expected_result": "Capture support agrees directly with MTLCaptureManager.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "VK-DEBUG-NAME",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.h",
+        "sha256": "4795f853b0b98730fcd659945ef01de529dd34f05b184c2eed7eabc80949cbd8",
+        "line": 40,
+        "symbol": ""
+      },
+      "contract": "Reference names backend object handles for debugging.",
+      "native_mapping": "Use SDK label properties on Metal objects directly in their owner phases.",
+      "expected_result": "No Vulkan handle, VMA and labels extension source is imported.",
+      "dependency_owner": "011",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -DENABLE_METAL -I src -I <native-build-dir>/src -isystem externals/boost -fsyntax-only docs/metaliris/011/verify.mm",
+      "evidence_path": "011/header.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    }
+  ],
+  "owner_sha256_after": "71cbc1f2022b01300db7f96dd9c51915676b08ac0335875777664161eb488c8c"
+}

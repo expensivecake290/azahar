@@ -1,0 +1,58 @@
+{
+  "phase": "082",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-082-01",
+      "source": {
+        "path": "src/citra_qt/util/graphics_device_info.cpp",
+        "sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+        "line": 36,
+        "symbol": "try {"
+      },
+      "contract": "Hardware device discovery returns names in the same order as backend device indices.",
+      "native_mapping": "Use the shared native bridge. Convert UTF-8 with explicit byte length and preserve index order, including unsupported entries.",
+      "expected_result": "Actual discovery list is empty when no GPU is exposed, diverse and repeated indices are preserved in deterministic conversion fixture.",
+      "dependency_owner": "079/082",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native Qt and feature-off compile, real empty list (0 visible devices) and five-entry deterministic UTF-8, duplicate and unsupported-slot fixture, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "VK-082-02",
+      "source": {
+        "path": "src/citra_qt/util/graphics_device_info.cpp",
+        "sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+        "line": 28,
+        "symbol": "return QStringLiteral(\"\");"
+      },
+      "contract": "OpenGL discovery and feature-controlled external backend query remain available in their existing configurations.",
+      "native_mapping": "Add an isolated ENABLE_METAL implementation and keep existing source code for other configurations. CMake native excludes Vulkan.",
+      "expected_result": "The native and off C++ translation unit compile from the actual Qt database without Vulkan or legacy Metal execution.",
+      "dependency_owner": "001/082",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual native Qt and feature-off compile, real empty list (0 visible devices) and five-entry deterministic UTF-8, duplicate and unsupported-slot fixture, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "VK-082-03",
+      "source": {
+        "path": "src/citra_qt/util/graphics_device_info.cpp",
+        "sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+        "line": 44,
+        "symbol": "} catch (const std::runtime_error& err) {"
+      },
+      "contract": "No hardware availability is represented by an empty list.",
+      "native_mapping": "Native enumeration returns an empty vector for the available Apple device set without creating a renderer or context.",
+      "expected_result": "The native host discovery fixture compares bridge and frontend enumeration, including the current no-device result.",
+      "dependency_owner": "012/079",
+      "command": "python3 docs/metaliris/082/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "082/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native Qt and feature-off compile, real empty list (0 visible devices) and five-entry deterministic UTF-8, duplicate and unsupported-slot fixture, PICA 48/801 and CTest 64 passes."
+    }
+  ],
+  "owner_sha256_after": "e166c43351e8b9305a1c1bbc56ed5300b194eb16c0c13f422a94c8f185c96cc7"
+}

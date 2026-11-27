@@ -1,0 +1,289 @@
+src/video_core/host_shaders/opengl_present.vert:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/opengl_present.vert:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/opengl_present.vert:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/core/frontend/emu_window.cpp:1:// Copyright 2014-2026 Citra Emulator Project / Azahar Emulator Project
+src/core/frontend/emu_window.cpp:2:// Licensed under GPLv3 or any later version
+src/core/frontend/emu_window.cpp:3:// Refer to the LICENSE.txt file included.
+src/core/frontend/emu_window.h:1:// Copyright 2014-2026 Citra Emulator Project / Azahar Emulator Project
+src/core/frontend/emu_window.h:2:// Licensed under GPLv2 or any later version
+src/core/frontend/emu_window.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/common/setting_keys.h.in:1:// Copyright 2026 Citra Emulator Project / Azahar Emulator Project
+src/common/setting_keys.h.in:2:// Licensed under GPLv2 or any later version
+src/common/setting_keys.h.in:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/common/settings.cpp:1:// Copyright 2014-2026 Citra Emulator Project / Azahar Emulator Project
+src/common/settings.cpp:2:// Licensed under GPLv3 or any later version
+src/common/settings.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_graphics_pipeline.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_graphics_pipeline.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_graphics_pipeline.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/shader/generator/shader_gen.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/shader_gen.h:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/shader_gen.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/common/settings.h:1:// Copyright 2014-2026 Citra Emulator Project / Azahar Emulator Project
+src/common/settings.h:2:// Licensed under GPLv3 or any later version
+src/common/settings.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/host_shaders/vulkan_blit_depth_stencil.frag:1:// Copyright 2022 Citra Emulator Project
+src/video_core/host_shaders/vulkan_blit_depth_stencil.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_blit_depth_stencil.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_master_semaphore.cpp:1:// SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_master_semaphore.cpp:2:// SPDX-License-Identifier: GPL-2.0-or-later
+src/video_core/shader/generator/shader_gen.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/shader_gen.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/shader_gen.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/glsl_shader_gen.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/glsl_shader_gen.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/shader/generator/glsl_shader_gen.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/shader/generator/glsl_shader_decompiler.h:1:// Copyright 2017 Citra Emulator Project
+src/video_core/shader/generator/glsl_shader_decompiler.h:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/glsl_shader_decompiler.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/shader_uniforms.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/shader_uniforms.h:2:// Licensed under GPLv3 or any later version
+src/video_core/shader/generator/shader_uniforms.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/shader/generator/pica_fs_config.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/pica_fs_config.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/shader/generator/pica_fs_config.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_common.cpp:1:// Copyright 2023 Citra Emulator Project
+src/video_core/renderer_vulkan/vk_common.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_common.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/vulkan_cursor.frag:1:// Copyright 2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/vulkan_cursor.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_cursor.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/glsl_fs_shader_gen.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/glsl_fs_shader_gen.h:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/glsl_fs_shader_gen.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/profile.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/profile.h:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/profile.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/glsl_shader_gen.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/glsl_shader_gen.h:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/glsl_shader_gen.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/glsl_fs_shader_gen.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/glsl_fs_shader_gen.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/shader/generator/glsl_fs_shader_gen.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/shader/generator/shader_uniforms.cpp:1:// Copyright 2023-2025 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/shader_uniforms.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/shader_uniforms.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/glsl_shader_decompiler.cpp:1:// Copyright 2017-2025 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/glsl_shader_decompiler.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/glsl_shader_decompiler.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/pica_fs_config.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/pica_fs_config.h:2:// Licensed under GPLv3 or any later version
+src/video_core/shader/generator/pica_fs_config.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_rasterizer_cache.cpp:1:// Copyright 2023 Citra Emulator Project
+src/video_core/renderer_vulkan/vk_rasterizer_cache.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_rasterizer_cache.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/spv_fs_shader_gen.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/spv_fs_shader_gen.h:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/spv_fs_shader_gen.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/opengl_present_interlaced.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/opengl_present_interlaced.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/opengl_present_interlaced.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/vulkan_present_anaglyph.frag:1:// Copyright 2022-2024 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/vulkan_present_anaglyph.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_present_anaglyph.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/vulkan_present.vert:1:// Copyright 2022 Citra Emulator Project
+src/video_core/host_shaders/vulkan_present.vert:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_present.vert:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/vulkan_cursor.vert:1:// Copyright 2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/vulkan_cursor.vert:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_cursor.vert:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/source_shader.h.in:1:// Copyright 2022 Citra Emulator Project
+src/video_core/host_shaders/source_shader.h.in:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/source_shader.h.in:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/opengl_present_anaglyph.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/opengl_present_anaglyph.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/opengl_present_anaglyph.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/opengl_present.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/opengl_present.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/opengl_present.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/vulkan_depth_to_buffer.comp:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/vulkan_depth_to_buffer.comp:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_depth_to_buffer.comp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/renderer_vulkan.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/renderer_vulkan.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/renderer_vulkan.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/host_shaders/vulkan_present.frag:1:// Copyright 2022-2024 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/vulkan_present.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_present.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_resource_pool.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_resource_pool.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_resource_pool.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_resource_pool.cpp:5:// Copyright 2020 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_resource_pool.cpp:6:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_resource_pool.cpp:7:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/shader/generator/spv_fs_shader_gen.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/shader/generator/spv_fs_shader_gen.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/shader/generator/spv_fs_shader_gen.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/full_screen_triangle.vert:1:// SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
+src/video_core/host_shaders/full_screen_triangle.vert:2:// SPDX-License-Identifier: GPL-2.0-or-later
+src/video_core/renderer_vulkan/vk_resource_pool.h:1:// Copyright 2020 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_resource_pool.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_resource_pool.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/vulkan_present_interlaced.frag:1:// Copyright 2022-2024 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/vulkan_present_interlaced.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/vulkan_present_interlaced.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/StringShaderHeader.cmake:1:# SPDX-FileCopyrightText: 2020 yuzu Emulator Project
+src/video_core/host_shaders/StringShaderHeader.cmake:2:# SPDX-License-Identifier: GPL-2.0-or-later
+src/video_core/host_shaders/CMakeLists.txt:1:# Copyright Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/CMakeLists.txt:2:# Licensed under GPLv2 or any later version
+src/video_core/host_shaders/CMakeLists.txt:3:# Refer to the license.txt file included.
+src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_scheduler.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_scheduler.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_scheduler.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8_ms.frag:1:// Copyright 2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8_ms.frag:2:// Licensed under GPLv3 or any later version
+src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8_ms.frag:3:// Refer to the LICENSE.txt file included.
+src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp:1:// Copyright Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp:3:// Refer to the license.txt file included.
+src/video_core/host_shaders/format_reinterpreter/rgba4_to_rgb5a1.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/format_reinterpreter/rgba4_to_rgb5a1.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/format_reinterpreter/rgba4_to_rgb5a1.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/format_reinterpreter/fullscreen_quad.vert:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/format_reinterpreter/fullscreen_quad.vert:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/format_reinterpreter/fullscreen_quad.vert:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/texture_filtering/refine.frag:1:// MIT License
+src/video_core/host_shaders/texture_filtering/refine.frag:3:// Copyright (c) 2019 bloc97
+src/video_core/host_shaders/texture_filtering/refine.frag:8:// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+src/video_core/host_shaders/texture_filtering/refine.frag:12:// The above copyright notice and this permission notice shall be included in all
+src/video_core/host_shaders/texture_filtering/refine.frag:18:// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+src/video_core/renderer_vulkan/vk_rasterizer.h:1:// Copyright 2022-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_rasterizer.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_rasterizer.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/host_shaders/texture_filtering/tex_coord.vert:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/texture_filtering/tex_coord.vert:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/texture_filtering/tex_coord.vert:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/format_reinterpreter/rgba4_to_rgb5a1_ms.frag:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/format_reinterpreter/rgba4_to_rgb5a1_ms.frag:2:// Licensed under GPLv3 or any later version
+src/video_core/host_shaders/format_reinterpreter/rgba4_to_rgb5a1_ms.frag:3:// Refer to the LICENSE.txt file included.
+src/video_core/host_shaders/texture_filtering/bicubic.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/texture_filtering/bicubic.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/texture_filtering/bicubic.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_rasterizer.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_rasterizer.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_rasterizer.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_scheduler.h:1:// Copyright 2019 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_scheduler.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_scheduler.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/texture_filtering/mmpx.frag:1:// Copyright 2023 Citra Emulator Project
+src/video_core/host_shaders/texture_filtering/mmpx.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/texture_filtering/mmpx.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_swapchain.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_swapchain.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_swapchain.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/texture_filtering/xbrz_freescale.frag:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/host_shaders/texture_filtering/xbrz_freescale.frag:2:// Licensed under GPLv2 or any later version
+src/video_core/host_shaders/texture_filtering/xbrz_freescale.frag:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/texture_filtering/x_gradient.frag:1:// MIT License
+src/video_core/host_shaders/texture_filtering/x_gradient.frag:3:// Copyright (c) 2019 bloc97
+src/video_core/host_shaders/texture_filtering/x_gradient.frag:8:// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+src/video_core/host_shaders/texture_filtering/x_gradient.frag:12:// The above copyright notice and this permission notice shall be included in all
+src/video_core/host_shaders/texture_filtering/x_gradient.frag:18:// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+src/video_core/renderer_vulkan/vk_stream_buffer.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_stream_buffer.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_stream_buffer.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_stream_buffer.cpp:5:// Copyright 2019 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_stream_buffer.cpp:6:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_stream_buffer.cpp:7:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/texture_filtering/scale_force.frag:3:// MIT License
+src/video_core/host_shaders/texture_filtering/scale_force.frag:5:// Copyright (c) 2020 BreadFish64
+src/video_core/host_shaders/texture_filtering/scale_force.frag:10:// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+src/video_core/host_shaders/texture_filtering/scale_force.frag:14:// The above copyright notice and this permission notice shall be included in all
+src/video_core/host_shaders/texture_filtering/scale_force.frag:20:// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+src/video_core/renderer_vulkan/vk_common.h:1:// Copyright 2023-2024 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_common.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_common.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_render_manager.h:1:// Copyright 2024-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_render_manager.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_render_manager.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/pica_to_vk.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/pica_to_vk.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/pica_to_vk.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_platform.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_platform.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_platform.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_render_manager.cpp:1:// Copyright 2024-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_render_manager.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_render_manager.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_memory_util.h:1:// Copyright 2023 Citra Emulator Project
+src/video_core/renderer_vulkan/vk_memory_util.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_memory_util.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_present_window.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_present_window.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_present_window.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_blit_helper.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_blit_helper.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_blit_helper.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_instance.h:1:// Copyright 2022-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_instance.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_instance.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_shader_util.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_shader_util.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_shader_util.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/host_shaders/texture_filtering/y_gradient.frag:1:// MIT License
+src/video_core/host_shaders/texture_filtering/y_gradient.frag:3:// Copyright (c) 2019 bloc97
+src/video_core/host_shaders/texture_filtering/y_gradient.frag:8:// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+src/video_core/host_shaders/texture_filtering/y_gradient.frag:12:// The above copyright notice and this permission notice shall be included in all
+src/video_core/host_shaders/texture_filtering/y_gradient.frag:18:// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+src/video_core/renderer_vulkan/vk_pipeline_cache.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_pipeline_cache.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_pipeline_cache.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_swapchain.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_swapchain.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_swapchain.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_memory_util.cpp:1:// Copyright 2023 Citra Emulator Project
+src/video_core/renderer_vulkan/vk_memory_util.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_memory_util.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_present_window.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_present_window.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_present_window.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/renderer_vulkan.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/renderer_vulkan.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/renderer_vulkan.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_descriptor_update_queue.h:1:// Copyright 2024 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_descriptor_update_queue.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_descriptor_update_queue.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_pipeline_cache.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_pipeline_cache.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_pipeline_cache.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_shader_util.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_shader_util.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_shader_util.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_master_semaphore.h:1:// SPDX-FileCopyrightText: Copyright 2020 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_master_semaphore.h:2:// SPDX-License-Identifier: GPL-2.0-or-later
+src/video_core/renderer_vulkan/vk_texture_runtime.h:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_texture_runtime.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_texture_runtime.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_shader_disk_cache.h:1:// Copyright 2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_shader_disk_cache.h:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_shader_disk_cache.h:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp:1:// Copyright 2024 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_platform.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_platform.cpp:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_platform.cpp:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_stream_buffer.h:1:// Copyright 2019 yuzu Emulator Project
+src/video_core/renderer_vulkan/vk_stream_buffer.h:2:// Licensed under GPLv2 or any later version
+src/video_core/renderer_vulkan/vk_stream_buffer.h:3:// Refer to the misc/licenses/gplv2.txt file included.
+src/video_core/renderer_vulkan/vk_instance.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_instance.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_instance.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_blit_helper.cpp:1:// Copyright 2022-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_blit_helper.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_blit_helper.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp:1:// Copyright 2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp:3:// Refer to the LICENSE.txt file included.
+src/video_core/renderer_vulkan/vk_texture_runtime.cpp:1:// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project
+src/video_core/renderer_vulkan/vk_texture_runtime.cpp:2:// Licensed under GPLv3 or any later version
+src/video_core/renderer_vulkan/vk_texture_runtime.cpp:3:// Refer to the LICENSE.txt file included.

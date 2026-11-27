@@ -1,0 +1,41 @@
+{
+  "phase": "053",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-053-01",
+      "source": {
+        "path": "src/video_core/host_shaders/metal/present_vert.metal",
+        "sha256": "f54eb9d4ad2685c35f477e632282c1bf802cf45178e89738230ab1cd56925807",
+        "line": 15,
+        "symbol": "float4 position [[position]];"
+      },
+      "contract": "The native Phase 052 vertex passes correct locn0 and clipped position.",
+      "native_mapping": "Link actual native pair; same texture array and constants as Phase 051.",
+      "expected_result": "Native SDK test pipeline compiles host descriptors with both production stages.",
+      "dependency_owner": "053",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 053 <native-build-dir> <scratch-dir> <present-vertex-library>",
+      "evidence_path": "053/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-053-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 731,
+        "symbol": "void RendererVulkan::ReloadPipeline(Settings::StereoRenderOption render_3d) {"
+      },
+      "contract": "Shader selection is render-option dispatch, outside arithmetic stage.",
+      "native_mapping": "Leave choice of presentation mode and opacity pipeline to the native renderer owners.",
+      "expected_result": "Check both eye ordering, UI toggle sequencing and screenshots after native integrated renderer.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 053 <native-build-dir> <scratch-dir> <present-vertex-library>",
+      "evidence_path": "053/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "908bf1760b5238d5b1322e3e98cc8ef6f653e7c9cab1af6842697449038a8be4"
+}

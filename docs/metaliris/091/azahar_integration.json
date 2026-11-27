@@ -1,0 +1,92 @@
+{
+  "phase": "091",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-091-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 69,
+        "symbol": "class RendererVulkan : public VideoCore::RendererBase {"
+      },
+      "contract": "RendererBase binds Core/PICA/rasterizer, frame stats, settings, screenshot callback and neutral windows.",
+      "native_mapping": "Use the existing Core::System Memory and CustomTexManager, Scheduler/RenderManager and rasterizer. No Vulkan or Qt private data.",
+      "expected_result": "Actual factory and full Qt/native tests link, PICA 48/801 and CTest regression.",
+      "dependency_owner": "008/068/069/081/090",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "AZ-091-02",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "653a4b6aff384d6f8e2ccca9a39368a58f9eb6cb0014cbc0283b0ea8db9e22d4",
+        "line": 280,
+        "symbol": "const Layout::FramebufferLayout& GetFramebufferLayout() const {"
+      },
+      "contract": "GUI publishes layout concurrently while core can compute resolution scale via shared RendererBase.",
+      "native_mapping": "Controlled reopen Phase 006 return a locked value snapshot from legacy layout accessor. Preserve existing reference consumers and use native retained window snapshot for presentation.",
+      "expected_result": "Thread-safe layout fixture and native/off compile; CPU scope settings read vs resize exact.",
+      "dependency_owner": "006/007/081",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "AZ-091-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_rasterizer.h",
+        "sha256": "3d43f733b5216b179bb1e97e185597b7ccbcdf56de0ba01a3299a281fad80188",
+        "line": 56,
+        "symbol": "explicit RasterizerMetal(Memory::MemorySystem& memory, Pica::PicaCore& pica,"
+      },
+      "contract": "Existing metal rasterizer owns shader lookup, title disk selection, transfer and draw API.",
+      "native_mapping": "Pass independent async/disk options and settings into the real pipeline cache. Use actual memory/rasterizer services and unique owner order with explicit closing.",
+      "expected_result": "Actual native static and Qt final linkage, require physical live draws for title loading and pipeline modes.",
+      "dependency_owner": "060/061/062/068/069/090",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-091-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 1,
+        "symbol": "// Copyright 2023-2026 Citra Emulator Project / Azahar Emulator Project"
+      },
+      "contract": "Window-level producer/consumer scheduling and per-window output readiness are independent.",
+      "native_mapping": "Use same renderer scheduler with owned presentation streams and exact wait ticket per producer. Window layout, headless/detach, vsync/frame limit and memory budget preserve earlier owners.",
+      "expected_result": "Run pending resize/orientation/refresh and async/synchronous backpressure fixtures on exposed GPU.",
+      "dependency_owner": "070/071/072/073/076/077",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-091-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_instance.h",
+        "sha256": "98e46dbc761d5d5cb24517897d5429e18a497f20c77e7d0bbac723b2b9a2efa4",
+        "line": 144,
+        "symbol": "[[nodiscard]] bool CanCaptureTrace() const;"
+      },
+      "contract": "Qt debug opt-in is optional; native trace uses Metal system APIs with no added frontend dependency.",
+      "native_mapping": "Capture valid first rendering submission into actual .gputrace when requested, retaining device and stopping after submitted presentation; report unsupported setup or existing capture.",
+      "expected_result": "Physical trace still pending, exact on/off and valid capture file/commands and failure diagnostic.",
+      "dependency_owner": "014/079/084/086",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "6d9b7cd4dfbe2c28adba030d8d3d27caddc3e64158dff4b33d7c59625e7c7792"
+}

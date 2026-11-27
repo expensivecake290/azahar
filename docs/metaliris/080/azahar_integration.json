@@ -1,0 +1,58 @@
+{
+  "phase": "080",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-080-01",
+      "source": {
+        "path": "src/citra_qt/bootmanager.h",
+        "sha256": "6ec4052d1990ca87844df9a76aed4485c63a01ba40f666fc17fb177553d8f218",
+        "line": 120,
+        "symbol": "class GRenderWindow : public QWidget, public Frontend::EmuWindow {"
+      },
+      "contract": "Preserve QWidget/EmuWindow inheritance, GRenderWindow constructor, slots, signal and event API.",
+      "native_mapping": "Guard new private lifecycle and eventFilter declarations with ENABLE_METAL and preserve original public API and layout flags.",
+      "expected_result": "Actual bootmanager and Qt MOC build in native and disabled modes.",
+      "dependency_owner": "006/076/081",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt MOC and bootmanager compilation in native and disabled modes. Linked native event virtual is owned by Phase 081."
+    },
+    {
+      "id": "AZ-080-02",
+      "source": {
+        "path": "src/citra_qt/bootmanager.h",
+        "sha256": "6ec4052d1990ca87844df9a76aed4485c63a01ba40f666fc17fb177553d8f218",
+        "line": 165,
+        "symbol": ""
+      },
+      "contract": "Primary and secondary render target init, release and touch share common interfaces.",
+      "native_mapping": "Per-window RAII adapter tracks retained layer and initialization; Qt code remains in bootmanager.",
+      "expected_result": "Two independently tracked visible, hidden and destroyed handles, with no worker-thread NSView operations.",
+      "dependency_owner": "077/081",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-080-03",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 200,
+        "symbol": "[[nodiscard]] NativeSurfaceSnapshot GetNativeSurface() const;"
+      },
+      "contract": "Shared renderer gets stable surface ownership, dimensions, flags and generation through a locked neutral snapshot.",
+      "native_mapping": "Native declarations pass only local widget methods and use the existing neutral types through SurfaceAdapter.",
+      "expected_result": "Compile include graph; no Qt AppKit header or Vulkan transitive header in the neutral renderer.",
+      "dependency_owner": "006/076",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt MOC and bootmanager compilation in native and disabled modes. Linked native event virtual is owned by Phase 081."
+    }
+  ],
+  "owner_sha256_after": "8a07eaa6863a6e1e919d2b60aa27f00441fccb712ee9cb76deb1020a385d362b"
+}

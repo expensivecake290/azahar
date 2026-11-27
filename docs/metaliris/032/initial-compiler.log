@@ -1,0 +1,8 @@
++docs/metaliris/032/verify.sh:12> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -DENABLE_SOFTWARE_RENDERER -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -Wall -Wextra -Werror -Wno-unused-parameter -DCHECK_NATIVE_CONSUMER -MD -MF /tmp/metaliris-r12.lKARZLkI/phase032/consumer.d -c /Users/anthonygarcia/azahar/docs/metaliris/032/verify.mm -o /tmp/metaliris-r12.lKARZLkI/phase032/consumer.o
+In file included from /Users/anthonygarcia/azahar/docs/metaliris/032/verify.mm:4:
+In file included from /Users/anthonygarcia/azahar/src/video_core/renderer_metal/shader/msl_fs_shader_gen.h:10:
+In file included from /Users/anthonygarcia/azahar/src/video_core/shader/generator/pica_fs_config.h:7:
+/Users/anthonygarcia/azahar/src/common/hash.h:10:10: fatal error: 'xxhash.h' file not found
+   10 | #include <xxhash.h>
+      |          ^~~~~~~~~~
+1 error generated.

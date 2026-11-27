@@ -1,0 +1,92 @@
+{
+  "phase": "071",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-071-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.h",
+        "sha256": "b7dee9c5baef9345bc95af0f1687db3b06a97ad305f8a457b086ef6c70770cfd",
+        "line": 90,
+        "symbol": "std::shared_ptr<const Generation> generation;"
+      },
+      "contract": "Provide every declared surface, acquire/present and queried property interface.",
+      "native_mapping": "Define real worker-side Swapchain and drawable generation contract with exact native types.",
+      "expected_result": "Header plus native consumer compile and link.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual compile/link to native Apple ARC, Metal 4 and CoreGraphics, isolated native target registration, physical fixture compiled, 64 host pacing cases, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "AZ-071-02",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "5777f4fa3a6b7bd510cedff6e4db88c474213a1364f4ef52c08775f61e13b837",
+        "line": 75,
+        "symbol": "bool EmuWindow::PublishNativeSurface(NativeSurface surface, Layout::FramebufferLayout layout) {"
+      },
+      "contract": "Azahar NativeSurface generation changes only when surface properties/ownership changes; layout may update alone.",
+      "native_mapping": "Retain the latest authoritative layout when generation unchanged, reject same generation ownership change and monotonic stale surface. Keep fullscreen, portrait, scale, refresh and suspension flags.",
+      "expected_result": "Headless/retina/fullscreen transitions and layout-only no invalidation.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-071-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 89,
+        "symbol": "Surface::Surface(Frontend::EmuWindow::NativeSurfaceSnapshot snapshot_)"
+      },
+      "contract": "Surface owns only tagged live CAMetalLayer handle or explicit headless.",
+      "native_mapping": "Use the existing Metal Surface wrapper; require real native layer ownership and explicit no-surface status.",
+      "expected_result": "Weak retention probe and live repeat configure.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-071-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.mm",
+        "sha256": "bc005db6fbe2b972a12c5d3a08a41be31a8e23a11130394d24475063a08f7204",
+        "line": 597,
+        "symbol": "}"
+      },
+      "contract": "Scheduler owns native Metal 4 drawable queue wait and signal sequence.",
+      "native_mapping": "Supply drawable plus duration and same-scheduler dependency, retain source layer and native backing through feedback.",
+      "expected_result": "Actual scheduler link and recorded native wait, signal, visibility and abandonment order.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-071-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.mm",
+        "sha256": "337abd301177598201caa6a0996d3ca261b7162cfe6a4ea0bb86e33589d1c500",
+        "line": 92,
+        "symbol": "bool Swapchain::UpdateSurface(Frontend::EmuWindow::NativeSurfaceSnapshot snapshot,"
+      },
+      "contract": "Phase 070 pacing now carries the actual double frame limit, which has non-finite and negative invalid representations.",
+      "native_mapping": "Reject invalid pacing in UpdateSurface before changing the native layer or live generation.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/071/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "071/reopen-073.log",
+      "status": "PENDING",
+      "actual_result": "Actual SDK compiler and available targeted fixture passed. Live pacing or frame retirement still requires Metal 4 hardware."
+    }
+  ],
+  "owner_sha256_after": "35d626209c97f6a4b533eb4db2972f17e300b949cae94902fcc86242b24601b6"
+}

@@ -1,0 +1,92 @@
+{
+  "phase": "064",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-064-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_blit_helper.h",
+        "sha256": "7dc030a3870f26872a497a357cfe2f4d5fdbad60502d8e85e9c168e320c1fb01",
+        "line": 118,
+        "symbol": "return DepthReadbackRegion{{area.x, area.y}, {area.width, area.height}, stride, capacity};"
+      },
+      "contract": "Implement public 063 native utility APIs without expanding production ownership.",
+      "native_mapping": "Reuse scheduler/render manager and memory allocator. Accept backend-neutral request data and Metal resource pointers.",
+      "expected_result": "Complete native type check, link and dependency chain.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake linked target, exact equality for twelve embedded Metal executable libraries, independent header/region/sample route checks, compiled physical test fixture, PICA200 48 cases / 801 assertions and 64 passing CTest with five existing skips."
+    },
+    {
+      "id": "AZ-064-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.h",
+        "sha256": "d9ebf7424af2d76c6a0ebec3ac79d58fc2a22da93084c19e054fccd9e52d1bba",
+        "line": 37,
+        "symbol": "MTLStages stages;"
+      },
+      "contract": "All native texture and buffer operations must synchronize actual stage resources and backing.",
+      "native_mapping": "Use existing descriptor binding and scheduler for StageDispatch/StageBlit/StageFragment rendering, reusing only distinct alias snapshot temporary.",
+      "expected_result": "Real API Validation fixture for destination writes, copies, waits and buffer lease through GPU retirement.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-064-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.h",
+        "sha256": "65aec73c39852eab9c17c4a8585113132eb99b6e7f77ace854788068c7c1beb0",
+        "line": 120,
+        "symbol": "void BeginRendering(const RenderPass& pass);"
+      },
+      "contract": "Use native attachment load/store and exact pass aspect.",
+      "native_mapping": "Reuse RenderManager for partial render, scratch and color/depth/stencil resolve; invalidate state via manager and scheduler.",
+      "expected_result": "Live verified pixel output with no stale argument use.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-064-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_descriptor_update_queue.h",
+        "sha256": "c61f57604592451203785a04631e73471cee06af1e8cec1fcd01393a6513f9bd",
+        "line": 33,
+        "symbol": "class Snapshot {"
+      },
+      "contract": "Apply immutable native resource bindings, levels, and pipeline scopes.",
+      "native_mapping": "Bind through existing descriptor snapshots and explicit shader stages. Sampling/view use tracked via backing resource.",
+      "expected_result": "Read dependent X/Y/refine with worker lifetime and independent readback.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-064-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_memory_util.h",
+        "sha256": "909f728e61d457777aae531ee72bf0a41464e201160e86a609eacfd8ce406531",
+        "line": 106,
+        "symbol": "private:"
+      },
+      "contract": "GPU readback and utility parameters must retain allocation until actual completion.",
+      "native_mapping": "Use shared buffers and scoped mapping/acquire leases, no synchronous CPU/GPU copying; private transient textures for sample feedback.",
+      "expected_result": "Linked lease safety and real GPU odd pitch/alias trace.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "27dd44fd05dc4b06ad7bded285f082e4d8c7fb477d80dc73f917ecb99c38cf1f"
+}

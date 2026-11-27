@@ -1,0 +1,41 @@
+{
+  "phase": "048",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-048-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_cursor.frag",
+        "sha256": "fa97da515ef2d6d0d219bd30e980dedeb7b278c378fe7529815a668f71cc589e",
+        "line": 10,
+        "symbol": "void main() {"
+      },
+      "contract": "Fragment links to position-only native vertex with no interpolant dependencies.",
+      "native_mapping": "Phase 048 fixture vertex verifies compositing, Phase 049 actual vertex provides native clip position.",
+      "expected_result": "Native shader pair verified independently and with production vertex consumer.",
+      "dependency_owner": "049",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 048 <native-build-dir> <scratch-dir>",
+      "evidence_path": "048/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-048-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1066,
+        "symbol": "void RendererVulkan::DrawCursor(const Layout::FramebufferLayout& layout) {"
+      },
+      "contract": "Visible cursor belongs to bottom-screen region; geometry, clip and scheduling are renderer responsibilities.",
+      "native_mapping": "Native consumer uses current frontend cursor data, no native texture binds in fragment.",
+      "expected_result": "Phase 091 checks invisible cursor, actual bottom screen and native scissor.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 048 <native-build-dir> <scratch-dir>",
+      "evidence_path": "048/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "c56afe648590ca6fda21fc1babc5a9b7c6ffe619948bafc6eaf87748c16f3ef3"
+}

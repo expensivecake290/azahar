@@ -1,0 +1,41 @@
+{
+  "phase": "090",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-090-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/renderer_metal.h",
+        "sha256": "5ee39efd95de023540559fbe13380f510b39f6475f075746d3e1da0669357e24",
+        "line": 18,
+        "symbol": "explicit RendererMetal(Core::System& system, Pica::PicaCore& pica, Frontend::EmuWindow& window,"
+      },
+      "contract": "Native and off dispatch compile with the real renderer constructor and SDK dependency graph.",
+      "native_mapping": "Actual CMake compiler flags in both builds, dependency and symbol graph, existing regression runs. No substitute production definition.",
+      "expected_result": "Native object imports the real mangled constructor; off object uses Software only. Existing baseline regressions pass.",
+      "dependency_owner": "008/091",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual native and Software-only dispatcher compiled with matching CMake flags; exact native constructor dependency, software backend and no SDL/Vulkan symbols. PICA 48/801 and CTest 64 preserved. Native construction definition belongs to 091."
+    },
+    {
+      "id": "MTL-090-02",
+      "source": {
+        "path": "src/video_core/gpu.cpp",
+        "sha256": "d39da6647292836b6c37bb7a5b91ec1201d59fc8040cafdba471e08fdcf8212e",
+        "line": 584,
+        "symbol": "VideoCore::CreateRenderer(emu_window, secondary_window, impl->pica, impl->system);"
+      },
+      "contract": "The actual native factory and renderer are linked and exercised through valid and invalid configurations.",
+      "native_mapping": "Run actual dispatcher with absent/invalid device, supported native device and separate Windows state. Run controlled cleanup with wrong index then retry valid setting.",
+      "expected_result": "Real link and native execution with expected device diagnostics. Physical submission tests and absent device test separately.",
+      "dependency_owner": "091",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "cf0a0166ad6cfe2282b00be1228e03f2ef520af87826681db4c75c74b74c319d"
+}

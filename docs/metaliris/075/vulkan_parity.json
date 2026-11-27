@@ -1,0 +1,109 @@
+{
+  "phase": "075",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-075-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 164,
+        "symbol": "void RendererVulkan::PrepareRendertarget() {"
+      },
+      "contract": "Presentation starts with unchanged guest cache screen sources.",
+      "native_mapping": "Treat three source textures as read-only. Create a separately accounted private presentation texture per successful request. Never access guest memory.",
+      "expected_result": "Independent red/green/blue eye sources and exact source after effect.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-075-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 237,
+        "symbol": "void RendererVulkan::RenderToWindow(PresentWindow& window, const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Visible render path uses dynamic output size and frontend mode changes.",
+      "native_mapping": "Scoped device/output/format state, reuse only retired matching scaler recipe. Resizing produces distinct retained output, and disabled/unsupported path reports explicit policy reason.",
+      "expected_result": "Odd dimensions, retry after resize, stale/unsupported mode and safe retained old output.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-075-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 264,
+        "symbol": "void RendererVulkan::LoadFBToScreenInfo(const Pica::FramebufferConfig& framebuffer,"
+      },
+      "contract": "Screen source and eye metadata stay separate until presentation.",
+      "native_mapping": "Apply independent ordered batch results. Caller preserves the layout and stereo orientation. Return no produced ticket for bypassed requests.",
+      "expected_result": "Native left/right/bottom separated and no guest bounds modification.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-075-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 296,
+        "symbol": "void RendererVulkan::CompileShaders() {"
+      },
+      "contract": "Rendering pipelines use actual native driver/compiler and failure propagates.",
+      "native_mapping": "Instantiate only MTL4FXSpatialScaler with SDK's native typed compiler constructor, validate advertised resource usage and storage and preserve reasons if it cannot be created.",
+      "expected_result": "Actual native descriptor parameters, supported feature and explicit unsupported result.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-075-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1060,
+        "symbol": ""
+      },
+      "contract": "Screen output and reliable readback use actual native GPU dependency.",
+      "native_mapping": "Pin source/output, device work lease and native scaler through MTL4 packet. Scope opaque effect to real producer and consumer completion tickets.",
+      "expected_result": "Native work order, verified output readback and no visual dependency on Vulkan.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-075-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 413,
+        "symbol": ".srcAccessMask = vk::AccessFlagBits::eNone,"
+      },
+      "contract": "Source and destination stage ordering protects final presentation copy.",
+      "native_mapping": "Use independent scheduler packet for native MetalFX after exact source retirement; require actual completion ticket on later composite. Register actual native textures for residency.",
+      "expected_result": "Actual Metal API Validation with ordered writes, two distinct output sizes and sustained frames.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "220e30459a2cbf2a16368c5677e24a3cd4a8fe7d92dbbfad745a4d2bc06cff66"
+}

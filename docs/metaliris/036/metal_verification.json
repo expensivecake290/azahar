@@ -1,0 +1,75 @@
+{
+  "phase": "036",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-036-01",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 5,
+        "symbol": "#version 450 core"
+      },
+      "contract": "Compile as actual native Metal 4 source and macOS 26.0 target.",
+      "native_mapping": "Apple offline MSL compiler, host CMake embedded library and native runtime command pipeline.",
+      "expected_result": "Executable Metal library and embedded bytes identical.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Metal 4 library compiled and was embedded byte-for-byte through CMake. Host byte/bounds oracle and CTest/PICA passed."
+    },
+    {
+      "id": "MTL-036-02",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 20,
+        "symbol": "ivec2 src_coord = src_offset + ivec2(gl_GlobalInvocationID.xy);"
+      },
+      "contract": "Overdispatch, zero extent, invalid origin, narrow and odd regions.",
+      "native_mapping": "Native data-gated integer bounds on all three bound textures, unsigned subtraction before coordinate additions.",
+      "expected_result": "CPU exact bounds oracle and GPU unchanged neighbor pixel sentinels.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-036-03",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 22,
+        "symbol": "highp uint depth_val ="
+      },
+      "contract": "Normalized depth conversion and exact emitted byte ordering.",
+      "native_mapping": "Independent CPU 64-bit representation; runtime fixture writes native depth and stencil areas, then reads exact shader bytes.",
+      "expected_result": "Validate all specified pixel values and edge sentinels under Metal API validation.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-036-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 430,
+        "symbol": "if (multisample && !instance.IsMultiSampleSupported()) {"
+      },
+      "contract": "MSAA compute and whole texture resolve depend on supported sample counts.",
+      "native_mapping": "Pending companion phase and validated native host dispatch.",
+      "expected_result": "Runtime 037 and integration 064 cover sample views and exact resolve behavior.",
+      "dependency_owner": "037",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5aed4978a7f9018247597f3ac173b11715e64aa9914a67dc9d0c8ca7f50e9e77"
+}

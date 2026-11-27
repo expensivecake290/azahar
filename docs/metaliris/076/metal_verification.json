@@ -1,0 +1,41 @@
+{
+  "phase": "076",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-076-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Plain C++ header and Apple ARC consumer agree on adapter size/visibility contract.",
+      "native_mapping": "Compile two modes against arm64 SDK. Verify finite and out-of-range geometry, odd backing size, headless and suspended public state.",
+      "expected_result": "Deterministic host test and dependency audit.",
+      "dependency_owner": "076",
+      "command": "zsh docs/metaliris/076/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "076/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 C++20 and Objective-C++ ARC consumer builds, device-free exact odd/Retina extent, clamping and headless semantics, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 plus 5 skips."
+    },
+    {
+      "id": "MTL-076-02",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.mm",
+        "sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+        "line": 16,
+        "symbol": "CAMetalLayer* metalLayer = [CAMetalLayer layer];"
+      },
+      "contract": "AppKit actual still allows native size/Retina/detach without VMA/legacy shader calls.",
+      "native_mapping": "Execute native view/layer creation and adoption, deallocation, strong captured handles and view cleanup. Verify physical window resize, fullscreen, refresh and occlusion later.",
+      "expected_result": "Host layer test plus physical dynamic data under 077/Qt integration.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/076/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "076/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "6f8f46bea7bc20a0e828b8058975330cc1c2cfd5d0a4fb9ee8c316959b050ce5"
+}

@@ -1,0 +1,161 @@
+src/citra_cli/CMakeLists.txt:1:add_library(citra_cli STATIC EXCLUDE_FROM_ALL
+src/citra_cli/CMakeLists.txt:8:target_link_libraries(citra_cli PRIVATE citra_common citra_core)
+src/citra_cli/CMakeLists.txt:11:    target_link_libraries(citra_cli PRIVATE getopt)
+CMakeLists.txt:554:    get_target_property(target_sources "${target_name}" SOURCES)
+CMakeLists.txt:556:    foreach(file_name IN LISTS target_sources)
+CMakeLists.txt:589:add_subdirectory(externals)
+CMakeLists.txt:594:    add_library(Boost::boost ALIAS boost)
+CMakeLists.txt:595:    add_library(Boost::serialization ALIAS boost_serialization)
+CMakeLists.txt:596:    add_library(Boost::iostreams ALIAS boost_iostreams)
+CMakeLists.txt:602:    add_library(SDL2 INTERFACE)
+CMakeLists.txt:603:    target_link_libraries(SDL2 INTERFACE "${SDL2_LIBRARY}")
+CMakeLists.txt:605:    add_library(SDL2::SDL2 ALIAS SDL2)
+CMakeLists.txt:614:    add_library(SoundTouch INTERFACE)
+CMakeLists.txt:615:    target_link_libraries(SoundTouch INTERFACE "${SOUNDTOUCH_LIBRARIES}")
+CMakeLists.txt:629:add_subdirectory(src)
+src/tests/CMakeLists.txt:1:add_executable(tests
+src/tests/CMakeLists.txt:33:target_link_libraries(tests PRIVATE citra_common citra_core video_core audio_core)
+src/tests/CMakeLists.txt:34:target_link_libraries(tests PRIVATE ${PLATFORM_LIBRARIES} catch2 nihstro-headers Threads::Threads)
+src/tests/CMakeLists.txt:37:    target_link_libraries(tests PRIVATE $<TARGET_OBJECTS:citra_libretro_common>)
+src/citra_libretro/CMakeLists.txt:5:add_library(citra_libretro_common OBJECT
+src/citra_libretro/CMakeLists.txt:19:target_link_libraries(citra_libretro_common PRIVATE citra_common citra_core video_core libretro tsl::robin_map)
+src/citra_libretro/CMakeLists.txt:21:    target_link_libraries(citra_libretro_common PRIVATE glad)
+src/citra_libretro/CMakeLists.txt:24:    target_link_libraries(citra_libretro_common PRIVATE sirit vulkan-headers vma)
+src/citra_libretro/CMakeLists.txt:27:add_library(citra_libretro SHARED
+src/citra_libretro/CMakeLists.txt:41:target_link_libraries(citra_common PRIVATE libretro)
+src/citra_libretro/CMakeLists.txt:42:target_link_libraries(citra_core PRIVATE libretro)
+src/citra_libretro/CMakeLists.txt:43:target_link_libraries(video_core PRIVATE libretro)
+src/citra_libretro/CMakeLists.txt:44:target_link_libraries(audio_core PRIVATE libretro)
+src/citra_libretro/CMakeLists.txt:45:target_link_libraries(input_common PRIVATE libretro)
+src/citra_libretro/CMakeLists.txt:52:target_link_libraries(citra_libretro PRIVATE citra_common citra_core)
+src/citra_libretro/CMakeLists.txt:53:target_link_libraries(citra_libretro PRIVATE Boost::boost dds-ktx libretro tsl::robin_map)
+src/citra_libretro/CMakeLists.txt:55:  target_link_libraries(citra_libretro PRIVATE sirit vulkan-headers vma)
+src/citra_libretro/CMakeLists.txt:58:  target_link_libraries(citra_libretro PRIVATE glad)
+src/citra_libretro/CMakeLists.txt:60:target_link_libraries(citra_libretro PRIVATE ${PLATFORM_LIBRARIES} Threads::Threads)
+src/citra_libretro/CMakeLists.txt:62:  target_link_libraries(citra_libretro PRIVATE -static-libstdc++)
+src/citra_libretro/CMakeLists.txt:74:  target_link_libraries(citra_common PRIVATE libretro_common)
+src/citra_libretro/CMakeLists.txt:75:  target_link_libraries(citra_core PRIVATE libretro_common)
+src/citra_libretro/CMakeLists.txt:76:  target_link_libraries(video_core PRIVATE libretro_common)
+src/citra_libretro/CMakeLists.txt:77:  target_link_libraries(citra_libretro_common PRIVATE libretro_common)
+src/citra_libretro/CMakeLists.txt:78:  target_link_libraries(citra_libretro PRIVATE libretro_common)
+src/citra_libretro/CMakeLists.txt:80:  target_link_libraries(citra_libretro PRIVATE log)
+src/citra_libretro/CMakeLists.txt:84:  target_link_libraries(citra_libretro PRIVATE crypt32)
+src/citra_libretro/CMakeLists.txt:90:  target_link_libraries(citra_libretro PRIVATE "-framework CoreFoundation" "-framework Foundation")
+src/citra_libretro/CMakeLists.txt:96:  target_link_libraries(citra_libretro PRIVATE "-Wl,-exported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/libretro.osx.def")
+src/citra_libretro/CMakeLists.txt:98:  target_link_libraries(citra_libretro PRIVATE "-Wl,-Bsymbolic")
+src/citra_room_standalone/CMakeLists.txt:1:add_executable(citra_room_standalone
+src/citra_room_standalone/CMakeLists.txt:12:target_link_libraries(citra_room_standalone PRIVATE citra_room)
+src/network/CMakeLists.txt:1:add_library(network STATIC EXCLUDE_FROM_ALL
+src/network/CMakeLists.txt:25:    target_link_libraries(network PRIVATE web_service)
+src/network/CMakeLists.txt:28:target_link_libraries(network PRIVATE citra_common enet Boost::serialization httplib)
+src/web_service/CMakeLists.txt:1:add_library(web_service STATIC EXCLUDE_FROM_ALL
+src/web_service/CMakeLists.txt:16:target_link_libraries(web_service PRIVATE citra_common network json-headers httplib cpp-jwt)
+src/web_service/CMakeLists.txt:17:target_link_libraries(web_service PUBLIC ${OPENSSL_LIBS})
+src/web_service/CMakeLists.txt:19:    target_link_libraries(web_service PRIVATE crypt32)
+src/citra_meta/CMakeLists.txt:1:add_executable(citra_meta
+src/citra_meta/CMakeLists.txt:23:    target_sources(citra_meta PRIVATE ${APPLE_RESOURCES})
+src/citra_meta/CMakeLists.txt:74:target_link_libraries(citra_meta PRIVATE citra_cli citra_common fmt)
+src/citra_meta/CMakeLists.txt:77:    target_link_libraries(citra_meta PRIVATE citra_qt)
+src/citra_meta/CMakeLists.txt:81:    target_link_libraries(citra_meta PRIVATE citra_room)
+src/citra_meta/CMakeLists.txt:85:    target_link_libraries(citra_meta PRIVATE discord-rpc)
+src/input_common/CMakeLists.txt:1:add_library(input_common STATIC EXCLUDE_FROM_ALL
+src/input_common/CMakeLists.txt:24:    target_sources(input_common PRIVATE
+src/input_common/CMakeLists.txt:29:    target_link_libraries(input_common PRIVATE SDL2::SDL2)
+src/input_common/CMakeLists.txt:34:    target_sources(input_common PRIVATE
+src/input_common/CMakeLists.txt:41:    target_link_libraries(input_common PRIVATE ${LIBUSB_LIBRARIES})
+src/input_common/CMakeLists.txt:46:target_link_libraries(input_common PUBLIC citra_core PRIVATE citra_common ${Boost_LIBRARIES})
+src/video_core/CMakeLists.txt:1:add_subdirectory(host_shaders)
+src/video_core/CMakeLists.txt:3:add_library(video_core STATIC EXCLUDE_FROM_ALL
+src/video_core/CMakeLists.txt:104:    target_sources(video_core PRIVATE
+src/video_core/CMakeLists.txt:122:    target_sources(video_core PRIVATE
+src/video_core/CMakeLists.txt:156:    target_link_libraries(video_core PRIVATE glad)
+src/video_core/CMakeLists.txt:159:    target_sources(video_core PRIVATE
+src/video_core/CMakeLists.txt:205:    target_link_libraries(video_core PRIVATE vulkan-headers vma sirit SPIRV glslang)
+src/video_core/CMakeLists.txt:209:    target_link_libraries(video_core PRIVATE SDL2::SDL2)
+src/video_core/CMakeLists.txt:217:target_link_libraries(video_core PUBLIC citra_common citra_core)
+src/video_core/CMakeLists.txt:218:target_link_libraries(video_core PRIVATE Boost::serialization dds-ktx json-headers nihstro-headers tsl::robin_map)
+src/video_core/CMakeLists.txt:221:    target_link_libraries(video_core PUBLIC xbyak)
+src/video_core/CMakeLists.txt:225:    target_link_libraries(video_core PUBLIC oaknut)
+src/citra_qt/CMakeLists.txt:10:add_library(citra_qt STATIC EXCLUDE_FROM_ALL
+src/citra_qt/CMakeLists.txt:200:    target_sources(citra_qt PRIVATE
+src/citra_qt/CMakeLists.txt:214:  target_sources(citra_qt PUBLIC
+src/citra_qt/CMakeLists.txt:229:    target_link_libraries(citra_qt PRIVATE httplib json-headers)
+src/citra_qt/CMakeLists.txt:230:    target_sources(citra_qt PRIVATE update_checker.cpp)
+src/citra_qt/CMakeLists.txt:285:target_sources(citra_qt
+src/citra_qt/CMakeLists.txt:294:    target_link_libraries(citra_qt PRIVATE Qt6::EntryPointImplementation)
+src/citra_qt/CMakeLists.txt:298:    target_link_libraries(citra_qt PRIVATE SDL2::SDL2)
+src/citra_qt/CMakeLists.txt:304:target_link_libraries(citra_qt PRIVATE audio_core citra_common citra_core input_common network video_core)
+src/citra_qt/CMakeLists.txt:305:target_link_libraries(citra_qt PUBLIC Boost::boost Qt6::Widgets)
+src/citra_qt/CMakeLists.txt:306:target_link_libraries(citra_qt PRIVATE nihstro-headers Qt6::Multimedia Qt6::Concurrent)
+src/citra_qt/CMakeLists.txt:307:target_link_libraries(citra_qt PRIVATE ${PLATFORM_LIBRARIES} Threads::Threads)
+src/citra_qt/CMakeLists.txt:310:    target_link_libraries(citra_qt PRIVATE dwmapi)
+src/citra_qt/CMakeLists.txt:314:    target_link_libraries(citra_qt PRIVATE glad)
+src/citra_qt/CMakeLists.txt:318:    target_link_libraries(citra_qt PRIVATE vulkan-headers)
+src/citra_qt/CMakeLists.txt:326:        target_link_libraries(citra_qt PUBLIC Qt6::GuiPrivate)
+src/citra_qt/CMakeLists.txt:333:    target_link_libraries(citra_qt PRIVATE Qt6::QDarwinCameraPermissionPlugin)
+src/citra_qt/CMakeLists.txt:335:    target_link_libraries(citra_qt PUBLIC Qt6::DBus gamemode)
+src/citra_qt/CMakeLists.txt:358:    target_sources(citra_qt PUBLIC
+src/citra_qt/CMakeLists.txt:362:    target_link_libraries(citra_qt PRIVATE discord-rpc)
+src/citra_qt/CMakeLists.txt:367:    target_link_libraries(citra_qt PRIVATE web_service)
+src/citra_qt/CMakeLists.txt:371:    target_link_libraries(citra_qt PRIVATE ${FFMPEG_LIBRARIES})
+src/common/CMakeLists.txt:3:add_library(citra_common STATIC EXCLUDE_FROM_ALL
+src/common/CMakeLists.txt:116:  target_sources(citra_common PRIVATE
+src/common/CMakeLists.txt:121:  target_link_libraries(citra_common PRIVATE gamemode)
+src/common/CMakeLists.txt:125:  target_sources(citra_common PUBLIC
+src/common/CMakeLists.txt:136:  target_sources(citra_common PRIVATE
+src/common/CMakeLists.txt:158:target_link_libraries(citra_common PUBLIC fmt microprofile Boost::boost Boost::serialization Boost::iostreams)
+src/common/CMakeLists.txt:159:target_link_libraries(citra_common PRIVATE cryptopp microtar citra_zstd)
+src/common/CMakeLists.txt:162:    target_link_libraries(citra_common PRIVATE xbyak)
+src/common/CMakeLists.txt:166:    target_link_libraries(citra_common PRIVATE oaknut)
+src/common/CMakeLists.txt:175:    target_link_libraries(citra_common PRIVATE ${BACKTRACE_LIBRARY} dl)
+src/common/CMakeLists.txt:180:    target_link_libraries(citra_common PUBLIC xxhash)
+src/common/CMakeLists.txt:182:    target_link_libraries(citra_common PUBLIC xxHash::xxhash)
+src/CMakeLists.txt:196:add_subdirectory(common)
+src/CMakeLists.txt:197:add_subdirectory(core)
+src/CMakeLists.txt:198:add_subdirectory(video_core)
+src/CMakeLists.txt:199:add_subdirectory(audio_core)
+src/CMakeLists.txt:200:add_subdirectory(network)
+src/CMakeLists.txt:201:add_subdirectory(input_common)
+src/CMakeLists.txt:204:    add_subdirectory(tests)
+src/CMakeLists.txt:208:    add_subdirectory(citra_qt)
+src/CMakeLists.txt:212:    add_subdirectory(citra_cli)
+src/CMakeLists.txt:213:    add_subdirectory(citra_meta)
+src/CMakeLists.txt:217:    add_subdirectory(citra_libretro)
+src/CMakeLists.txt:221:    add_subdirectory(citra_room)
+src/CMakeLists.txt:225:    add_subdirectory(citra_room_standalone)
+src/CMakeLists.txt:229:    add_subdirectory(android/app/src/main/jni)
+src/CMakeLists.txt:234:    add_subdirectory(web_service)
+src/android/app/src/main/jni/CMakeLists.txt:1:add_library(citra-android SHARED
+src/android/app/src/main/jni/CMakeLists.txt:37:target_link_libraries(citra-android PRIVATE audio_core citra_common citra_core input_common network)
+src/android/app/src/main/jni/CMakeLists.txt:38:target_link_libraries(citra-android PRIVATE android camera2ndk inih jnigraphics log mediandk yuv)
+src/android/app/src/main/jni/CMakeLists.txt:41:    target_sources(citra-android PRIVATE
+src/android/app/src/main/jni/CMakeLists.txt:45:    target_link_libraries(citra-android PRIVATE EGL glad)
+src/android/app/src/main/jni/CMakeLists.txt:48:    target_sources(citra-android PRIVATE
+src/android/app/src/main/jni/CMakeLists.txt:53:        target_link_libraries(citra-android PRIVATE adrenotools)
+src/core/CMakeLists.txt:1:add_library(citra_core STATIC EXCLUDE_FROM_ALL
+src/core/CMakeLists.txt:500:    target_sources(citra_core PRIVATE hw/default_keys.h)
+src/core/CMakeLists.txt:504:    target_sources(citra_core PRIVATE
+src/core/CMakeLists.txt:514:target_link_libraries(citra_core PUBLIC citra_common PRIVATE audio_core network video_core input_common)
+src/core/CMakeLists.txt:515:target_link_libraries(citra_core PRIVATE Boost::boost Boost::serialization Boost::iostreams httplib)
+src/core/CMakeLists.txt:516:target_link_libraries(citra_core PUBLIC dds-ktx PRIVATE cryptopp fmt lodepng open_source_archives)
+src/core/CMakeLists.txt:519:    target_link_libraries(citra_core PRIVATE web_service)
+src/core/CMakeLists.txt:527:    target_sources(citra_core PRIVATE
+src/core/CMakeLists.txt:541:    target_sources(citra_core PRIVATE
+src/core/CMakeLists.txt:550:    target_link_libraries(citra_core PRIVATE ${FFMPEG_LIBRARIES})
+src/core/CMakeLists.txt:555:    target_sources(citra_core PRIVATE
+src/core/CMakeLists.txt:565:    target_link_libraries(citra_core PRIVATE dynarmic)
+src/core/CMakeLists.txt:572:    target_sources(citra_core PRIVATE
+src/citra_room/CMakeLists.txt:3:add_library(citra_room STATIC EXCLUDE_FROM_ALL
+src/citra_room/CMakeLists.txt:12:target_link_libraries(citra_room PRIVATE citra_common network)
+src/citra_room/CMakeLists.txt:14:    target_link_libraries(citra_room PRIVATE web_service)
+src/citra_room/CMakeLists.txt:17:target_link_libraries(citra_room PRIVATE cryptopp)
+src/citra_room/CMakeLists.txt:19:    target_link_libraries(citra_room PRIVATE getopt)
+src/citra_room/CMakeLists.txt:21:target_link_libraries(citra_room PRIVATE ${PLATFORM_LIBRARIES} Threads::Threads)
+src/audio_core/CMakeLists.txt:1:add_library(audio_core STATIC EXCLUDE_FROM_ALL
+src/audio_core/CMakeLists.txt:51:target_link_libraries(audio_core PUBLIC citra_common citra_core)
+src/audio_core/CMakeLists.txt:52:target_link_libraries(audio_core PRIVATE SoundTouch teakra)
+src/audio_core/CMakeLists.txt:54:    target_link_libraries(audio_core PRIVATE faad)
+src/audio_core/CMakeLists.txt:56:    target_link_libraries(audio_core PRIVATE faad2)
+src/audio_core/CMakeLists.txt:60:    target_link_libraries(audio_core PRIVATE SDL2::SDL2)
+src/audio_core/CMakeLists.txt:65:    target_link_libraries(audio_core PRIVATE cubeb)
+src/audio_core/CMakeLists.txt:70:    target_link_libraries(audio_core PRIVATE OpenAL)

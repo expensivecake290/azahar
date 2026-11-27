@@ -1,0 +1,10 @@
+src/video_core/host_shaders/metal/xbrz_freescale_frag.metal:28:17: error: program scope variable must reside in constant address space
+constexpr float SteepDirectionThreshold = 2.2f;
+                ^
+src/video_core/host_shaders/metal/xbrz_freescale_frag.metal:29:17: error: program scope variable must reside in constant address space
+constexpr float DominantDirectionThreshold = 3.6f;
+                ^
+src/video_core/host_shaders/metal/xbrz_freescale_frag.metal:30:17: error: program scope variable must reside in constant address space
+constexpr float HalfDiagonal = 0.7071067811865475244f;
+                ^
+3 errors generated.

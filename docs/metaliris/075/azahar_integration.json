@@ -1,0 +1,92 @@
+{
+  "phase": "075",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-075-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_metalfx_spatial.h",
+        "sha256": "caeba072500926753d302a38439ae0fd3612b57d9fbea6d15c2d69d84f717331",
+        "line": 26,
+        "symbol": "NativeCreationFailed,"
+      },
+      "contract": "Define executable API policy including typed prepared/disabled/bypass states and native queued result.",
+      "native_mapping": "Batch returns complete status/ownership per screen and exact issued producer/dependency states.",
+      "expected_result": "Real ARC link plus deterministic geometry/color/invalid profiles.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Apple SDK arm64 ARC and framework linkage, Metal 4 Spatial factory and encoder selectors verified in object, deterministic host settings, dimension and color validation, neutral dependency graph, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-075-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "5266a1c9f09253a13a24d14dd9927b4cea2be2da2aed1cad9d4928619d47bf65",
+        "line": 103,
+        "symbol": ""
+      },
+      "contract": "Shared Azahar texture owners retain native allocation and budget.",
+      "native_mapping": "Keep existing exact read-only source through completion and allocate separate budgeted output bound to the same device.",
+      "expected_result": "Source unchanged after hardware output and budget release after resize.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-075-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.mm",
+        "sha256": "bc005db6fbe2b972a12c5d3a08a41be31a8e23a11130394d24475063a08f7204",
+        "line": 529,
+        "symbol": "encoding.ended = true;"
+      },
+      "contract": "Native dependency is a real previously issued work ticket, with failure propagation.",
+      "native_mapping": "Opaque native MetalFX runs in its own submission, with applicable resource residency and an exact source tick. Consumer waits actual output tick before sample/readback.",
+      "expected_result": "Real native output with stale/foreign producer handling.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-075-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 38,
+        "symbol": "}"
+      },
+      "contract": "Device presence and Spatial support are independent.",
+      "native_mapping": "Use Metal 4 supportsMetal4FX via device scope and bypass before any allocation if absent or disabled.",
+      "expected_result": "Current physical availability probe and no legacy call.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-075-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+        "line": 151,
+        "symbol": "[[nodiscard]] ShaderCompilation QueueLibrary(ShaderSource source);"
+      },
+      "contract": "Native MTL4 compiler leases cover device generation and framework state.",
+      "native_mapping": "Reuse existing real ShaderCompiler's MTL4Compiler and guard creation from generation change.",
+      "expected_result": "Actual SDK compiler native selectors and fail code.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/075/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "075/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "220e30459a2cbf2a16368c5677e24a3cd4a8fe7d92dbbfad745a4d2bc06cff66"
+}

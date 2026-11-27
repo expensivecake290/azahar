@@ -1,0 +1,58 @@
+{
+  "phase": "017",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_stream_buffer-055",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 55,
+        "symbol": "u32 GetMemoryType(const vk::PhysicalDeviceMemoryProperties& properties, BufferType type) {"
+      },
+      "contract": "Existing stream mapping, caching, fallback and upload",
+      "native_mapping": "Preserve direct visible memory and synchronize overlapping ranges; callers retain GPU access until completion",
+      "expected_result": "Independent overlap, read/read, copy and wrap behavior in stream owner",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "renderer_vulkan-1353",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1353,
+        "symbol": "void* aligned_pointer = reinterpret_cast<void*>(Common::AlignDown(address, import_alignment));"
+      },
+      "contract": "Screenshot imported address and offset",
+      "native_mapping": "Validate true page-aligned owned VM span; expose typed accesses and fallback to native buffer in owning renderer",
+      "expected_result": "No pointer expansion beyond initial allocation, and live screenshot exercised later",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "mtl_memory_util-023",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_memory_util.h",
+        "sha256": "909f728e61d457777aae531ee72bf0a41464e201160e86a609eacfd8ce406531",
+        "line": 23,
+        "symbol": "Count,"
+      },
+      "contract": "Shared physical accounting plus logical pool",
+      "native_mapping": "Use one synchronized physical budget with precise rollback and aliased allocation bookkeeping",
+      "expected_result": "Concurrent 16 attempts against cap, overflow, resize and move replacement",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU budget/reservation concurrency and independently queried Mach VM boundaries passed."
+    }
+  ],
+  "owner_sha256_after": "831fe4e96775d44a875136a43db2d62cf07ab17b0197daae7daf9619749d0a88"
+}

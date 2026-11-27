@@ -1,0 +1,109 @@
+{
+  "phase": "029",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-029-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 26,
+        "symbol": "void RenderManager::BeginRendering(const Framebuffer* framebuffer,"
+      },
+      "contract": "Apple SDK MTL4 pass descriptors, encoder, level/slice and target extents.",
+      "native_mapping": "Real native MTL4 render producer/consumer call graph.",
+      "expected_result": "ARC build and link plus exact GPU attachment predicates.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native link passed; production scissored clear MSL and GPU oracle compiled to Metal 4 libraries."
+    },
+    {
+      "id": "MTL-029-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 51,
+        "symbol": "void RenderManager::BeginRendering(const RenderPass& new_pass) {"
+      },
+      "contract": "Native partial color/depth/stencil clears must preserve outside pixels.",
+      "native_mapping": "Select full load clear only when whole subresource is selected; compile MSL clear shader and scissor draw for partial cases.",
+      "expected_result": "MSL4 compiles on local toolchain; GPU fixture checks red background and green subrectangle.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-029-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 72,
+        "symbol": "void RenderManager::EndRendering() {"
+      },
+      "contract": "TBDR continuation with no unnecessary tile break; track feedback hazards.",
+      "native_mapping": "Native render pass compatible merge; tile-local ordered feedback when supported, distinct native copy otherwise.",
+      "expected_result": "GPU test repeated draws retain encoder and copied snapshot sees last write.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-029-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 142,
+        "symbol": "vk::RenderPass RenderManager::GetRenderpass(VideoCore::PixelFormat color,"
+      },
+      "contract": "Validate native sample and surface format compatibility and actual shader compile.",
+      "native_mapping": "Use SDK capability and format table and native MTL4Compiler to build internal clear pipeline.",
+      "expected_result": "CPU local SDK and MSL4 compile; no legacy encoders.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native link passed; production scissored clear MSL and GPU oracle compiled to Metal 4 libraries."
+    },
+    {
+      "id": "MTL-029-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 305,
+        "symbol": "// main attachment and the original attachments now get resolved into"
+      },
+      "contract": "Native color/depth/stencil resolve with precise sample count and ordering.",
+      "native_mapping": "MTLStoreActionStoreAndMultisampleResolve / resolve-only, sample-zero depth and stencil filters.",
+      "expected_result": "Live GPU resolve, load/store and depth/stencil fixture pending without exposed hardware.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MSAA-033-029",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.mm",
+        "sha256": "78585b1a1222459601b0bb1e0b8055d9556b91a3e17543045d0b6aa5741b92da",
+        "line": 632,
+        "symbol": "void RenderManager::CopyForFeedback(const RenderTexture& source, const RenderTexture& destination,"
+      },
+      "contract": "A resolved MSAA color snapshot loses per-sample values needed by framebuffer logic and factor-aware min/max. Metal 4 supports same-sample texture copies.",
+      "native_mapping": "Copy equal-format, equal-sample subresources to a distinct native snapshot and retain both through feedback.",
+      "expected_result": "Native compile and fixture verifies every copied sample individually.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/reopen-033.log",
+      "status": "PENDING",
+      "actual_result": "Native same-sample copy and readback compiled as MSL4, linked and passed PICA regression. GPU samples remain unverified."
+    }
+  ],
+  "owner_sha256_after": "a777ba9a63ac1319f543bb2c25879653bca7033665fa7d99a38883a543b7fc72"
+}

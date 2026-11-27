@@ -1,0 +1,296 @@
+{
+  "phase": "025",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-025-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 25,
+        "symbol": "std::string_view BufferTypeName(BufferType type) {"
+      },
+      "contract": "Diagnostic names for three allocation roles and invalid enum handling.",
+      "native_mapping": "Use shared Render category and exact role name in allocation diagnostic; reject invalid types.",
+      "expected_result": "Native labels match upload/download/stream; bad type rejects before allocation.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 38,
+        "symbol": "vk::MemoryPropertyFlags MakePropertyFlags(BufferType type) {"
+      },
+      "contract": "Choose CPU-visible write/read/stream memory properties; Vulkan coherence fallback if preferred flags absent.",
+      "native_mapping": "Select MTLStorageModeShared and route download pressure to Readback, other roles to Stream in shared memory budget.",
+      "expected_result": "Native SDK buffer is shared and logical usage accounted by role.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 54,
+        "symbol": "/// Get the preferred host visible memory type."
+      },
+      "contract": "Reduce unsuitable attributes then fall back to any CPU-accessible type, signal impossible requirements.",
+      "native_mapping": "Apple Silicon shared storage directly implements CPU and GPU access; attempts shrink on device size/pressure without any private mapping fallback.",
+      "expected_result": "Injected low budget retries down to feasible shared buffer and remains bounded.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 94,
+        "symbol": "constexpr u64 WATCHES_INITIAL_RESERVE = 0x4000;"
+      },
+      "contract": "Initially reserve watch storage and expand instead of silently losing watches.",
+      "native_mapping": "Interval-indexed watches grow on actual committed slices and old overlaps are removed safely.",
+      "expected_result": "Thousands of watches and repeated wraps preserve all live entries.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "VK-025-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 99,
+        "symbol": "StreamBuffer::StreamBuffer(const Instance& instance_, Scheduler& scheduler_,"
+      },
+      "contract": "Construct and initialize memory and watch state.",
+      "native_mapping": "Allocate through shared MemoryAllocator, verify scheduler device before publishing.",
+      "expected_result": "Role, requested capacity, actual capacity and same-device identity checked.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 108,
+        "symbol": "StreamBuffer::~StreamBuffer() {"
+      },
+      "contract": "Unmap, destroy buffer and release memory on teardown.",
+      "native_mapping": "RAII releases CPU map and shared Metal memory only after last outstanding GPU lease.",
+      "expected_result": "Destroy stream while captured GPU lease remains pending, budget is returned on completion.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 114,
+        "symbol": "std::tuple<u8*, u32, bool> StreamBuffer::Map(u32 size, u64 alignment) {"
+      },
+      "contract": "Apply non-coherent alignment where required, validate size, align offsets, reserve exact returned memory.",
+      "native_mapping": "Shared memory removes noncoherent atom flush/padding; apply requested alignment safely and reject oversize.",
+      "expected_result": "Alignment zero, nonpower, one-past-end and u64 overflow tested.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "VK-025-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 126,
+        "symbol": "bool invalidate{false};"
+      },
+      "contract": "Wrap when next allocation crosses capacity, report invalidation, restore watch iteration state.",
+      "native_mapping": "Track immutable slice generations over wraps and reject stale overlaps.",
+      "expected_result": "Wrap flag set independently of fences; disjoint prior slices remain valid.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "VK-025-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 140,
+        "symbol": "const u64 mapped_upper_bound = offset + size;"
+      },
+      "contract": "Wait only for pertinent previous operations before exposing mapped memory.",
+      "native_mapping": "Wait on latest overlapping ticket, require success, then acquire scoped memory lease.",
+      "expected_result": "CPU oracle rejects premature reservation, native upload waits for in-flight overlap.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 146,
+        "symbol": "void StreamBuffer::Commit(u32 size) {"
+      },
+      "contract": "Commit validates reserved width, moves cursor by actual bytes; partial/empty commits.",
+      "native_mapping": "Commit from matching live mapping; zero adds no watch, partial commits record exact bytes.",
+      "expected_result": "Oversize, stale and duplicate commits fail without losing a live map.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "VK-025-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 160,
+        "symbol": "if (!is_coherent && type == BufferType::Download) {"
+      },
+      "contract": "Download cache invalidate and upload flush conditional on noncoherent Vulkan allocation.",
+      "native_mapping": "Release CPU write lease before later GPU access; use native feedback before mapping shared readback, no noncoherent flushing.",
+      "expected_result": "CPU read exact sentinel only after completed native write.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 166,
+        "symbol": "offset += size;"
+      },
+      "contract": "Append watch with upper bound and scheduler expected submission ticket.",
+      "native_mapping": "Use exact interval and update maximum issued use when an existing slice is read again.",
+      "expected_result": "Repeated references extend unsafe range deadline across pending submissions.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "VK-025-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 177,
+        "symbol": "void StreamBuffer::CreateBuffers(u64 preferred_size) {"
+      },
+      "contract": "Select heap sizes, clamp preferred allocation and retry through minimum 8 KiB.",
+      "native_mapping": "Respect native maxBufferLength and existing MemoryAllocator budget; degrade by halving with exact bounded minimum.",
+      "expected_result": "Budget-induced smaller MTLBuffer, exhausted fallback throws and leaves shared budget intact.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-14",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 196,
+        "symbol": "while (attempt_size >= min_buffer_size) {"
+      },
+      "contract": "Dedicated vs ordinary Vulkan allocation; bind, map and use requested alignment.",
+      "native_mapping": "Use actual native unified buffer through MemoryAllocator; CPU map per use; explicit shader/queue leases.",
+      "expected_result": "Verify native shared storage, log real acquired capacity and correct ARC release.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-15",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 238,
+        "symbol": "LOG_INFO(Render_Vulkan, \"Created {} buffer with size {} KiB (flags {})\","
+      },
+      "contract": "Emit actual buffer size, role and optional debugging names.",
+      "native_mapping": "Shared Render log and native MTLBuffer label with actual size.",
+      "expected_result": "Native API validation and diagnostic log contain exact allocation.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-16",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 251,
+        "symbol": "} catch (const vk::SystemError& err) {"
+      },
+      "contract": "Clean failed allocation and retry small; fail after exhausting fallback.",
+      "native_mapping": "Existing shared Reservation RAII cleans failed allocations, throw original error on final attempt.",
+      "expected_result": "No failed allocation leaves charged budget.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-025-17",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 267,
+        "symbol": "void StreamBuffer::ReserveWatches(std::vector<Watch>& watches, std::size_t grow_size) {"
+      },
+      "contract": "Reserve only enough watch entries; wait incrementally until previously used bound is safe.",
+      "native_mapping": "Watch exact overlapping intervals; unobserved pinned download consumes live range until released.",
+      "expected_result": "Adjacent ranges don't wait and live readback pin cannot be overwritten.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    }
+  ],
+  "owner_sha256_after": "cae6c57377d97817d87fdeef6caab3a4cf3a7dd2c74f53355be8722d6ec840f0"
+}

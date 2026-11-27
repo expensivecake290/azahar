@@ -1,0 +1,58 @@
+{
+  "phase": "090",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-090-01",
+      "source": {
+        "path": "src/video_core/video_core.cpp",
+        "sha256": "ad57cc868055d3e344da85b40ac5214d6456a61ba4f922d45cfe3c5e02a36076",
+        "line": 28,
+        "symbol": "const auto graphics_api = Settings::GetWorkingGraphicsAPI();"
+      },
+      "contract": "Core constructs the exact selected renderer and forwards both windows and real shared emulation state.",
+      "native_mapping": "Map Metal enum to RendererMetal, with no SDL initialization or Vulkan execution. Preserve Software as a deliberately selectable separate backend.",
+      "expected_result": "Real native object refers to exactly the native Metal implementation and Software renderer; native factory linked in 091.",
+      "dependency_owner": "004/005/008/091",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual native and Software-only dispatcher compiled with matching CMake flags; exact native constructor dependency, software backend and no SDL/Vulkan symbols. PICA 48/801 and CTest 64 preserved. Native construction definition belongs to 091."
+    },
+    {
+      "id": "VK-090-02",
+      "source": {
+        "path": "src/video_core/video_core.cpp",
+        "sha256": "ad57cc868055d3e344da85b40ac5214d6456a61ba4f922d45cfe3c5e02a36076",
+        "line": 48,
+        "symbol": "default:"
+      },
+      "contract": "Unsupported configured API falls back to the platform\u2019s available default. Genuine native constructor errors are propagated.",
+      "native_mapping": "Under the native option, ignored unsupported values resolve to Metal; keep the selected native exception, never run a GPU fallback.",
+      "expected_result": "Feature-off Software dispatcher compiles and contains no native renderer symbol; factory rejection with empty Metal devices tested after 091.",
+      "dependency_owner": "005/086/091",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual native and Software-only dispatcher compiled with matching CMake flags; exact native constructor dependency, software backend and no SDL/Vulkan symbols. PICA 48/801 and CTest 64 preserved. Native construction definition belongs to 091."
+    },
+    {
+      "id": "VK-090-03",
+      "source": {
+        "path": "src/video_core/video_core.cpp",
+        "sha256": "ad57cc868055d3e344da85b40ac5214d6456a61ba4f922d45cfe3c5e02a36076",
+        "line": 38,
+        "symbol": "if (SDL_WasInit(SDL_INIT_VIDEO) == 0) {"
+      },
+      "contract": "The existing unrelated Vulkan path optionally initializes SDL only when it was compiled and selected.",
+      "native_mapping": "Native branch uses only neutral frontend and native renderer header. External pre-existing switch cases remain behind original guards.",
+      "expected_result": "Native/off dependency and symbols contain no Vulkan, MoltenVK or OpenGL execution for Metal.",
+      "dependency_owner": "001/002/008/087",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual native and Software-only dispatcher compiled with matching CMake flags; exact native constructor dependency, software backend and no SDL/Vulkan symbols. PICA 48/801 and CTest 64 preserved. Native construction definition belongs to 091."
+    }
+  ],
+  "owner_sha256_after": "cf0a0166ad6cfe2282b00be1228e03f2ef520af87826681db4c75c74b74c319d"
+}

@@ -1,0 +1,11 @@
++docs/metaliris/027/verify.sh:19> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' '-fmodules-cache-path=/tmp/metaliris-r12.lKARZLkI/phase027/modules' -Werror -c /Users/anthonygarcia/azahar/docs/metaliris/027/verify.metal -o /tmp/metaliris-r12.lKARZLkI/phase027/descriptor.air
+/Users/anthonygarcia/azahar/docs/metaliris/027/verify.metal:11:53: error: call to member function 'read' is ambiguous
+    const uint result = source[0] + sample + lookup.read(0).r;
+                                             ~~~~~~~^~~~
+/private/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.wfvsQd/Metal.xctoolchain/usr/metal/32023/lib/clang/32023/include/metal/__bits/metal_texture_buffer:39:24: note: candidate function
+  METAL_FUNC vec<T, 4> read(ushort coord) const thread
+                       ^
+/private/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.wfvsQd/Metal.xctoolchain/usr/metal/32023/lib/clang/32023/include/metal/__bits/metal_texture_buffer:45:24: note: candidate function
+  METAL_FUNC vec<T, 4> read(uint coord) const thread
+                       ^
+1 error generated.

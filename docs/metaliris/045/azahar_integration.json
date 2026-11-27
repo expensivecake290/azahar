@@ -1,0 +1,41 @@
+{
+  "phase": "045",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-045-01",
+      "source": {
+        "path": "src/video_core/host_shaders/metal/full_screen_triangle_vert.metal",
+        "sha256": "9460ae0544bdd423a38d925c657a1bf32278255d5c74104fcc0f3aafc6d6c3ef",
+        "line": 15,
+        "symbol": ""
+      },
+      "contract": "Base utility triangle precedes fragment for scaled normalized UV.",
+      "native_mapping": "Match production locn0 and share argument table buffer(0) with compatible transform prefix.",
+      "expected_result": "Native stage pairing uses actual embedded vertex library.",
+      "dependency_owner": "045",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 045 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "045/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-045-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 816,
+        "symbol": "void BlitHelper::FilterXbrz(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "xBRZ texture filter uses base mip, scoped rendering, source opaque/alpha handling and runtime resolution scale.",
+      "native_mapping": "The native filter runtime owns closure order and texture property validation.",
+      "expected_result": "Later Phase 064 confirms correct runtime input scale, scoped cache and argument/stage dimensions.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 045 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "045/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "4800746131cb264ecd5187af43cc4962c4a61991b691c7cf464c7fa45d47103f"
+}

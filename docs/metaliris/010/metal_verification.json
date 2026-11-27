@@ -1,0 +1,41 @@
+{
+  "phase": "010",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-SDK-DIAGNOSTICS",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 20,
+        "symbol": "public:"
+      },
+      "contract": "Apple NSError has stable domain/code and localized description.",
+      "native_mapping": "Extract UTF-8 diagnostic data while Foundation objects are alive and reject absent resource deterministically.",
+      "expected_result": "Fixture asserts NSError domain, code and message; tests success and nil device paths.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "MTL-CONTEXT-CLOSE",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 79,
+        "symbol": "private:"
+      },
+      "contract": "Real-device work must reject empty, stale, foreign and closed leases.",
+      "native_mapping": "Create two contexts from a real device, advance and close one, and serialize close against an active guard.",
+      "expected_result": "Device fixture passes status matrix, duplicate close and guard release ordering.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Real Metal device or dependent scheduler is unavailable; CPU diagnostics passed."
+    }
+  ],
+  "owner_sha256_after": "d899878f2b6f538cb5c29814b5be183c6335423d95ebd1337031e1b2ac62bb93"
+}

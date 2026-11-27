@@ -1,0 +1,41 @@
+{
+  "phase": "046",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-046-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/x_gradient.frag",
+        "sha256": "bc61990bfe7c35cab01ba093d3b0c8392a873ab1dda279514a705ddbd4b8a781",
+        "line": 40,
+        "symbol": "frag_color = vec2(r - l, l + 2.0 * c + r);"
+      },
+      "contract": "The X output stores unsaturated horizontal difference and smooth term as half-floats.",
+      "native_mapping": "Accept actual Phase 044 native RG16Float color attachment output, absolutely preserve signed components and recorded stage hazard.",
+      "expected_result": "Native 044->046 runs through same DeviceContext, native GPU allocation and render scheduler without CPU readback between passes.",
+      "dependency_owner": "046",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-046-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 798,
+        "symbol": "void BlitHelper::FilterAnime4K(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "The helper owns later composed Anime4K integration and source-specific alias behavior.",
+      "native_mapping": "The native Y shader produces scalar R16Float for the refinement texture. Phase 064 keeps the correct bindings and lifetimes.",
+      "expected_result": "Native gradient graph, size scaling, argument table, resolve and resource eviction in Phase 064.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 046 <native-build-dir> <scratch-dir> <tex-coord-library> <x-gradient-library>",
+      "evidence_path": "046/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "ba140819b36bb26210b1d1d1c1b0def1db3b9ea738b801b8f4a36d3284e8384d"
+}

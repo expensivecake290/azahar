@@ -1,0 +1,16 @@
++docs/metaliris/verify_host_shader.sh:35> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' -Werror '-fmodules-cache-path=/tmp/metaliris-r12.lKARZLkI/phase041/modules' -MD -MF /tmp/metaliris-r12.lKARZLkI/phase041/native-msl.d /Users/anthonygarcia/azahar/src/video_core/host_shaders/metal/refine_frag.metal -o /tmp/metaliris-r12.lKARZLkI/phase041/refine_frag.metallib
++docs/metaliris/verify_host_shader.sh:38> file /tmp/metaliris-r12.lKARZLkI/phase041/refine_frag.metallib
+/tmp/metaliris-r12.lKARZLkI/phase041/refine_frag.metallib: MetalLib executable (MacOS), version 1.2.9
++docs/metaliris/verify_host_shader.sh:39> fixture_libraries=( ) 
++docs/metaliris/verify_host_shader.sh:40> [[ -f /Users/anthonygarcia/azahar/docs/metaliris/041/verify.metal ]]
++docs/metaliris/verify_host_shader.sh:46> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -DENABLE_SOFTWARE_RENDERER '-DMICROPROFILE_ENABLED=0' -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -isystem /Users/anthonygarcia/azahar/externals/microprofile -isystem /Users/anthonygarcia/azahar/externals/nihstro/include -isystem /Users/anthonygarcia/azahar/externals/xxHash -Wall -Wextra -Werror -Wno-unused-parameter -MD -MF /tmp/metaliris-r12.lKARZLkI/phase041/fixture.d -c /Users/anthonygarcia/azahar/docs/metaliris/041/verify.mm -o /tmp/metaliris-r12.lKARZLkI/phase041/fixture.o
+/Users/anthonygarcia/azahar/docs/metaliris/041/verify.mm:71:49: error: too many arguments provided to function-like macro invocation
+   71 |             assert(luma[AroundCenter<LumaWidth, LumaHeight>(slot)] == 0.875f);
+      |                                                 ^
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/include/assert.h:71:9: note: macro 'assert' defined here
+   71 | #define assert(e) \
+      |         ^
+/Users/anthonygarcia/azahar/docs/metaliris/041/verify.mm:71:13: error: use of undeclared identifier 'assert'
+   71 |             assert(luma[AroundCenter<LumaWidth, LumaHeight>(slot)] == 0.875f);
+      |             ^~~~~~
+2 errors generated.

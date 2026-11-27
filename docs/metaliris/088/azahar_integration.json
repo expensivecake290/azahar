@@ -1,0 +1,41 @@
+{
+  "phase": "088",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-088-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configuration_shared.cpp",
+        "sha256": "5459a103f6e799b7f2a9c922d67fd6aed985153666971d76e970be4c78cb0e0f",
+        "line": 47,
+        "symbol": "void ConfigurationShared::SetColoredTristate(QCheckBox* checkbox,"
+      },
+      "contract": "Per-game check state follows ConfigureGraphics lifetime and shared settings rules.",
+      "native_mapping": "Declare class-owned tracker initialized during per-game setup; remove typed control subclass when out-of-line owner reopens.",
+      "expected_result": "Real global/per-game user and Qt widget round trips, new MOC and frontend link with distinct scopes.",
+      "dependency_owner": "083/085/089",
+      "command": "python3 docs/metaliris/083/verify.py <Qt build> <core> <output>",
+      "evidence_path": "088/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt MOC and application link, native/feature-off compilation, exact reproduced unsupported-device opt-out test repaired, normal and per-game controls, CTest 64 and PICA 48/801."
+    },
+    {
+      "id": "AZ-088-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.h",
+        "sha256": "8cac78f8071117711c188cb3a6f9c175d54f54bdc0100efd21bd54a9b373099b",
+        "line": 35,
+        "symbol": "void SetupPerGameUI();"
+      },
+      "contract": "Physical display control lifecycle and signal declarations remain Qt frontend-only.",
+      "native_mapping": "Keep private native interface separate from renderer and reused by device selection and checkbox transitions.",
+      "expected_result": "Run actual ConfigureGraphics settings consumers without introducing Qt inside video_core.",
+      "dependency_owner": "083/087/089",
+      "command": "python3 docs/metaliris/083/verify.py <Qt build> <core> <output>",
+      "evidence_path": "088/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt MOC and application link, native/feature-off compilation, exact reproduced unsupported-device opt-out test repaired, normal and per-game controls, CTest 64 and PICA 48/801."
+    }
+  ],
+  "owner_sha256_after": "2a735768e47e408506639c0e1107a7c0f21eb6a05d32d32a6be56a4e39919d12"
+}

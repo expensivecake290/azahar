@@ -1,0 +1,75 @@
+{
+  "phase": "078",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-078-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_surface_adapter.h",
+        "sha256": "6f8f46bea7bc20a0e828b8058975330cc1c2cfd5d0a4fb9ee8c316959b050ce5",
+        "line": 38,
+        "symbol": "public:"
+      },
+      "contract": "Native layer-tree ownership and retained snapshot are in shared renderer-independent adapter.",
+      "native_mapping": "Expose reference from Qt in separate narrow declaration and reuse existing WId call conventions.",
+      "expected_result": "Test Qt namespace method type and native delegation.",
+      "dependency_owner": "078",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt Cocoa C++ compile flags and linked mode-on/off consumers, native CMake definition repaired and verified in all actual Qt contexts, linked native settings and PICA 48/801, CTest 64 plus 5 existing skips, neutral include closure."
+    },
+    {
+      "id": "AZ-078-02",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 470,
+        "symbol": "wsi.render_surface = MetalUtil::CreateMetalLayer(window->winId());"
+      },
+      "contract": "Existing Qt window lookup currently calls the raw layer bridge.",
+      "native_mapping": "Declare new native bridge for Phase 081 to use when the selected renderer is native. Preserve current consumers until their owned phase.",
+      "expected_result": "Prove binding and real QWindow-to-NSView lifecycle in 079/081.",
+      "dependency_owner": "081",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-078-03",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "cc458c3fbd5e6ae2465c03cb78f567fcd148ae419e3e37baa4e5306735659b64",
+        "line": 594,
+        "symbol": "#ifdef ENABLE_METAL"
+      },
+      "contract": "Native settings paths require actual ENABLE_METAL preprocessor definition from configure.",
+      "native_mapping": "Reopen top-level CMake only when effective definition is missing, compile actual Qt and settings targets with selected native mode, preserve off-mode behavior.",
+      "expected_result": "Build and inspect actual compile commands; run PICA and CTest.",
+      "dependency_owner": "078",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt Cocoa C++ compile flags and linked mode-on/off consumers, native CMake definition repaired and verified in all actual Qt contexts, linked native settings and PICA 48/801, CTest 64 plus 5 existing skips, neutral include closure."
+    },
+    {
+      "id": "AZ-078-DEVICE-CONSUMER",
+      "source": {
+        "path": "src/citra_qt/util/graphics_device_info.cpp",
+        "sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+        "line": 33,
+        "symbol": "#ifdef ENABLE_VULKAN"
+      },
+      "contract": "Qt setup calls an ordinary C++ API for a stable physical-device list; native definitions own SDK device support and debug capture availability.",
+      "native_mapping": "Use narrow Qt-side device info and capture declarations to adapt the existing backend-neutral native probe. Preserve actual index order including unsupported entries.",
+      "expected_result": "Compile real public C++ API for 079 native Objective-C++ implementation and 082 Qt conversion path. Device values supported/Spatial and capture availability stay independent.",
+      "dependency_owner": "078",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt Cocoa C++ compile flags and linked mode-on/off consumers, native CMake definition repaired and verified in all actual Qt contexts, linked native settings and PICA 48/801, CTest 64 plus 5 existing skips, neutral include closure."
+    }
+  ],
+  "owner_sha256_after": "baaf9fd93733694dea844adebf6d3db9c947ff9fff56d21d2427d3da661b2f0f"
+}

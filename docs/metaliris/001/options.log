@@ -1,0 +1,19 @@
++ cmake -DBSD= -DENABLE_METAL=OFF -DEXPECTED=ON -P /private/tmp/metaliris-r12.lKARZLkI/baseline-options.cmake
++ cmake -DBSD=NetBSD -DENABLE_METAL=OFF -DEXPECTED=OFF -P /private/tmp/metaliris-r12.lKARZLkI/baseline-options.cmake
++ cmake -DBSD= -DENABLE_METAL=ON -DEXPECTED=ON -P /private/tmp/metaliris-r12.lKARZLkI/baseline-options.cmake
++ cmake -DENABLE_VULKAN=OFF -DEXPECTED=OFF -P /private/tmp/metaliris-r12.lKARZLkI/baseline-options.cmake
++ cmake -DENABLE_VULKAN=ON -DENABLE_METAL=ON -DEXPECTED=ON -P /private/tmp/metaliris-r12.lKARZLkI/baseline-options.cmake
++ cmake -DBSD= -DENABLE_METAL=OFF -DEXPECTED=ON -P /private/tmp/metaliris-r12.lKARZLkI/options.cmake
++ cmake -DBSD=NetBSD -DENABLE_METAL=OFF -DEXPECTED=OFF -P /private/tmp/metaliris-r12.lKARZLkI/options.cmake
++ cmake -DBSD= -DENABLE_METAL=ON -DEXPECTED=OFF -P /private/tmp/metaliris-r12.lKARZLkI/options.cmake
++ cmake -DENABLE_VULKAN=OFF -DEXPECTED=OFF -P /private/tmp/metaliris-r12.lKARZLkI/options.cmake
++ cmake -DENABLE_VULKAN=ON -DENABLE_METAL=ON -DEXPECTED=OFF -P /private/tmp/metaliris-r12.lKARZLkI/options.cmake
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/option-cache-fixture -B /private/tmp/metaliris-r12.lKARZLkI/option-cache -DENABLE_VULKAN=ON -DENABLE_METAL=ON -DEXPECTED=OFF
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/option-cache
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/option-cache-fixture -B /private/tmp/metaliris-r12.lKARZLkI/option-cache -DENABLE_METAL=OFF -DEXPECTED=ON
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/option-cache
+PASS options

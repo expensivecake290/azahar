@@ -1,0 +1,211 @@
+{
+  "phase": "064",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-064-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 38,
+        "symbol": "struct PushConstants {"
+      },
+      "contract": "Position, scale and length constants drive exact source/destination coordinates and buffer bounds.",
+      "native_mapping": "Known matching ABI layouts, signed filter crop transform, explicit word pitches and full bounded write extent.",
+      "expected_result": "Linked crop, alignment, odd extent, exact pitch and region ABI in CPU fixture.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake linked target, exact equality for twelve embedded Metal executable libraries, independent header/region/sample route checks, compiled physical test fixture, PICA200 48 cases / 801 assertions and 64 passing CTest with five existing skips."
+    },
+    {
+      "id": "VK-064-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 227,
+        "symbol": "BlitHelper::BlitHelper(const Instance& instance_, Scheduler& scheduler_,"
+      },
+      "contract": "Construct per-device compute, render, depth/stencil and filter state; exact formats and immutable lifetime.",
+      "native_mapping": "Compile MTL4 pipelines from offline native MetalLib, lazily cache by kernel/format/sample, bind device-scoped immutable snapshots and retain native objects.",
+      "expected_result": "Check actual SDK APIs, CMake-embedded artifact resolution and shader format choices.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake linked target, exact equality for twelve embedded Metal executable libraries, independent header/region/sample route checks, compiled physical test fixture, PICA200 48 cases / 801 assertions and 64 passing CTest with five existing skips."
+    },
+    {
+      "id": "VK-064-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 346,
+        "symbol": "}"
+      },
+      "contract": "Control viewport and scissor, preserving unrelated destination content.",
+      "native_mapping": "Set MTL4 viewport/scissor to exact region and preserve color/depth/stencil using native load/store.",
+      "expected_result": "Render with odd crop, reversed axes, clear/guard pixels and nonzero slices.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 388,
+        "symbol": "bool BlitHelper::BlitDepthStencil(Surface& source, Surface& dest,"
+      },
+      "contract": "Nearest-neighbor depth and stencil blit, native predicate/fallback.",
+      "native_mapping": "Nearest matching depth and stencil fragment exports, correct alignment and an alias staging copy when needed.",
+      "expected_result": "Exact scaled depth/stencil samples per pixel using independent readback.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 424,
+        "symbol": "bool BlitHelper::ConvertDS24S8ToRGBA8(Surface& source, Surface& dest,"
+      },
+      "contract": "D24S8 packed reinterpretation using native sample counts.",
+      "native_mapping": "Compute for single-sample, full sample-frequency render for matched MSAA, optional explicit same-target resolve.",
+      "expected_result": "Byte-exact per-sample data, nonzero src/dst offset, scissor and independent resolve oracle.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 553,
+        "symbol": "bool BlitHelper::DepthToBuffer(Surface& source, vk::Buffer buffer,"
+      },
+      "contract": "D24S8 packing to GPU buffer with stable lease, extent and offset.",
+      "native_mapping": "Pass existing compute readback shader with immutable parameter/table and retained destination mapping, dispatch exact odd widths/pitches.",
+      "expected_result": "Check expected packed words and guard bytes while respecting CPU/GPU mapping ownership.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 628,
+        "symbol": "void BlitHelper::ResolveTexture(Surface& surface) {"
+      },
+      "contract": "Native multisample resolve to single sample with hazards and preservation.",
+      "native_mapping": "Load stored samples, preserve source and resolve destination with native attachment store actions and explicit same subresource dimensions and aspects.",
+      "expected_result": "Color average, depth/stencil sample zero and native subsequent access.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 721,
+        "symbol": "vk::Pipeline BlitHelper::MakeComputePipeline(vk::ShaderModule shader, vk::PipelineLayout layout) {"
+      },
+      "contract": "Utility compiler pipelines and per format caching do not reuse incompatible pipeline.",
+      "native_mapping": "Use full native format/sample/operator key; native driver remains responsible for exact MTL4 executable.",
+      "expected_result": "Compiler and framework types, per-format runtime native draw and error handling.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake linked target, exact equality for twelve embedded Metal executable libraries, independent header/region/sample route checks, compiled physical test fixture, PICA200 48 cases / 801 assertions and 64 passing CTest with five existing skips."
+    },
+    {
+      "id": "VK-064-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 766,
+        "symbol": "bool BlitHelper::Filter(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "NoFilter returns false, other mips are handled by mip-chain, all filters map to real entries.",
+      "native_mapping": "Select using native header contract; RGB and shader variants receive original settings and current resolutions.",
+      "expected_result": "Independent utility fixture uses all filters on odd dimensions, rejects invalid requests.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 798,
+        "symbol": "void BlitHelper::FilterAnime4K(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "Anime4K, Bicubic, ScaleForce, xBRZ, MMPX path includes texture slot, resolution and passes.",
+      "native_mapping": "Run native X gradient then Y then refine on two private scratch textures with correct float formats and residency. One-pass filters reuse shared full-screen triangle.",
+      "expected_result": "Mismatched extents and odd pixels match independent filter and gradient oracles.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 875,
+        "symbol": "void BlitHelper::FilterPass(Surface& surface, vk::Pipeline pipeline, vk::PipelineLayout layout,"
+      },
+      "contract": "Source crop-aware coordinates and exact destination area, preserve res scale and immutable source lifetimes.",
+      "native_mapping": "Use standard packed TextureTransform and xBRZ auxiliary fragment constants; explicit snapshot and hazards for node dependencies.",
+      "expected_result": "Retained descriptor generations, odd size crop and mirrored source/destination input.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-064-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 952,
+        "symbol": "void BlitHelper::FilterPassThreeTextures(Surface& surface, vk::Pipeline pipeline,"
+      },
+      "contract": "Refinement keyed by source image/luminance textures.",
+      "native_mapping": "Bind actual generated gradient luminance in the correct slot and preserve native render target writes.",
+      "expected_result": "Known pattern chain X/Y with per-pass state independent of render pipeline compilation.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "27dd44fd05dc4b06ad7bded285f082e4d8c7fb477d80dc73f917ecb99c38cf1f"
+}

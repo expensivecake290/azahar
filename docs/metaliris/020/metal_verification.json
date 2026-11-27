@@ -1,0 +1,41 @@
+{
+  "phase": "020",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_resource_pool-049",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 49,
+        "symbol": "class CommandPool final : public ResourcePool {"
+      },
+      "contract": "SDK ARC types and count limits",
+      "native_mapping": "Compile actual consumer and exercise design constraints at compile time",
+      "expected_result": "Metal 4 allocator/table type, move-only lease and limits",
+      "dependency_owner": "020",
+      "command": "zsh docs/metaliris/020/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "020/header.log",
+      "status": "PASS",
+      "actual_result": "ARC header and SDK limit tests passed."
+    },
+    {
+      "id": "vk_resource_pool-039",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 39,
+        "symbol": "/// Manages pool overflow allocating new resources."
+      },
+      "contract": "Execution of bounded completion slot and allocation policy",
+      "native_mapping": "Use CPU bookkeeping and actual Metal allocation fixture",
+      "expected_result": "CPU exhaustion and reuse scenarios pass; allocation requires Metal device",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "2c1371153d4e288c7df678ed2771cdbc3ec3784df2fc8bc6433209804f67dcde"
+}

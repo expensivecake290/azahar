@@ -1,0 +1,160 @@
+{
+  "phase": "070",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-070-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 19,
+        "symbol": "explicit Swapchain(const Instance& instance, u32 width, u32 height, vk::SurfaceKHR surface,"
+      },
+      "contract": "Construction takes a selected device and owns generation-specific swapchain backing.",
+      "native_mapping": "Take current Instance owner; retain Surface from immutable frontend snapshot. Drawable is a move-only lease of its exact native surface generation.",
+      "expected_result": "Compile ARC shape; native repeated acquire/recreate and late lease teardown in 071.",
+      "dependency_owner": "070",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PASS",
+      "actual_result": "Apple ARC header ABI, 64 independent pacing cases, actual CAMetalLayer configuration, clean transitive dependencies, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-070-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 23,
+        "symbol": "/// Creates (or recreates) the swapchain with a given size."
+      },
+      "contract": "Creation and recreation pick valid size and format; stale or unavailable surfaces cause graceful retry.",
+      "native_mapping": "Update strictly ordered published surface, exact pixel dimensions, configured pacing and optional live policy change. Accept headless and suspended snapshots without drawable.",
+      "expected_result": "Configure resize/Retina/occluded/headless states and stale surface generation rejection.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-070-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 26,
+        "symbol": "/// Acquires the next image in the swapchain."
+      },
+      "contract": "Acquisition checks state and waits for image or recovers on out-of-date/suboptimal/lost acquisition.",
+      "native_mapping": "Return exact status for no drawable, suspended, retired device, and ready; wait only in presentation worker up to Core Animation's bounded timeout.",
+      "expected_result": "Repeated nil acquisition and retry after new frontend snapshot.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-070-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 29,
+        "symbol": "/// Presents the current image and move to the next one"
+      },
+      "contract": "Presentation queues a visible ready image and advances ownership exactly once.",
+      "native_mapping": "Consume move-only acquired lease against exact live generation. Submit scheduler options with native drawable wait, commit, signal and presentation.",
+      "expected_result": "Typed SDK call and rejection before stale submission, then physical present.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-070-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 32,
+        "symbol": "vk::SurfaceKHR GetSurface() const {"
+      },
+      "contract": "Expose device-facing drawable, format, extent, and count safely.",
+      "native_mapping": "Only the valid acquired lease exposes native texture. Live swapchain reports retained surface and exact configured dimensions/format/maximum drawable count.",
+      "expected_result": "Structural interface and native image size/format against layer.",
+      "dependency_owner": "070",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PASS",
+      "actual_result": "Apple ARC header ABI, 64 independent pacing cases, actual CAMetalLayer configuration, clean transitive dependencies, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-070-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 60,
+        "symbol": "vk::Extent2D GetExtent() const {"
+      },
+      "contract": "Image-available and present-ready synchronization tied to actual image.",
+      "native_mapping": "Carry native lease and generation through the submission and rely on actual explicit Metal 4 queue wait/signal and timeline.",
+      "expected_result": "No raw handle lifetimes or legacy command-buffer presents; SDK protocol proof.",
+      "dependency_owner": "070",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PASS",
+      "actual_result": "Apple ARC header ABI, 64 independent pacing cases, actual CAMetalLayer configuration, clean transitive dependencies, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-070-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 70,
+        "symbol": "}"
+      },
+      "contract": "Select observable format and pacing from available device alternatives, refresh, limiter and vsync.",
+      "native_mapping": "Define explicit FIFO/mailbox/immediate policy, include supported mode fallback, leave Core Animation buffer availability and sRGB format to 071.",
+      "expected_result": "Run all capability, low refresh, unthrottled, accelerated and slower rate choices.",
+      "dependency_owner": "070",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PASS",
+      "actual_result": "Apple ARC header ABI, 64 independent pacing cases, actual CAMetalLayer configuration, clean transitive dependencies, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-070-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+        "sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+        "line": 81,
+        "symbol": ""
+      },
+      "contract": "Destroy/recreate resources and per-image state across device or surface replacement.",
+      "native_mapping": "Owned epoch retires only after outstanding drawable deallocation and native submission. Surface recreation avoids stale Cocoa pointer use.",
+      "expected_result": "Gen-mismatch, in-flight retirement and teardown checks.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-070-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.h",
+        "sha256": "b7dee9c5baef9345bc95af0f1687db3b06a97ad305f8a457b086ef6c70770cfd",
+        "line": 29,
+        "symbol": "u32 frame_limit{100};"
+      },
+      "contract": "Azahar GetFrameLimit returns double. Integer pacing truncates temporary fractional rates and crosses the 100 percent mode threshold.",
+      "native_mapping": "Preserve the exact floating-point limit through the native pacing selector.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/reopen-073.log",
+      "status": "PASS",
+      "actual_result": "Native header builds and fractional values below, at and above the limiter boundary select the expected policy."
+    }
+  ],
+  "owner_sha256_after": "09e41e79a301b194247659250e56b7c8f760a7c6e883561ef91249d72261c3be"
+}

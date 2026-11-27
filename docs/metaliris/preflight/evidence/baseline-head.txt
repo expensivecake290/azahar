@@ -1,0 +1,2 @@
+c621eafbf316699c55f4c9c0c689d4e49498d360
+Fix two debug settings that are never loaded from config (#2846)

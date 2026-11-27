@@ -1,0 +1,354 @@
+
+metal
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/metal/CMakeFiles/CMakeScratch/TryCompile-27kNix"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/metal/CMakeFiles/CMakeScratch/TryCompile-27kNix"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/metal/CMakeFiles/CMakeScratch/TryCompile-27kNix'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_6ae4b
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_6ae4b.dir/src.mm.o -MF CMakeFiles/cmTC_6ae4b.dir/src.mm.o.d -o CMakeFiles/cmTC_6ae4b.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/metal/CMakeFiles/CMakeScratch/TryCompile-27kNix/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0  CMakeFiles/cmTC_6ae4b.dir/src.mm.o -o cmTC_6ae4b  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0
+
+qt
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/qt/CMakeFiles/CMakeScratch/TryCompile-y9sVnT"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/qt/CMakeFiles/CMakeScratch/TryCompile-y9sVnT"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/qt/CMakeFiles/CMakeScratch/TryCompile-y9sVnT'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_b0ed8
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_b0ed8.dir/src.mm.o -MF CMakeFiles/cmTC_b0ed8.dir/src.mm.o.d -o CMakeFiles/cmTC_b0ed8.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/qt/CMakeFiles/CMakeScratch/TryCompile-y9sVnT/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0  CMakeFiles/cmTC_b0ed8.dir/src.mm.o -o cmTC_b0ed8  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0
+
+implicit
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/implicit/CMakeFiles/CMakeScratch/TryCompile-tOMUQE"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/implicit/CMakeFiles/CMakeScratch/TryCompile-tOMUQE"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/implicit/CMakeFiles/CMakeScratch/TryCompile-tOMUQE'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_7c38d
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_7c38d.dir/src.mm.o -MF CMakeFiles/cmTC_7c38d.dir/src.mm.o.d -o CMakeFiles/cmTC_7c38d.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/implicit/CMakeFiles/CMakeScratch/TryCompile-tOMUQE/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0  CMakeFiles/cmTC_7c38d.dir/src.mm.o -o cmTC_7c38d  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0
+
+implicit-intel
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/implicit-intel/CMakeFiles/CMakeScratch/TryCompile-BarIPB"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/implicit-intel/CMakeFiles/CMakeScratch/TryCompile-BarIPB"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: "-arch x86_64"
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/implicit-intel/CMakeFiles/CMakeScratch/TryCompile-BarIPB'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_25677
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -arch x86_64 -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_25677.dir/src.mm.o -MF CMakeFiles/cmTC_25677.dir/src.mm.o.d -o CMakeFiles/cmTC_25677.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/implicit-intel/CMakeFiles/CMakeScratch/TryCompile-BarIPB/src.mm
+        FAILED: [code=1] CMakeFiles/cmTC_25677.dir/src.mm.o 
+        /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -arch x86_64 -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_25677.dir/src.mm.o -MF CMakeFiles/cmTC_25677.dir/src.mm.o.d -o CMakeFiles/cmTC_25677.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/implicit-intel/CMakeFiles/CMakeScratch/TryCompile-BarIPB/src.mm
+        /private/tmp/metaliris-r12.lKARZLkI/implicit-intel/CMakeFiles/CMakeScratch/TryCompile-BarIPB/src.mm:7:14: error: Native Metal 4 requires macOS arm64 and Objective-C ARC.
+            7 |             #error Native Metal 4 requires macOS arm64 and Objective-C ARC.
+              |              ^
+        1 error generated.
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+
+target-26.0
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/target-26.0/CMakeFiles/CMakeScratch/TryCompile-qw0pGm"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/target-26.0/CMakeFiles/CMakeScratch/TryCompile-qw0pGm"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/target-26.0/CMakeFiles/CMakeScratch/TryCompile-qw0pGm'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_c6f76
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_c6f76.dir/src.mm.o -MF CMakeFiles/cmTC_c6f76.dir/src.mm.o.d -o CMakeFiles/cmTC_c6f76.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/target-26.0/CMakeFiles/CMakeScratch/TryCompile-qw0pGm/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0  CMakeFiles/cmTC_c6f76.dir/src.mm.o -o cmTC_c6f76  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0
+
+target-26.1
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/target-26.1/CMakeFiles/CMakeScratch/TryCompile-LKZf8R"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/target-26.1/CMakeFiles/CMakeScratch/TryCompile-LKZf8R"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.1"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/target-26.1/CMakeFiles/CMakeScratch/TryCompile-LKZf8R'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_95891
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.1 -MD -MT CMakeFiles/cmTC_95891.dir/src.mm.o -MF CMakeFiles/cmTC_95891.dir/src.mm.o.d -o CMakeFiles/cmTC_95891.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/target-26.1/CMakeFiles/CMakeScratch/TryCompile-LKZf8R/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.1  CMakeFiles/cmTC_95891.dir/src.mm.o -o cmTC_95891  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0
+
+fresh-failure
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/fresh-failure/CMakeFiles/CMakeScratch/TryCompile-BYxhj5"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/fresh-failure/CMakeFiles/CMakeScratch/TryCompile-BYxhj5"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: "-include /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h"
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/fresh-failure/CMakeFiles/CMakeScratch/TryCompile-BYxhj5'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_fca52
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -include /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_fca52.dir/src.mm.o -MF CMakeFiles/cmTC_fca52.dir/src.mm.o.d -o CMakeFiles/cmTC_fca52.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/fresh-failure/CMakeFiles/CMakeScratch/TryCompile-BYxhj5/src.mm
+        FAILED: [code=1] CMakeFiles/cmTC_fca52.dir/src.mm.o 
+        /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -include /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_fca52.dir/src.mm.o -MF CMakeFiles/cmTC_fca52.dir/src.mm.o.d -o CMakeFiles/cmTC_fca52.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/fresh-failure/CMakeFiles/CMakeScratch/TryCompile-BYxhj5/src.mm
+        In file included from <built-in>:1:
+        /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h:2:2: error: injected_sdk_failure
+            2 | #error injected_sdk_failure
+              |  ^
+        1 error generated.
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+
+cached-failure
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-5WU1Qb"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-5WU1Qb"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-5WU1Qb'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_ce0ba
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_ce0ba.dir/src.mm.o -MF CMakeFiles/cmTC_ce0ba.dir/src.mm.o.d -o CMakeFiles/cmTC_ce0ba.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-5WU1Qb/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0  CMakeFiles/cmTC_ce0ba.dir/src.mm.o -o cmTC_ce0ba  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-GRZR5W"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-GRZR5W"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: "-include /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h"
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-GRZR5W'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_cb191
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -include /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_cb191.dir/src.mm.o -MF CMakeFiles/cmTC_cb191.dir/src.mm.o.d -o CMakeFiles/cmTC_cb191.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-GRZR5W/src.mm
+        FAILED: [code=1] CMakeFiles/cmTC_cb191.dir/src.mm.o 
+        /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -include /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_cb191.dir/src.mm.o -MF CMakeFiles/cmTC_cb191.dir/src.mm.o.d -o CMakeFiles/cmTC_cb191.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-GRZR5W/src.mm
+        In file included from <built-in>:1:
+        /private/tmp/metaliris-r12.lKARZLkI/unusable-sdk.h:2:2: error: injected_sdk_failure
+            2 | #error injected_sdk_failure
+              |  ^
+        1 error generated.
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+---
+events:
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:81 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CheckOBJCXXSourceCompiles.cmake:109 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:426 (check_objcxx_source_compiles)"
+      - "CMakeLists.txt:467 (check_native_metal_sdk)"
+    checks:
+      - "Performing Test AZAHAR_METAL4_SDK"
+    directories:
+      source: "/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-VHhHdR"
+      binary: "/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-VHhHdR"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/private/tmp/metaliris-r12.lKARZLkI/source/CMakeModules;/private/tmp/metaliris-r12.lKARZLkI/source/externals/cmake-modules"
+      CMAKE_OBJCXX_FLAGS: ""
+      CMAKE_OBJCXX_FLAGS_DEBUG: "-g"
+      CMAKE_OSX_ARCHITECTURES: "arm64"
+      CMAKE_OSX_DEPLOYMENT_TARGET: "26.0"
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk"
+    buildResult:
+      variable: "AZAHAR_METAL4_SDK"
+      cached: true
+      stdout: |
+        Change Dir: '/private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-VHhHdR'
+        
+        Run Build Command(s): /opt/homebrew/bin/ninja -v cmTC_99f8c
+        [1/2] /usr/bin/clang++ -DAZAHAR_METAL4_SDK -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -fobjc-arc -Werror=unguarded-availability -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -MD -MT CMakeFiles/cmTC_99f8c.dir/src.mm.o -MF CMakeFiles/cmTC_99f8c.dir/src.mm.o.d -o CMakeFiles/cmTC_99f8c.dir/src.mm.o -c /private/tmp/metaliris-r12.lKARZLkI/cached-failure/CMakeFiles/CMakeScratch/TryCompile-VHhHdR/src.mm
+        [2/2] : && /usr/bin/clang++ -fobjc-arc -Werror=unguarded-availability -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0  CMakeFiles/cmTC_99f8c.dir/src.mm.o -o cmTC_99f8c  -framework Metal  -framework MetalFX  -framework QuartzCore && :
+        
+      exitCode: 0

@@ -1,0 +1,398 @@
+{
+  "phase": "068",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-068-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 60,
+        "symbol": "RasterizerVulkan::RasterizerVulkan(Memory::MemorySystem& memory, Pica::PicaCore& pica,"
+      },
+      "contract": "Constructor installs guest cache, device state and stream/uniform/lighting resources; prepares authoritative empty slots.",
+      "native_mapping": "Local owned native pipeline cache, native texture runtime and shared cache; per-draw immutable Metal 4 snapshots, lazy native LUT data, explicit empty typed bindings where required.",
+      "expected_result": "SDK ARC build, lifetime and shutdown with render in flight.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 146,
+        "symbol": "void RasterizerVulkan::TickFrame() {"
+      },
+      "contract": "Tick frame after worker and update cache.",
+      "native_mapping": "Wait worker before application cache frame advancement.",
+      "expected_result": "Custom texture callbacks and retired resources after 2 frame ticks.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 151,
+        "symbol": "void RasterizerVulkan::LoadDefaultDiskResources("
+      },
+      "contract": "Boot loads title cache and reports Prepare and Complete while respecting interrupted warmup.",
+      "native_mapping": "Resolve shared loader title id. Native cache rejects stale and interrupted archive; maintain real progress, step order and cancellation.",
+      "expected_result": "Mocked canceled title and actual native archive warmup via shared callback.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 179,
+        "symbol": "void RasterizerVulkan::SyncDrawState() {"
+      },
+      "contract": "Sync exact draw registers, viewport flip, blend/write masks, logic, depth/stencil operations and depth-only branch.",
+      "native_mapping": "Populate typed native pipeline state from shared register fields, depth/stencil compare/masks and blend metadata. Resolve guest output formats independently from native attachment type.",
+      "expected_result": "Oracle depth/stencil test and write denial/color bitmask; reversed display.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration and arm64 ARC target linkage, additional FreeCam compilation, neutral dependency scan, deterministic packed/default attribute and write mask fixture, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-068-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 256,
+        "symbol": "void RasterizerVulkan::SetupVertexArray() {"
+      },
+      "contract": "Decode twelve attribute loaders, pads, widths, stride, input register and vertex extent; flush guest source.",
+      "native_mapping": "Read bounded guest RAM, apply loader layout and neutral interpreter component defaults, normalize only to original float32 input semantics; map native float4 banks into argument table or compute.",
+      "expected_result": "Mixed signed/integer/float loader corpus, base plus offset, interleaving, malformed lengths and padding.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 363,
+        "symbol": "const auto& vertex_attributes = regs.pipeline.vertex_attributes;"
+      },
+      "contract": "Fixed/default inputs are explicitly defined for unbound registers.",
+      "native_mapping": "Preserve fixed data/current default, initialize otherwise unbound native registers to the existing default vector and reuse guest register routing.",
+      "expected_result": "Fixed + loaded duplicate mapping, missing components and 16 registers.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration and arm64 ARC target linkage, additional FreeCam compilation, neutral dependency scan, deterministic packed/default attribute and write mask fixture, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-068-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 409,
+        "symbol": "attribute.type.Assign(Pica::PipelineRegs::VertexAttributeFormat::FLOAT);"
+      },
+      "contract": "Select native guest vertex shader or permit existing shared PICA fallback.",
+      "native_mapping": "Use distinct native programmable and already-interpreted vertex paths; reject decompile failures before issuing any visible draw.",
+      "expected_result": "Correct results with accelerated and shared fallback vertices.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 417,
+        "symbol": "binding.fixed.Assign(1);"
+      },
+      "contract": "Geometry selection honors topology, quaternion sign correction and unsupported programmable preview.",
+      "native_mapping": "Use validated native object/mesh when order interchangeable; native compute triangle expansion when ordering, fan, or Metal restart requires it; preserve existing shared PICA stateful programmable route when owned by PicaCore.",
+      "expected_result": "Compare winding, strip parity, fan source, and lighting seam; no discarded asynchronous draw.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 441,
+        "symbol": "if (regs.lighting.disable) {"
+      },
+      "contract": "Analyze before drawing; invalid guest ranges produce no draw and unsupported input may fallback.",
+      "native_mapping": "Check guest index address/range and loader spans before data use. Bound buffer sizes and handle no output without inventing GPU progress.",
+      "expected_result": "Zero count, out-of-RAM, huge vertex range and complete 8/16-bit domains.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 471,
+        "symbol": "// Do not draw anything if the vertex array is invalid."
+      },
+      "contract": "The accelerated path handles optional indices and configured async compilation.",
+      "native_mapping": "Require real native pipeline or equivalent existing path. Encode one snapshot of inputs; vector bank compute sees the original index value/order.",
+      "expected_result": "Queued and sync bind plus indexed/native draws.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 499,
+        "symbol": ".binding_count = pipeline_info.state.vertex_layout.binding_count,"
+      },
+      "contract": "Validate and widen unsigned index with register width and no explicit restart.",
+      "native_mapping": "Read guest little-endian unsigned bytes and retain all maximum values; use u32 dense native indices for direct or direct submission-order banks for expansion.",
+      "expected_result": "Strip and list with 0xff and 0xffff, repeats and following triangles.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 523,
+        "symbol": "const vk::IndexType index_type = native_u8 ? vk::IndexType::eUint8EXT : vk::IndexType::eUint16;"
+      },
+      "contract": "Fallback swaps to interpreted raster triangles with exact varying ABI.",
+      "native_mapping": "Preserve shared HardwareVertex and draw native vertex+fragment; use serial per-triangle copies if previous pixel color is needed.",
+      "expected_result": "Triangular scissor and transformed interpolants.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 536,
+        "symbol": "} else {"
+      },
+      "contract": "Choose fixed-function attachments and discard drawing with invalid viewport/framebuffer.",
+      "native_mapping": "Select exact shared cached subrect, calculate Metal viewport/scissor, set per-fragment scissor and target scale; retain targets until retirement.",
+      "expected_result": "Clipped and flipped viewport, shadow-only, depth-only, absent target.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-14",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 571,
+        "symbol": "const bool using_color_fb ="
+      },
+      "contract": "Synchronize sizes, textures, LUTs and uniforms before begin rendering and actual draw.",
+      "native_mapping": "Capture argument tables separately by stage. Queue native transform/expand before rendering, use stage-scoped resource hazards and exact ranges.",
+      "expected_result": "Dirty register publication across async encode and GPU checkpoints.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-15",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 659,
+        "symbol": "pica_textures[0].enabled && pica_textures[0].config.type == TextureType::ShadowCube;"
+      },
+      "contract": "Disabled unit handling, texture units, shadow2D/cube, cube, render-target alias, min/max blend feedback.",
+      "native_mapping": "Bind required image/sampler shapes, choose strong 2D/cube and per-face R32 views; separate guest alias snapshot and ordered destination blend snapshots only if no tile feedback.",
+      "expected_result": "Six known face colors, render-and-sample same cache view, argument snapshot immutability and sequential blend.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-16",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 742,
+        "symbol": "void RasterizerVulkan::SyncUtilityTextures(const Framebuffer* framebuffer) {"
+      },
+      "contract": "Shadow drawing and lighting source are independently selected, with exact backing and mutually exclusive output.",
+      "native_mapping": "Use native texture atomics or private atomic word buffer per available device features. Resolve writes back to original guest RGBA words with explicit barriers; read-only sampling uses R32 texture conversion without requiring native atomics.",
+      "expected_result": "Match u32 shadow oracle for dependent draw, both native storage flavors and output region.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-17",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 774,
+        "symbol": "void RasterizerVulkan::BindShadowCube(const Pica::TexturingRegs::FullTextureConfig& texture,"
+      },
+      "contract": "Cube guest IDs and texture sampler derived directly from texturing register addresses.",
+      "native_mapping": "Use existing neutral cube material loader/cache and explicit six face ordering.",
+      "expected_result": "Unique non-symmetric signs/orientation across all faces/mips.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-18",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 820,
+        "symbol": ""
+      },
+      "contract": "Flush/invalidate-all/range, exact transfer, fill and display acceleration.",
+      "native_mapping": "Forward reuse shared cache; finish oldest native work for CPU-visible reads. Retain display image with rotated stride-clamped coordinates.",
+      "expected_result": "Dirty readback and direct compositing same frame; overlapping transfer and partial PICA fill.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-19",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 905,
+        "symbol": "attribute.location.Assign(i);"
+      },
+      "contract": "Software layout uses exact offsets of HardwareVertex varying fields.",
+      "native_mapping": "Native direct stage inputs use defined offsetof fields and actual vector component counts.",
+      "expected_result": "Compiler ABI validation and unambiguous position/UV/depth inputs.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-20",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 936,
+        "symbol": "const auto& source_lut = pica.lighting.luts[index];"
+      },
+      "contract": "Update lighting and fog LUTs and immutable offsets with ring wrap.",
+      "native_mapping": "Publish bounded native texel-buffer views with fixed lighting/fog positions and untouched entries. Rebuild using complete authoritative PICA table only when dirty.",
+      "expected_result": "Repeated LUT changes, last/first table, fog clamps and submission across changed snapshots.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-21",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 977,
+        "symbol": "}"
+      },
+      "contract": "Update procedural texture noise/color/alpha and packed RGBA/difference LUTs.",
+      "native_mapping": "Budget and bind native RG/RGBA texel views with exact byte offsets and signed/normalized conversion.",
+      "expected_result": "Known low/high sample endpoints with immutable buffers.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-22",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 1039,
+        "symbol": "}"
+      },
+      "contract": "Upload vertex setup/raster and fragment uniforms, handling dirty and range ownership.",
+      "native_mapping": "Capture 256-byte-aligned authoritative draw uniforms in shared stream region til GPU release. Record correct stage argument slots for vertex/mesh/compute and fragment.",
+      "expected_result": "Native compile ABI, changed register before previous completion, exact LUT offsets.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-068-23",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 1073,
+        "symbol": ""
+      },
+      "contract": "Queryable load-crash state, application switch progress and safe ownership.",
+      "native_mapping": "Ordered drain before invalidating previous native title epoch. Use native persistent cache selector without Vulkan special handling.",
+      "expected_result": "Stop flag, retry after interrupted warmup and concurrent GPU work.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e6d859e35d5bba877ff91d44d5fae8f9ea1c2eaa89fb6edde9359f8b48e60644"
+}

@@ -1,0 +1,75 @@
+{
+  "phase": "085",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-085-01",
+      "source": {
+        "path": "src/citra_qt/configuration/config.cpp",
+        "sha256": "6f9de3ed7903629092b8a2009222f6396cd54a81852a640ddcb3d4379f817b60",
+        "line": 196,
+        "symbol": "void QtConfig::ReadGlobalSetting(Settings::SwitchableSetting<Type, ranged>& setting) {"
+      },
+      "contract": "ReadGlobalSetting selects value ownership with /use_global and default flag conventions.",
+      "native_mapping": "Use the generated Qt key and existing Settings SwitchableSetting. Only migrate values owned by the active file when native graphics API normalization requires it.",
+      "expected_result": "A per-game config keeps inherited native physical selection and only serializes its explicit field overrides.",
+      "dependency_owner": "004/005A",
+      "command": "python3 docs/metaliris/085/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "085/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt INI native/off compile, migration from legacy raw API values, default-off Spatial, persisted native index, global and per-game override/unset, debug flag persistence, independent filter/resolution, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-085-02",
+      "source": {
+        "path": "src/citra_qt/configuration/config.cpp",
+        "sha256": "6f9de3ed7903629092b8a2009222f6396cd54a81852a640ddcb3d4379f817b60",
+        "line": 267,
+        "symbol": "void QtConfig::WriteGlobalSetting(const Settings::SwitchableSetting<Type, ranged>& setting) {"
+      },
+      "contract": "WriteGlobalSetting applies scope metadata and does not overwrite a global inherited setting with a local placeholder.",
+      "native_mapping": "Round trip MetalFX Spatial using existing helper, test unchanged shader compilation and texture filtering in both scopes.",
+      "expected_result": "Real INI path isolated under temporary local user-data folder, with defaults/inheritance expected.",
+      "dependency_owner": "004/083/089",
+      "command": "python3 docs/metaliris/085/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "085/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt INI native/off compile, migration from legacy raw API values, default-off Spatial, persisted native index, global and per-game override/unset, debug flag persistence, independent filter/resolution, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-085-03",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "34604c1b62edc5d12a2d2949c8ef7a61b9406f78909a444ffe650c2225cfc448",
+        "line": 271,
+        "symbol": "Settings::GraphicsAPI GetWorkingGraphicsAPI() {"
+      },
+      "contract": "Working API selects native or supported Software in a Metal build, treating former external settings as unsupported.",
+      "native_mapping": "Compare saved API with the current working API before normalization and prevent stale legacy ordinal from picking wrong adapter.",
+      "expected_result": "Native settings reopen can load old example without executing that backend or altering unrelated keys.",
+      "dependency_owner": "005/086",
+      "command": "python3 docs/metaliris/085/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "085/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt INI native/off compile, migration from legacy raw API values, default-off Spatial, persisted native index, global and per-game override/unset, debug flag persistence, independent filter/resolution, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-085-REOPEN-086",
+      "source": {
+        "path": "src/citra_qt/configuration/config.cpp",
+        "sha256": "b6632e824a6a95e8f3bec437eb3722b85bc53706d5d7044a5635b778be74a289",
+        "line": 267,
+        "symbol": "void QtConfig::WriteGlobalSetting(const Settings::SwitchableSetting<Type, ranged>& setting) {"
+      },
+      "contract": "Save the globally owned value even while an override is active during native title startup.",
+      "native_mapping": "Write through the existing basic serializer with the global value when a local override is active, without changing stored in-memory preference ownership.",
+      "expected_result": "Real QSettings asserts global Spatial stays enabled while a per-game override is disabled during concurrent same-process Save calls.",
+      "dependency_owner": "086",
+      "command": "python3 docs/metaliris/085/verify.py <Qt-build> <core-build> <output>",
+      "evidence_path": "085/reopen-086-retarget.log",
+      "status": "PASS",
+      "actual_result": "Regression reproduced before repair. Real QSettings global-active-title save, local override, native/off compilation, PICA and CTest retested."
+    }
+  ],
+  "owner_sha256_after": "66d304b42486704c243d8aed74eac20e0d776087220dced8fd238c14ba23a975"
+}

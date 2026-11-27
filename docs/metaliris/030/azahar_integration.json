@@ -1,0 +1,126 @@
+{
+  "phase": "030",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-030-01",
+      "source": {
+        "path": "src/video_core/shader/generator/pica_fs_config.h",
+        "sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+        "line": 13,
+        "symbol": ""
+      },
+      "contract": "Fragment config structs preserve cache revisions; BlendConfig and FramebufferConfig are fixed-function state used by fragment generator.",
+      "native_mapping": "Header leaves existing cache structs unchanged and defers blend, alpha/scissor, depth, logic and shadow shader code to owned fragment phases.",
+      "expected_result": "Fragment config integration compares original state preserved.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-030-02",
+      "source": {
+        "path": "src/video_core/shader/generator/pica_fs_config.h",
+        "sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+        "line": 160,
+        "symbol": "struct TextureConfig {"
+      },
+      "contract": "Texture/TEV/border/wrap, lighting/LUT, procedural noise/config and cached UserConfig are fragment-specific.",
+      "native_mapping": "Keep shared Pica FSConfig ABI and use its common types in 032/033; no GL/SPIR-V fallback imported.",
+      "expected_result": "033 keeps every field that affects MSL code, including uncommon wraps and min/max blends.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-030-03",
+      "source": {
+        "path": "src/video_core/shader/generator/pica_fs_config.h",
+        "sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+        "line": 406,
+        "symbol": ""
+      },
+      "contract": "FSConfig chooses combiner-buffer edges, cache and backend profile behavior.",
+      "native_mapping": "No conversion of GLSL or SPIR-V. Fragment generation consumes neutral state unchanged.",
+      "expected_result": "033 verifies all combiner stages and FS hash parity.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-030-04",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 7,
+        "symbol": "#include \"common/hash.h\""
+      },
+      "contract": "Common hashes, rasterizer registers and config/struct hashes are shared Azahar dependencies.",
+      "native_mapping": "Keep backend-neutral ShaderSetup data and VSPicaUniformData, use native syntax only.",
+      "expected_result": "Compiler include scan resolves C++ headers and excludes Vulkan, GLSL or SPIR-V code.",
+      "dependency_owner": "030",
+      "command": "zsh docs/metaliris/030/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "030/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header consumer, invariant ABI offsets and raw f24 boundary oracle passed."
+    },
+    {
+      "id": "AZ-030-05",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 73,
+        "symbol": "struct SemanticMap {"
+      },
+      "contract": "Geometry semantic map and shader linkage have separate owners.",
+      "native_mapping": "Native function ABI supplies full 16 output slots and both banks and lets stage consumers use common output map.",
+      "expected_result": "035 compare emitted outputs and winding.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-030-06",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_uniforms.h",
+        "sha256": "c2e5eb351ca9f0c3086d68dde41c59c9438a2341fe6001a54598cb23d724c6e0",
+        "line": 111,
+        "symbol": ""
+      },
+      "contract": "VSPicaUniformData materializes bool bitmask, integer vectors and 96 float vectors.",
+      "native_mapping": "Reuse exact shared layout; MSL declaration has same offsets and float32 host tags.",
+      "expected_result": "Static assertions and actual header consumer prove std layout size, align and offsets.",
+      "dependency_owner": "030",
+      "command": "zsh docs/metaliris/030/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "030/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header consumer, invariant ABI offsets and raw f24 boundary oracle passed."
+    },
+    {
+      "id": "GEOMETRY-035-030",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_decompiler.h",
+        "sha256": "6fac1a12d5f77512fed1e286285b4b4171e9d334c1a3727f5e2f79a2fd5f2596",
+        "line": 22,
+        "symbol": "struct ProgramOptions {"
+      },
+      "contract": "Mutable Fixed/Variable GS inputs write PICA uniforms per invocation, and every GS updates b15. The existing generator exposes only the immutable constant uniform address space.",
+      "native_mapping": "Native explicit constant/thread uniform selection with stable default ABI.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "031/reopen-035.log",
+      "status": "PASS",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "83de5e2c0d6b06562000ef5da080cb20dd51d5b9df2920a26b57679046e682d3"
+}

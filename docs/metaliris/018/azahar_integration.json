@@ -1,0 +1,75 @@
+{
+  "phase": "018",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_scheduler-181",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 181,
+        "symbol": "const u64 signal_value = master_semaphore->NextTick();"
+      },
+      "contract": "Submission records a unique signal cutoff before worker dispatch",
+      "native_mapping": "Expose tickets to scheduler and optional keep-alive for released GPU resources",
+      "expected_result": "Native scheduler can retain released objects through feedback",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-022",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 22,
+        "symbol": "u64 gpu_tick = master_semaphore->KnownGpuTick();"
+      },
+      "contract": "Pool checks completion before reuse and uses the currently submitted tick",
+      "native_mapping": "Publish contiguous retired tick including terminal faults only after GPU completion",
+      "expected_result": "Early waits on failed tickets do not authorize resource reuse",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_stream_buffer-174",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 174,
+        "symbol": "watch.tick = scheduler.CurrentTick();"
+      },
+      "contract": "Stream records last-use ticket",
+      "native_mapping": "Use dedicated WaitRetired for cleanup and Wait for dependencies",
+      "expected_result": "Shutdown does not mark queued GPU use as retired",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "DEVICE-020-018",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_master_semaphore.h",
+        "sha256": "5d091c0107a8923a3fce0d99bbc1ee2aa1797a00fc6615cb7056c60ecb8e7d7e",
+        "line": 67,
+        "symbol": "explicit MasterSemaphore(id<MTLDevice> device);"
+      },
+      "contract": "A native pool must reject a completion timeline owned by another device.",
+      "native_mapping": "Expose the retained MTLDevice from the existing immutable semaphore state.",
+      "expected_result": "ARC compiler checks device accessor and scheduler may compare exact identity.",
+      "dependency_owner": "020",
+      "command": "zsh docs/metaliris/018/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "018/reopen-020.log",
+      "status": "PASS",
+      "actual_result": "Native identity accessor compiled. Live identity comparison awaits GPU."
+    }
+  ],
+  "owner_sha256_after": "c8d491b888e70ff7036b43d3a356dd00bd31f52cc989bdf9fb4b099f95762711"
+}

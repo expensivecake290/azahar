@@ -1,0 +1,160 @@
+{
+  "phase": "063",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-063-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 26,
+        "symbol": "class BlitHelper {"
+      },
+      "contract": "Correct native per-device pipeline/sampler lifetime and explicit integration.",
+      "native_mapping": "Own BlitHelper with retained typed shaders, native pass scheduler and immutable descriptor/pipeline state through GPU completion.",
+      "expected_result": "Real native header consumer and matching device/allocator lifetime in 064.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-063-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 33,
+        "symbol": "bool Filter(Surface& surface, const VideoCore::TextureBlit& blit);"
+      },
+      "contract": "Optional filtering, secondary mip ownership and selection among Anime4K, Bicubic, ScaleForce, xBRZ, MMPX.",
+      "native_mapping": "Explicit Settings::TextureFilter route; mip-zero does work and nonzero levels stay in the texture mip chain; preserve full transforms.",
+      "expected_result": "All settings, unknown settings and nonzero base mip classified.",
+      "dependency_owner": "063",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PASS",
+      "actual_result": "Native SDK-linked header oracle passed for route, bounds, mirroring, readback pitch and multisample compatibility. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-063-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 35,
+        "symbol": "bool BlitDepthStencil(Surface& source, Surface& dest, const VideoCore::TextureBlit& blit);"
+      },
+      "contract": "Depth/stencil blit including offset/scaled region, nearest sampling and fallback preserving unaffected pixels.",
+      "native_mapping": "Typed native texture and existing TextureBlit transfer views and exact crop/sample provenance. Use explicit mask and no undefined contents.",
+      "expected_result": "Stable orientation/rectangle invariants and live combined depth/stencil output.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-063-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 37,
+        "symbol": "bool ConvertDS24S8ToRGBA8(Surface& source, Surface& dest, const VideoCore::TextureCopy& copy);"
+      },
+      "contract": "D24S8 guest reinterpretation byte order and multsample route.",
+      "native_mapping": "Bind existing native Metal4 programs, combined depth/stencil to RGBA with equal-sample tile color rasterization. Distinct result may resolve natively.",
+      "expected_result": "All supported sample compatibility pairs and clipped region geometry; actual individual retained sample tests.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-063-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 39,
+        "symbol": "bool DepthToBuffer(Surface& source, vk::Buffer buffer,"
+      },
+      "contract": "Packed depth and stencil readback with offset/range, block dimensions and existing memory ownership.",
+      "native_mapping": "Validate shared byte ranges, bounded aligned offsets, optional word pitch and output size before binding GPUBufferAccess for completion.",
+      "expected_result": "Odd pitches, signed offset extremes, 1x1, clipping and short buffer CPU oracle.",
+      "dependency_owner": "063",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PASS",
+      "actual_result": "Native SDK-linked header oracle passed for route, bounds, mirroring, readback pitch and multisample compatibility. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-063-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 42,
+        "symbol": "void ResolveTexture(Surface& surface);"
+      },
+      "contract": "Resolve one stored multisample surface into its unmultisampled destination.",
+      "native_mapping": "Native attachment lifetime and explicit load/store resolve, including exact requested aspect and no cross-device copy.",
+      "expected_result": "Use actual RenderTexture/color/stencil descriptors and independent sample fixture.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-063-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 45,
+        "symbol": "vk::Pipeline MakeComputePipeline(vk::ShaderModule shader, vk::PipelineLayout layout);"
+      },
+      "contract": "Separate compile, sampler and per-format filter modes.",
+      "native_mapping": "Constrain declaration to actual cache/device by opaque state. Reuse Metal4 shader libraries and exact program/format/sample identity in 064.",
+      "expected_result": "Verify typed ABI, no private backend or legacy native execution.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-063-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 51,
+        "symbol": "void FilterAnime4K(Surface& surface, const VideoCore::TextureBlit& blit);"
+      },
+      "contract": "All texture filters and Anime4K pass sequencing.",
+      "native_mapping": "Native source views and normalized sampling transform preserve subregion, odd sizes and deterministic X gradient, Y gradient, refinement ordering.",
+      "expected_result": "Header transform oracle and independent pixel execution in 064.",
+      "dependency_owner": "063",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PASS",
+      "actual_result": "Native SDK-linked header oracle passed for route, bounds, mirroring, readback pitch and multisample compatibility. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-063-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 72,
+        "symbol": "vk::Device device;"
+      },
+      "contract": "Per-device resources, active encoder and correct dependency retention.",
+      "native_mapping": "Utility helper uses native scheduler, existing render manager, unit-scoped view data and mapping leases, borrowed from backend-neutral texture cache data where possible.",
+      "expected_result": "No transient data dropped or aliased until corresponding Encode/Synchronize and completion.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/063/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "063/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "7dc030a3870f26872a497a357cfe2f4d5fdbad60502d8e85e9c168e320c1fb01"
+}

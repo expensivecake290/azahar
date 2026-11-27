@@ -1,0 +1,58 @@
+{
+  "phase": "005",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-API-NAMES",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 31,
+        "symbol": "std::string_view GetGraphicsAPIName(GraphicsAPI api) {"
+      },
+      "contract": "Software, OpenGL, Vulkan and invalid values have stable diagnostic names.",
+      "native_mapping": "Add Metal to the same switch and preserve previous results.",
+      "expected_result": "Actual settings.cpp name mapping passes five enumeration cases.",
+      "dependency_owner": "005",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> off",
+      "evidence_path": "005/implementation-off.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "VK-LEGACY-SAVED-API",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 263,
+        "symbol": "Settings::GraphicsAPI GetWorkingGraphicsAPI() {"
+      },
+      "contract": "A saved backend value is returned as the working API unless platform rules override it.",
+      "native_mapping": "In Metal-only builds, resolve unsupported old backend ordinals to the available native backend without mutating stored values or creating a Vulkan dependency.",
+      "expected_result": "Vulkan and OpenGL saved values resolve to Metal; explicit software is preserved when enabled.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> metal",
+      "evidence_path": "005/implementation-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "VK-ANDROID-ANGLE",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 265,
+        "symbol": "#if defined(ANDROID) && !defined(HAVE_LIBRETRO)"
+      },
+      "contract": "Android ANGLE override returns Vulkan in existing Android-only branch.",
+      "native_mapping": "Preserve the original condition and value exactly. Native macOS branch is independent.",
+      "expected_result": "Original lines remain. Native selection never enters Android logic.",
+      "dependency_owner": "005",
+      "command": "python3 docs/metaliris/004/verify.py source-implementation <build-dir> off",
+      "evidence_path": "005/source-implementation-off.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    }
+  ],
+  "owner_sha256_after": "34604c1b62edc5d12a2d2949c8ef7a61b9406f78909a444ffe650c2225cfc448"
+}

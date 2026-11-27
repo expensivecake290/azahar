@@ -1,0 +1,32 @@
++docs/metaliris/030/verify.sh:12> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -DENABLE_SOFTWARE_RENDERER -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -Wall -Wextra -Werror -DCHECK_NATIVE_CONSUMER -MD -MF /tmp/metaliris-r12.lKARZLkI/phase030/consumer.d -c /Users/anthonygarcia/azahar/docs/metaliris/030/verify.mm -o /tmp/metaliris-r12.lKARZLkI/phase030/consumer.o
+In file included from /Users/anthonygarcia/azahar/docs/metaliris/030/verify.mm:1:
+In file included from /Users/anthonygarcia/azahar/src/video_core/renderer_metal/shader/msl_shader_decompiler.h:12:
+In file included from /Users/anthonygarcia/azahar/src/video_core/pica/shader_setup.h:8:
+/Users/anthonygarcia/azahar/src/common/vector_math.h:56:52: error: unused parameter 'file_version' [-Werror,-Wunused-parameter]
+   56 |     void serialize(Archive& ar, const unsigned int file_version) {
+      |                                                    ^
+/Users/anthonygarcia/azahar/src/common/vector_math.h:224:52: error: unused parameter 'file_version' [-Werror,-Wunused-parameter]
+  224 |     void serialize(Archive& ar, const unsigned int file_version) {
+      |                                                    ^
+/Users/anthonygarcia/azahar/src/common/vector_math.h:454:52: error: unused parameter 'file_version' [-Werror,-Wunused-parameter]
+  454 |     void serialize(Archive& ar, const unsigned int file_version) {
+      |                                                    ^
+In file included from /Users/anthonygarcia/azahar/docs/metaliris/030/verify.mm:1:
+In file included from /Users/anthonygarcia/azahar/src/video_core/renderer_metal/shader/msl_shader_decompiler.h:12:
+In file included from /Users/anthonygarcia/azahar/src/video_core/pica/shader_setup.h:9:
+In file included from /Users/anthonygarcia/azahar/src/video_core/pica/packed_attribute.h:11:
+/Users/anthonygarcia/azahar/src/video_core/pica_types.h:173:52: error: unused parameter 'file_version' [-Werror,-Wunused-parameter]
+  173 |     void serialize(Archive& ar, const unsigned int file_version) {
+      |                                                    ^
+In file included from /Users/anthonygarcia/azahar/docs/metaliris/030/verify.mm:1:
+In file included from /Users/anthonygarcia/azahar/src/video_core/renderer_metal/shader/msl_shader_decompiler.h:12:
+/Users/anthonygarcia/azahar/src/video_core/pica/shader_setup.h:40:43: error: unused parameter 'file_version' [-Werror,-Wunused-parameter]
+   40 |     void serialize(Archive& ar, const u32 file_version) {
+      |                                           ^
+/Users/anthonygarcia/azahar/src/video_core/pica/shader_setup.h:153:38: error: unused parameter '_requires_fixup' [-Werror,-Wunused-parameter]
+  153 |     void SetRequiresShaderFixup(bool _requires_fixup) {
+      |                                      ^
+/Users/anthonygarcia/azahar/src/video_core/pica/shader_setup.h:182:43: error: unused parameter 'file_version' [-Werror,-Wunused-parameter]
+  182 |     void serialize(Archive& ar, const u32 file_version) {
+      |                                           ^
+7 errors generated.

@@ -1,0 +1,75 @@
+{
+  "phase": "058",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-058-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 109,
+        "symbol": "bool GraphicsPipeline::Build(bool fail_on_compile_required) {"
+      },
+      "contract": "Verify native SDK declarations, pipeline construction and dependency graph.",
+      "native_mapping": "Compile real Objective-C++ with Metal 4 SDK, link without Vulkan, compile offline MSL sources and native fixtures.",
+      "expected_result": "Actual native object, CMake link, requirements evidence, and PICA200 48 cases / 801 assertions, 64 CTest passes.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "MTL-058-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 84,
+        "symbol": "bool GraphicsPipeline::TryBuild(bool wait_built) {"
+      },
+      "contract": "Deterministic type-specific worker paths and error branches with test-only completion controls.",
+      "native_mapping": "SDK descriptors, bind selector capture, bounded in-flight queue, slot dedup, sync while full, cancel result and exact fallback with doubles.",
+      "expected_result": "Completion, errors, warnings, dynamic colors/viewport, stage selection, depth/stencil masks and archive options checked by deterministic host tests.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "MTL-058-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 308,
+        "symbol": "auto result = instance.GetDevice().createGraphicsPipelineUnique(pipeline_cache, pipeline_info);"
+      },
+      "contract": "Compare actual physical GPU outputs and make validation errors fail the fixture.",
+      "native_mapping": "Native Metal 4 executable library and sync/async pipeline creation, blend, depth/stencil, cull, vertex/mesh/compute.",
+      "expected_result": "Byte-exact readback (or defined tolerance for format rounding), Metal API Validation, no foreign native resources.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-058-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.mm",
+        "sha256": "d3a69638767d111db1b440da41655977d32241e0a60bb6b73c8cd625d63a67e0",
+        "line": 689,
+        "symbol": "PipelineCompiler::~PipelineCompiler() {"
+      },
+      "contract": "Native pipeline title owner requires a real worker idle barrier before serializing previously compiled pipelines without shutting down the active title.",
+      "native_mapping": "Join actual worker requests and check that a controlled in-flight SDK operation blocks the idle barrier until completion.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "058/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Join actual worker requests and check that a controlled in-flight SDK operation blocks the idle barrier until completion. Captured in 058/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "666d3ddba321c4012480661ba3d1077ed2687f00fe766dd222cd51b678ab345d"
+}

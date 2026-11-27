@@ -1,0 +1,4 @@
+src/video_core/renderer_metal/shader/msl_fs_shader_gen.mm:253:28: error: unused variable 'ColorLanes' [-Werror,-Wunused-const-variable]
+  253 | constexpr std::string_view ColorLanes = "rgba";
+      |                            ^~~~~~~~~~
+1 error generated.

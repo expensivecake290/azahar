@@ -1,0 +1,58 @@
+{
+  "phase": "065",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-065-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 762,
+        "symbol": "Surface::Surface(TextureRuntime& runtime_, const VideoCore::SurfaceParams& params,"
+      },
+      "contract": "SDK-linked header consumer exercises device-free transfer invariants and Azahar own traits.",
+      "native_mapping": "Verify 256-byte native rows, tight source bytes, compressed block edges, dimensions, sampler metadata and strong move-only resources.",
+      "expected_result": "Native SDK consumer link/codegen and independently computed fixture cases.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "MTL-065-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1385,
+        "symbol": "const vk::ImageViewCreateInfo view_info = {"
+      },
+      "contract": "Actual native shader views and physical copies, scale and resolve.",
+      "native_mapping": "Complete runtime and live Apple GPU copy/attachment tests in next owner.",
+      "expected_result": "Every supported format, odd padding, aliases, mips and native staging hazards.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-065-068",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "2e983c7981823d32951465b9ba383d095a56ab44a0f350eafc351d174a69277b",
+        "line": 200,
+        "symbol": "[[nodiscard]] id<MTLTexture> StorageView();"
+      },
+      "contract": "Fragment sampling needs a retained converted R32 shadow image on devices whose writes use the atomic buffer path. StorageView currently requires texture atomics and drops the budget owner.",
+      "native_mapping": "Expose and implement a strong read-only R32 shadow binding independent of native texture-atomic write capability.",
+      "expected_result": "Compile retained image against the SDK. Confirm actual shadow contents and no atomic requirement with Metal API validation when a device is accessible.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/reopen-068.log",
+      "status": "PENDING",
+      "actual_result": "Actual arm64 native SDK compilation and applicable host tests passed. Physical R32 sampling and read/write storage lifetime require Metal 4 device output."
+    }
+  ],
+  "owner_sha256_after": "5266a1c9f09253a13a24d14dd9927b4cea2be2da2aed1cad9d4928619d47bf65"
+}

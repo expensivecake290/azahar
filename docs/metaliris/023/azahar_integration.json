@@ -1,0 +1,160 @@
+{
+  "phase": "023",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-023-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 5,
+        "symbol": "#include <mutex>"
+      },
+      "contract": "Mutex and utility headers are standard; Shared compiler include graph remains backend neutral.",
+      "native_mapping": "Use C++20/ARC and resolve actual include paths.",
+      "expected_result": "Scan excludes Vulkan, MoltenVK, shaderc, SPIR-V.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native linking passed. Native device gated fixture returned 2 because no Metal device was exposed."
+    },
+    {
+      "id": "AZ-023-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 7,
+        "symbol": "#include \"common/microprofile.h\""
+      },
+      "contract": "Use Azahar shared profiling definitions without GPU backend dependencies.",
+      "native_mapping": "Microprofile scoped CPU timing.",
+      "expected_result": "Native tests target builds with existing shared instrumentation.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native linking passed. Native device gated fixture returned 2 because no Metal device was exposed."
+    },
+    {
+      "id": "AZ-023-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 8,
+        "symbol": "#include \"common/thread.h\""
+      },
+      "contract": "Use shared thread naming and stop-aware waiting.",
+      "native_mapping": "Use Common thread facilities instead of platform-specific duplicate.",
+      "expected_result": "CPU worker shutdown and queue wakeups.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-023-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+        "sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+        "line": 9,
+        "symbol": "#include \"video_core/renderer_vulkan/vk_instance.h\""
+      },
+      "contract": "Vulkan device/scheduler paths private, libretro Vulkan interface excluded.",
+      "native_mapping": "DeviceContext, native allocator and completion owners only.",
+      "expected_result": "Native linker contains no Vulkan execution dependencies.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC SDK compilation and native linking passed. Native device gated fixture returned 2 because no Metal device was exposed."
+    },
+    {
+      "id": "AZ-023-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 278,
+        "symbol": "scheduler.Wait(watch.tick);"
+      },
+      "contract": "Wait on ring watch's actual ticket.",
+      "native_mapping": "Explicit completion and retirement status and shared map ownership.",
+      "expected_result": "025 stream wrapping preserves unread GPU bytes.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-023-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 113,
+        "symbol": "scheduler.RegisterOnSubmit([&renderpass_cache] { renderpass_cache.EndRendering(); });"
+      },
+      "contract": "End render pass before submit using scheduler callback.",
+      "native_mapping": "Register producer callback and close pass in order.",
+      "expected_result": "029 validates live pass lifecycle and compatible encoder retention.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-023-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 99,
+        "symbol": "scheduler.RegisterOnDispatch([this] { update_queue.Flush(); });"
+      },
+      "contract": "Publish binding state before worker dispatch.",
+      "native_mapping": "Dispatch callback runs before publication of move-only command packets.",
+      "expected_result": "027 native immutable argument table fixture.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-023-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 382,
+        "symbol": "std::scoped_lock submit_lock{scheduler.submit_mutex};"
+      },
+      "contract": "Queue submission/presentation ordering and resize lifecycle.",
+      "native_mapping": "Surface supplies a retained drawable; native worker owns handoff.",
+      "expected_result": "073 native drawable present/suspend and resize capture.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "CONTEXT-026-023",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.mm",
+        "sha256": "7e050db18b2c3238da44f3b3ba41f7ed4f7fb654c123d6279b8b218fd6b84e96",
+        "line": 166,
+        "symbol": "struct EncodingContext::Impl {"
+      },
+      "contract": "Argument table preparation requires the active batch's originating device context generation and resource pool.",
+      "native_mapping": "Validate a snapshot's WorkLease against the actual encoding context without exposing or retaining its former wrapper; return its own resource pool.",
+      "expected_result": "Ordinary Metal 4 consumers compile and the scheduler fixture links the accessors; descriptor fixture rejects foreign contexts.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/reopen-026.log",
+      "status": "PENDING",
+      "actual_result": "Exact SDK consumer compiled, linked and passed PICA regression; cross-context native bind remains pending in Phase 027."
+    }
+  ],
+  "owner_sha256_after": "bc005db6fbe2b972a12c5d3a08a41be31a8e23a11130394d24475063a08f7204"
+}

@@ -1,0 +1,75 @@
+{
+  "phase": "068",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-068-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+        "sha256": "876af4b9f60f0c87293945f2026e261209a7b3b4c4060014aa8226567027f330",
+        "line": 109,
+        "symbol": "struct alignas(16) ExpandedVertex {"
+      },
+      "contract": "Generated stage ABI defines exact input and primitive buffers.",
+      "native_mapping": "Native compute uses bank, transform, fixed geometry params and output lists. Mesh route consumes real converted inputs.",
+      "expected_result": "Build and run CPU order/index/dispatch benchmark and native SDK producer compiled.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-068-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.h",
+        "sha256": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398",
+        "line": 44,
+        "symbol": "bool writes_depth{};"
+      },
+      "contract": "Generated fragment ABI names distinct per-stage texture, sampler, framebuffer and LUT indices.",
+      "native_mapping": "Bind exact typed resources as immutable snapshots; allow separate tiled and resolved paths.",
+      "expected_result": "Compile affected fixture, check differences on physical GPU.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-068-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 536,
+        "symbol": "} else {"
+      },
+      "contract": "Independent PICA200 raster/draw and packed input regression with native target.",
+      "native_mapping": "Real SDK ARC link, neutral dependency scan, FreeCam, no legacy commands, run 48/801 and CTest.",
+      "expected_result": "Device-free suite and actual native physical fixture results.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration and arm64 ARC target linkage, additional FreeCam compilation, neutral dependency scan, deterministic packed/default attribute and write mask fixture, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "MTL-068-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 610,
+        "symbol": "pipeline_cache.UseFragmentShader(regs, user_config);"
+      },
+      "contract": "Physical known-answer draw and dirty guest-cache readback.",
+      "native_mapping": "Use command encoder with MTL_DEBUG_LAYER and validate exact guest pixels. Exercise sample selection, alias, blend and depth/stencil.",
+      "expected_result": "Only actual device outputs can satisfy the native GPU branch.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e6d859e35d5bba877ff91d44d5fae8f9ea1c2eaa89fb6edde9359f8b48e60644"
+}

@@ -1,0 +1,92 @@
+{
+  "phase": "026",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-026-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.h",
+        "sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+        "line": 5,
+        "symbol": "#include <memory>"
+      },
+      "contract": "memory/variant C++ standard; common types backend-neutral; Vulkan definitions excluded.",
+      "native_mapping": "Use shared common types and actual Metal 4 SDK through native owners.",
+      "expected_result": "ARC native compile consumer, no Vulkan or shaderc include.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/026/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "026/header.log",
+      "status": "PASS",
+      "actual_result": "ARC native consumer and constexpr resource, array and layout boundary cases passed."
+    },
+    {
+      "id": "AZ-026-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 99,
+        "symbol": "scheduler.RegisterOnDispatch([this] { update_queue.Flush(); });"
+      },
+      "contract": "Descriptor publication hook before worker consumes encoded draw.",
+      "native_mapping": "Record immutable Capture before dispatch; Flush remains a batch boundary.",
+      "expected_result": "062 async/sync binding consumers see only captured generation.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-026-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 117,
+        "symbol": "update_queue.AddBuffer(buffer_set, 0, uniform_buffer.Handle(), 0, sizeof(VSPicaUniformData));"
+      },
+      "contract": "Uniform offsets and texel views choose persistent targets.",
+      "native_mapping": "Native per-index address and buffer texture slots with distinct shader stage masks.",
+      "expected_result": "068 native uniform and texel sampling follows PICA bytes.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-026-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 556,
+        "symbol": "update_queue.AddImageSampler(descriptor_set, 0, 0, source.DepthView(), nearest_sampler,"
+      },
+      "contract": "Depth/stencil utility combines sample and exact storage write buffer.",
+      "native_mapping": "Native compute argument tables and exact scopes for offset/length/typed texture.",
+      "expected_result": "064 real shader outputs exact depth/stencil readback.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-026-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 192,
+        "symbol": "update_queue.AddImageSampler(present_set, 0, index, screen_infos[index].image_view,"
+      },
+      "contract": "Presentation binds per-screen array of image/sampler elements.",
+      "native_mapping": "Copy immutable sample array binding triples to owning queue.",
+      "expected_result": "091 multi-screen layout and three image slots produce expected output.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "c61f57604592451203785a04631e73471cee06af1e8cec1fcd01393a6513f9bd"
+}

@@ -1,0 +1,41 @@
+{
+  "phase": "052",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-052-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.frag",
+        "sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+        "line": 8,
+        "symbol": "layout (location = 0) in vec2 frag_tex_coord;"
+      },
+      "contract": "Plain, stereo and cursor presentation share compatible position-only or UV stage interfaces.",
+      "native_mapping": "Native present vertex declares locn0 and supports both screen samplers, leaving cursor to its own stage.",
+      "expected_result": "Use actual Phase 051 and 052 across native pipeline; later anaglyph and interlaced pair identically.",
+      "dependency_owner": "052",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 052 <native-build-dir> <scratch-dir> <present-fragment-library>",
+      "evidence_path": "052/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-052-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 359,
+        "symbol": "void RendererVulkan::BuildPipelines() {"
+      },
+      "contract": "Reference host uses unindexed triangle strip, two attributes, 16-byte original order.",
+      "native_mapping": "Retain exact strided attribute structure and use buffer 1 for native data, buffer 0 for draw constants.",
+      "expected_result": "Host fixture compiles descriptors and exact shape for separate layout and white primitive background.",
+      "dependency_owner": "052",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 052 <native-build-dir> <scratch-dir> <present-fragment-library>",
+      "evidence_path": "052/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "f54eb9d4ad2685c35f477e632282c1bf802cf45178e89738230ab1cd56925807"
+}

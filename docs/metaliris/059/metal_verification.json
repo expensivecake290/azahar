@@ -1,0 +1,58 @@
+{
+  "phase": "059",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-059-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 59,
+        "symbol": "void ShaderDiskCache::Init(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "SDK sees concrete MTL4 native archive serialization and lookup interfaces.",
+      "native_mapping": "Compile real header and Apple Metal 4 serializer configuration and archive protocol function signatures.",
+      "expected_result": "Use Apple arm64 SDK 26+ with no Vulkan or legacy resource loaders.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "MTL-059-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 318,
+        "symbol": "ShaderDiskCache::CacheEntry ShaderDiskCache::CacheFile::ReadAt(size_t position) {"
+      },
+      "contract": "Record schema, bounds and identity variations have deterministic invariants.",
+      "native_mapping": "Execute actual header consumer. Verify cold-title permission, exact record/identity equality and version constants.",
+      "expected_result": "Fixture perturbs identity, exact stages, record variant tags and byte limits.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "MTL-059-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 1459,
+        "symbol": "// Build the pipeline using the cached pipeline info."
+      },
+      "contract": "Native Metal archives need exact driver/device and completed pipeline captures.",
+      "native_mapping": "Exercise real enabling/cache lookup path using MTL4PipelineDataSetSerializer and actual Metal hardware.",
+      "expected_result": "Draw equivalent checked outputs after cold and warm load, reject mismatched archive without affecting live fallback.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "19a070dd2abd7ad3f5bb8b538ae5c5c82051e472ee56cd68453ea250bd2b4d76"
+}

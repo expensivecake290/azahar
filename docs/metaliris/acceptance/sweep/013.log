@@ -1,0 +1,5 @@
+Command: zsh docs/metaliris/013/verify.sh /tmp/metaliris-r12.lKARZLkI/metal /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/013
++docs/metaliris/013/verify.sh:10> xcrun --sdk macosx clang++ '-std=c++20' -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' -fobjc-arc -DENABLE_METAL -Wall -Wextra -Werror -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -MD -MF /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/013/instance-header.d /Users/anthonygarcia/azahar/docs/metaliris/013/verify.mm -framework Foundation -o /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/013/instance-header
++docs/metaliris/013/verify.sh:14> /tmp/metaliris-r12.lKARZLkI/acceptance/sweep/013/instance-header
+
+Fixture exit status 0; 4.01 seconds

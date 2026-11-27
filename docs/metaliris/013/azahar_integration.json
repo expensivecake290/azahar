@@ -1,0 +1,75 @@
+{
+  "phase": "013",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "pixel_format-014",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/pixel_format.h",
+        "sha256": "3e486ce4f3139d2fd9f23652b25db526649dfe9afe8191b253958d77bffbca25",
+        "line": 14,
+        "symbol": "}"
+      },
+      "contract": "Shared PICA texel enums and format metadata",
+      "native_mapping": "Keep guest enum values and translate through native traits",
+      "expected_result": "Native type consumer compiles without backend-private imports",
+      "dependency_owner": "013",
+      "command": "zsh docs/metaliris/013/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "013/header.log",
+      "status": "PASS",
+      "actual_result": "ARC C++20 compile and sample-count fixture passed."
+    },
+    {
+      "id": "custom_format-019",
+      "source": {
+        "path": "src/video_core/custom_textures/custom_format.h",
+        "sha256": "171294a42e06fb92f63aa95ed0b010ca82f87b30846fbf4ac5ba41e06b630fd3",
+        "line": 19,
+        "symbol": "ASTC4 = 5,"
+      },
+      "contract": "ASTC and BC material formats",
+      "native_mapping": "Preserve key, format, footprint for each recognized custom format",
+      "expected_result": "ASTC8 maps to matching 8x6 and invalid entries are safe",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "mtl_common-019",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 19,
+        "symbol": "class MetalError final : public std::runtime_error {"
+      },
+      "contract": "Identity-bound work leases and resource checks",
+      "native_mapping": "Reuse existing DeviceContext captured by Instance",
+      "expected_result": "Starts a live generation only for a supported device",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Companion fixture executed bounds, traits and failure paths."
+    },
+    {
+      "id": "mtl_platform-032",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.h",
+        "sha256": "71cbc1f2022b01300db7f96dd9c51915676b08ac0335875777664161eb488c8c",
+        "line": 32,
+        "symbol": "bool spatial_scaling{};"
+      },
+      "contract": "Platform enumeration and capability carrier",
+      "native_mapping": "Reuse ProbeDevice / EnumerateDevices and requested Spatial check",
+      "expected_result": "No silent device replacement or disabled scaler on request",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Awaiting companion definitions and the specified consumer."
+    }
+  ],
+  "owner_sha256_after": "98e46dbc761d5d5cb24517897d5429e18a497f20c77e7d0bbac723b2b9a2efa4"
+}

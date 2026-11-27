@@ -1,0 +1,72 @@
+{
+  "phase": "055",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-055-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 145,
+        "symbol": "static bool glslang_initialized = false;"
+      },
+      "contract": "Apple compiler is per-device and actual SDK has separate native sync/async entrypoints.",
+      "native_mapping": "Compile a real SDK descriptor, MSL4 options and native task interface witness.",
+      "expected_result": "Xcode arm64/ARC compiler and real Metal 4 SDK declarations compiled.",
+      "dependency_owner": "055",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer and actual Metal 4 SDK descriptor compile; complete source-option key, byte signature and definition identifier CPU checks passed."
+    },
+    {
+      "id": "MTL-055-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 214,
+        "symbol": ""
+      },
+      "contract": "Repeated requests, cancel and full synchronous path.",
+      "native_mapping": "Header represents one defined result, ordered key, independent typed timeout, opaque native library life.",
+      "expected_result": "CPU header invariants with actual ObjC++ consumers; native resource/cancellation fixtures at 056.",
+      "dependency_owner": "055",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer and actual Metal 4 SDK descriptor compile; complete source-option key, byte signature and definition identifier CPU checks passed."
+    },
+    {
+      "id": "REOPEN-055-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "fe8868ae7267e3133b8549ac32a1cbf9c3702247d7a9a498e6db0a9fbf1d19e2",
+        "line": 135,
+        "symbol": "class ShaderCompiler {"
+      },
+      "contract": "Native cache must bind a title-specific MTL4 pipeline data serializer to its actual source/pipeline compiler. Preserve the existing non-capturing constructor ABI.",
+      "native_mapping": "Optional SDK serializer constructor typed compile and previously checked direct source-key contracts.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "055/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Optional SDK serializer constructor typed compile and previously checked direct source-key contracts. Captured in 055/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+  "verification_updates": [
+    {
+      "trigger_owner": "091",
+      "reason": "The final source fingerprint audit found that the recorded Phase 055 source hash differed from the linked header. Re-audited the current interface and ran both real header and companion compiler consumers. The production source was unchanged during this audit.",
+      "previous_recorded_sha256": "33aa54e272a3b5dd32b41fd3ec6d6ff1762d1c06f0c7cde2bf25b7759fde5d28",
+      "source_sha256_after": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+      "evidence": [
+        "055/final-consumer-audit.log",
+        "055/final-runtime-audit.log",
+        "091/link-audit.log"
+      ],
+      "result": "Header contracts and host queue/SDK behavior pass with the current header. Live shader compilation, library loading and dispatch remain pending."
+    }
+  ]
+}

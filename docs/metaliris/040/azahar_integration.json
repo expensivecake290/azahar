@@ -1,0 +1,58 @@
+{
+  "phase": "040",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-040-01",
+      "source": {
+        "path": "src/video_core/host_shaders/metal/full_screen_triangle_vert.metal",
+        "sha256": "9460ae0544bdd423a38d925c657a1bf32278255d5c74104fcc0f3aafc6d6c3ef",
+        "line": 15,
+        "symbol": ""
+      },
+      "contract": "Native normalized UV stage matches filter fragment inputs.",
+      "native_mapping": "Locn0 varying, native read-only texture argument (slot 0), no extra layout dependencies.",
+      "expected_result": "Match actual 038 output on native encoded pipelines.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-040-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 822,
+        "symbol": "void BlitHelper::FilterMMPX(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "MMPX case obtains base source and target state like other filter utilities.",
+      "native_mapping": "Use native filter selection and skip unsupported mip work at host call site.",
+      "expected_result": "Integration validates source texture type, args and same-device view lifetime.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-040-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 875,
+        "symbol": "void BlitHelper::FilterPass(Surface& surface, vk::Pipeline pipeline, vk::PipelineLayout layout,"
+      },
+      "contract": "Host sets viewport and texture transform using original source/destination rectangles.",
+      "native_mapping": "Keep source region and scissor outside filter arithmetic, preserve clamped texel behavior.",
+      "expected_result": "Independently compare exact result and adjusted sampling at edges.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "f0beb7e9634186f24363114ab1c25fab2a03ebe092ecf3d28386010f9006dda1"
+}

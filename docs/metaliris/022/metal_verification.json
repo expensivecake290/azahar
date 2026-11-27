@@ -1,0 +1,126 @@
+{
+  "phase": "022",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-022-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 29,
+        "symbol": "class Scheduler {"
+      },
+      "contract": "Native Metal 4 interface SDK availability and ARC.",
+      "native_mapping": "Expose only MTL4CommandBuffer/Encoder/Queue and stable resource types.",
+      "expected_result": "Compile real consumer against minimum macOS 26 SDK contract.",
+      "dependency_owner": "022",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC arm64 Metal 4 consumer compiles; independent range and state flag cases pass."
+    },
+    {
+      "id": "MTL-022-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 35,
+        "symbol": "void Flush(vk::Semaphore signal = nullptr, vk::Semaphore wait = nullptr);"
+      },
+      "contract": "Prevent premature command allocator, argument table, residency allocation and mapped-range reuse.",
+      "native_mapping": "Transfer native pool and buffer access leases into one completion-owned commit payload.",
+      "expected_result": "Exhaust capacity one, block unsafe CPU map and hold all leases until feedback.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-022-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 45,
+        "symbol": "void Wait(u64 tick);"
+      },
+      "contract": "Cross-queue producer dependency, shared visibility and terminal fault.",
+      "native_mapping": "Explicit event waits after successful producer, scoped Metal 4 barriers across and within passes, finish waits before CPU observation.",
+      "expected_result": "Independent resource stage scopes and ranges overlap safely; conflicting copies and fault are deterministic.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-022-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 48,
+        "symbol": "void DispatchWork();"
+      },
+      "contract": "Track resource ranges, overlapping read/write, queue, stage and resource aliasing.",
+      "native_mapping": "Use typed resource uses and overflow-safe half-open overlap; barrier masks combine real hazards only.",
+      "expected_result": "Read-only, adjacent, alias and disjoint range predicates checked by CPU.",
+      "dependency_owner": "022",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC arm64 Metal 4 consumer compiles; independent range and state flag cases pass."
+    },
+    {
+      "id": "MTL-022-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 96,
+        "symbol": "[[nodiscard]] MasterSemaphore* GetMasterSemaphore() noexcept {"
+      },
+      "contract": "Exact native checkpoint and error provenance.",
+      "native_mapping": "Expose diagnostic queue/ticket/label/stage and GPU sample from native timestamps when available.",
+      "expected_result": "Live sample reports monotonic reached checkpoints; encode/driver faults keep report truth.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-022-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 100,
+        "symbol": "std::mutex submit_mutex;"
+      },
+      "contract": "No legacy or Vulkan execution; actual Metal hardware tests are separately observable.",
+      "native_mapping": "Objective-C++ native consumer and commands captured under Metal API validation.",
+      "expected_result": "SDK compile and CPU contracts run now; allocator, scopes, feedback and visibility pending if no visible GPU.",
+      "dependency_owner": "022",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC arm64 Metal 4 consumer compiles; independent range and state flag cases pass."
+    },
+    {
+      "id": "CONTEXT-026-022",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.h",
+        "sha256": "8cf2c87dd01ee46f55bb1278bf3bba1b67287e9180ac8ab6c8818fe35031ed84",
+        "line": 85,
+        "symbol": "class EncodingContext {"
+      },
+      "contract": "Argument table preparation requires the active batch's originating device context generation and resource pool.",
+      "native_mapping": "Validate a snapshot's WorkLease against the actual encoding context without exposing or retaining its former wrapper; return its own resource pool.",
+      "expected_result": "Ordinary Metal 4 consumers compile and the scheduler fixture links the accessors; descriptor fixture rejects foreign contexts.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/reopen-026.log",
+      "status": "PENDING",
+      "actual_result": "Exact SDK consumer compiled, linked and passed PICA regression; cross-context native bind remains pending in Phase 027."
+    }
+  ],
+  "owner_sha256_after": "d9ebf7424af2d76c6a0ebec3ac79d58fc2a22da93084c19e054fccd9e52d1bba"
+}

@@ -1,0 +1,177 @@
+{
+  "phase": "019",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_master_semaphore-014",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 14,
+        "symbol": "const vk::StructureChain semaphore_chain = {"
+      },
+      "contract": "Allocate timeline semaphore, initial tick zero and release",
+      "native_mapping": "Create MTLSharedEvent from initialized native device and use scope-bound ARC state for feedback",
+      "expected_result": "Device creation and queue event consume actual SDK object",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_master_semaphore-027",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 27,
+        "symbol": "u64 this_tick{};"
+      },
+      "contract": "Monotonic refresh, ignore old counter",
+      "native_mapping": "Record out-of-order completion but publish only contiguous retirement and successful event progress",
+      "expected_result": "Two finishes before one; no early reuse or event signal",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU completion, timeout, earliest fault, late retirement and 24 concurrent shutdown waiters passed."
+    },
+    {
+      "id": "vk_master_semaphore-041",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 41,
+        "symbol": "if (IsFree(tick)) {"
+      },
+      "contract": "Fast wait paths and wait until GPU completion",
+      "native_mapping": "Condition variable checks ticket, deadline, completion, fault and close under one mutex",
+      "expected_result": "Unknown, timeout, early success, fault and concurrent close fixture",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU completion, timeout, earliest fault, late retirement and 24 concurrent shutdown waiters passed."
+    },
+    {
+      "id": "vk_master_semaphore-062",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 62,
+        "symbol": ""
+      },
+      "contract": "End encoded work, enqueue optional wait/signal, handle failure",
+      "native_mapping": "Scheduler owns encoding/commit; dependent queue wait is only encoded for success and shared event aligns to completion",
+      "expected_result": "Two Metal 4 queues copy sentinel; prior fault rejects dependency",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_master_semaphore-107",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 107,
+        "symbol": "MasterSemaphoreFence::MasterSemaphoreFence(const Instance& instance_) : instance{instance_} {"
+      },
+      "contract": "Fence allocation/reuse and fallback thread lifetime",
+      "native_mapping": "Metal commit feedback replaces fence waiting; terminal cleanup is retained by callback",
+      "expected_result": "Live commit feedback releases retained resources safely",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_master_semaphore-124",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 124,
+        "symbol": "free_cv.wait(lk, [&] { return gpu_tick.load(std::memory_order_relaxed) >= tick; });"
+      },
+      "contract": "Fence CPU predicate and notify",
+      "native_mapping": "Track completion safely after close; every consumer observes coherent shared state",
+      "expected_result": "Concurrent shutdown and explicit late retirement",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU completion, timeout, earliest fault, late retirement and 24 concurrent shutdown waiters passed."
+    },
+    {
+      "id": "vk_master_semaphore-129",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 129,
+        "symbol": "cmdbuf.end();"
+      },
+      "contract": "Fence submission optional semaphores and errors",
+      "native_mapping": "Schedule device-owned shared event dependency and preserve driver NSError provenance",
+      "expected_result": "Feedback or explicit submit failure is terminal and no invalid wait is encoded",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_master_semaphore-155",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 155,
+        "symbol": ""
+      },
+      "contract": "Fence worker deque ordering, stop and completion/error branches",
+      "native_mapping": "No polling thread; native callbacks can arrive out of order; first fault stops new work and in-flight use remains retained",
+      "expected_result": "Out-of-order callback fixture and zero lost wakeups",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU completion, timeout, earliest fault, late retirement and 24 concurrent shutdown waiters passed."
+    },
+    {
+      "id": "vk_master_semaphore-191",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+        "sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+        "line": 191,
+        "symbol": "std::scoped_lock lock{free_mutex};"
+      },
+      "contract": "Fence reuse or fresh handle branch",
+      "native_mapping": "Reuse no manual fence objects, scheduler uses retired watermark for recycling",
+      "expected_result": "Native allocator recycling validated when scheduler exists",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "DEVICE-020-019",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_master_semaphore.mm",
+        "sha256": "e8903cf49578eff3abe6607099e03d6f097d24e4d827d3ed3476521267161cf3",
+        "line": 136,
+        "symbol": "MasterSemaphore::MasterSemaphore(id<MTLDevice> device) : state(std::make_shared<State>(device)) {}"
+      },
+      "contract": "A native pool must reject a completion timeline owned by another device.",
+      "native_mapping": "Expose the retained MTLDevice from the existing immutable semaphore state.",
+      "expected_result": "ARC compiler checks device accessor and scheduler may compare exact identity.",
+      "dependency_owner": "020",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/reopen-020.log",
+      "status": "PENDING",
+      "actual_result": "Native identity accessor compiled. Live identity comparison awaits GPU."
+    }
+  ],
+  "owner_sha256_after": "fc81b02894e86d499dbab03b9b632e21281f90641558fc7dd3064429532bbb6e"
+}

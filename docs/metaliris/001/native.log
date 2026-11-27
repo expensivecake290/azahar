@@ -1,0 +1,16 @@
++/Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/run-native.sh:11> xcrun --sdk macosx metal -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=metal4.0' '-fmodules-cache-path=/private/tmp/metaliris-r12.lKARZLkI/native/metal-module-cache' -Wall -Werror -MD -MF /private/tmp/metaliris-r12.lKARZLkI/native/smoke-metal.d -c /Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/smoke.metal -o /private/tmp/metaliris-r12.lKARZLkI/native/smoke.air
++/Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/run-native.sh:14> xcrun --sdk macosx metal -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=metal4.0' '-fmodules-cache-path=/private/tmp/metaliris-r12.lKARZLkI/native/metal-module-cache' -Wall -Werror /Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/smoke.metal -o /private/tmp/metaliris-r12.lKARZLkI/native/smoke.metallib
++/Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/run-native.sh:17> xcrun --sdk macosx clang++ '-std=c++20' -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -arch arm64 '-mmacosx-version-min=26.0' -fobjc-arc -Wall -Wextra -Werror -MD -MF /private/tmp/metaliris-r12.lKARZLkI/native/device-smoke.d -framework Foundation -framework Metal -framework MetalFX /Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/device-smoke.mm -o /private/tmp/metaliris-r12.lKARZLkI/native/device-smoke
++/Users/anthonygarcia/azahar/docs/metaliris/preflight/harness/run-native.sh:21> env 'MTL_DEBUG_LAYER=1' 'MTL_CAPTURE_ENABLED=1' /private/tmp/metaliris-r12.lKARZLkI/native/device-smoke /private/tmp/metaliris-r12.lKARZLkI/native/smoke.metallib /private/tmp/metaliris-r12.lKARZLkI/native/workload.gputrace
+2026-11-26 02:43:41.866 device-smoke[24441:36163359] Metal API Validation Enabled
+MTLCopyAllDevices=0 MTLCreateSystemDefaultDevice=nil
++ otool -L /private/tmp/metaliris-r12.lKARZLkI/native/device-smoke
+/private/tmp/metaliris-r12.lKARZLkI/native/device-smoke:
+	/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 5027.0.51)
+	/System/Library/Frameworks/Metal.framework/Versions/A/Metal (compatibility version 1.0.0, current version 381.0.0)
+	/System/Library/Frameworks/MetalFX.framework/Versions/A/MetalFX (compatibility version 1.0.0, current version 1.0.0)
+	/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)
+	/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2200.22.0)
+	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)
+	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 5027.0.51)
+PENDING: native command submission, object/mesh output, Spatial output and GPU capture

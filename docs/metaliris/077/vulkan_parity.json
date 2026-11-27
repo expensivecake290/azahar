@@ -1,0 +1,75 @@
+{
+  "phase": "077",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-077-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 125,
+        "symbol": "return library;"
+      },
+      "contract": "The old platform setup accepts a valid presentation handle or headless operation.",
+      "native_mapping": "Capture tagged retained native layer on AppKit main and report explicit detached headless state. Reject invalid object, preserve attached resources, use no Vulkan backend protocol.",
+      "expected_result": "Test headless, attached pre-window, invalid handle, adopted layer and explicit detach.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC and production AppKit target linkage, host real AppKit adoption/resize/restore and queued destruction, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "VK-077-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Mac surface uses CAMetalLayer supplied by the frontend.",
+      "native_mapping": "Reuse an existing CAMetalLayer or install a new Cocoa-owned layer on current NSView. Keep same ownership identity across repeated attach and capture. Restore previous view state after detach.",
+      "expected_result": "Native live NSView checks including app-supplied earlier CALayer, mask, frame and old retained layer.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC and production AppKit target linkage, host real AppKit adoption/resize/restore and queued destruction, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "VK-077-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 221,
+        "symbol": "extensions.push_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);"
+      },
+      "contract": "Presentation platform and capabilities are independent of device support.",
+      "native_mapping": "Read physical pixels via AppKit conversion, drawable scale, real display mode refresh, fullscreen and suspension flags. Leave actual native GPU selection and drawable acquisition to device/presentation owners.",
+      "expected_result": "Odd sizes, 1x/2x, clip invalid boundaries, 30/60/120 Hz and hidden/unhide.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-077-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 290,
+        "symbol": "bool dump_command_buffers) {"
+      },
+      "contract": "Invalid surface/device selection has an actual distinguishable failure.",
+      "native_mapping": "Reject off-main mutating operations before touching AppKit. Off-main destructor schedules only bounded detach on main, and uses retained state instead of dangling view pointer.",
+      "expected_result": "Prove rejecting foreign worker, prove main queued cleanup and caller-supplied same handle moves.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC and production AppKit target linkage, host real AppKit adoption/resize/restore and queued destruction, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    }
+  ],
+  "owner_sha256_after": "ea0419370c8a61f21041e18d13369c1fc45627a03f639e62bd377d9a3f438919"
+}

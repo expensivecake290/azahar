@@ -1,0 +1,75 @@
+{
+  "phase": "066",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-066-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 171,
+        "symbol": "void Handle::Create(u32 width, u32 height, u32 levels, TextureType type, vk::Format format,"
+      },
+      "contract": "Actual native SDK compilation and neutral dependency graph.",
+      "native_mapping": "Compile actual Apple arm64 ARC and native shader payload. Link existing target, run PICA and CTest.",
+      "expected_result": "No unresolved/private dependencies and exact baseline.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration, arm64 ARC link, neutral transitive graph, packed-color assertions, sampler metadata/layout fixture, native MSL 4 offline compilation, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "MTL-066-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 909,
+        "symbol": "void Surface::Upload(const VideoCore::BufferTextureCopy& upload,"
+      },
+      "contract": "Host-visible independent packed conversion, format/layout and staged memory oracle.",
+      "native_mapping": "Run checked format bits, odd pitch, buffer cap and compile generated native texture programs.",
+      "expected_result": "Deterministic CPU evidence and native offline binaries.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration, arm64 ARC link, neutral transitive graph, packed-color assertions, sampler metadata/layout fixture, native MSL 4 offline compilation, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "MTL-066-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1071,
+        "symbol": "void Surface::Download(const VideoCore::BufferTextureCopy& download,"
+      },
+      "contract": "Physical GPU roundtrip and observable sample/mip/shadow feedback correctness.",
+      "native_mapping": "Real Metal API validation of exact guest native GPU reads, write shapes and cache retirement.",
+      "expected_result": "Read actual results with an exposed physical Metal 4 GPU.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-066-068",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.mm",
+        "sha256": "b14cab9be9097128dab5f7736bb6d41d1e2099756739eebce1672adaef865387",
+        "line": 1054,
+        "symbol": "return StorageView();"
+      },
+      "contract": "Fragment sampling needs a retained converted R32 shadow image on devices whose writes use the atomic buffer path. StorageView currently requires texture atomics and drops the budget owner.",
+      "native_mapping": "Expose and implement a strong read-only R32 shadow binding independent of native texture-atomic write capability.",
+      "expected_result": "Compile retained image against the SDK. Confirm actual shadow contents and no atomic requirement with Metal API validation when a device is accessible.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/reopen-068.log",
+      "status": "PENDING",
+      "actual_result": "Actual arm64 native SDK compilation and applicable host tests passed. Physical R32 sampling and read/write storage lifetime require Metal 4 device output."
+    }
+  ],
+  "owner_sha256_after": "62bde2a5aaa333572877412ecb96292844e3ab7ab666bdbbad67e3fa8fdf2514"
+}

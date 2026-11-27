@@ -214,9 +214,16 @@ if (APPLE)
   target_sources(citra_qt PUBLIC
     qt_swizzle.h
     qt_swizzle.mm
-    util/metal_util.h
-    util/metal_util.mm
   )
+  if (ENABLE_METAL)
+    target_sources(citra_qt PRIVATE util/metal_util.h util/metal_util.mm)
+    set_source_files_properties(util/metal_util.mm PROPERTIES COMPILE_OPTIONS "-fobjc-arc")
+    target_link_libraries(citra_qt PRIVATE "${METAL_APPKIT_LIBRARY}" "${QUARTZCORE_LIBRARY}")
+  else()
+    target_sources(citra_qt PUBLIC util/metal_util.h util/metal_util.mm)
+    find_library(QUARTZCORE_LIBRARY QuartzCore REQUIRED)
+    target_link_libraries(citra_qt PRIVATE "${QUARTZCORE_LIBRARY}")
+  endif()
 endif()
 
 file(GLOB COMPAT_LIST

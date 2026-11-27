@@ -1,0 +1,11 @@
+uic 6.11.1
+[1/1] Automatic MOC and UIC for target citra_qt
+44:    QCheckBox *toggle_metalfx_spatial;
+104:        graphics_api_combo->addItem(QString::fromUtf8("Metal"));
+148:        toggle_metalfx_spatial = new QCheckBox(apiBox);
+149:        toggle_metalfx_spatial->setObjectName("toggle_metalfx_spatial");
+151:        verticalLayout_3->addWidget(toggle_metalfx_spatial);
+315:        QWidget::setTabOrder(physical_device_combo, toggle_metalfx_spatial);
+316:        QWidget::setTabOrder(toggle_metalfx_spatial, toggle_accurate_mul);
+337:        toggle_metalfx_spatial->setText(QCoreApplication::translate("ConfigureGraphics", "MetalFX Spatial", nullptr));
+339:        toggle_metalfx_spatial->setToolTip(QCoreApplication::translate("ConfigureGraphics", "Upscale each rendered screen for presentation using MetalFX Spatial.", nullptr));

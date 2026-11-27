@@ -1,0 +1,211 @@
+{
+  "phase": "091",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-091-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 110,
+        "symbol": "RendererVulkan::RendererVulkan(Core::System& system, Pica::PicaCore& pica_,"
+      },
+      "contract": "Construct selected graphics device and all backend resources, bind real rasterizer and independent second window; finish committed work on destruction.",
+      "native_mapping": "Instantiate real Metal4 device generation, one budget, resource queues, selected compilation configuration, bounded prim/sec presentation and wakeups. Close presentation then retire Metal4 work before owners.",
+      "expected_result": "Real no-device factory diagnostic, linked native symbol closure, successful GPU lifecycle and repeated reopen.",
+      "dependency_owner": "008/014/041/061/068/073/090",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 164,
+        "symbol": "void RendererVulkan::PrepareRendertarget() {"
+      },
+      "contract": "Update all three screen images including top/bottom LCD color-fill before framebuffer storage exists.",
+      "native_mapping": "Use cached accelerated PICA texture when available, typed deterministic solid fill and guest linear readback fallback. Keep independent eye addresses and images retained through native producer and consumer tickets.",
+      "expected_result": "LCD fill exact RGB and alpha regardless current guest framebuffer history, PICA format and fallback fixtures.",
+      "dependency_owner": "041/066/067/068",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "VK-091-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 264,
+        "symbol": "void RendererVulkan::LoadFBToScreenInfo(const Pica::FramebufferConfig& framebuffer,"
+      },
+      "contract": "Both right-eye addresses required for selecting active right eye. Use width/height/stride and hardware-display formats. Validate no address/bytes overrun.",
+      "native_mapping": "Checked address/stride byte range with PICA decode; use same direct Metal cache path, wrapped crop bounds and exact color format conversion for fallback.",
+      "expected_result": "Deterministic packed-color, padded stride, malformed extent/format, active switching and rotated crop fixtures. Native render verify actual target pixels later.",
+      "dependency_owner": "067/068",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "VK-091-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 296,
+        "symbol": "void RendererVulkan::CompileShaders() {"
+      },
+      "contract": "Build direct presentation pipelines and sampler state for mono/side-by-side, alternating lines, anaglyph, cursor, opacity, native color and multisample resolve.",
+      "native_mapping": "Load the existing offline MSL4 assets, compile with MTL4Compiler and typed vertex descriptors, bind immutable vertex and fragment argument tables. Use second-stage cursor blend, native clear, edge clamp and exact filter setting.",
+      "expected_result": "Both compiler modes and prebuilt pipeline entry points compile. Native pixel fixtures cover sampler, clear and blend.",
+      "dependency_owner": "040/043/044/045/046/047/048/052/059/073",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 747,
+        "symbol": "void RendererVulkan::DrawSingleScreen(u32 screen_id, float x, float y, float w, float h,"
+      },
+      "contract": "Four texture orientations preserve PICA layout and UVs, no draw outside geometry; input/output resolutions and alpha are stable.",
+      "native_mapping": "CPU-derived quads with native vertex buffer, use known triangle strips and NDC, preserve texture crop/orientation and output resolution ABI. Use exact stereo layer state.",
+      "expected_result": "Deterministic layout vertex/UV and per-eye scales, native actual screen image pixel samples.",
+      "dependency_owner": "043/047/067",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "VK-091-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 898,
+        "symbol": "void RendererVulkan::DrawTopScreen(const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Draw mono per-eye, side-by-side half/full, Cardboard asymmetric shifts, anaglyph, interlaced/reverse and duplicated bottom display.",
+      "native_mapping": "Use per-layout mode and final physical frame extent, preserve independent window stereo, swapped eyes and chosen mono eye.",
+      "expected_result": "Exact deterministic left/right layout, bottom duplicate and Cardboard paths, and physical raster colors when available.",
+      "dependency_owner": "006/007/043/044/045/068/073",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "VK-091-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1014,
+        "symbol": "void RendererVulkan::DrawScreens(Frame* frame, const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Draw in user-selected screen order, apply opacity to overlay and additional screen, render touch cursor clipped to bottom screen.",
+      "native_mapping": "Build quad list with ordered effective opacity, per-window projected cursor and inverted blend. Preserve current uniforms and refresh requests.",
+      "expected_result": "Known overlay ordering, geometry and crosshair UV; physical edge clipping and native output.",
+      "dependency_owner": "043/046/047/048/068/073",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1126,
+        "symbol": "void RendererVulkan::SwapBuffers() {"
+      },
+      "contract": "Begin/end swap timing, optional duplicate frame suppression, independent second view, retire guest work even on skipped frames, update PICA/cache tick and EndFrame.",
+      "native_mapping": "Preserve profiler/core flags and advance native scheduler for skipped/headless frames. Share physical budget, but separate native present windows, retain frame through producer and pacing.",
+      "expected_result": "Deterministic duplicate/resize closure, no-device factory diagnostics and exact pending Metal hardware timing.",
+      "dependency_owner": "016/054/068/070/073/077",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1187,
+        "symbol": "void RendererVulkan::LimitFramesAheadOfGpu() {"
+      },
+      "contract": "Limit to at most one guest frame ahead when configured.",
+      "native_mapping": "Wait on previously issued guest tick only, preserve device fault and guarded terminal state.",
+      "expected_result": "Run on a physical Metal4 GPU with independent timestamps, completed tickets and pace measurements.",
+      "dependency_owner": "050/054/073",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1194,
+        "symbol": "void RendererVulkan::RenderScreenshot() {"
+      },
+      "contract": "Capture screenshot at requested framebuffer layout/size, acknowledge after complete; BGRA when consumed by Qt and allow direct paths only with proven host-memory ownership.",
+      "native_mapping": "Use native BGRA frame, checked row-pitch and shared readback allocation synced and retained through Metal4 blit. Existing raw pointer screenshot API offers no import lease, so copy exact rows into it. Keep request alive until drawing and callback complete.",
+      "expected_result": "Known odd width, color/stride/invert mode and guard bytes. Resolve and readback with real CPU/Metal validation.",
+      "dependency_owner": "016/041/054/073/081",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1497,
+        "symbol": "void RendererVulkan::NotifySurfaceChanged(bool is_second_window) {"
+      },
+      "contract": "Notify appropriate drawable stream, maintain safe headless behavior and repeatable teardown.",
+      "native_mapping": "Notify one present stream with retained atomic frontend snapshot, leave second independently tracked and never use Qt from core.",
+      "expected_result": "Qt trace/visible layer tests stay pending when no display/GPU; lifetime and callback linked.",
+      "dependency_owner": "006/007/072/073/076/077/081",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-091-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 188,
+        "symbol": "void RendererVulkan::PrepareDraw(Frame* frame, const Layout::FramebufferLayout& layout) {"
+      },
+      "contract": "Presentation filters rendered images as chosen independently from the guest rasterizer.",
+      "native_mapping": "Native MetalFX Spatial only, same-device per-screen/eye normalization and upscaling; retain output until compositor completes and wait on exact producer. Fallback native compositor for disabled and non-upscaling requests.",
+      "expected_result": "Hardware Metal4FX output, bypass eligibility and eye-size scope. Deterministic desired extent/orientation test.",
+      "dependency_owner": "043/047/073/074/075",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "6d9b7cd4dfbe2c28adba030d8d3d27caddc3e64158dff4b33d7c59625e7c7792"
+}

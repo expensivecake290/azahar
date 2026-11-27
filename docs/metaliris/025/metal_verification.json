@@ -1,0 +1,92 @@
+{
+  "phase": "025",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-025-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 114,
+        "symbol": "std::tuple<u8*, u32, bool> StreamBuffer::Map(u32 size, u64 alignment) {"
+      },
+      "contract": "Validate shared allocator's Apple SDK storage contract and native range pointer width.",
+      "native_mapping": "Native ARC build, byte-size checks, same-device scheduler and buffer read/write leases.",
+      "expected_result": "Compiler/linker pass, stable checked all boundary arithmetic.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "MTL-025-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 119,
+        "symbol": "ASSERT(size <= stream_buffer_size);"
+      },
+      "contract": "CPU execution without physical GPU tests full ring watch behavior.",
+      "native_mapping": "StreamRing test exact blocked intervals, partial commit, address wrap and pinned downloads.",
+      "expected_result": "CPU oracle returns exact expected tick, range and generation for every case.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PASS",
+      "actual_result": "Compiler/linker passed. Deterministic interval, exact wrap and capacity oracle passed with 20,000 watched slices."
+    },
+    {
+      "id": "MTL-025-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 140,
+        "symbol": "const u64 mapped_upper_bound = offset + size;"
+      },
+      "contract": "GPU verifies future safety and cross-queue completion.",
+      "native_mapping": "Use two overlapping writes and copy the GPU output through shared readback.",
+      "expected_result": "Real native readback reproduces bytes and stresses ring wraps.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-025-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 160,
+        "symbol": "if (!is_coherent && type == BufferType::Download) {"
+      },
+      "contract": "Metal shared visibility relies on actual completion and scoped leases.",
+      "native_mapping": "End CPU write-map before recording GPU access, block read-map until GPU success.",
+      "expected_result": "No early/map concurrent write; exact byte sentinel after actual driver feedback.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-025-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 188,
+        "symbol": "// As per DXVK's example, using `heap_size / 2`"
+      },
+      "contract": "Budget-aware physical storage and fallback.",
+      "native_mapping": "Allocate native Shared buffer through the existing MemoryAllocator; use requested smaller minimum when necessary.",
+      "expected_result": "Native pressured allocation returns actual allowed size without leaks.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "cae6c57377d97817d87fdeef6caab3a4cf3a7dd2c74f53355be8722d6ec840f0"
+}

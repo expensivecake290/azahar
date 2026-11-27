@@ -1,0 +1,75 @@
+{
+  "phase": "026",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-026-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.h",
+        "sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+        "line": 25,
+        "symbol": "class DescriptorUpdateQueue {"
+      },
+      "contract": "Use Metal 4 native descriptor maximums and role-specific binding interfaces.",
+      "native_mapping": "Declare immutable Snapshot generation and compute/render binding entry points.",
+      "expected_result": "ARC typed consumer checks SDK selectors and safe layout limits.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/026/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "026/header.log",
+      "status": "PASS",
+      "actual_result": "ARC native consumer and constexpr resource, array and layout boundary cases passed."
+    },
+    {
+      "id": "MTL-026-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.h",
+        "sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+        "line": 35,
+        "symbol": "void AddImageSampler(vk::DescriptorSet target, u8 binding, u8 array_index,"
+      },
+      "contract": "Bounds of resource intervals, index addition, clear and sampler count.",
+      "native_mapping": "Portable constexpr slot and span validation.",
+      "expected_result": "Unsigned overflow, exclusive upper bounds, remaining whole-buffer range and nil form tested.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/026/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "026/header.log",
+      "status": "PASS",
+      "actual_result": "ARC native consumer and constexpr resource, array and layout boundary cases passed."
+    },
+    {
+      "id": "MTL-026-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.h",
+        "sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+        "line": 39,
+        "symbol": "void AddBuffer(vk::DescriptorSet target, u8 binding, vk::Buffer buffer, vk::DeviceSize offset,"
+      },
+      "contract": "Use exact GPU address, resource and stride for key; retain every resource and generation.",
+      "native_mapping": "Argument-table cache accepts exact binding contents only; snapshot holds ARC and lease.",
+      "expected_result": "Native shader sees immutable distinct outputs despite concurrent binding changes.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-026-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.h",
+        "sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+        "line": 46,
+        "symbol": "const vk::Device device;"
+      },
+      "contract": "Scheduler context identity and pool ownership are available to argument preparation.",
+      "native_mapping": "Validate snapshot work and actual encoding WorkLease, construct from encoding-context resource pool.",
+      "expected_result": "Reject same device with different context, stale device generation and exhausted cache slot.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "c61f57604592451203785a04631e73471cee06af1e8cec1fcd01393a6513f9bd"
+}

@@ -1,0 +1,6 @@
+minimum-fragment ['MetalirisFragment::pica_fragment']
+minimum-vertex ['MetalirisVertex::pica_expanded_vertex']
+minimum-transform ['MetalirisVertex::pica_transform_vertices', 'MetalirisVertex::pica_vertex']
+object-object ['MetalirisFixedGeometry::pica_mesh', 'MetalirisFixedGeometry::pica_object']
+object-mesh ['MetalirisFixedGeometry::pica_mesh', 'MetalirisFixedGeometry::pica_object']
+minimum-expand ['MetalirisFixedGeometry::pica_expand']

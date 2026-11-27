@@ -1,0 +1,109 @@
+{
+  "phase": "012",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-DISPATCH",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 98,
+        "symbol": ""
+      },
+      "contract": "Original dynamically loads a Vulkan backend and tries fallback drivers.",
+      "native_mapping": "Use direct Apple SDK device enumeration without loaders or foreign branches.",
+      "expected_result": "Nil reports unavailable; valid Metal devices appear in deterministic order.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    },
+    {
+      "id": "VK-MACOS-SURFACE",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Original macOS path binds CAMetalLayer for presentation.",
+      "native_mapping": "Promote the native layer into a validated retained shared snapshot.",
+      "expected_result": "Use a real CAMetalLayer and assert retention through detachment, paired layout and suspended state.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "VK-HEADLESS",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 229,
+        "symbol": "#if defined(VK_USE_PLATFORM_WIN32_KHR)"
+      },
+      "contract": "Headless setup does not require presentable surface.",
+      "native_mapping": "Treat a snapshot without a retained handle as headless and unavailable for drawable acquisition.",
+      "expected_result": "Headless fixture creates without a graphics device or layer.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "VK-API-VALIDATION",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 289,
+        "symbol": "Frontend::WindowSystemType window_type, bool enable_validation,"
+      },
+      "contract": "Original checks minimum API and enables optional debug layer.",
+      "native_mapping": "Check Metal 4 and unified memory feature gates, with platform native debugging.",
+      "expected_result": "Missing API and memory are distinct outcomes; fixture queries direct SDK values.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    },
+    {
+      "id": "VK-CAPTURE",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 419,
+        "symbol": ""
+      },
+      "contract": "Original chooses debug callback based on available facilities.",
+      "native_mapping": "Use Xcode native validation and MTLCaptureManager trace capability.",
+      "expected_result": "Capture support agrees with the SDK, and trace output requires a live GPU.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    },
+    {
+      "id": "VK-RECOVERY-QUEUES",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 351,
+        "symbol": ".enabledLayerCount = static_cast<u32>(layers.size()),"
+      },
+      "contract": "Original platform flag selects synchronous submission and lost-device recovery.",
+      "native_mapping": "Scheduler and device owners control recovery, compilation concurrency and frame pacing.",
+      "expected_result": "Real native queue/loss behavior will be verified by Phase 023 and 091.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    }
+  ],
+  "owner_sha256_after": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4"
+}

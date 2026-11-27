@@ -1,0 +1,109 @@
+{
+  "phase": "020",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_resource_pool-020",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 20,
+        "symbol": "class ResourcePool {"
+      },
+      "contract": "Fenced resource pool and grow step",
+      "native_mapping": "Use bounded metadata slots and grow native resources lazily as slots become occupied",
+      "expected_result": "Exhaust all slots, retire out of order, reclaim holes and verify overflow",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-026",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 26,
+        "symbol": "ResourcePool& operator=(ResourcePool&&) noexcept = default;"
+      },
+      "contract": "Copy/move and pool destruction",
+      "native_mapping": "Disallow copied mutable checkout; pin resources independently for actual submissions",
+      "expected_result": "ARC native pool leases are move-only and keep state alive through completion",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-033",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 33,
+        "symbol": "std::size_t CommitResource();"
+      },
+      "contract": "Commit resource, choose slot and reserve completion ticket",
+      "native_mapping": "Separate exclusive checkout, release/transfer, and retirement watermark",
+      "expected_result": "Unsubmitted slots may release; submitted generations cannot reacquire until completion",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-049",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 49,
+        "symbol": "class CommandPool final : public ResourcePool {"
+      },
+      "contract": "Native command object allocation",
+      "native_mapping": "Use MTL4CommandAllocator leases; reset only when retired",
+      "expected_result": "Allocate command resources, deny premature reuse and clear after actual feedback",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-064",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 64,
+        "symbol": "class DescriptorHeap final : public ResourcePool {"
+      },
+      "contract": "Binding storage and layout limits",
+      "native_mapping": "Use validated MTL4ArgumentTable layout with independent counts and exact key for immutable reuse",
+      "expected_result": "Identical binding snapshot reuses storage; changed layout/content and slot fragmentation are safe",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-071",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+        "sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+        "line": 71,
+        "symbol": "const vk::DescriptorSetLayout& Layout() const {"
+      },
+      "contract": "Descriptor layout accessor",
+      "native_mapping": "Expose the copied native binding layout, not a Vulkan layout",
+      "expected_result": "SDK slot-count limits are checked at the interface",
+      "dependency_owner": "020",
+      "command": "zsh docs/metaliris/020/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "020/header.log",
+      "status": "PASS",
+      "actual_result": "ARC header and SDK limit tests passed."
+    }
+  ],
+  "owner_sha256_after": "2c1371153d4e288c7df678ed2771cdbc3ec3784df2fc8bc6433209804f67dcde"
+}

@@ -1,0 +1,8 @@
+src/video_core/renderer_metal/mtl_present_window.mm:55:24: error: type 'double' cannot be narrowed to 'u32' (aka 'unsigned int') in initializer list [-Wc++11-narrowing]
+   55 |         .frame_limit = Settings::GetFrameLimit(),
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/video_core/renderer_metal/mtl_present_window.mm:55:24: note: insert an explicit cast to silence this issue
+   55 |         .frame_limit = Settings::GetFrameLimit(),
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                        static_cast<u32>(        )
+1 error generated.

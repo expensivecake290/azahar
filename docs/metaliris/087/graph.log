@@ -1,0 +1,3 @@
+PASS one Qt ARC bridge, original native-off registration and neutral renderer framework closure
++docs/metaliris/087/verify.sh:49> [[ 1 == 1 ]]
+All tests passed (801 assertions in 48 test cases)

@@ -1,0 +1,41 @@
+{
+  "phase": "015",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "pica_to_vk-015",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 15,
+        "symbol": "inline vk::Filter TextureFilterMode(TextureFilter mode) {"
+      },
+      "contract": "Native type mapping and CPU guest oracle",
+      "native_mapping": "Compile/link actual header and compare software PICA and SDK independently",
+      "expected_result": "All CPU checks and real dependency scan pass",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-041",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 41,
+        "symbol": "inline vk::SamplerAddressMode WrapMode(Pica::TexturingRegs::TextureConfig::WrapMode mode) {"
+      },
+      "contract": "Pixel behavior of sampler/border and native geometry expansion",
+      "native_mapping": "Defer GPU consumption to actual shader and rasterizer owners",
+      "expected_result": "Native sampler/filter and expansion output agree with CPU oracle",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "22fd550501cc6b56b16052ae828cb2af5c9b6920953e5a7f4bfb12baef15fb83"
+}

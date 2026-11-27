@@ -1,0 +1,61 @@
+{
+  "phase": "087",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-087-01",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "1bd49f5690aa67269aec32c4b9390e1d9de063a49dde5e8d478afc8f1f34446e",
+        "line": 156,
+        "symbol": "find_library(METAL_COREGRAPHICS_LIBRARY CoreGraphics REQUIRED)"
+      },
+      "contract": "Build and link the final native Qt target against actual SDK targets AppKit, QuartzCore, Metal and MetalFX without prohibited Vulkan dependencies.",
+      "native_mapping": "Configure native and feature-off Qt modes, run actual native link, inspect arm64 symbol listings, and run shared PICA and CTest.",
+      "expected_result": "One ObjC++ ARC bridge definition and actual target linkage; baseline regressions pass.",
+      "dependency_owner": "001/002/087/090/091",
+      "command": "zsh docs/metaliris/087/verify.sh <source-mirror> <native-Qt-build> <scratch-dir>",
+      "evidence_path": "087/build.log",
+      "status": "PASS",
+      "actual_result": "Actual native/off Qt graph, one native ARC bridge and single linked symbol, Qt core renderer-independent dependency closure, native app link, offscreen target rejection, PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "MTL-087-02",
+      "source": {
+        "path": "src/citra_qt/CMakeLists.txt",
+        "sha256": "a88c33d05ffec209c6f13ad64ddfb473c0294b1d247690fa9507927bf3496e6a",
+        "line": 213,
+        "symbol": "if (APPLE)"
+      },
+      "contract": "Exercise native AppKit/Qt linkage with actual desktop runtime, having compiled only the owned bridge.",
+      "native_mapping": "Repeat Phase 081 ownership tests with the revised CMake graph; verify present to matched hardware when 091 is available.",
+      "expected_result": "Offscreen rejection and actual linked bridge host pass; visible Cocoa window and Metal4 rendering driven with real hardware later.",
+      "dependency_owner": "081/091",
+      "command": "zsh docs/metaliris/087/verify.sh <source-mirror> <native-Qt-build> <scratch-dir>",
+      "evidence_path": "087/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-087-RELEASE-SOFTWARE-LINK",
+      "source": {
+        "path": "src/citra_qt/CMakeLists.txt",
+        "sha256": "036122678e278fcb467259c1e4a8c34d9f0c2dd4e019af2c69eeebc3e040d693",
+        "line": 223,
+        "symbol": "target_sources(citra_qt PUBLIC util/metal_util.h util/metal_util.mm)"
+      },
+      "contract": "Actual native and Software-only Qt app links must resolve their intended framework closure in separate CMake builds.",
+      "native_mapping": "Link QuartzCore directly to the existing Apple feature-off Qt path. Keep the native bridge private and ARC-managed, and preserve the software renderer and shared window helper.",
+      "expected_result": "Both arm64 Qt executables link. Software-only has QuartzCore with no Metal, MetalFX, Vulkan or MoltenVK direct link. Native still has one ARC bridge and all required native frameworks. PICA/CTest pass in both configurations.",
+      "dependency_owner": "079/081/087/086/091",
+      "command": "zsh docs/metaliris/087/verify.sh <source-mirror> <native-Qt-build> <Software-only-Qt-build> <native-core-build>",
+      "evidence_path": "087/reopen-release-software-link.log",
+      "status": "PENDING",
+      "actual_result": "Software-only link failed with unresolved _OBJC_CLASS_$_CAMetalLayer. Production correction is pending.",
+      "actual_evidence": [
+        "087/reopen-release-software-link-failure.log"
+      ]
+    }
+  ],
+  "owner_sha256_after": "036122678e278fcb467259c1e4a8c34d9f0c2dd4e019af2c69eeebc3e040d693"
+}

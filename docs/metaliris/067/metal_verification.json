@@ -1,0 +1,58 @@
+{
+  "phase": "067",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-067-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 37,
+        "symbol": "class RasterizerVulkan : public VideoCore::RasterizerAccelerated {"
+      },
+      "contract": "Native class is usable from Azahar and renderer-side Objective-C++ with SDK types.",
+      "native_mapping": "Use a real consumption TU for exact ABI, compiled with enabled and disabled FreeCam, transitive graph checked without private headers.",
+      "expected_result": "Consumer compiles and linked arithmetic/oracles run independently of physical Metal device.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "MTL-067-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 499,
+        "symbol": ".binding_count = pipeline_info.state.vertex_layout.binding_count,"
+      },
+      "contract": "PICA unsigned index bounds and raster-facing normalized guest rectangle are deterministic.",
+      "native_mapping": "Test densely before hardware with all index words, clipped/odd track regions and preserved right/top or swapped orientation.",
+      "expected_result": "Return exact values or empty for invalid byte and texture ranges.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "MTL-067-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 536,
+        "symbol": "} else {"
+      },
+      "contract": "Live native draw and integration verification.",
+      "native_mapping": "Run PICA draw, 3/4 channel dynamic results and actual affected surfaces under Metal API Validation.",
+      "expected_result": "Independent exact pixels, depth/stencil, shadow reads, feedback, transfers and guest readback.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "3d43f733b5216b179bb1e97e185597b7ccbcdf56de0ba01a3299a281fad80188"
+}

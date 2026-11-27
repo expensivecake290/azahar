@@ -1,0 +1,11 @@
++docs/metaliris/verify_host_shader.sh:35> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' -Werror '-fmodules-cache-path=/tmp/metaliris-r12.lKARZLkI/phase045/modules' -MD -MF /tmp/metaliris-r12.lKARZLkI/phase045/native-msl.d /Users/anthonygarcia/azahar/src/video_core/host_shaders/metal/xbrz_freescale_frag.metal -o /tmp/metaliris-r12.lKARZLkI/phase045/xbrz_freescale_frag.metallib
+/Users/anthonygarcia/azahar/src/video_core/host_shaders/metal/xbrz_freescale_frag.metal:28:17: error: program scope variable must reside in constant address space
+constexpr float SteepDirectionThreshold = 2.2f;
+                ^
+/Users/anthonygarcia/azahar/src/video_core/host_shaders/metal/xbrz_freescale_frag.metal:29:17: error: program scope variable must reside in constant address space
+constexpr float DominantDirectionThreshold = 3.6f;
+                ^
+/Users/anthonygarcia/azahar/src/video_core/host_shaders/metal/xbrz_freescale_frag.metal:30:17: error: program scope variable must reside in constant address space
+constexpr float HalfDiagonal = 0.7071067811865475244f;
+                ^
+3 errors generated.

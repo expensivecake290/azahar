@@ -1,0 +1,58 @@
+{
+  "phase": "064",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-064-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 227,
+        "symbol": "BlitHelper::BlitHelper(const Instance& instance_, Scheduler& scheduler_,"
+      },
+      "contract": "Native arm64 SDK, CMake-generated binaries, link and regression.",
+      "native_mapping": "Compile Objective-C++ against SDK and exact embedded host MetalLibs with no Vulkan in build or link.",
+      "expected_result": "Pass native link, header and PICA source baseline / 64 CTest runs.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake linked target, exact equality for twelve embedded Metal executable libraries, independent header/region/sample route checks, compiled physical test fixture, PICA200 48 cases / 801 assertions and 64 passing CTest with five existing skips."
+    },
+    {
+      "id": "MTL-064-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 766,
+        "symbol": "bool BlitHelper::Filter(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "Independent device-free route and transform oracle and offline graphics resource set.",
+      "native_mapping": "Compile API and binary corpus and validate pure bounds/contract before actual Metal device acquisition.",
+      "expected_result": "Expected utility path for all guest options with exact native artifacts.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake linked target, exact equality for twelve embedded Metal executable libraries, independent header/region/sample route checks, compiled physical test fixture, PICA200 48 cases / 801 assertions and 64 passing CTest with five existing skips."
+    },
+    {
+      "id": "MTL-064-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 388,
+        "symbol": "bool BlitHelper::BlitDepthStencil(Surface& source, Surface& dest,"
+      },
+      "contract": "Native API Validation and physical GPU known-answer texture outputs.",
+      "native_mapping": "Run all utility functions with odd crop, no alias feedback, stencil/depth packed, resolve each supported aspect and gradient refinement.",
+      "expected_result": "Expected native RGBA/depth/stencil readback, untouched edges and explicitly stored samples.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/064/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "064/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "27dd44fd05dc4b06ad7bded285f082e4d8c7fb477d80dc73f917ecb99c38cf1f"
+}

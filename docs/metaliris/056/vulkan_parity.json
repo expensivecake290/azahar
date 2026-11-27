@@ -1,0 +1,109 @@
+{
+  "phase": "056",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-056-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 145,
+        "symbol": "static bool glslang_initialized = false;"
+      },
+      "contract": "Compiler lifetime and failed initialization do not produce a module.",
+      "native_mapping": "Native per-device MTL4Compiler descriptor; check failure with original domain/code, no process-global legacy initialization.",
+      "expected_result": "Inject compiler setup failure and test real MTL4 descriptor initialization when a GPU is available.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/056/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "056/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC SDK compilation and link, real offline Metal 4 executable, controlled host queue contract, PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-056-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 164,
+        "symbol": "std::string_view premable) {"
+      },
+      "contract": "Stable input, preamble, language and settings preserve deterministic executable output.",
+      "native_mapping": "Native fixed MSL4 source with owned UTF-8 strings, explicit invariant and math/optimization options and stable macro keys.",
+      "expected_result": "Compare corresponding options/source at synchronous and native asynchronous boundaries.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/056/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "056/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC SDK compilation and link, real offline Metal 4 executable, controlled host queue contract, PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-056-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 182,
+        "symbol": "shader->setPreamble(premable.data());"
+      },
+      "contract": "Compilation and link errors return no module and preserve compiler detail.",
+      "native_mapping": "Native synchronous API and async completion with typed failure/warning diagnostics and actual device identity.",
+      "expected_result": "Invalid source, native failure/warning and optional bad/missing binary; real SDK diagnosis on GPU.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/056/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "056/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC SDK compilation and link, real offline Metal 4 executable, controlled host queue contract, PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-056-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 207,
+        "symbol": "// Controls optimizations on the generated SPIR-V code."
+      },
+      "contract": "Optimized versus precise compilation controls and native artifacts are canonical.",
+      "native_mapping": "Default precise native math, explicit size/performance control, stable compilable source and MTLB bytes.",
+      "expected_result": "Fixtures observe MSL4, math mode, floating precision, symbol hints and optimization.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/056/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "056/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC SDK compilation and link, real offline Metal 4 executable, controlled host queue contract, PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-056-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 223,
+        "symbol": "vk::ShaderModule CompileSPV(std::span<const u32> code, vk::Device device) {"
+      },
+      "contract": "Create executable shader resource from compiled bytes, preserving the real device and failure.",
+      "native_mapping": "Load copy-owned native executable Metal library via actual SDK byte API; reject invalid magic and SDK corruption.",
+      "expected_result": "Test short input, correct embedded bytes, corrupt MTLB and safe byte data ownership.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/056/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "056/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC SDK compilation and link, real offline Metal 4 executable, controlled host queue contract, PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "REOPEN-056-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.mm",
+        "sha256": "fe1b1311407ce0541621015649f26af4c8702ddcc1e6501a8c990fb7bf1c2ee7",
+        "line": 109,
+        "symbol": "State(id<MTLDevice> device, std::size_t limit)"
+      },
+      "contract": "Native cache needs the attached MTL4PipelineDataSetSerializer on the same native compiler used for build work; existing construction could not capture driver artifacts.",
+      "native_mapping": "Preserve synchronous, asynchronous, generation and artifact tests and assert actual compiler descriptor captures the caller-supplied serializer.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "056/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Preserve synchronous, asynchronous, generation and artifact tests and assert actual compiler descriptor captures the caller-supplied serializer. Captured in 056/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "0ea1ee66fa567fa5d4b9d40c804374a123dd65310cef84cb8157fd165c066fdd"
+}

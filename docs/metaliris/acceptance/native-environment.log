@@ -1,0 +1,46 @@
+['sw_vers']
+ProductName:		macOS
+ProductVersion:		27.2
+BuildVersion:		26B5086k
+Exit status 0
+['uname', '-m']
+arm64
+Exit status 0
+['xcode-select', '-p']
+/Applications/Xcode-beta.app/Contents/Developer
+Exit status 0
+['xcrun', '--sdk', 'macosx', '--show-sdk-path']
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk
+Exit status 0
+['xcrun', 'clang++', '--version']
+Apple clang version 21.0.0 (clang-2100.3.20.102)
+Target: arm64-apple-darwin27.2.0
+Thread model: posix
+InstalledDir: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+Exit status 0
+['system_profiler', 'SPDisplaysDataType', '-detailLevel', 'mini']
+Graphics/Displays:
+
+    Apple M1:
+
+      Chipset Model: Apple M1
+      Type: GPU
+      Bus: Built-In
+      Total Number of Cores: 8
+      Vendor: Apple (0x106b)
+      Metal: Supported
+
+Exit status 0
+['xcrun', 'xctrace', 'list', 'devices']
+No devices available for the recording
+Exit status 0
+PASS IPv4 UDP bind on 0.0.0.0 port 0
+MTLCopyAllDevices=0 MTLCreateSystemDefaultDevice=nil
++ /usr/bin/c++ /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/079/consumer.o /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/079/qt-bridge.o -O3 -DNDEBUG -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -o /private/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/079/qt-metal-bridge src/common/libcitra_common.a src/core/libcitra_core.a src/video_core/libvideo_core.a src/audio_core/libaudio_core.a -framework Cocoa -framework AVFoundation -framework IOSurface src/input_common/libinput_common.a src/core/libcitra_core.a src/video_core/libvideo_core.a src/audio_core/libaudio_core.a src/input_common/libinput_common.a externals/lodepng/liblodepng.a src/network/libnetwork.a src/web_service/libweb_service.a src/network/libnetwork.a src/web_service/libweb_service.a externals/enet/libenet.a /opt/homebrew/lib/libssl.dylib /opt/homebrew/lib/libcrypto.dylib externals/dynarmic/src/dynarmic/libdynarmic.a externals/dynarmic/externals/mcl/src/libmcl.a -framework Metal -framework MetalFX -framework QuartzCore -framework CoreGraphics -framework AppKit externals/soundtouch/libSoundTouch.a externals/teakra/src/libteakra.a externals/faad2/libfaad2.a externals/cubeb/libcubeb.a -framework AudioUnit -framework CoreAudio -framework CoreServices externals/openal-soft/libopenal.a -pthread -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit,-framework,ApplicationServices -Wl,-framework,CoreAudio -ldl -lm src/common/libcitra_common.a externals/fmt/libfmt.a externals/libboost_serialization.a externals/libboost_iostreams.a externals/cryptopp/libcryptopp.a externals/libmicrotar.a externals/libzstd_seekable.a externals/zstd/build/cmake/lib/libzstd.a externals/xxHash/cmake_unofficial/libxxhash.a /opt/homebrew/lib/libSDL2main.a /opt/homebrew/lib/libSDL2.dylib -framework Cocoa externals/libusb/libusb.a -framework CoreFoundation -framework IOKit -framework Security /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/lib/libobjc.tbd externals/catch2/src/libCatch2Main.a externals/catch2/src/libCatch2.a -F/opt/homebrew/Cellar/qtbase/6.11.1/lib -F/opt/homebrew/Cellar/qtmultimedia/6.11.1/lib -framework QtCore -framework QtGui
+PENDING physical native Metal device properties, Qt live drawable and trace capture
+Actual Qt app startup with Cocoa and scratch portable user directory: /private/tmp/metaliris-r12.lKARZLkI/qt/bin/Release/azahar.app/Contents/MacOS/azahar
+PasteBoard: Error creating pasteboard: com.apple.pasteboard.clipboard [-4960]
+PasteBoard: Error creating pasteboard: com.apple.pasteboard.find [-4960]
+2026-11-27 14:14:43.231 azahar[11131:37929108] Connection Invalid error for service com.apple.hiservices-xpcservice.
+2026-11-27 14:14:43.231 azahar[11131:37928981] Error received in message reply handler: Connection invalid
+Qt Cocoa exit status -6

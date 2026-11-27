@@ -5,6 +5,7 @@
 #pragma once
 
 #include <memory>
+#include <mutex>
 #include <tuple>
 #include <utility>
 
@@ -165,6 +166,39 @@ public:
         float render_surface_scale = 1.0f;
     };
 
+    /// Frontend-owned native render surface and physical drawable properties.
+    struct NativeSurface {
+        // The renderer retains a copy for as long as it can use the native handle.
+        // An empty handle selects headless rendering.
+        std::shared_ptr<void> handle;
+        u32 width{};
+        u32 height{};
+        float scale{1.0f};
+        double refresh_rate{}; ///< Refresh rate in Hz, or zero when unknown.
+        bool fullscreen{};
+        bool portrait{};
+        bool suspended{};
+
+        [[nodiscard]] bool IsHeadless() const {
+            return !handle;
+        }
+
+        [[nodiscard]] bool IsDrawableAvailable() const {
+            return handle && !suspended && width != 0 && height != 0;
+        }
+
+        bool operator==(const NativeSurface&) const = default;
+    };
+
+    struct NativeSurfaceSnapshot {
+        NativeSurface surface;
+        Layout::FramebufferLayout layout{};
+        u64 generation{}; ///< Changes with the surface owner or drawable properties.
+    };
+
+    /// Atomically copies the retained surface, its presentation layout and generation.
+    [[nodiscard]] NativeSurfaceSnapshot GetNativeSurface() const;
+
     /// Polls window events
     virtual void PollEvents() = 0;
 
@@ -243,7 +277,8 @@ public:
      * Gets the framebuffer layout (width, height, and screen regions)
      * @note This method is thread-safe
      */
-    const Layout::FramebufferLayout& GetFramebufferLayout() const {
+    Layout::FramebufferLayout GetFramebufferLayout() const {
+        std::scoped_lock lock(native_surface_mutex);
         return framebuffer_layout;
     }
 
@@ -315,8 +350,22 @@ protected:
      * @note EmuWindow implementations will usually use this in window resize event handlers.
      */
     void NotifyFramebufferLayoutChanged(const Layout::FramebufferLayout& layout) {
+        std::scoped_lock lock(native_surface_mutex);
         framebuffer_layout = layout;
+        native_surface.layout = layout;
     }
+
+    /**
+     * Publish a native surface with its presentation and touch layout from the frontend.
+     * The handle must own its native object. Zero width and height mean no available
+     * drawable, and an empty surface detaches the previous object.
+     * Invalid metadata is rejected without changing the published snapshot.
+     */
+    [[nodiscard]] bool PublishNativeSurface(NativeSurface surface, Layout::FramebufferLayout layout);
+
+    /// Derive the layout using the native backing extent or the frontend's headless dimensions.
+    [[nodiscard]] bool UpdateNativeSurface(NativeSurface surface, u32 fallback_width,
+                                           u32 fallback_height);
 
     bool is_secondary{};
     bool strict_context_required{};
@@ -335,7 +384,9 @@ private:
 
     void CreateTouchState();
 
-    Layout::FramebufferLayout framebuffer_layout; ///< Current framebuffer layout
+    Layout::FramebufferLayout framebuffer_layout{}; ///< Current framebuffer layout
+    mutable std::mutex native_surface_mutex;
+    NativeSurfaceSnapshot native_surface{};
 
     WindowConfig config{};        ///< Internal configuration (changes pending for being applied in
                                   /// ProcessConfigurationChanges)
@@ -348,6 +399,12 @@ private:
      */
     std::tuple<unsigned, unsigned> ClipToTouchScreen(unsigned new_x, unsigned new_y) const;
 
+    struct WindowLayout {
+        Layout::FramebufferLayout framebuffer;
+        std::pair<u32, u32> minimum;
+    };
+
+    WindowLayout CalculateFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) const;
     void UpdateMinimumWindowSize(std::pair<unsigned, unsigned> min_size);
 };
 

@@ -1,0 +1,126 @@
+{
+  "phase": "069",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-069-01",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 43,
+        "symbol": "use_custom_textures{Settings::values.custom_textures.GetValue()} {"
+      },
+      "contract": "Construction creates and clears typed null 2D/cube resources and a compatible sampler.",
+      "native_mapping": "Use completed TextureRuntime, Framebuffer, TextureSurface, Sampler and DebugScope.",
+      "expected_result": "Real linked rasterizer constructor; inspect native cache lifecycle and null binding.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-069-02",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 188,
+        "symbol": "bool RasterizerCache<T>::AccelerateTextureCopy(const Pica::DisplayTransferConfig& config) {"
+      },
+      "contract": "Display transfers, memory copies and fills have exact pitch/flip/range validation and fallback return values.",
+      "native_mapping": "Reuse these entry points with existing supported formats, native blit paths and guest-memory fallback from the caller.",
+      "expected_result": "Read known row/plane and surrounding sentinels, including overlapping copy and fill.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-069-03",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 721,
+        "symbol": "FramebufferHelper<T> RasterizerCache<T>::GetFramebufferSurfaces(bool using_color_fb,"
+      },
+      "contract": "Framebuffer subrect caches live guest color/depth IDs; template helper tracks validity and exact viewport/scissor.",
+      "native_mapping": "Instantiate native framebuffer attachment update, rescaling, native resolves and surface traits.",
+      "expected_result": "Link real current rasterizer and check dirty format and viewport in physical software oracle.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-069-04",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 995,
+        "symbol": "void RasterizerCache<T>::ValidateSurface(SurfaceId surface_id, PAddr addr, u32 size) {"
+      },
+      "contract": "Guest writes invalidate aliases and registered pages; dirty data follows latest valid region owner.",
+      "native_mapping": "Use neutral interval/page ownership and the real Metal upload, transfer, reinterpret and readback contracts.",
+      "expected_result": "Dirty interval readback, alias changes and unsupported conversion fallbacks.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-069-05",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 1243,
+        "symbol": "void RasterizerCache<T>::DownloadSurface(Surface& surface, SurfaceInterval interval) {"
+      },
+      "contract": "Downloads require synchronized staged guest bytes before encode for the target interval.",
+      "native_mapping": "Reuse shared codec, native staging lifetime and actual graphics completion.",
+      "expected_result": "Verify exact byte endpoints, odd width and adjacent unchanged bytes.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-069-06",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 1439,
+        "symbol": "void RasterizerCache<T>::InvalidateRegion(PAddr addr, u32 size, SurfaceId region_owner_id) {"
+      },
+      "contract": "CPU writes invalidate matching texture/cache regions and previous dirty owner.",
+      "native_mapping": "Preserve exact behavior from shared cache and retire detached allocations only after actual GPU use.",
+      "expected_result": "Repeated write, mark/unregister and reuse with pending graphics submission.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-069-07",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_rasterizer.mm",
+        "sha256": "e6d859e35d5bba877ff91d44d5fae8f9ea1c2eaa89fb6edde9359f8b48e60644",
+        "line": 938,
+        "symbol": ""
+      },
+      "contract": "Native public rasterizer delegates readback, transfer/copy/fill and cached screen acquisition to shared specialization.",
+      "native_mapping": "Resolve every undefined member from the exact production rasterizer through one real native explicit instance.",
+      "expected_result": "Link without test duplicate specialization. Compile all PICA cache entry points and verify runtime once available.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native Apple SDK arm64 ARC, 12 concrete Metal cache symbols, one native CMake archive instantiation, real direct consumer link with no fixture specialization, neutral include graph, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    }
+  ],
+  "owner_sha256_after": "1b0233ac4e2cb74887b8084a8ff2e81223a3ef9a70b4edfb91c6478c7bfdd566"
+}

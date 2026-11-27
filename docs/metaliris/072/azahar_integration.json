@@ -1,0 +1,92 @@
+{
+  "phase": "072",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-072-01",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 172,
+        "symbol": "// An empty handle selects headless rendering."
+      },
+      "contract": "Frontend publishes retained Cocoa surface properties and latest composition layout.",
+      "native_mapping": "Keep present worker frontend-neutral, one instance per main/secondary owner, no UIKit/Qt in shared core.",
+      "expected_result": "Compile both ownership types and preview surface lifecycle.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-072-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.h",
+        "sha256": "b7dee9c5baef9345bc95af0f1687db3b06a97ad305f8a457b086ef6c70770cfd",
+        "line": 57,
+        "symbol": "DeviceUnavailable,"
+      },
+      "contract": "Swapchain owns native CAMetalLayer acquisition and scoped present leases.",
+      "native_mapping": "Drive from a single presentation producer and strict stale configuration; never transfer raw lease without ownership.",
+      "expected_result": "Real 071 integration plus frame-pool and mailbox pressure tests.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-072-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.h",
+        "sha256": "65aec73c39852eab9c17c4a8585113132eb99b6e7f77ace854788068c7c1beb0",
+        "line": 83,
+        "symbol": ""
+      },
+      "contract": "Azahar Metal native render attachment describes load/store and resolve.",
+      "native_mapping": "Frame constructs same type. Retain actual native resources through GPU submission and keep same sample count.",
+      "expected_result": "Compile exact type and GPU per-sample resolve workload.",
+      "dependency_owner": "072",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header compile, native resolve descriptor, 68 exact independent transfer selection cases and neutral include closure. PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "AZ-072-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_master_semaphore.h",
+        "sha256": "c8d491b888e70ff7036b43d3a356dd00bd31f52cc989bdf9fb4b099f95762711",
+        "line": 34,
+        "symbol": ""
+      },
+      "contract": "Completion timeline distinguishes success, fault and actual resource retirement.",
+      "native_mapping": "Observe actual source and present tickets, wait retire before reusing backing even for failed frames.",
+      "expected_result": "Bounded timeout plus accurate lifecycle host tests.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-072-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_present_window.h",
+        "sha256": "404e9952a169e228b0c4575a06f23910a4e8139fbcc6128f60b3e48107d45130",
+        "line": 67,
+        "symbol": "void Retain(EncodingContext& context) const;"
+      },
+      "contract": "The renderer records asynchronous commands before handing the frame to Present. A Retain call on the original Frame inside the worker can race with moving the Frame into Present.",
+      "native_mapping": "Pin the exact allocation in a producer-side scheduler command before any consumer ownership transfer.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/reopen-073.log",
+      "status": "PENDING",
+      "actual_result": "Actual SDK compiler and available targeted fixture passed. Live pacing or frame retirement still requires Metal 4 hardware."
+    }
+  ],
+  "owner_sha256_after": "ba42b6faea81f93543fbe19bafe0cabee2b7fcfe78dced0d38991c9de004a88e"
+}

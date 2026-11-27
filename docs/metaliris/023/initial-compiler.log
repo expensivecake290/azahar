@@ -1,0 +1,31 @@
+In file included from src/video_core/renderer_metal/mtl_scheduler.mm:16:
+src/common/microprofile.h:23:10: error: 'microprofile.h' file not found with <angled> include; use "quotes" instead
+   23 | #include <microprofile.h>
+      |          ^~~~~~~~~~~~~~~~
+      |          "microprofile.h"
+src/video_core/renderer_metal/mtl_scheduler.mm:20:1: error: a type specifier is required for all declarations
+   20 | MICROPROFILE_DEFINE(Metal_WaitForWorker, "Metal", "Wait for worker", MP_RGB(255, 192, 192));
+      | ^
+src/video_core/renderer_metal/mtl_scheduler.mm:20:21: error: use of undeclared identifier 'Metal_WaitForWorker'
+   20 | MICROPROFILE_DEFINE(Metal_WaitForWorker, "Metal", "Wait for worker", MP_RGB(255, 192, 192));
+      |                     ^~~~~~~~~~~~~~~~~~~
+src/video_core/renderer_metal/mtl_scheduler.mm:21:1: error: a type specifier is required for all declarations
+   21 | MICROPROFILE_DEFINE(Metal_Submit, "Metal", "Submit execution", MP_RGB(255, 192, 255));
+      | ^
+src/video_core/renderer_metal/mtl_scheduler.mm:21:21: error: use of undeclared identifier 'Metal_Submit'
+   21 | MICROPROFILE_DEFINE(Metal_Submit, "Metal", "Submit execution", MP_RGB(255, 192, 255));
+      |                     ^~~~~~~~~~~~
+src/video_core/renderer_metal/mtl_scheduler.mm:475:12: error: type argument 'MTL4CommitOptions' must be a pointer (requires a '*')
+  475 |         id<MTL4CommitOptions> native_options = nil;
+      |            ^                
+      |                              *
+src/video_core/renderer_metal/mtl_scheduler.mm:475:9: error: type arguments cannot be applied to non-class type 'id'
+  475 |         id<MTL4CommitOptions> native_options = nil;
+      |         ^ ~~~~~~~~~~~~~~~~~~~
+src/video_core/renderer_metal/mtl_scheduler.mm:556:28: error: use of undeclared identifier 'Metal_Submit'
+  556 |         MICROPROFILE_SCOPE(Metal_Submit);
+      |                            ^~~~~~~~~~~~
+src/video_core/renderer_metal/mtl_scheduler.mm:768:24: error: use of undeclared identifier 'Metal_WaitForWorker'
+  768 |     MICROPROFILE_SCOPE(Metal_WaitForWorker);
+      |                        ^~~~~~~~~~~~~~~~~~~
+9 errors generated.

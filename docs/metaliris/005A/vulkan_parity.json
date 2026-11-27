@@ -1,0 +1,41 @@
+{
+  "phase": "005A",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-LEGACY-KEYS",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 35,
+        "symbol": "\"graphics_api\""
+      },
+      "contract": "Existing graphics API and Vulkan-specific options have canonical serialized key names.",
+      "native_mapping": "Exactly preserve existing names and relative order. Native Spatial opt-in uses a new independent key.",
+      "expected_result": "Baseline and generated key arrays compare equal after removing the new native-only key.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "VK-GPU-NOT-APPLICABLE",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 355,
+        "symbol": "configure_file(\"common/setting_keys.h.in\" \"common/setting_keys.h\" @ONLY)"
+      },
+      "contract": "Build-time configuration key generation does not execute a renderer.",
+      "native_mapping": "Use real CMake generation and compare declarations. No Vulkan or physical GPU is involved.",
+      "expected_result": "Only CMake and native clang syntax verification are invoked.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    }
+  ],
+  "owner_sha256_after": "b44db69c057d9ea0d6b2a3e36b7627be3621d457123f645bb304688b06cc0c93"
+}

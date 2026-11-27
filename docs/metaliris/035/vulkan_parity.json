@@ -1,0 +1,228 @@
+{
+  "phase": "035",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-035-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 16,
+        "symbol": ""
+      },
+      "contract": "PICA vertex uniform b/i/f layout, raster clip flags and coefficient; conditional FreeCam matrix/skip.",
+      "native_mapping": "Direct native MSL constant buffer layouts with byte offset assertions and host compiler variants.",
+      "expected_result": "Actual Metal 4 source with and without FreeCam plus byte checks.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PASS",
+      "actual_result": "Host source/configuration oracles, native source registration and arm64 linking passed. Compiled 12 Metal 4 libraries each with and without FreeCam. PICA and CTest passed."
+    },
+    {
+      "id": "VK-035-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 43,
+        "symbol": ")\""
+      },
+      "contract": "Clamp near-zero z and slight excursions below -w; negate guest depth, apply viewport flip and optional FreeCam.",
+      "native_mapping": "Invariant native vertex and mesh position; expose both native clip planes and unchanged varyings.",
+      "expected_result": "Shared outputs compared for epsilon, z/w and custom clipping.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 79,
+        "symbol": "#endif"
+      },
+      "contract": "Named interpolants for color, textures, projective W, quaternion and view.",
+      "native_mapping": "Semantic explicit native user(locn) and interpolation matching the fragment input.",
+      "expected_result": "Actual fragment pipeline pair matches vertex and mesh outputs and varyings.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-04",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 119,
+        "symbol": "std::string GenerateTrivialVertexShader(bool use_clip_planes, bool separable_shader) {"
+      },
+      "contract": "Pass software-produced clip positions and varyings into the native fragment shader.",
+      "native_mapping": "Trivial Metal 4 vertex function takes existing shared stage-in layout.",
+      "expected_result": "Trivial and expanded output positions and values compared.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-05",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 172,
+        "symbol": "if (True(flag & AttribLoadFlags::Float)) {"
+      },
+      "contract": "Float/signed/unsigned typed load and explicit ZeroW conversion.",
+      "native_mapping": "Native typed stage input; compute fallback reads normalized dense PICA input register banks.",
+      "expected_result": "Same inputs produce exact compact outputs and converted shader results.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-06",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 194,
+        "symbol": "std::array<bool, 16> used_regs{};"
+      },
+      "contract": "Compile shared program/swizzles with configured main offset; unsupported source reports a failure.",
+      "native_mapping": "Native decompiler and explicit failure propagation; disables invalid native entry publication.",
+      "expected_result": "Invalid configs and no ordinary render when typed decompile fails.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-07",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 244,
+        "symbol": "}"
+      },
+      "contract": "Compact ordered output registers map semantic values; missing values 1.0, clamp absolute color.",
+      "native_mapping": "Shared semantic map and explicit native output encoding, including missing values and invalid registers.",
+      "expected_result": "Move program yields exact expected packed ABI and sparse mask behavior.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-08",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 330,
+        "symbol": "std::string out ="
+      },
+      "contract": "Fixed geometry shares clip/shader uniforms and outputs, correcting quaternion hemispheres per triangle.",
+      "native_mapping": "Same per-triangle conversion used for native object/mesh and native compute; no divergence in winding or color clamp.",
+      "expected_result": "Equivalent geometry for fans, strips, lists and clipped triangles.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-09",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 417,
+        "symbol": "EmitVtx(vtx0, false);"
+      },
+      "contract": "Fixed geometry emits vertices in source primitive order.",
+      "native_mapping": "Native mesh/object for proven equivalence; native compute fallback produces ordered nonindexed triangles and applies PICA strip/fan math.",
+      "expected_result": "Primitive ordering and overlap hazards independently assessed.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-10",
+      "source": {
+        "path": "src/video_core/pica/geometry_pipeline.cpp",
+        "sha256": "2f0b157479f0e875c23c89c652306fe6cd8a0244be7db4666ee5fa4c659abad7",
+        "line": 45,
+        "symbol": ""
+      },
+      "contract": "Programmable input fed to registers or mutable uniforms for Point, FixedPrimitive and VariablePrimitive.",
+      "native_mapping": "Native shader consumes checked contiguous invocation records, charges actual input data, and applies in order.",
+      "expected_result": "CPU and GPU tests with all three source paths and zero/invalid bounds.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-11",
+      "source": {
+        "path": "src/video_core/pica/geometry_pipeline.cpp",
+        "sha256": "2f0b157479f0e875c23c89c652306fe6cd8a0244be7db4666ee5fa4c659abad7",
+        "line": 370,
+        "symbol": "backend->SubmitIndex(val);"
+      },
+      "contract": "Geometry state persists and b15 becomes true after every invocation.",
+      "native_mapping": "Use transactional native geometry continuation, update b15 before a dependent invocation, copy only on success.",
+      "expected_result": "Do not advance continuation for overflow; retry reproduces interpreter sequence.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-12",
+      "source": {
+        "path": "src/video_core/pica/shader_unit.cpp",
+        "sha256": "19623c2ca23f9a309b5dd6dcf6c65ccbc51f06108ed55de44b72b7101915c113",
+        "line": 33,
+        "symbol": ""
+      },
+      "contract": "Emit updates the selected temporary vertex and optional primitive/winding; alternate output register banks.",
+      "native_mapping": "Native emit buffers and decompiler's existing banks; feed persistent primitive assembler in order.",
+      "expected_result": "Native program writes out of order, preserves slots and alternates banks.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-035-13",
+      "source": {
+        "path": "src/video_core/pica/primitive_assembly.cpp",
+        "sha256": "386a924372b322a132aab5f0e1f9fa10bd41880cbb496c15895bcec4ef0847b7",
+        "line": 11,
+        "symbol": ": topology(topology) {}"
+      },
+      "contract": "Full PICA triangle list, strip, fan and programmable winding transitions across restarts.",
+      "native_mapping": "Native ordered stream and geometry assembler mirrors shared primitive state; clear cursor, strip and winding only on restart.",
+      "expected_result": "Compare exact topology, primitive restart and output ordering against shared CPU behavior.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "57bb415ef88ccf3de0a60ef8229a88dd559294f719aba65e23bb1015ebb946a6"
+}

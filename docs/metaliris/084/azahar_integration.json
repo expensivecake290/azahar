@@ -1,0 +1,41 @@
+{
+  "phase": "084",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-084-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_debug.cpp",
+        "sha256": "74e220454d822275d256e76dbae0d7d805ef130074a1cb427fa8b6fda56686b2",
+        "line": 158,
+        "symbol": "}"
+      },
+      "contract": "Qt ApplyConfiguration persists debug flag values through existing common settings.",
+      "native_mapping": "Reuse existing renderer_debug and dump_command_buffers keys, hide current backend detail behind translated native text.",
+      "expected_result": "Qt round-trip and no difference to neighboring PICA debugger, clock and scripting controls.",
+      "dependency_owner": "004/005/085",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt native/feature-off compiled and native widget linked. Validation and capture independent, retranslate and running lockout verified. Native physical capture pending. PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-084-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_debug.cpp",
+        "sha256": "74e220454d822275d256e76dbae0d7d805ef130074a1cb427fa8b6fda56686b2",
+        "line": 191,
+        "symbol": "Settings::values.renderer_debug = ui->toggle_renderer_debug->isChecked();"
+      },
+      "contract": "Per-game debugger settings hide global-only renderer debug controls. Application retranslate retains labels.",
+      "native_mapping": "Reuse existing group visibility, native-only retranslation and compatibility for non-Metal builds.",
+      "expected_result": "Actual native and off compile plus runtime per-game/current game visibility and powered-on gating.",
+      "dependency_owner": "085",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt native/feature-off compiled and native widget linked. Validation and capture independent, retranslate and running lockout verified. Native physical capture pending. PICA 48/801 and CTest 64 passes."
+    }
+  ],
+  "owner_sha256_after": "b2a1f7e4c7a1d2b1d6b779f6e25b4f1464088d88de696992705cd1a10d975a79"
+}

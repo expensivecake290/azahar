@@ -1,0 +1,41 @@
+{
+  "phase": "005A",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-DETERMINISTIC-KEYS",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 349,
+        "symbol": "# Trim trailing comma and newline from SETTING_KEY_LIST"
+      },
+      "contract": "Key declarations and array must match without duplicates.",
+      "native_mapping": "Use the source generator and templates with independent before/after and repeated-build oracles.",
+      "expected_result": "Six fixture variants produce expected exact deterministic artifacts and leave prior values unchanged.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "MTL-CXX-KEYS",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 355,
+        "symbol": "configure_file(\"common/setting_keys.h.in\" \"common/setting_keys.h\" @ONLY)"
+      },
+      "contract": "Renderer setting declaration uses an exact match to generated common key.",
+      "native_mapping": "Run Phase 004 and 005 native consumers using the CMake build generated header.",
+      "expected_result": "The switchable setting name, disabled default, enum selection and per-title scope tests pass.",
+      "dependency_owner": "004",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "004/header-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    }
+  ],
+  "owner_sha256_after": "b44db69c057d9ea0d6b2a3e36b7627be3621d457123f645bb304688b06cc0c93"
+}

@@ -1,0 +1,228 @@
+{
+  "phase": "060",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-060-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 41,
+        "symbol": "static VideoCore::DiskResourceLoadCallback MakeThrottledCallback("
+      },
+      "contract": "Real callback throttling and use-disk-cache setting; optional work can be stopped between entries.",
+      "native_mapping": "Use scoped permission and native Preload counts tied to completed exact record reads, with first/last callbacks and no published partial snapshot on cancel.",
+      "expected_result": "Mixed valid/corrupt inputs, ordered progress, callbacks triggering cancel, and disabled path with no I/O side effect.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 81,
+        "symbol": "std::optional<std::pair<u64, Shader* const>> ShaderDiskCache::UseProgrammableVertexShader("
+      },
+      "contract": "Distinct vertex config, program and compiler identity; empty program has no false success.",
+      "native_mapping": "Cache stage + full MSL, options/entry or MetalLib bytes; deduplicate by exact structural content, enforce bounds, reject unusable source metadata.",
+      "expected_result": "Round-trip compile configurations and same digest candidate followed by different full content, reject invalid stage/artifact.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 149,
+        "symbol": "std::optional<std::pair<u64, Shader* const>> ShaderDiskCache::UseFragmentShader("
+      },
+      "contract": "Per-fragment actual compiler route, source output and cacheable user config.",
+      "native_mapping": "Store exact native fragment function and feedback state inside complete render key; selection owner tells Store only cacheables.",
+      "expected_result": "Test separate shader stages and all native fragment routes with exact payload; option-specific warmup integration in 062.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-060-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 187,
+        "symbol": "std::optional<std::pair<u64, Shader* const>> ShaderDiskCache::UseFixedGeometryShader("
+      },
+      "contract": "Optional native geometry path still allows pipeline replay and compatible geometry variants.",
+      "native_mapping": "Native stage enum captures object, mesh, transform and expansion. Graphics keys include stage choices without absent dependencies.",
+      "expected_result": "Round-trip all geometry and standalone stages; compiling the restored native object/mesh and fallback is verified on device.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 238,
+        "symbol": "GraphicsPipeline* ShaderDiskCache::GetPipeline(const PipelineInfo& info) {"
+      },
+      "contract": "Lookup, known key dedup, real wait for loaded pipelines, optional missing stage branch.",
+      "native_mapping": "Store complete pipeline keys. Expose restored exactly matched recipes and native archives while keeping compile readiness to pipeline owner.",
+      "expected_result": "Present complete keys after read and never mark ones with missing assets as successful until built.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-060-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 318,
+        "symbol": "ShaderDiskCache::CacheEntry ShaderDiskCache::CacheFile::ReadAt(size_t position) {"
+      },
+      "contract": "Protect entry version/type/offset, zstd uncompressed size, corrupt or truncated payload and footer.",
+      "native_mapping": "Explicit little-endian magic, versions, bounded typed strings/arrays, length/checksum, exact decode with no trailing bytes, zstd only when beneficial.",
+      "expected_result": "Independent on-disk header, byte-level fixtures, checksum mismatch, corrupt compressed and oversize cases.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 381,
+        "symbol": "void ShaderDiskCache::CacheFile::Append(CacheEntryType type, u64 id, std::span<const u8> data,"
+      },
+      "contract": "Serialized append-worker persistence and current-mode checks.",
+      "native_mapping": "Use advisory OS lock around committed mutation, uniquely staged file, flush payload to disk, then publish one atomic rename in same directory and sync parent.",
+      "expected_result": "Concurrent threads and multiple cache handles cannot lose different records; interrupted staging leaves prior record intact.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 430,
+        "symbol": "bool ShaderDiskCache::CacheFile::SwitchMode(CacheOpMode mode) {"
+      },
+      "contract": "Read/open/append/cleanup and transient invalid cache files recover.",
+      "native_mapping": "Fresh load avoids corrupt or incompatible records, retains good commit siblings, permits replacement and exact record deletion, distinguishes I/O and disabled.",
+      "expected_result": "Simulate incompatible version, missing directory, damaged file and read/write errors; re-store exact damaged key.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 519,
+        "symbol": "std::string ShaderDiskCache::GetVSFile(u64 title_id, bool is_temp) const {"
+      },
+      "contract": "Per-title and per-stage paths, identity/file-type-specific namespaces.",
+      "native_mapping": "Select a deterministic title plus scope path based on exact native identity fields. Verify full identity on every disk record and archive.",
+      "expected_result": "Title, homebrew content identifier, source, GPU architecture, OS build and profile mismatch never leak entries.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 542,
+        "symbol": "std::array<char, 0x20> build_name{};"
+      },
+      "contract": "Versioning of shader cache source/profile and backend-specific native artifacts.",
+      "native_mapping": "Native schema and complete shader-source identities, maintain driver architecture and OS build for native artifacts. Preserve valid older files outside the active namespace.",
+      "expected_result": "Static schema, platform build identities and actual foreign-identity injected file tests.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 576,
+        "symbol": "bool ShaderDiskCache::InitVSCache(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Validate paired VS/FS/GS/pipeline cohorts; source fallback when a compiled artifact is missing.",
+      "native_mapping": "Prevalidated native record categories and exact replay source recipes. Cache binary misses fall back through normal authoring/build; malformed entries do not invalidate unrelated ones.",
+      "expected_result": "Test multiple good records across a mixed corrupt snapshot; device-native archive rejection and compiler warmup separate.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-060-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 1334,
+        "symbol": "bool ShaderDiskCache::InitPLCache(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Build native-compatible cache asynchronously, resolve exact shader dependencies, no bad pipeline publication.",
+      "native_mapping": "Load native snapshots under cancellation and explicit generation; compiler warmup uses recovered records only and counts actual resulting work.",
+      "expected_result": "Retest first title load, cache switch/stop, observed completion PICA output in owning compiler phase.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-060-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 1485,
+        "symbol": "void ShaderDiskCache::AppendVSConfigProgram(CacheFile& file,"
+      },
+      "contract": "Persist guest variation deterministically without mutable pointers, preserve fast replay.",
+      "native_mapping": "Full key wire schema, portable little-endian enum values and deduplicated stage identities. Native archives contain only SDK-generated binaries.",
+      "expected_result": "Independent wire equivalent and concurrent writes fixtures; native archive store/open/read and fallback with physical hardware.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    }
+  ],
+  "owner_sha256_after": "5e20a597ece105f39676a7d0367c0f87886c549d5a3102a6e71a77e311144afd"
+}

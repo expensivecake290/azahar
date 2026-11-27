@@ -1,0 +1,337 @@
+-- The C compiler identification is AppleClang 21.0.0.21000320
+-- The CXX compiler identification is AppleClang 21.0.0.21000320
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+-- The OBJC compiler identification is AppleClang 21.0.0.21000320
+-- The OBJCXX compiler identification is AppleClang 21.0.0.21000320
+-- Detecting OBJC compiler ABI info
+-- Detecting OBJC compiler ABI info - done
+-- Check for working OBJC compiler: /usr/bin/clang - skipped
+-- Detecting OBJCXX compiler ABI info
+-- Detecting OBJCXX compiler ABI info - done
+-- Check for working OBJCXX compiler: /usr/bin/clang++ - skipped
+-- Using Precompiled Headers.
+-- Copying pre-commit hook
+-- LTO disabled
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/boost not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/nihstro not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/soundtouch not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/catch2 not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/dynarmic not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/xbyak not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/fmt not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/enet not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/inih/inih not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/libressl not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/libusb/libusb not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/cubeb not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/discord-rpc not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/cpp-jwt not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/teakra not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/lodepng/lodepng not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/zstd not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/libyuv not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/sdl2/SDL not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/dds-ktx not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/openal-soft not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/glslang not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/vma not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/vulkan-headers not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/sirit/sirit not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/faad2/faad2 not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/libadrenotools not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/oaknut not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule dist/compatibility_list not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/spirv-tools not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/spirv-headers not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/xxHash not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/libretro-common/libretro-common not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/dllwalker not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/cryptopp not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+CMake Error at CMakeLists.txt:315 (message):
+  Git submodule externals/microtar not found.
+
+  Please run: git submodule update --init --recursive
+Call Stack (most recent call first):
+  CMakeLists.txt:322 (check_submodules_present)
+
+
+-- Target architecture: arm64
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+CMake Error at CMakeLists.txt:421 (find_package):
+  By not providing "FindQt6.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Qt6", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Qt6" with any of
+  the following names:
+
+    Qt6.cps
+    qt6.cps
+    Qt6Config.cmake
+    qt6-config.cmake
+
+  Add the installation prefix of "Qt6" to CMAKE_PREFIX_PATH or set "Qt6_DIR"
+  to a directory containing one of the above files.  If "Qt6" provides a
+  separate development package or SDK, be sure it has been installed.
+
+
+-- Configuring incomplete, errors occurred!

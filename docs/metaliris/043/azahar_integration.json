@@ -1,0 +1,41 @@
+{
+  "phase": "043",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-043-01",
+      "source": {
+        "path": "src/video_core/host_shaders/full_screen_triangle.vert",
+        "sha256": "25632a1dbe608ef035dd01de3137ee45fe8ec716c4e6ea8c0a5170ab97a90c72",
+        "line": 10,
+        "symbol": "layout(location = 0) out vec2 texcoord;"
+      },
+      "contract": "Existing utility fragment inputs can bind either normalized strip UV or affine triangle UV.",
+      "native_mapping": "Implement independent native vertex entry with same fragment interface, without reading triangle-only parameters.",
+      "expected_result": "Native vertex pairs with real fixture and gradient clients when ready.",
+      "dependency_owner": "043",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 043 <native-build-dir> <scratch-dir>",
+      "evidence_path": "043/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-043-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 171,
+        "symbol": "inline constexpr vk::SamplerCreateInfo SAMPLER_CREATE_INFO{"
+      },
+      "contract": "Reference filter and viewport source uses clamp-to-edge and output area; strip requires unindexed drawing.",
+      "native_mapping": "Actual host stages select strip when full UV range is wanted and triangle for transform-dependent copies.",
+      "expected_result": "Native host consumer validates topology, output area and correct raster winding.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 043 <native-build-dir> <scratch-dir>",
+      "evidence_path": "043/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "a205c24f3a61c57120387dded341743c39eca148222bd8c8428fa7dac42002f5"
+}

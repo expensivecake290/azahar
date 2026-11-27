@@ -1,0 +1,11 @@
++zsh:32> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' -Werror '-fmodules-cache-path=/tmp/metaliris-r12.lKARZLkI/phase036/modules' /tmp/metaliris-r12.lKARZLkI/msaa-writes.metal -o /tmp/metaliris-r12.lKARZLkI/msaa-writes.metallib
+In module 'metal_stdlib' imported from /tmp/metaliris-r12.lKARZLkI/msaa-writes.metal:1:
+In module 'metal_texture' imported from /private/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.wfvsQd/Metal.xctoolchain/usr/metal/32023/lib/clang/32023/include/metal/metal_stdlib:100:
+In module '__bits_metal_texture2d_ms' imported from /private/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.wfvsQd/Metal.xctoolchain/usr/metal/32023/lib/clang/32023/include/metal/metal_texture:14:
+/private/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.wfvsQd/Metal.xctoolchain/usr/metal/32023/lib/clang/32023/include/metal/__bits/metal_texture2d_ms:1203:3: error: static_assert failed due to requirement '_is_any_of((metal::access)2, access::read)' "invalid access value 'a' for 'texture2d_ms'"
+  static_assert(_is_valid_ms_query_access(a), "invalid access value 'a' for 'texture2d_ms'");
+  ^             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/metaliris-r12.lKARZLkI/msaa-writes.metal:3:54: note: in instantiation of template class 'metal::texture2d_ms<float, metal::access::write, metal::memory_coherence_threadgroup>' requested here
+kernel void probe(texture2d_ms<float, access::write> target [[texture(0)]],
+                                                     ^
+1 error generated.

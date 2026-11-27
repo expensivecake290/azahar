@@ -1,0 +1,789 @@
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/baseline-source -B /private/tmp/metaliris-r12.lKARZLkI/baseline-build -G Ninja -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_SYSROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=/opt/homebrew -DENABLE_TESTS=ON -DENABLE_LTO=OFF -DENABLE_FFMPEG=OFF -DENABLE_QT=OFF -DENABLE_VULKAN=OFF -DUSE_SYSTEM_OPENSSL=ON -DUSE_SYSTEM_SDL2=ON -DCITRA_USE_PRECOMPILED_HEADERS=OFF
+-- The C compiler identification is AppleClang 21.0.0.21000320
+-- The CXX compiler identification is AppleClang 21.0.0.21000320
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+-- The OBJC compiler identification is AppleClang 21.0.0.21000320
+-- The OBJCXX compiler identification is AppleClang 21.0.0.21000320
+-- Detecting OBJC compiler ABI info
+-- Detecting OBJC compiler ABI info - done
+-- Check for working OBJC compiler: /usr/bin/clang - skipped
+-- Detecting OBJCXX compiler ABI info
+-- Detecting OBJCXX compiler ABI info - done
+-- Check for working OBJCXX compiler: /usr/bin/clang++ - skipped
+-- LTO disabled
+-- Target architecture: arm64
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Including vendored Boost library
+-- Performing Test HAVE_FLAG__ffile_prefix_map__private_tmp_metaliris_r12_lKARZLkI_baseline_source_externals_catch2__
+-- Performing Test HAVE_FLAG__ffile_prefix_map__private_tmp_metaliris_r12_lKARZLkI_baseline_source_externals_catch2__ - Success
+-- => Project : cryptopp-modern v2026.5.1
+-- [cryptopp-modern] CMake version 4.4.2
+-- [cryptopp-modern] System Darwin
+-- [cryptopp-modern] Processor arm64
+-- [cryptopp-modern]     CMAKE_OSX_ARCHITECTURES : arm64
+-- [cryptopp-modern] CMAKE_HOST_SYSTEM_PROCESSOR : arm64
+-- [cryptopp-modern]      CMAKE_SYSTEM_PROCESSOR : arm64
+-- [cryptopp-modern] Target architecture detected as: arm64 -> CRYPTOPP_ARMV8
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_NEON_HEADER
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_NEON_HEADER - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_ACLE_HEADER
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_ACLE_HEADER - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_SIMD
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_SIMD - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_CRC32
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_CRC32 - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_AES
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_AES - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_PMULL
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_PMULL - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA1
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA1 - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA2
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA2 - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SM3
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SM3 - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA3
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA3 - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA512
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA512 - Failed
+-- [cryptopp-modern] Platform: ARMv8
+-- [cryptopp-modern] Compiler definitions:  CRYPTOPP_ARM_NEON_HEADER=1;CRYPTOPP_ARM_ACLE_HEADER=1;CRYPTOPP_DISABLE_ARM_CRC32=1;CRYPTOPP_DISABLE_ARM_PMULL=1
+-- [cryptopp-modern] Compiler options:   
+-- [cryptopp-modern] Build type: Release
+-- {fmt} version: 12.0.0
+-- Build type: Release
+-- Performing Test HAS_NULLPTR_WARNING
+-- Performing Test HAS_NULLPTR_WARNING - Success
+CMake Warning (deprecated) at externals/oaknut/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Target architecture: arm64
+CMake Warning (policy) at externals/dynarmic/CMakeLists.txt:151 (find_package):
+  Policy CMP0144 is not set: find_package uses upper-case <PACKAGENAME>_ROOT
+  variables.  Run "cmake --help-policy CMP0144" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  CMake variable BOOST_ROOT is set to:
+
+    /private/tmp/metaliris-r12.lKARZLkI/baseline-source/externals/boost
+
+  For compatibility, find_package is ignoring the variable, but code in a
+  .cmake module might still use it.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+CMake Warning (policy) at externals/dynarmic/CMakeLists.txt:151 (find_package):
+  Policy CMP0167 is not set: The FindBoost module is removed.  Run "cmake
+  --help-policy CMP0167" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Found Boost: /opt/homebrew/lib/cmake/Boost-1.92.0/BoostConfig.cmake (found suitable version "1.92.0", minimum required is "1.57")
+-- Could NOT find mcl (missing: mcl_DIR)
+-- Could NOT find tsl-robin-map (missing: tsl-robin-map_DIR)
+CMake Warning (policy) at externals/dynarmic/externals/mcl/CMakeLists.txt:29 (set):
+  Policy CMP0218 is not set: The CMAKE_WARN_DEPRECATED and
+  CMAKE_ERROR_DEPRECATED variables are ignored.  Run "cmake --help-policy
+  CMP0218" for policy details.  Use the cmake_policy command to set the
+  policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+CMake Warning (deprecated) at externals/dynarmic/externals/robin-map/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- mach/mach_exc.defs location: /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Kernel.framework/Headers
+-- Building faad2 version 2.11.1
+-- Looking for getpwuid
+-- Looking for getpwuid - found
+-- Looking for lrintf
+-- Looking for lrintf - found
+-- Looking for memcpy
+-- Looking for memcpy - found
+-- Looking for strchr
+-- Looking for strchr - found
+-- Looking for strsep
+-- Looking for strsep - found
+-- Looking for include file dlfcn.h
+-- Looking for include file dlfcn.h - found
+-- Looking for include file errno.h
+-- Looking for include file errno.h - found
+-- Looking for include file float.h
+-- Looking for include file float.h - found
+-- Looking for include file inttypes.h
+-- Looking for include file inttypes.h - found
+-- Looking for include file IOKit/IOKitLib.h
+-- Looking for include file IOKit/IOKitLib.h - found
+-- Looking for include file limits.h
+-- Looking for include file limits.h - found
+-- Looking for include file mathf.h
+-- Looking for include file mathf.h - not found
+-- Looking for include file stdint.h
+-- Looking for include file stdint.h - found
+-- Looking for include file stdio.h
+-- Looking for include file stdio.h - found
+-- Looking for include file stdlib.h
+-- Looking for include file stdlib.h - found
+-- Looking for include file strings.h
+-- Looking for include file strings.h - found
+-- Looking for include file string.h
+-- Looking for include file string.h - found
+-- Looking for include file sysfs/libsysfs.h
+-- Looking for include file sysfs/libsysfs.h - not found
+-- Looking for include file sys/stat.h
+-- Looking for include file sys/stat.h - found
+-- Looking for include file sys/time.h
+-- Looking for include file sys/time.h - found
+-- Looking for include file sys/types.h
+-- Looking for include file sys/types.h - found
+-- Looking for include file unistd.h
+-- Looking for include file unistd.h - found
+CMake Warning (deprecated) at externals/soundtouch/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 
+-- Could NOT find OpenMP_CXX (missing: OpenMP_CXX_FLAGS OpenMP_CXX_LIB_NAMES) 
+-- Could NOT find OpenMP (missing: OpenMP_C_FOUND OpenMP_CXX_FOUND) 
+-- Using bundled Teakra
+CMake Warning (policy) at externals/teakra/CMakeLists.txt:27 (set):
+  Policy CMP0218 is not set: The CMAKE_WARN_DEPRECATED and
+  CMAKE_ERROR_DEPRECATED variables are ignored.  Run "cmake --help-policy
+  CMP0218" for policy details.  Use the cmake_policy command to set the
+  policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Looking for include file asm/types.h
+-- Looking for include file asm/types.h - not found
+-- Looking for gettimeofday
+-- Looking for gettimeofday - found
+-- Looking for include file linux/filter.h
+-- Looking for include file linux/filter.h - not found
+-- Looking for include file linux/netlink.h
+-- Looking for include file linux/netlink.h - not found
+-- Looking for eventfd
+-- Looking for eventfd - not found
+-- Looking for timerfd_create
+-- Looking for timerfd_create - not found
+-- Looking for include file signal.h
+-- Looking for include file signal.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of struct timespec
+-- Check size of struct timespec - failed
+-- Looking for syslog
+-- Looking for syslog - found
+-- Looking for include file syslog.h
+-- Looking for include file syslog.h - found
+-- Looking for include file sys/socket.h
+-- Looking for include file sys/socket.h - found
+-- Looking for clock_gettime
+-- Looking for clock_gettime - found
+-- ZSTD VERSION: 1.5.7
+-- Performing Test C_FLAG_WALL
+-- Performing Test C_FLAG_WALL - Success
+-- Performing Test CXX_FLAG_WALL
+-- Performing Test CXX_FLAG_WALL - Success
+-- Performing Test C_FLAG_WEXTRA
+-- Performing Test C_FLAG_WEXTRA - Success
+-- Performing Test CXX_FLAG_WEXTRA
+-- Performing Test CXX_FLAG_WEXTRA - Success
+-- Performing Test C_FLAG_WUNDEF
+-- Performing Test C_FLAG_WUNDEF - Success
+-- Performing Test CXX_FLAG_WUNDEF
+-- Performing Test CXX_FLAG_WUNDEF - Success
+-- Performing Test C_FLAG_WSHADOW
+-- Performing Test C_FLAG_WSHADOW - Success
+-- Performing Test CXX_FLAG_WSHADOW
+-- Performing Test CXX_FLAG_WSHADOW - Success
+-- Performing Test C_FLAG_WCAST_ALIGN
+-- Performing Test C_FLAG_WCAST_ALIGN - Success
+-- Performing Test CXX_FLAG_WCAST_ALIGN
+-- Performing Test CXX_FLAG_WCAST_ALIGN - Success
+-- Performing Test C_FLAG_WCAST_QUAL
+-- Performing Test C_FLAG_WCAST_QUAL - Success
+-- Performing Test CXX_FLAG_WCAST_QUAL
+-- Performing Test CXX_FLAG_WCAST_QUAL - Success
+-- Performing Test C_FLAG_WSTRICT_PROTOTYPES
+-- Performing Test C_FLAG_WSTRICT_PROTOTYPES - Success
+-- Performing Test LD_FLAG_WL_Z_NOEXECSTACK
+-- Performing Test LD_FLAG_WL_Z_NOEXECSTACK - Failed
+-- Performing Test C_FLAG_QUNUSED_ARGUMENTS
+-- Performing Test C_FLAG_QUNUSED_ARGUMENTS - Success
+-- Performing Test CXX_FLAG_QUNUSED_ARGUMENTS
+-- Performing Test CXX_FLAG_QUNUSED_ARGUMENTS - Success
+-- Performing Test C_FLAG_WA_NOEXECSTACK
+-- Performing Test C_FLAG_WA_NOEXECSTACK - Success
+-- Performing Test CXX_FLAG_WA_NOEXECSTACK
+-- Performing Test CXX_FLAG_WA_NOEXECSTACK - Success
+-- CMAKE_INSTALL_PREFIX: /usr/local
+-- CMAKE_INSTALL_LIBDIR: lib
+-- ZSTD_LEGACY_SUPPORT not defined!
+-- ZSTD_MULTITHREAD_SUPPORT is enabled
+-- Looking for fcntl
+-- Looking for fcntl - found
+-- Looking for poll
+-- Looking for poll - found
+-- Looking for getaddrinfo
+-- Looking for getaddrinfo - found
+-- Looking for getnameinfo
+-- Looking for getnameinfo - found
+-- Looking for gethostbyname_r
+-- Looking for gethostbyname_r - not found
+-- Looking for gethostbyaddr_r
+-- Looking for gethostbyaddr_r - not found
+-- Looking for inet_pton
+-- Looking for inet_pton - found
+-- Looking for inet_ntop
+-- Looking for inet_ntop - found
+-- Performing Test HAS_MSGHDR_FLAGS
+-- Performing Test HAS_MSGHDR_FLAGS - Success
+-- Check size of socklen_t
+-- Check size of socklen_t - done
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- Looking for include file pulse/pulseaudio.h
+-- Looking for include file pulse/pulseaudio.h - not found
+-- Looking for include file alsa/asoundlib.h
+-- Looking for include file alsa/asoundlib.h - not found
+-- Looking for include file jack/jack.h
+-- Looking for include file jack/jack.h - not found
+-- Looking for include file sndio.h
+-- Looking for include file sndio.h - not found
+-- Looking for include file aaudio/AAudio.h
+-- Looking for include file aaudio/AAudio.h - not found
+-- Looking for include file AudioUnit/AudioUnit.h
+-- Looking for include file AudioUnit/AudioUnit.h - found
+-- Looking for include file audioclient.h
+-- Looking for include file audioclient.h - not found
+-- Looking for include files windows.h, mmsystem.h
+-- Looking for include files windows.h, mmsystem.h - not found
+-- Looking for include file SLES/OpenSLES.h
+-- Looking for include file SLES/OpenSLES.h - not found
+-- Looking for include file sys/soundcard.h
+-- Looking for include file sys/soundcard.h - not found
+-- Looking for include file android/log.h
+-- Looking for include file android/log.h - not found
+-- Looking for include file sys/audioio.h
+-- Looking for include file sys/audioio.h - not found
+-- Looking for include file kai.h
+-- Looking for include file kai.h - not found
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found OpenSSL: /opt/homebrew/lib/libcrypto.dylib (found suitable version "3.6.4", minimum required is "1.1")
+-- {fmt} version: 11.0.2
+-- Build type: Release
+-- Performing Test HAVE_STDC_FORMAT_MACROS
+-- Performing Test HAVE_STDC_FORMAT_MACROS - Success
+-- Performing Test HAVE_LIBATOMIC
+-- Performing Test HAVE_LIBATOMIC - Failed
+-- Performing Test HAVE_WNO_CXX20_ATTR_EXT
+-- Performing Test HAVE_WNO_CXX20_ATTR_EXT - Success
+-- Performing Test HAVE_WNO_INTERFERENCE_SIZE
+-- Performing Test HAVE_WNO_INTERFERENCE_SIZE - Failed
+-- Performing Test HAVE_FNO_MATH_ERRNO
+-- Performing Test HAVE_FNO_MATH_ERRNO - Success
+-- Performing Test HAVE_MSSE2_SWITCH
+-- Performing Test HAVE_MSSE2_SWITCH - Failed
+-- Looking for xmmintrin.h
+-- Looking for xmmintrin.h - not found
+-- Looking for emmintrin.h
+-- Looking for emmintrin.h - not found
+-- Looking for pmmintrin.h
+-- Looking for pmmintrin.h - not found
+-- Looking for smmintrin.h
+-- Looking for smmintrin.h - not found
+-- Looking for arm_neon.h
+-- Looking for arm_neon.h - found
+-- Performing Test HAVE_NEON_INTRINSICS
+-- Performing Test HAVE_NEON_INTRINSICS - Success
+-- Looking for cpuid.h
+-- Looking for cpuid.h - not found
+-- Looking for intrin.h
+-- Looking for intrin.h - not found
+-- Looking for guiddef.h
+-- Looking for guiddef.h - not found
+-- Looking for pow in m
+-- Looking for pow in m - found
+-- Looking for clock_gettime in rt
+-- Looking for clock_gettime in rt - not found
+-- Looking for dlopen in dl
+-- Looking for dlopen in dl - found
+-- Looking for proc_pidpath
+-- Looking for proc_pidpath - found
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test HAVE_PTHREAD
+-- Performing Test HAVE_PTHREAD - Success
+-- Looking for pthread_setschedparam
+-- Looking for pthread_setschedparam - found
+-- Looking for include files pthread.h, pthread_np.h
+-- Looking for include files pthread.h, pthread_np.h - not found
+-- Looking for pthread_setname_np
+-- Looking for pthread_setname_np - found
+-- Checking for module 'libpipewire-0.3>=0.3.23'
+--   Package 'libpipewire-0.3' not found
+-- Could NOT find PulseAudio (missing: PULSEAUDIO_LIBRARY PULSEAUDIO_INCLUDE_DIR) 
+-- Could NOT find ALSA (missing: ALSA_LIBRARY ALSA_INCLUDE_DIR) 
+-- Could NOT find OSS (missing: OSS_INCLUDE_DIR) 
+-- Could NOT find AudioIO (missing: AUDIOIO_INCLUDE_DIR) 
+-- Could NOT find JACK (missing: JACK_LIBRARY JACK_INCLUDE_DIR) 
+-- Could NOT find OpenSL (missing: OPENSL_LIBRARY OPENSL_INCLUDE_DIR OPENSL_ANDROID_INCLUDE_DIR) 
+-- Could NOT find PortAudio (missing: PORTAUDIO_LIBRARY PORTAUDIO_INCLUDE_DIR) 
+-- Found Git: /usr/bin/git (found version "2.54.0 (Apple Git-156)")
+-- 
+-- Building OpenAL with support for the following backends:
+--     CoreAudio, WaveFile, Null
+-- 
+-- Building with support for CPU extensions:
+--     Default, Neon
+-- 
+-- Embedding HRTF datasets
+-- 
+-- NOT installing library and headers
+-- 
+-- xxHash build type: Release
+-- Architecture: arm64
+-- Disabling SIMD for xxHash
+<FindSDL2.cmake>
+</FindSDL2.cmake>
+-- Found SDL2: /opt/homebrew/lib/libSDL2main.a;/opt/homebrew/lib/libSDL2.dylib;-framework Cocoa
+-- Creating base bundle target
+-- Adding citra_room_standalone to bundle target
+-- Configuring done (24.2s)
+-- Generating done (0.3s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/baseline-build
++ cmake -S /private/tmp/metaliris-r12.lKARZLkI/source -B /private/tmp/metaliris-r12.lKARZLkI/off -G Ninja -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_SYSROOT=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_PREFIX_PATH=/opt/homebrew -DENABLE_TESTS=ON -DENABLE_LTO=OFF -DENABLE_FFMPEG=OFF -DENABLE_QT=OFF -DENABLE_VULKAN=OFF -DUSE_SYSTEM_OPENSSL=ON -DUSE_SYSTEM_SDL2=ON -DCITRA_USE_PRECOMPILED_HEADERS=OFF -DENABLE_METAL=OFF
+-- The C compiler identification is AppleClang 21.0.0.21000320
+-- The CXX compiler identification is AppleClang 21.0.0.21000320
+-- The ASM compiler identification is AppleClang
+-- Found assembler: /usr/bin/cc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.7")
+-- The OBJC compiler identification is AppleClang 21.0.0.21000320
+-- The OBJCXX compiler identification is AppleClang 21.0.0.21000320
+-- Detecting OBJC compiler ABI info
+-- Detecting OBJC compiler ABI info - done
+-- Check for working OBJC compiler: /usr/bin/clang - skipped
+-- Detecting OBJCXX compiler ABI info
+-- Detecting OBJCXX compiler ABI info - done
+-- Check for working OBJCXX compiler: /usr/bin/clang++ - skipped
+-- LTO disabled
+-- Target architecture: arm64
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Including vendored Boost library
+-- Performing Test HAVE_FLAG__ffile_prefix_map__private_tmp_metaliris_r12_lKARZLkI_source_externals_catch2__
+-- Performing Test HAVE_FLAG__ffile_prefix_map__private_tmp_metaliris_r12_lKARZLkI_source_externals_catch2__ - Success
+-- => Project : cryptopp-modern v2026.5.1
+-- [cryptopp-modern] CMake version 4.4.2
+-- [cryptopp-modern] System Darwin
+-- [cryptopp-modern] Processor arm64
+-- [cryptopp-modern]     CMAKE_OSX_ARCHITECTURES : arm64
+-- [cryptopp-modern] CMAKE_HOST_SYSTEM_PROCESSOR : arm64
+-- [cryptopp-modern]      CMAKE_SYSTEM_PROCESSOR : arm64
+-- [cryptopp-modern] Target architecture detected as: arm64 -> CRYPTOPP_ARMV8
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_NEON_HEADER
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_NEON_HEADER - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_ACLE_HEADER
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_ACLE_HEADER - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_SIMD
+-- [cryptopp-modern] Performing Test CRYPTOPP_ARM_SIMD - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_CRC32
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_CRC32 - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_AES
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_AES - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_PMULL
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_PMULL - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA1
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA1 - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA2
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA2 - Success
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SM3
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SM3 - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA3
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA3 - Failed
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA512
+-- [cryptopp-modern] Performing Test CRYPTOPP_HAVE_ARM_SHA512 - Failed
+-- [cryptopp-modern] Platform: ARMv8
+-- [cryptopp-modern] Compiler definitions:  CRYPTOPP_ARM_NEON_HEADER=1;CRYPTOPP_ARM_ACLE_HEADER=1;CRYPTOPP_DISABLE_ARM_CRC32=1;CRYPTOPP_DISABLE_ARM_PMULL=1
+-- [cryptopp-modern] Compiler options:   
+-- [cryptopp-modern] Build type: Release
+-- {fmt} version: 12.0.0
+-- Build type: Release
+-- Performing Test HAS_NULLPTR_WARNING
+-- Performing Test HAS_NULLPTR_WARNING - Success
+CMake Warning (deprecated) at externals/oaknut/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Target architecture: arm64
+CMake Warning (policy) at externals/dynarmic/CMakeLists.txt:151 (find_package):
+  Policy CMP0144 is not set: find_package uses upper-case <PACKAGENAME>_ROOT
+  variables.  Run "cmake --help-policy CMP0144" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  CMake variable BOOST_ROOT is set to:
+
+    /private/tmp/metaliris-r12.lKARZLkI/source/externals/boost
+
+  For compatibility, find_package is ignoring the variable, but code in a
+  .cmake module might still use it.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+CMake Warning (policy) at externals/dynarmic/CMakeLists.txt:151 (find_package):
+  Policy CMP0167 is not set: The FindBoost module is removed.  Run "cmake
+  --help-policy CMP0167" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Found Boost: /opt/homebrew/lib/cmake/Boost-1.92.0/BoostConfig.cmake (found suitable version "1.92.0", minimum required is "1.57")
+-- Could NOT find mcl (missing: mcl_DIR)
+-- Could NOT find tsl-robin-map (missing: tsl-robin-map_DIR)
+CMake Warning (policy) at externals/dynarmic/externals/mcl/CMakeLists.txt:29 (set):
+  Policy CMP0218 is not set: The CMAKE_WARN_DEPRECATED and
+  CMAKE_ERROR_DEPRECATED variables are ignored.  Run "cmake --help-policy
+  CMP0218" for policy details.  Use the cmake_policy command to set the
+  policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+CMake Warning (deprecated) at externals/dynarmic/externals/robin-map/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- mach/mach_exc.defs location: /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Kernel.framework/Headers
+-- Building faad2 version 2.11.1
+-- Looking for getpwuid
+-- Looking for getpwuid - found
+-- Looking for lrintf
+-- Looking for lrintf - found
+-- Looking for memcpy
+-- Looking for memcpy - found
+-- Looking for strchr
+-- Looking for strchr - found
+-- Looking for strsep
+-- Looking for strsep - found
+-- Looking for include file dlfcn.h
+-- Looking for include file dlfcn.h - found
+-- Looking for include file errno.h
+-- Looking for include file errno.h - found
+-- Looking for include file float.h
+-- Looking for include file float.h - found
+-- Looking for include file inttypes.h
+-- Looking for include file inttypes.h - found
+-- Looking for include file IOKit/IOKitLib.h
+-- Looking for include file IOKit/IOKitLib.h - found
+-- Looking for include file limits.h
+-- Looking for include file limits.h - found
+-- Looking for include file mathf.h
+-- Looking for include file mathf.h - not found
+-- Looking for include file stdint.h
+-- Looking for include file stdint.h - found
+-- Looking for include file stdio.h
+-- Looking for include file stdio.h - found
+-- Looking for include file stdlib.h
+-- Looking for include file stdlib.h - found
+-- Looking for include file strings.h
+-- Looking for include file strings.h - found
+-- Looking for include file string.h
+-- Looking for include file string.h - found
+-- Looking for include file sysfs/libsysfs.h
+-- Looking for include file sysfs/libsysfs.h - not found
+-- Looking for include file sys/stat.h
+-- Looking for include file sys/stat.h - found
+-- Looking for include file sys/time.h
+-- Looking for include file sys/time.h - found
+-- Looking for include file sys/types.h
+-- Looking for include file sys/types.h - found
+-- Looking for include file unistd.h
+-- Looking for include file unistd.h - found
+CMake Warning (deprecated) at externals/soundtouch/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 
+-- Could NOT find OpenMP_CXX (missing: OpenMP_CXX_FLAGS OpenMP_CXX_LIB_NAMES) 
+-- Could NOT find OpenMP (missing: OpenMP_C_FOUND OpenMP_CXX_FOUND) 
+-- Using bundled Teakra
+CMake Warning (policy) at externals/teakra/CMakeLists.txt:27 (set):
+  Policy CMP0218 is not set: The CMAKE_WARN_DEPRECATED and
+  CMAKE_ERROR_DEPRECATED variables are ignored.  Run "cmake --help-policy
+  CMP0218" for policy details.  Use the cmake_policy command to set the
+  policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Looking for include file asm/types.h
+-- Looking for include file asm/types.h - not found
+-- Looking for gettimeofday
+-- Looking for gettimeofday - found
+-- Looking for include file linux/filter.h
+-- Looking for include file linux/filter.h - not found
+-- Looking for include file linux/netlink.h
+-- Looking for include file linux/netlink.h - not found
+-- Looking for eventfd
+-- Looking for eventfd - not found
+-- Looking for timerfd_create
+-- Looking for timerfd_create - not found
+-- Looking for include file signal.h
+-- Looking for include file signal.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of struct timespec
+-- Check size of struct timespec - failed
+-- Looking for syslog
+-- Looking for syslog - found
+-- Looking for include file syslog.h
+-- Looking for include file syslog.h - found
+-- Looking for include file sys/socket.h
+-- Looking for include file sys/socket.h - found
+-- Looking for clock_gettime
+-- Looking for clock_gettime - found
+-- ZSTD VERSION: 1.5.7
+-- Performing Test C_FLAG_WALL
+-- Performing Test C_FLAG_WALL - Success
+-- Performing Test CXX_FLAG_WALL
+-- Performing Test CXX_FLAG_WALL - Success
+-- Performing Test C_FLAG_WEXTRA
+-- Performing Test C_FLAG_WEXTRA - Success
+-- Performing Test CXX_FLAG_WEXTRA
+-- Performing Test CXX_FLAG_WEXTRA - Success
+-- Performing Test C_FLAG_WUNDEF
+-- Performing Test C_FLAG_WUNDEF - Success
+-- Performing Test CXX_FLAG_WUNDEF
+-- Performing Test CXX_FLAG_WUNDEF - Success
+-- Performing Test C_FLAG_WSHADOW
+-- Performing Test C_FLAG_WSHADOW - Success
+-- Performing Test CXX_FLAG_WSHADOW
+-- Performing Test CXX_FLAG_WSHADOW - Success
+-- Performing Test C_FLAG_WCAST_ALIGN
+-- Performing Test C_FLAG_WCAST_ALIGN - Success
+-- Performing Test CXX_FLAG_WCAST_ALIGN
+-- Performing Test CXX_FLAG_WCAST_ALIGN - Success
+-- Performing Test C_FLAG_WCAST_QUAL
+-- Performing Test C_FLAG_WCAST_QUAL - Success
+-- Performing Test CXX_FLAG_WCAST_QUAL
+-- Performing Test CXX_FLAG_WCAST_QUAL - Success
+-- Performing Test C_FLAG_WSTRICT_PROTOTYPES
+-- Performing Test C_FLAG_WSTRICT_PROTOTYPES - Success
+-- Performing Test LD_FLAG_WL_Z_NOEXECSTACK
+-- Performing Test LD_FLAG_WL_Z_NOEXECSTACK - Failed
+-- Performing Test C_FLAG_QUNUSED_ARGUMENTS
+-- Performing Test C_FLAG_QUNUSED_ARGUMENTS - Success
+-- Performing Test CXX_FLAG_QUNUSED_ARGUMENTS
+-- Performing Test CXX_FLAG_QUNUSED_ARGUMENTS - Success
+-- Performing Test C_FLAG_WA_NOEXECSTACK
+-- Performing Test C_FLAG_WA_NOEXECSTACK - Success
+-- Performing Test CXX_FLAG_WA_NOEXECSTACK
+-- Performing Test CXX_FLAG_WA_NOEXECSTACK - Success
+-- CMAKE_INSTALL_PREFIX: /usr/local
+-- CMAKE_INSTALL_LIBDIR: lib
+-- ZSTD_LEGACY_SUPPORT not defined!
+-- ZSTD_MULTITHREAD_SUPPORT is enabled
+-- Looking for fcntl
+-- Looking for fcntl - found
+-- Looking for poll
+-- Looking for poll - found
+-- Looking for getaddrinfo
+-- Looking for getaddrinfo - found
+-- Looking for getnameinfo
+-- Looking for getnameinfo - found
+-- Looking for gethostbyname_r
+-- Looking for gethostbyname_r - not found
+-- Looking for gethostbyaddr_r
+-- Looking for gethostbyaddr_r - not found
+-- Looking for inet_pton
+-- Looking for inet_pton - found
+-- Looking for inet_ntop
+-- Looking for inet_ntop - found
+-- Performing Test HAS_MSGHDR_FLAGS
+-- Performing Test HAS_MSGHDR_FLAGS - Success
+-- Check size of socklen_t
+-- Check size of socklen_t - done
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- Looking for include file pulse/pulseaudio.h
+-- Looking for include file pulse/pulseaudio.h - not found
+-- Looking for include file alsa/asoundlib.h
+-- Looking for include file alsa/asoundlib.h - not found
+-- Looking for include file jack/jack.h
+-- Looking for include file jack/jack.h - not found
+-- Looking for include file sndio.h
+-- Looking for include file sndio.h - not found
+-- Looking for include file aaudio/AAudio.h
+-- Looking for include file aaudio/AAudio.h - not found
+-- Looking for include file AudioUnit/AudioUnit.h
+-- Looking for include file AudioUnit/AudioUnit.h - found
+-- Looking for include file audioclient.h
+-- Looking for include file audioclient.h - not found
+-- Looking for include files windows.h, mmsystem.h
+-- Looking for include files windows.h, mmsystem.h - not found
+-- Looking for include file SLES/OpenSLES.h
+-- Looking for include file SLES/OpenSLES.h - not found
+-- Looking for include file sys/soundcard.h
+-- Looking for include file sys/soundcard.h - not found
+-- Looking for include file android/log.h
+-- Looking for include file android/log.h - not found
+-- Looking for include file sys/audioio.h
+-- Looking for include file sys/audioio.h - not found
+-- Looking for include file kai.h
+-- Looking for include file kai.h - not found
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Found OpenSSL: /opt/homebrew/lib/libcrypto.dylib (found suitable version "3.6.4", minimum required is "1.1")
+-- {fmt} version: 11.0.2
+-- Build type: Release
+-- Performing Test HAVE_STDC_FORMAT_MACROS
+-- Performing Test HAVE_STDC_FORMAT_MACROS - Success
+-- Performing Test HAVE_LIBATOMIC
+-- Performing Test HAVE_LIBATOMIC - Failed
+-- Performing Test HAVE_WNO_CXX20_ATTR_EXT
+-- Performing Test HAVE_WNO_CXX20_ATTR_EXT - Success
+-- Performing Test HAVE_WNO_INTERFERENCE_SIZE
+-- Performing Test HAVE_WNO_INTERFERENCE_SIZE - Failed
+-- Performing Test HAVE_FNO_MATH_ERRNO
+-- Performing Test HAVE_FNO_MATH_ERRNO - Success
+-- Performing Test HAVE_MSSE2_SWITCH
+-- Performing Test HAVE_MSSE2_SWITCH - Failed
+-- Looking for xmmintrin.h
+-- Looking for xmmintrin.h - not found
+-- Looking for emmintrin.h
+-- Looking for emmintrin.h - not found
+-- Looking for pmmintrin.h
+-- Looking for pmmintrin.h - not found
+-- Looking for smmintrin.h
+-- Looking for smmintrin.h - not found
+-- Looking for arm_neon.h
+-- Looking for arm_neon.h - found
+-- Performing Test HAVE_NEON_INTRINSICS
+-- Performing Test HAVE_NEON_INTRINSICS - Success
+-- Looking for cpuid.h
+-- Looking for cpuid.h - not found
+-- Looking for intrin.h
+-- Looking for intrin.h - not found
+-- Looking for guiddef.h
+-- Looking for guiddef.h - not found
+-- Looking for pow in m
+-- Looking for pow in m - found
+-- Looking for clock_gettime in rt
+-- Looking for clock_gettime in rt - not found
+-- Looking for dlopen in dl
+-- Looking for dlopen in dl - found
+-- Looking for proc_pidpath
+-- Looking for proc_pidpath - found
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test HAVE_PTHREAD
+-- Performing Test HAVE_PTHREAD - Success
+-- Looking for pthread_setschedparam
+-- Looking for pthread_setschedparam - found
+-- Looking for include files pthread.h, pthread_np.h
+-- Looking for include files pthread.h, pthread_np.h - not found
+-- Looking for pthread_setname_np
+-- Looking for pthread_setname_np - found
+-- Checking for module 'libpipewire-0.3>=0.3.23'
+--   Package 'libpipewire-0.3' not found
+-- Could NOT find PulseAudio (missing: PULSEAUDIO_LIBRARY PULSEAUDIO_INCLUDE_DIR) 
+-- Could NOT find ALSA (missing: ALSA_LIBRARY ALSA_INCLUDE_DIR) 
+-- Could NOT find OSS (missing: OSS_INCLUDE_DIR) 
+-- Could NOT find AudioIO (missing: AUDIOIO_INCLUDE_DIR) 
+-- Could NOT find JACK (missing: JACK_LIBRARY JACK_INCLUDE_DIR) 
+-- Could NOT find OpenSL (missing: OPENSL_LIBRARY OPENSL_INCLUDE_DIR OPENSL_ANDROID_INCLUDE_DIR) 
+-- Could NOT find PortAudio (missing: PORTAUDIO_LIBRARY PORTAUDIO_INCLUDE_DIR) 
+-- Found Git: /usr/bin/git (found version "2.54.0 (Apple Git-156)")
+-- 
+-- Building OpenAL with support for the following backends:
+--     CoreAudio, WaveFile, Null
+-- 
+-- Building with support for CPU extensions:
+--     Default, Neon
+-- 
+-- Embedding HRTF datasets
+-- 
+-- NOT installing library and headers
+-- 
+-- xxHash build type: Release
+-- Architecture: arm64
+-- Disabling SIMD for xxHash
+<FindSDL2.cmake>
+</FindSDL2.cmake>
+-- Found SDL2: /opt/homebrew/lib/libSDL2main.a;/opt/homebrew/lib/libSDL2.dylib;-framework Cocoa
+-- Creating base bundle target
+-- Adding citra_room_standalone to bundle target
+-- Configuring done (27.6s)
+-- Generating done (0.6s)
+-- Build files have been written to: /private/tmp/metaliris-r12.lKARZLkI/off
+PASS off

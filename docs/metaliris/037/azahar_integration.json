@@ -1,0 +1,58 @@
+{
+  "phase": "037",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-037-01",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/d24s8_to_rgba8_ms.frag",
+        "sha256": "90c1f3158e86d3163165116d0c44f585a150cb7df6cf13574d285f7e398ec406",
+        "line": 16,
+        "symbol": "void main() {"
+      },
+      "contract": "The compatible per-sample raster alternative preserves source gather and destination coordinates.",
+      "native_mapping": "Metal 4 native render pipeline with full-screen triangle, fragment position and sample ID; no sampling or unstated multisample texture-write support.",
+      "expected_result": "Pipeline type and return normalize checked via Apple compiler, plus exact output fixture.",
+      "dependency_owner": "037",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 037 <native-build-dir> <scratch-dir>",
+      "evidence_path": "037/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-037-02",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/utils.h",
+        "sha256": "2e9492e05e4f344a07f070c75843ab1da6f42d75c649dc0e9797b580831c93d1",
+        "line": 38,
+        "symbol": "struct TextureCopy {"
+      },
+      "contract": "Same copy region ABI as Phase 036. Mip and slice selection occurs on host.",
+      "native_mapping": "24-byte uint2 constants and pipeline binding slots depth=0, stencil=1, color attachment=0, region buffer=0.",
+      "expected_result": "Consumer uses immutable argument table and target view with exact format/extent.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 037 <native-build-dir> <scratch-dir>",
+      "evidence_path": "037/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-037-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 438,
+        "symbol": "update_queue.AddImageSampler(descriptor_set, 0, 0, source.ImageView(ViewType::Depth, src_type),"
+      },
+      "contract": "Both input views alias the original stored depth/stencil attachment and are kept until execution completes.",
+      "native_mapping": "Declare fragment reads of proper view identity, tile-local output with load for untouched texels and optional store/resolve.",
+      "expected_result": "Correct render/compute resource transitions and lifetime tests in Phase 064.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 037 <native-build-dir> <scratch-dir>",
+      "evidence_path": "037/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "c244e39a96ccc31da9be36e8b99367816c0e299cb3952e32a28f38b48a644047"
+}

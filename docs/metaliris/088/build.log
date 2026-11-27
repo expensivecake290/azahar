@@ -1,0 +1,10 @@
+[1/10] Automatic MOC and UIC for target citra_qt
+[2/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/aboutdialog.cpp.o
+[3/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/configuration/configure_graphics.cpp.o
+[4/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/loading_screen.cpp.o
+[5/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/configuration/configure_per_game.cpp.o
+[6/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/configuration/configure_dialog.cpp.o
+[7/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/citra_qt_autogen/mocs_compilation.cpp.o
+[8/10] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/citra_qt.cpp.o
+[9/10] Linking CXX static library src/citra_qt/libcitra_qt.a
+[10/10] Linking CXX executable bin/Release/azahar.app/Contents/MacOS/azahar

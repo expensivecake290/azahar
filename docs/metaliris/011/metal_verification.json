@@ -1,0 +1,41 @@
+{
+  "phase": "011",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-ARC-BOUNDARY",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 460,
+        "symbol": "@protocol MTLDevice <NSObject>"
+      },
+      "contract": "SDK provides actual Metal protocol identity.",
+      "native_mapping": "Compile portable integration and native Objective-C++ header consumer with ARC.",
+      "expected_result": "Real probe and surface types compile with no Vulkan or frontend toolkit headers.",
+      "dependency_owner": "011",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -DENABLE_METAL -I src -I <native-build-dir>/src -isystem externals/boost -fsyntax-only docs/metaliris/011/verify.mm",
+      "evidence_path": "011/header.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "MTL-DEVICE-CAPABILITIES",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 255,
+        "symbol": "MTLGPUFamilyMetal4 API_AVAILABLE(macos(26.0), ios(26.0)) = 5002,"
+      },
+      "contract": "Device feature checks belong to runtime, including Metal 4 family and unified memory.",
+      "native_mapping": "Probe actual device capabilities and use Apple7 mesh family and MetalFX Spatial check.",
+      "expected_result": "Ensure absent device path is verified on all machines, device matrix awaits access when unavailable.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    }
+  ],
+  "owner_sha256_after": "71cbc1f2022b01300db7f96dd9c51915676b08ac0335875777664161eb488c8c"
+}

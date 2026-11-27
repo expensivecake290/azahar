@@ -1,0 +1,75 @@
+{
+  "phase": "084",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-084-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_debug.cpp",
+        "sha256": "74e220454d822275d256e76dbae0d7d805ef130074a1cb427fa8b6fda56686b2",
+        "line": 53,
+        "symbol": "#ifdef ENABLE_VULKAN"
+      },
+      "contract": "The Debug panel allows validation when applicable, supplies an availability explanation and locks renderer startup settings while powered on.",
+      "native_mapping": "Native UI names Metal API Validation and explains launch-time enablement when not enabled for the current process. Reuses saved renderer_debug.",
+      "expected_result": "Real Qt offscreen validation label, state transitions, startup dialog and running lockout.",
+      "dependency_owner": "085/086/091",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt native/feature-off compiled and native widget linked. Validation and capture independent, retranslate and running lockout verified. Native physical capture pending. PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "VK-084-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_debug.cpp",
+        "sha256": "74e220454d822275d256e76dbae0d7d805ef130074a1cb427fa8b6fda56686b2",
+        "line": 69,
+        "symbol": "connect(ui->toggle_dump_command_buffers, &QCheckBox::clicked, this, [this](bool checked) {"
+      },
+      "contract": "Command dump requests diagnostic artifacts and clearly indicates configuration requirements.",
+      "native_mapping": "Map the existing dump preference to native GPU trace documentation and use native capture availability without initializing a graphics backend in the panel.",
+      "expected_result": "Saved dump flag and native capture capability branch tested, actual trace generation pending native renderer.",
+      "dependency_owner": "079/085/086/091",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt native/feature-off compiled and native widget linked. Validation and capture independent, retranslate and running lockout verified. Native physical capture pending. PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "VK-084-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 324,
+        "symbol": "layers.push_back(\"VK_LAYER_KHRONOS_validation\");"
+      },
+      "contract": "Validation and capture are distinct optional diagnostics, can be disabled independently, and failures are explicit.",
+      "native_mapping": "Keep two independent native settings, driven by Metal debug environment and MTLCaptureManager separately. No existing external layers queried by native UI.",
+      "expected_result": "Real GPU debug logging and trace creation measured independently and together on physical hardware.",
+      "dependency_owner": "086/091",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-084-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+        "sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+        "line": 140,
+        "symbol": "Instance::Instance(Frontend::EmuWindow& window, u32 physical_device_index)"
+      },
+      "contract": "Renderer consumes startup preferences and ordinary gameplay remains unaffected if flags are false.",
+      "native_mapping": "Native settings are forwarded by existing Settings values into Phase 086 launch settings and 091 capture lifecycle.",
+      "expected_result": "Verify false defaults, ability to set/reset both flags, and native launch/capture on a capable device.",
+      "dependency_owner": "005/085/086/091",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt native/feature-off compiled and native widget linked. Validation and capture independent, retranslate and running lockout verified. Native physical capture pending. PICA 48/801 and CTest 64 passes."
+    }
+  ],
+  "owner_sha256_after": "b2a1f7e4c7a1d2b1d6b779f6e25b4f1464088d88de696992705cd1a10d975a79"
+}

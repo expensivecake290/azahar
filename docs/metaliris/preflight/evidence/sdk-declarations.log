@@ -1,0 +1,82 @@
++zsh:4> xcrun --sdk macosx --show-sdk-path
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk
++zsh:5> xcrun --sdk macosx --find metal
+/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.wfvsQd/Metal.xctoolchain/usr/bin/metal
++zsh:6> xcrun --sdk macosx --find clang++
+/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
++zsh:7> sdk=+zsh:7> xcrun --sdk macosx --show-sdk-path
++zsh:7> sdk=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk 
++zsh:8> metal_headers=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers 
++zsh:9> fx_headers=/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers 
++zsh:10> rg -n 'MTLGPUFamilyMetal4|MTLGPUFamilyApple7|newMTL4CommandQueue|newCommandAllocator|newCommandBuffer|newArgumentTableWithDescriptor|newCompilerWithDescriptor|newResidencySetWithDescriptor' /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h
+239:    MTLGPUFamilyApple7  = 1007,
+244:    MTLGPUFamilyMac1 API_DEPRECATED_WITH_REPLACEMENT("MTLGPUFamilyApple7", macos(10.15, 13.0), ios(13.0, 16.0)) = 2001,
+245:    MTLGPUFamilyMac2 API_DEPRECATED_WITH_REPLACEMENT("MTLGPUFamilyApple7", macos(10.15, 27.0), ios(13.0, 27.0)) = 2002,
+251:    MTLGPUFamilyMacCatalyst1 API_DEPRECATED_WITH_REPLACEMENT("MTLGPUFamilyApple7", macos(10.15, 13.0), ios(13.0, 16.0)) = 4001,
+252:    MTLGPUFamilyMacCatalyst2 API_DEPRECATED_WITH_REPLACEMENT("MTLGPUFamilyApple7", macos(10.15, 13.0), ios(13.0, 16.0)) = 4002,
+255:    MTLGPUFamilyMetal4 API_AVAILABLE(macos(26.0), ios(26.0)) = 5002,
+1324: @method newResidencySetWithDescriptor
+1327:- (nullable id<MTLResidencySet>) newResidencySetWithDescriptor:(MTLResidencySetDescriptor *)desc
+1379: - (nullable id<MTL4CommandAllocator>)newCommandAllocator
+1391:- (nullable id<MTL4CommandAllocator>)newCommandAllocatorWithDescriptor:(MTL4CommandAllocatorDescriptor *)descriptor
+1398:- (nullable id<MTL4CommandQueue>)newMTL4CommandQueue
+1410:- (nullable id<MTL4CommandQueue>)newMTL4CommandQueueWithDescriptor:(MTL4CommandQueueDescriptor *)descriptor
+1417: - (nullable id<MTL4CommandBuffer>)newCommandBuffer
+1429:- (nullable id<MTL4ArgumentTable>)newArgumentTableWithDescriptor:(MTL4ArgumentTableDescriptor *)descriptor
+1460:- (nullable id<MTL4Compiler>)newCompilerWithDescriptor:(MTL4CompilerDescriptor *)descriptor
++zsh:11> rg -n 'barrierAfter(QueueStages|Stages|EncoderStages)' /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandEncoder.h
+70:- (void)barrierAfterQueueStages:(MTLStages)afterQueueStages
+91:- (void)barrierAfterStages:(MTLStages)afterStages
+113:- (void)barrierAfterEncoderStages:(MTLStages)afterEncoderStages
++zsh:12> rg -n 'newLibraryWithDescriptor|newComputePipelineStateWithDescriptor|newRenderPipelineStateWithDescriptor' /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4Compiler.h
+108:- (nullable id<MTLLibrary>)newLibraryWithDescriptor:(MTL4LibraryDescriptor*)descriptor error:(NSError**)error;
+137:- (nullable id<MTLComputePipelineState>)newComputePipelineStateWithDescriptor:(MTL4ComputePipelineDescriptor*)descriptor
+151:- (nullable id<MTLComputePipelineState>)newComputePipelineStateWithDescriptor:(MTL4ComputePipelineDescriptor *)descriptor
+170:- (nullable id<MTLRenderPipelineState>)newRenderPipelineStateWithDescriptor:(MTL4PipelineDescriptor*)descriptor
+190:- (nullable id<MTLRenderPipelineState>)newRenderPipelineStateWithDescriptor:(MTL4PipelineDescriptor *)descriptor
+238:- (id<MTL4CompilerTask>)newLibraryWithDescriptor:(MTL4LibraryDescriptor*)descriptor
+270:- (id<MTL4CompilerTask>)newComputePipelineStateWithDescriptor:(MTL4ComputePipelineDescriptor*)descriptor
+284:- (id<MTL4CompilerTask>)newComputePipelineStateWithDescriptor:(MTL4ComputePipelineDescriptor *)descriptor
+303:- (id<MTL4CompilerTask>)newRenderPipelineStateWithDescriptor:(MTL4PipelineDescriptor*)descriptor
+322:- (id<MTL4CompilerTask>)newRenderPipelineStateWithDescriptor:(MTL4PipelineDescriptor*)descriptor
++zsh:13> rg -n 'drawMeshThreadgroups|@interface MTL4MeshRenderPipelineDescriptor' /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderCommandEncoder.h /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4MeshRenderPipeline.h
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4MeshRenderPipeline.h:29:@interface MTL4MeshRenderPipelineDescriptor : MTL4PipelineDescriptor
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4MeshRenderPipeline.h:44:/// ``MTL4RenderCommandEncoder/drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4MeshRenderPipeline.h:66:/// ``MTL4RenderCommandEncoder/drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4MeshRenderPipeline.h:92:/// ``MTL4RenderCommandEncoder/drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:``,
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4MeshRenderPipeline.h:106:/// ``MTL4RenderCommandEncoder/drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:``,
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderCommandEncoder.h:552:- (void)drawMeshThreadgroups:(MTLSize)threadgroupsPerGrid
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderCommandEncoder.h:587:- (void)drawMeshThreadgroupsWithIndirectBuffer:(MTLGPUAddress)indirectBuffer
++zsh:14> rg -n 'newSpatialScalerWithDevice|supportsMetal4FX|encodeToCommandBuffer' /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTL4FXSpatialScaler.h
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:68:- (nullable id <MTLFXSpatialScaler>)newSpatialScalerWithDevice:(nonnull id<MTLDevice>)device;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:77:- (nullable id <MTL4FXSpatialScaler>)newSpatialScalerWithDevice:(nonnull id<MTLDevice>)device compiler:(nonnull id<MTL4Compiler>)compiler API_AVAILABLE(macos(26.0), ios(26.0));
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:86:+ (BOOL)supportsMetal4FX:(nonnull id<MTLDevice>)device API_AVAILABLE(macos(26.0), ios(26.0));
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:107:/// 2. Call the descriptor’s ``newSpatialScalerWithDevice:`` method.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:114:/// Encode the upscale commands to a command buffer by calling the spatial scaler’s ``encodeToCommandBuffer:`` method.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:176:/// You create instances of this class by calling ``MTLFXSpatialScalerDescriptor/newSpatialScalerWithDevice:``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:179:/// inherits from protocol ``MTLFXSpatialScalerBase`` and then call ``encodeToCommandBuffer:`` to
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTLFXSpatialScaler.h:192:- (void)encodeToCommandBuffer:(nonnull id<MTLCommandBuffer>)commandBuffer;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTL4FXSpatialScaler.h:15:/// You create instances of this class by calling ``MTLFXSpatialScalerDescriptor/newSpatialScalerWithDevice:compiler:``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTL4FXSpatialScaler.h:18:/// inherits from protocol ``MTLFXSpatialScalerBase`` and then call ``encodeToCommandBuffer:`` to
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MetalFX.framework/Headers/MTL4FXSpatialScaler.h:31:- (void)encodeToCommandBuffer:(nonnull id<MTL4CommandBuffer>)commandBuffer;
++zsh:15> rg -n 'MTL4CounterHeap|newCounterHeap|resolveCounterHeap|visibilityResult' /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderPass.h
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderPass.h:97:@property (nullable, nonatomic, strong) id <MTLBuffer> visibilityResultBuffer;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4RenderPass.h:100:@property (nonatomic) MTLVisibilityResultType visibilityResultType;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:105:@class MTL4CounterHeapDescriptor;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:106:@protocol MTL4CounterHeap;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1508:///   - descriptor: ``MTL4CounterHeapDescriptor`` instance that configures the ``MTL4CounterHeap`` instance.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1512:/// - Returns: A ``MTL4CounterHeap`` instance, or `nil` if the function failed.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1513:- (nullable id<MTL4CounterHeap>)newCounterHeapWithDescriptor:(MTL4CounterHeapDescriptor *)descriptor
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1520:/// In order to use the data available in a ``MTL4CounterHeap``, your app first resolves it either in the CPU timeline
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1521:/// or in the GPU timeline. When your app calls ``MTL4CommandBuffer/resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:``
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1525:/// that this method advertises, based on the ``MTL4CounterHeapType``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1528:///   - type: ``MTL4CounterHeapType`` value that represents the type of the ``MTL4CounterHeap`` to resolve.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1530:/// - Returns: The size of the post-transformation entry from a ``MTL4CounterHeap`` of type ``MTL4CounterHeapType``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h:1531:- (NSUInteger)sizeOfCounterHeapEntry:(MTL4CounterHeapType)type
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:24:@protocol MTL4CounterHeap;
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:167:/// You are responsible for ensuring the `counterHeap` is of type ``MTL4CounterHeapType/MTL4CounterHeapTypeTimestamp``.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:170:///   - counterHeap: ``MTL4CounterHeap`` to write the timestamp into.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:171:///   - index: The index within the ``MTL4CounterHeap`` that Metal writes the timestamp to.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:172:- (void)writeTimestampIntoHeap:(id<MTL4CounterHeap>)counterHeap
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:198:/// the heap's ``MTL4CounterHeap/resolveCounterRange:`` method.
+/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTL4CommandBuffer.h:206: - (void)resolveCounterHeap:(id<MTL4CounterHeap>)counterHeap

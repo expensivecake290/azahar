@@ -1,0 +1,160 @@
+{
+  "phase": "057",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-057-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+        "sha256": "876af4b9f60f0c87293945f2026e261209a7b3b4c4060014aa8226567027f330",
+        "line": 19,
+        "symbol": "enum class GeometryPath : u8 {"
+      },
+      "contract": "Choose native shader entry groups and geometry routes according to the generator's requirement.",
+      "native_mapping": "Store exact primary, fragment, object, mesh, transform and expansion artifacts; key explicit shader modes and native launch metadata.",
+      "expected_result": "Compile production interfaces and compare route keys; verify generated function attachment at native build owner.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-057-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.h",
+        "sha256": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398",
+        "line": 15,
+        "symbol": "enum class FragmentFeedback : u8 {"
+      },
+      "contract": "Native fragment logic, blending fallback, shadow storage, and MSAA feedback determine compatibility.",
+      "native_mapping": "Preserve route and shader-controlled depth/color writes with the exact shader artifact; no host logic-op assumption.",
+      "expected_result": "Distinct key and required integration with generated fragments, feedback surfaces and resource encoder.",
+      "dependency_owner": "057",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native header consumer against the Apple Metal SDK, exact equality across 76 keys and all write masks and depth/stencil predicates; PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "AZ-057-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "fe8868ae7267e3133b8549ac32a1cbf9c3702247d7a9a498e6db0a9fbf1d19e2",
+        "line": 120,
+        "symbol": "return std::nullopt;"
+      },
+      "contract": "Source needs independent sync/async options and device/title invalidation.",
+      "native_mapping": "Pipeline compiler accepts existing ShaderCompiler, DeviceContext, bounded Azahar thread worker and canonical shader code; forwards genuine native diagnostics.",
+      "expected_result": "API consumer type-check and native link with pipeline construction. Force full queue and stale results in implementation owner.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-057-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 409,
+        "symbol": "bool PipelineCache::BindPipeline(PipelineInfo& info, bool wait_built) {"
+      },
+      "contract": "A draw observes a usable native pipeline before it can encode states or resources.",
+      "native_mapping": "Use a coherent NativePipelineStates bundle, with render, depth/stencil, transform and expansion availability checked against route.",
+      "expected_result": "End-to-end first draw, compile failure and deadline have explicit status without dropped valid draws.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-057-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 238,
+        "symbol": "GraphicsPipeline* ShaderDiskCache::GetPipeline(const PipelineInfo& info) {"
+      },
+      "contract": "Pipeline persistence identity and compatible fast lookup belong to respective caches.",
+      "native_mapping": "Separate canonical pipeline key from optional MTL4 archive obtained only for same device. No archived raw host pointers.",
+      "expected_result": "Round-trip full key and reject stale device/title cache scope under downstream owners.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-057-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 552,
+        "symbol": ""
+      },
+      "contract": "Rasterizer predicts attachment writes and uses native topology matching the chosen implementation.",
+      "native_mapping": "Provide exact ColorWriteMask and depth/stencil predicate, carry index type and native primitive route into renderer use.",
+      "expected_result": "Depth-only NoOp, shadow storage special case, exact indexed strip/fan behavior checked under owning draw phases.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-057-07",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_instance.h",
+        "sha256": "98e46dbc761d5d5cb24517897d5429e18a497f20c77e7d0bbac723b2b9a2efa4",
+        "line": 41,
+        "symbol": "VideoCore::CustomPixelFormat custom_format{VideoCore::CustomPixelFormat::Invalid};"
+      },
+      "contract": "Native vertex layout comes from actual device format traits and typed stage input.",
+      "native_mapping": "Honor format, PICA bytes, component count and integer conversion flags without Vulkan aliased overreads.",
+      "expected_result": "SDK typed native formats and active layout equality.",
+      "dependency_owner": "057",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native header consumer against the Apple Metal SDK, exact equality across 76 keys and all write masks and depth/stencil predicates; PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "AZ-057-08",
+      "source": {
+        "path": "src/common/thread_worker.h",
+        "sha256": "b4dda858082180024336e1fddd2dbfee175cb59358838f287ea3750f04bcf05b",
+        "line": 19,
+        "symbol": "#include \"common/unique_function.h\""
+      },
+      "contract": "Use repository-neutral worker design for bounded asynchronous execution.",
+      "native_mapping": "Keep worker implementation private to .mm; legacy Vulkan synchronization is replaced by futures.",
+      "expected_result": "No Vulkan or application-blocking dependencies in native header.",
+      "dependency_owner": "057",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native header consumer against the Apple Metal SDK, exact equality across 76 keys and all write masks and depth/stencil predicates; PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "REOPEN-057-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+        "sha256": "7d4559f4a3ce7945c68ff24f30c0954e9191331220589296d0e95fdc5a48a8d8",
+        "line": 271,
+        "symbol": "class PipelineCompiler {"
+      },
+      "contract": "Native archive flush must have an explicit quiescence boundary before serialization, including async jobs whose waiters were canceled.",
+      "native_mapping": "Add WaitForIdle interface with producer quiescence precondition and recompile the structural key/SDK consumer.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "057/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Add WaitForIdle interface with producer quiescence precondition and recompile the structural key/SDK consumer. Captured in 057/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "721c92b69c6efb463c4a6c94cfcf7e6a0269d2676c94dd3a5a7d7f47319cdbb6"
+}

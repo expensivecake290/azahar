@@ -1,0 +1,41 @@
+{
+  "phase": "080",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-080-01",
+      "source": {
+        "path": "src/citra_qt/bootmanager.h",
+        "sha256": "6ec4052d1990ca87844df9a76aed4485c63a01ba40f666fc17fb177553d8f218",
+        "line": 172,
+        "symbol": "void OnFramebufferSizeChanged();"
+      },
+      "contract": "Compile Qt slots, signals, private native lifecycle and ARC-neutral types with real project flags.",
+      "native_mapping": "Compile Qt MOC, bootmanager and a public interface consumer with the selected SDK and Qt.",
+      "expected_result": "Real Qt compiler consumers pass in native and off modes, dependency graph contains no Vulkan and baseline tests remain green.",
+      "dependency_owner": "076/081",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt MOC and bootmanager compilation in native and disabled modes. Linked native event virtual is owned by Phase 081."
+    },
+    {
+      "id": "MTL-080-02",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 759,
+        "symbol": "void GRenderWindow::ReleaseRenderTarget() {"
+      },
+      "contract": "Exercise real child visibility, DPI, native surface recreation and disposal while renderer retains surface.",
+      "native_mapping": "Run existing Cocoa host tests and live primary/secondary presentation and retirement on Metal4 GPU.",
+      "expected_result": "Host linkage/ownership acceptance after Phase 081 and live validation after Phase 091.",
+      "dependency_owner": "081/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "080/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "8a07eaa6863a6e1e919d2b60aa27f00441fccb712ee9cb76deb1020a385d362b"
+}

@@ -1,0 +1,58 @@
+{
+  "phase": "016",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_memory_util-016",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_memory_util.h",
+        "sha256": "b2f75640c45d3bab2e8d83e767582c662c350209ae0433e73904a3af77684367",
+        "line": 16,
+        "symbol": "std::optional<u32> FindMemoryType("
+      },
+      "contract": "Select allocation compatible with resource and host mapping requirements",
+      "native_mapping": "Choose only shared or private Metal storage; reject incompatible CPU map and zero-copy inputs",
+      "expected_result": "Shared CPU access works and private map rejects; unsupported allocation reports failure",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_memory_util-018",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_memory_util.h",
+        "sha256": "b2f75640c45d3bab2e8d83e767582c662c350209ae0433e73904a3af77684367",
+        "line": 18,
+        "symbol": "std::bitset<32> memory_type_mask = 0xFFFFFFFF,"
+      },
+      "contract": "Memory-type mask is constrained by allocation compatibility",
+      "native_mapping": "Use legal ranges, owner-retained complete page spans and actual VM protection in native import",
+      "expected_result": "Misaligned, unowned, partial, multi-region and read-only imports reject before API use",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_memory_util-019",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_memory_util.h",
+        "sha256": "b2f75640c45d3bab2e8d83e767582c662c350209ae0433e73904a3af77684367",
+        "line": 19,
+        "symbol": "vk::MemoryPropertyFlags excluded = vk::MemoryPropertyFlagBits::eProtected);"
+      },
+      "contract": "Excluded protected memory and absent type path",
+      "native_mapping": "Explicit tracked versus untracked policy, explicit budget exhaustion. Do not try unspecified memory types",
+      "expected_result": "Track physical bytes and logical bytes independently with atomic reservation/release",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "909f728e61d457777aae531ee72bf0a41464e201160e86a609eacfd8ce406531"
+}

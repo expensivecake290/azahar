@@ -1,0 +1,126 @@
+{
+  "phase": "006",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-LEGACY-WSI",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "line": 152,
+        "sha256": "65c136feedc3263202b2aa86dd7fc86a75333db2c2210ce83065c742287dc31c",
+        "symbol": "struct WindowSystemInfo {"
+      },
+      "contract": "Existing WindowSystemInfo callers depend on enum values and raw surface ABI.",
+      "native_mapping": "Keep the existing WSI type and accessors. Add a separate typed native snapshot contract.",
+      "expected_result": "Enum values unchanged and C++ consumer sees both WSI and the new accessor.",
+      "dependency_owner": "006",
+      "command": "python3 docs/metaliris/006/verify.py <build-dir>",
+      "evidence_path": "006/header.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-LAYOUT-TOUCH",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "line": 242,
+        "sha256": "65c136feedc3263202b2aa86dd7fc86a75333db2c2210ce83065c742287dc31c",
+        "symbol": "/**"
+      },
+      "contract": "Existing framebuffer layout, config, touch input, cursor and shared mailbox are consumed by different frontends.",
+      "native_mapping": "Publish native layout with its retained surface atomically while reusing the existing framebuffer layout and touch-coordinate APIs.",
+      "expected_result": "Real lifecycle fixture confirms current layout and touchscreen mapping update when the native surface is published.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-WINDOW-ROLES",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "line": 257,
+        "sha256": "65c136feedc3263202b2aa86dd7fc86a75333db2c2210ce83065c742287dc31c",
+        "symbol": "std::unique_ptr<TextureMailbox> mailbox = nullptr;"
+      },
+      "contract": "Primary and secondary windows use independent metadata and share existing touch state.",
+      "native_mapping": "Native layout, lease, and generation belong to each EmuWindow.",
+      "expected_result": "Primary and secondary can be independently attached and detached. No window reads another window surface.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-FRONTEND",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "line": 141,
+        "sha256": "65c136feedc3263202b2aa86dd7fc86a75333db2c2210ce83065c742287dc31c",
+        "symbol": ""
+      },
+      "contract": "UI only provides handles and geometry; core exposes renderer bridge.",
+      "native_mapping": "Keep the API free of Qt or Apple imports. Actual layer adapter belongs to Phase 077 and Qt publication to 081.",
+      "expected_result": "Real frontend hookup and worker-thread lifecycle fixture reopen after adapter and frontend files land.",
+      "dependency_owner": "077",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PENDING",
+      "actual_result": "Live drawable test awaits platform adapter and GPU."
+    },
+    {
+      "id": "AZ-006-REOPEN-081",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 351,
+        "symbol": "void NotifyFramebufferLayoutChanged(const Layout::FramebufferLayout& layout) {"
+      },
+      "contract": "Atomic native surface and shared touch/render layout including layout-only settings updates.",
+      "native_mapping": "Use shared layout derivation for Qt native surface ownership transitions and update the native snapshot for regular framebuffer layout requests.",
+      "expected_result": "New and existing surface lifecycle, generation, retention, touch/layout and PICA regression fixtures pass.",
+      "dependency_owner": "081",
+      "command": "python3 docs/metaliris/007/verify.py <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "006/reopen-081.log",
+      "status": "PASS",
+      "actual_result": "Compiled native and host targets, exact atomic surface and layout-only refresh fixture passed."
+    },
+    {
+      "id": "AZ-006-REOPEN-081",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 351,
+        "symbol": "void NotifyFramebufferLayoutChanged(const Layout::FramebufferLayout& layout) {"
+      },
+      "contract": "Atomic native surface and shared touch/render layout including layout-only settings updates.",
+      "native_mapping": "Use shared layout derivation for Qt native surface ownership transitions and update the native snapshot for regular framebuffer layout requests.",
+      "expected_result": "New and existing surface lifecycle, generation, retention, touch/layout and PICA regression fixtures pass.",
+      "dependency_owner": "081",
+      "command": "python3 docs/metaliris/007/verify.py <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "006/reopen-081.log",
+      "status": "PASS",
+      "actual_result": "Compiled native and host targets, exact atomic surface and layout-only refresh fixture passed."
+    },
+    {
+      "id": "AZ-006-REOPEN-091",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "653a4b6aff384d6f8e2ccca9a39368a58f9eb6cb0014cbc0283b0ea8db9e22d4",
+        "line": 280,
+        "symbol": "const Layout::FramebufferLayout& GetFramebufferLayout() const {"
+      },
+      "contract": "Thread-safe shared layout for Qt resize and native rendering resolution, including initial headless state.",
+      "native_mapping": "Return a copy under the existing neutral mutex and initialize the layout before any frontend-specific update.",
+      "expected_result": "Compile native and host consumers, start with zero dimensions and stress coherent snapshots through concurrent publication.",
+      "dependency_owner": "091",
+      "command": "python3 docs/metaliris/007/verify.py <native-core>",
+      "evidence_path": "006/reopen-091.log",
+      "status": "PASS",
+      "actual_result": "Native rebuild, initial headless dimensions, legacy and native concurrent layout-read fixture, PICA 48/801 and CTest 64."
+    }
+  ],
+  "owner_sha256_after": "9da668eb8752148faa4d87fab3aef939cd2f55fe9f6e7b7454a1dcc62afb48ff"
+}

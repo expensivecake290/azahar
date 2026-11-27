@@ -1,0 +1,58 @@
+{
+  "phase": "014",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "pixel_format-069",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/pixel_format.h",
+        "sha256": "3e486ce4f3139d2fd9f23652b25db526649dfe9afe8191b253958d77bffbca25",
+        "line": 69,
+        "symbol": "* Lookup table for querying pixel format properties (type, name, etc)"
+      },
+      "contract": "Guest physical bytes and color formats",
+      "native_mapping": "Use format metadata for codecs without changing guest enum or guest storage",
+      "expected_result": "Check all known format and reserved-slot mapping",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "custom_format-018",
+      "source": {
+        "path": "src/video_core/custom_textures/custom_format.h",
+        "sha256": "171294a42e06fb92f63aa95ed0b010ca82f87b30846fbf4ac5ba41e06b630fd3",
+        "line": 18,
+        "symbol": "BC7 = 4,"
+      },
+      "contract": "Material ASTC and BC types",
+      "native_mapping": "Store original custom format alongside native compression block",
+      "expected_result": "CPU footprint matrix",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    },
+    {
+      "id": "mtl_platform-029",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.h",
+        "sha256": "71cbc1f2022b01300db7f96dd9c51915676b08ac0335875777664161eb488c8c",
+        "line": 29,
+        "symbol": "u64 registry_id{};"
+      },
+      "contract": "Existing ARC platform device capability selection",
+      "native_mapping": "Reuse enumeration and support statuses and preserve configured index",
+      "expected_result": "CPU failure injection without fabricated device handles; actual GPU positive list",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/014/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "014/runtime.log",
+      "status": "PASS",
+      "actual_result": "Available targeted verification passed."
+    }
+  ],
+  "owner_sha256_after": "7dc902471844752bd54a4dbe4f7e26f23a2eeb15bb8ac90be4c645fd48b5a9f0"
+}

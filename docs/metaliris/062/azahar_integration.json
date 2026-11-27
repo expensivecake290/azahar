@@ -1,0 +1,126 @@
+{
+  "phase": "062",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-062-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_pipeline_cache.h",
+        "sha256": "e5daa2eb9a96e28045885db7702d156f2f114f1a1b0f197c047d09ba629ca4c9",
+        "line": 104,
+        "symbol": "};"
+      },
+      "contract": "Entire requested pipeline cache contract must work.",
+      "native_mapping": "Implement per-device/active-title lifecycle, retain previous resources until completed, expose native generation, worker options and precise fixture progress.",
+      "expected_result": "Native target integration and deterministic host checks.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "AZ-062-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_disk_cache.h",
+        "sha256": "19a070dd2abd7ad3f5bb8b538ae5c5c82051e472ee56cd68453ea250bd2b4d76",
+        "line": 102,
+        "symbol": ""
+      },
+      "contract": "Preserve complete cacheable recipe and actual archive capture.",
+      "native_mapping": "Reuse real disk writer/loader. Match archived serializer with its compiler. Failed native warmup records are evicted only by exact key.",
+      "expected_result": "Cacheability, warmup and failed sanitization fixtures.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "AZ-062-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+        "sha256": "7d4559f4a3ce7945c68ff24f30c0954e9191331220589296d0e95fdc5a48a8d8",
+        "line": 269,
+        "symbol": "/// The context and shader compiler must outlive this builder. Destruction cancels publication and"
+      },
+      "contract": "Use fully compiled and scope-matched native pipelines.",
+      "native_mapping": "Synchronously wait on exact key, share scoped task, and await native idle before serializer flush.",
+      "expected_result": "Compile/result survival after title/device change and complete native pipeline handles.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "AZ-062-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "fe8868ae7267e3133b8549ac32a1cbf9c3702247d7a9a498e6db0a9fbf1d19e2",
+        "line": 120,
+        "symbol": "return std::nullopt;"
+      },
+      "contract": "Actual native MTL4 compiler capture needs serializer attached.",
+      "native_mapping": "Controlled reopen 055 declaration and 056 implementation to inject optional SDK-native capture. Default remains direct compiler.",
+      "expected_result": "Verify exact descriptor assignment, no old API regression, real native archive fixture.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "AZ-062-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_descriptor_update_queue.h",
+        "sha256": "c61f57604592451203785a04631e73471cee06af1e8cec1fcd01393a6513f9bd",
+        "line": 34,
+        "symbol": "public:"
+      },
+      "contract": "Use immutable argument slots and resource retention in EncodingContext.",
+      "native_mapping": "Use only valid stage masks and original resource snapshots, then retain complete state until scheduler completion.",
+      "expected_result": "Run native per-stage resource scope checks through rendering owner.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-062-06",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+        "sha256": "876af4b9f60f0c87293945f2026e261209a7b3b4c4060014aa8226567027f330",
+        "line": 259,
+        "symbol": ""
+      },
+      "contract": "Direct Metal 4 generator retains true guest programs, builtins and fallback options.",
+      "native_mapping": "Route trivial/typed vertex, fixed mesh or compute and programmable expansion using established MSL entry names and data contracts.",
+      "expected_result": "Compile direct generated corpus and controlled invalid-program cases.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "AZ-062-07",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.h",
+        "sha256": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398",
+        "line": 106,
+        "symbol": "[[nodiscard]] FragmentRequirements DescribeFragment(const FSConfig& config,"
+      },
+      "contract": "Exact requested fragment structure decides blend, shadow and feedback.",
+      "native_mapping": "Build actual fragment profile from immutable Apple capabilities and pass cacheability from shared user config.",
+      "expected_result": "Verify known native source entry and route generation.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    }
+  ],
+  "owner_sha256_after": "5f140c493814299c4e62e4c70cd5ca30195845621e384e7b89e9b326b9072e09"
+}

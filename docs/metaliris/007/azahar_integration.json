@@ -1,0 +1,92 @@
+{
+  "phase": "007",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-LAYOUT",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 190,
+        "symbol": "void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) {"
+      },
+      "contract": "Touch and screen state use the legacy framebuffer layout field.",
+      "native_mapping": "Publish a matching touch and presentation layout under the same mutex. Existing code still uses shared PICA layout logic.",
+      "expected_result": "Touch is accepted inside the bottom screen and normal release and clipping still work.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-WINDOW-STEREO",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 69,
+        "symbol": "Settings::StereoRenderOption EmuWindow::get3DMode() const {"
+      },
+      "contract": "Separate windows and Android use existing stereo rules.",
+      "native_mapping": "No changes to get3DMode. Use per-window generation and metadata; retain shared touch state.",
+      "expected_result": "Secondary publishes independently while primary generation remains unchanged.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-TOUCH-SYNC",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 185,
+        "symbol": "std::tie(framebuffer_x, framebuffer_y) = ClipToTouchScreen(framebuffer_x, framebuffer_y);"
+      },
+      "contract": "Touch move generally checks current press state and clips to the framebuffer before posting.",
+      "native_mapping": "Synchronize reads of retained layout and press state without changing normalized coordinate formulas.",
+      "expected_result": "Touch press, move and release complete with a published native layout. Existing PICA regression passes.",
+      "dependency_owner": "007",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU lifecycle or interface test passed."
+    },
+    {
+      "id": "AZ-FRONTEND-LAYER",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+        "line": 198,
+        "symbol": ""
+      },
+      "contract": "Native surface callers are supplied by later Qt and platform phases.",
+      "native_mapping": "Use shared CPU-only exact semantics until the real surface adapter is available.",
+      "expected_result": "Real integration tests require adapter, Qt and GPU owners.",
+      "dependency_owner": "077",
+      "command": "python3 docs/metaliris/007/verify.py <native-build-dir>",
+      "evidence_path": "007/surface.log",
+      "status": "PENDING",
+      "actual_result": "Live drawable test awaits platform adapter and GPU."
+    },
+    {
+      "id": "AZ-007-REOPEN-081",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "5777f4fa3a6b7bd510cedff6e4db88c474213a1364f4ef52c08775f61e13b837",
+        "line": 236,
+        "symbol": "void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) {"
+      },
+      "contract": "Atomic native surface and shared touch/render layout including layout-only settings updates.",
+      "native_mapping": "Use shared layout derivation for Qt native surface ownership transitions and update the native snapshot for regular framebuffer layout requests.",
+      "expected_result": "New and existing surface lifecycle, generation, retention, touch/layout and PICA regression fixtures pass.",
+      "dependency_owner": "081",
+      "command": "python3 docs/metaliris/007/verify.py <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "007/reopen-081.log",
+      "status": "PASS",
+      "actual_result": "Compiled native and host targets, exact atomic surface and layout-only refresh fixture passed."
+    }
+  ],
+  "owner_sha256_after": "2d80217b0f60be75e966bb2cae099bdeab186761ebf5651392536a802c052539"
+}

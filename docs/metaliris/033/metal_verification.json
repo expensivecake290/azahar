@@ -1,0 +1,92 @@
+{
+  "phase": "033",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-033-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 199,
+        "symbol": "void FragmentModule::WriteDepth() {"
+      },
+      "contract": "MSL4 stage-in, native output depth, shader phase scissor and alpha discard.",
+      "native_mapping": "Actual MSL4 language, native Apple compiler and native Metal-only runtime validation.",
+      "expected_result": "Compile actual variants and expected GPU pixel geometry.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-033-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 485,
+        "symbol": "void FragmentModule::WriteLighting() {"
+      },
+      "contract": "Native barycentric per-vertex values, derivative sampling and texture-buffer LUTs.",
+      "native_mapping": "Use Metal 4 vertex_value and native interpolation flags, scoped resources and precise LUT.",
+      "expected_result": "MSL compilation for both barycentric paths with native pixel checks.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-033-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 844,
+        "symbol": "void FragmentModule::WriteShadow() {"
+      },
+      "contract": "Native Apple texel CAS and no-copy buffer fallback both preserve shadow ordering.",
+      "native_mapping": "Actual MSL uint4 native texel CAS and native device atomic_uint operations.",
+      "expected_result": "Compile both paths and verify exact shadow words with native validation.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-033-04",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 872,
+        "symbol": "void FragmentModule::WriteLogicOp() {"
+      },
+      "contract": "Tile feedback specialization and exact texture snapshots including multiple samples.",
+      "native_mapping": "Direct ROG native fetch or same-sample read of texture2d_ms target, preserving guest packed widths.",
+      "expected_result": "Both source families compile and native GPU agrees with independent logic and MinMax pixel oracles.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-033-05",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 1041,
+        "symbol": "void FragmentModule::DefineProcTexSampler() {"
+      },
+      "contract": "Actual procedural derivatives, LUT, clamps and MSL 4 resource identities.",
+      "native_mapping": "Host source-generation corpus covers every mode and pending live texture capture is kept explicit.",
+      "expected_result": "Probes cover near and linear, single/layered LOD and custom borders.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5075c3b02cca31033a6bc3af15b37cb0ea6c9ba88586bfe32a0ee00a34faecb2"
+}

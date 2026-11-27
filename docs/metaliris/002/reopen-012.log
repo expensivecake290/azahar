@@ -1,0 +1,330 @@
++zsh:6> cmake -S /tmp/metaliris-r12.lKARZLkI/source -B /tmp/metaliris-r12.lKARZLkI/metal
+-- LTO disabled
+-- Target architecture: arm64
+-- Performing Test AZAHAR_METAL4_SDK
+-- Performing Test AZAHAR_METAL4_SDK - Success
+-- Including vendored Boost library
+-- => Project : cryptopp-modern v2026.5.1
+-- [cryptopp-modern] CMake version 4.4.2
+-- [cryptopp-modern] System Darwin
+-- [cryptopp-modern] Processor arm64
+-- [cryptopp-modern]     CMAKE_OSX_ARCHITECTURES : arm64
+-- [cryptopp-modern] CMAKE_HOST_SYSTEM_PROCESSOR : arm64
+-- [cryptopp-modern]      CMAKE_SYSTEM_PROCESSOR : arm64
+-- [cryptopp-modern] Target architecture detected as: arm64 -> CRYPTOPP_ARMV8
+-- [cryptopp-modern] Platform: ARMv8
+-- [cryptopp-modern] Compiler definitions:  CRYPTOPP_ARM_NEON_HEADER=1;CRYPTOPP_ARM_ACLE_HEADER=1;CRYPTOPP_DISABLE_ARM_CRC32=1;CRYPTOPP_DISABLE_ARM_PMULL=1
+-- [cryptopp-modern] Compiler options:   
+-- [cryptopp-modern] Build type: Release
+-- {fmt} version: 12.0.0
+-- Build type: Release
+CMake Warning (deprecated) at externals/oaknut/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Target architecture: arm64
+CMake Warning (policy) at externals/dynarmic/CMakeLists.txt:151 (find_package):
+  Policy CMP0144 is not set: find_package uses upper-case <PACKAGENAME>_ROOT
+  variables.  Run "cmake --help-policy CMP0144" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  CMake variable BOOST_ROOT is set to:
+
+    /private/tmp/metaliris-r12.lKARZLkI/source/externals/boost
+
+  For compatibility, find_package is ignoring the variable, but code in a
+  .cmake module might still use it.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+CMake Warning (policy) at externals/dynarmic/CMakeLists.txt:151 (find_package):
+  Policy CMP0167 is not set: The FindBoost module is removed.  Run "cmake
+  --help-policy CMP0167" for policy details.  Use the cmake_policy command to
+  set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Could NOT find mcl (missing: mcl_DIR)
+-- Could NOT find tsl-robin-map (missing: tsl-robin-map_DIR)
+CMake Warning (policy) at externals/dynarmic/externals/mcl/CMakeLists.txt:29 (set):
+  Policy CMP0218 is not set: The CMAKE_WARN_DEPRECATED and
+  CMAKE_ERROR_DEPRECATED variables are ignored.  Run "cmake --help-policy
+  CMP0218" for policy details.  Use the cmake_policy command to set the
+  policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+CMake Warning (deprecated) at externals/dynarmic/externals/robin-map/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- mach/mach_exc.defs location: /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Kernel.framework/Headers
+-- Building faad2 version 2.11.1
+CMake Warning (deprecated) at externals/soundtouch/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 
+-- Could NOT find OpenMP_CXX (missing: OpenMP_CXX_FLAGS OpenMP_CXX_LIB_NAMES) 
+-- Could NOT find OpenMP (missing: OpenMP_C_FOUND OpenMP_CXX_FOUND) 
+-- Using bundled Teakra
+CMake Warning (policy) at externals/teakra/CMakeLists.txt:27 (set):
+  Policy CMP0218 is not set: The CMAKE_WARN_DEPRECATED and
+  CMAKE_ERROR_DEPRECATED variables are ignored.  Run "cmake --help-policy
+  CMP0218" for policy details.  Use the cmake_policy command to set the
+  policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- ZSTD VERSION: 1.5.7
+-- CMAKE_INSTALL_PREFIX: /usr/local
+-- CMAKE_INSTALL_LIBDIR: lib
+-- ZSTD_LEGACY_SUPPORT not defined!
+-- ZSTD_MULTITHREAD_SUPPORT is enabled
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- {fmt} version: 11.0.2
+-- Build type: Release
+-- Checking for module 'libpipewire-0.3>=0.3.23'
+--   Package 'libpipewire-0.3' not found
+-- Could NOT find PulseAudio (missing: PULSEAUDIO_LIBRARY PULSEAUDIO_INCLUDE_DIR) 
+-- Could NOT find ALSA (missing: ALSA_LIBRARY ALSA_INCLUDE_DIR) 
+-- Could NOT find OSS (missing: OSS_INCLUDE_DIR) 
+-- Could NOT find AudioIO (missing: AUDIOIO_INCLUDE_DIR) 
+-- Could NOT find JACK (missing: JACK_LIBRARY JACK_INCLUDE_DIR) 
+-- Could NOT find OpenSL (missing: OPENSL_LIBRARY OPENSL_INCLUDE_DIR OPENSL_ANDROID_INCLUDE_DIR) 
+-- Could NOT find PortAudio (missing: PORTAUDIO_LIBRARY PORTAUDIO_INCLUDE_DIR) 
+-- 
+-- Building OpenAL with support for the following backends:
+--     CoreAudio, WaveFile, Null
+-- 
+-- Building with support for CPU extensions:
+--     Default, Neon
+-- 
+-- Embedding HRTF datasets
+-- 
+-- NOT installing library and headers
+-- 
+-- xxHash build type: Release
+-- Architecture: arm64
+-- Disabling SIMD for xxHash
+<FindSDL2.cmake>
+</FindSDL2.cmake>
+-- Creating base bundle target
+-- Adding citra_room_standalone to bundle target
+-- Configuring done (3.2s)
+-- Generating done (0.2s)
+-- Build files have been written to: /tmp/metaliris-r12.lKARZLkI/metal
++zsh:7> python3 - /tmp/metaliris-r12.lKARZLkI/metal
+/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_GDBSTUB -DENABLE_QT_TRANSLATION -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/metal/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -O3 -DNDEBUG -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -fobjc-arc -w -Wno-invalid-specialization -o src/video_core/CMakeFiles/video_core.dir/renderer_metal/mtl_common.mm.o -c /tmp/metaliris-r12.lKARZLkI/source/src/video_core/renderer_metal/mtl_common.mm
+/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_GDBSTUB -DENABLE_QT_TRANSLATION -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/metal/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -O3 -DNDEBUG -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -fobjc-arc -w -Wno-invalid-specialization -o src/video_core/CMakeFiles/video_core.dir/renderer_metal/mtl_platform.mm.o -c /tmp/metaliris-r12.lKARZLkI/source/src/video_core/renderer_metal/mtl_platform.mm
+PASS real platform and device source registration
++zsh:27> cmake --build /tmp/metaliris-r12.lKARZLkI/metal --target tests --parallel 8
+[1/8] Building CXX object src/common/CMakeFiles/citra_common.dir/scm_rev.cpp.o
+[2/8] Building C object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/backend/exception_handler_macos_mig.c.o
+[3/8] Linking CXX static library src/common/libcitra_common.a
+[4/8] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/backend/exception_handler_macos.cpp.o
+[5/8] Linking CXX static library externals/dynarmic/src/dynarmic/libdynarmic.a
+[6/8] Building OBJCXX object src/video_core/CMakeFiles/video_core.dir/renderer_metal/mtl_platform.mm.o
+[7/8] Linking CXX static library src/video_core/libvideo_core.a
+[8/8] Linking CXX executable bin/Release/tests
+ld: warning: ignoring duplicate libraries: 'src/audio_core/libaudio_core.a', 'src/common/libcitra_common.a', 'src/core/libcitra_core.a', 'src/input_common/libinput_common.a', 'src/network/libnetwork.a', 'src/video_core/libvideo_core.a', 'src/web_service/libweb_service.a'
++zsh:28> ctest --test-dir /tmp/metaliris-r12.lKARZLkI/metal --output-on-failure -j 4
+Test project /tmp/metaliris-r12.lKARZLkI/metal
+      Start 69: tests
+      Start 15: Memory Basics
+      Start 13: HLERequestContext::WriteToOutgoingCommandBuffer
+      Start 14: memory.IsValidVirtualAddress
+ 1/69 Test #14: memory.IsValidVirtualAddress ...........................   Passed    0.96 sec
+      Start 12: HLERequestContext::PopulateFromIncomingCommandBuffer
+ 2/69 Test #13: HLERequestContext::WriteToOutgoingCommandBuffer ........   Passed    1.09 sec
+      Start 65: Conditional - ShaderJitTest
+ 3/69 Test #15: Memory Basics ..........................................   Passed    1.23 sec
+      Start 54: SETEMIT - ShaderJitTest
+ 4/69 Test #65: Conditional - ShaderJitTest ............................   Passed    0.14 sec
+      Start 60: Dest Mask - ShaderJitTest
+ 5/69 Test #60: Dest Mask - ShaderJitTest ..............................   Passed    0.11 sec
+      Start 21: float20
+ 6/69 Test #54: SETEMIT - ShaderJitTest ................................   Passed    0.12 sec
+      Start 55: Uniform Read - ShaderInterpreterTest
+ 7/69 Test #12: HLERequestContext::PopulateFromIncomingCommandBuffer ...   Passed    0.42 sec
+      Start  6: CoreTiming[BasicOrder]
+ 8/69 Test #21: float20 ................................................   Passed    0.12 sec
+ 9/69 Test #55: Uniform Read - ShaderInterpreterTest ...................   Passed    0.11 sec
+      Start 63: Nested Loop - ShaderJitTest
+      Start 20: float24
+10/69 Test  #6: CoreTiming[BasicOrder] .................................   Passed    0.10 sec
+      Start 67: Source Swizzle - ShaderJitTest
+11/69 Test #20: float24 ................................................   Passed    0.10 sec
+      Start 36: EX2 - ShaderJitTest
+12/69 Test #63: Nested Loop - ShaderJitTest ............................   Passed    0.10 sec
+      Start 61: MAD - ShaderInterpreterTest
+13/69 Test #67: Source Swizzle - ShaderJitTest .........................   Passed    0.10 sec
+      Start  7: CoreTiming[SharedSlot]
+14/69 Test #36: EX2 - ShaderJitTest ....................................   Passed    0.09 sec
+15/69 Test #61: MAD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 49: RCP - ShaderInterpreterTest
+      Start  5: SlotVector contains
+16/69 Test #69: tests ..................................................   Passed    1.68 sec
+      Start 31: DPH - ShaderInterpreterTest
+17/69 Test  #7: CoreTiming[SharedSlot] .................................   Passed    0.09 sec
+      Start 37: MUL - ShaderInterpreterTest
+18/69 Test #49: RCP - ShaderInterpreterTest ............................   Passed    0.09 sec
+19/69 Test  #5: SlotVector contains ....................................   Passed    0.09 sec
+      Start  1: BitField
+      Start 26: CALL - ShaderJitTest
+20/69 Test #31: DPH - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 32: DPH - ShaderJitTest
+21/69 Test #37: MUL - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 35: EX2 - ShaderInterpreterTest
+22/69 Test  #1: BitField ...............................................   Passed    0.09 sec
+      Start 41: SLT - ShaderInterpreterTest
+23/69 Test #26: CALL - ShaderJitTest ...................................   Passed    0.09 sec
+      Start  2: SplitFilename83 Sanity
+24/69 Test #32: DPH - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 56: Uniform Read - ShaderJitTest
+25/69 Test #35: EX2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 43: FLR - ShaderInterpreterTest
+26/69 Test #41: SLT - ShaderInterpreterTest ............................   Passed    0.09 sec
+27/69 Test  #2: SplitFilename83 Sanity .................................   Passed    0.09 sec
+      Start 44: FLR - ShaderJitTest
+      Start 38: MUL - ShaderJitTest
+28/69 Test #56: Uniform Read - ShaderJitTest ...........................   Passed    0.09 sec
+      Start 66: Source Swizzle - ShaderInterpreterTest
+29/69 Test #43: FLR - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 24: ADD - ShaderJitTest
+30/69 Test #44: FLR - ShaderJitTest ....................................   Passed    0.09 sec
+31/69 Test #38: MUL - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  4: ParamPackage
+      Start 11: PathParser - Host file system
+32/69 Test #66: Source Swizzle - ShaderInterpreterTest .................   Passed    0.09 sec
+      Start 42: SLT - ShaderJitTest
+33/69 Test #24: ADD - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 30: DP4 - ShaderJitTest
+34/69 Test  #4: ParamPackage ...........................................   Passed    0.09 sec
+      Start 46: MAX - ShaderJitTest
+35/69 Test #11: PathParser - Host file system ..........................   Passed    0.09 sec
+      Start  9: CoreTiming[ChainScheduling]
+36/69 Test #42: SLT - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 29: DP4 - ShaderInterpreterTest
+37/69 Test #30: DP4 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 39: SGE - ShaderInterpreterTest
+38/69 Test  #9: CoreTiming[ChainScheduling] ............................   Passed    0.09 sec
+      Start 25: CALL - ShaderInterpreterTest
+39/69 Test #46: MAX - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 52: RSQ - ShaderJitTest
+40/69 Test #29: DP4 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 45: MAX - ShaderInterpreterTest
+41/69 Test #39: SGE - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 48: MIN - ShaderJitTest
+42/69 Test #25: CALL - ShaderInterpreterTest ...........................   Passed    0.09 sec
+43/69 Test #52: RSQ - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 10: PathParser
+      Start 47: MIN - ShaderInterpreterTest
+44/69 Test #45: MAX - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 28: DP3 - ShaderJitTest
+45/69 Test #48: MIN - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 53: SETEMIT - ShaderInterpreterTest
+46/69 Test #10: PathParser .............................................   Passed    0.09 sec
+      Start 27: DP3 - ShaderInterpreterTest
+47/69 Test #47: MIN - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 23: ADD - ShaderInterpreterTest
+48/69 Test #28: DP3 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 59: Dest Mask - ShaderInterpreterTest
+49/69 Test #53: SETEMIT - ShaderInterpreterTest ........................   Passed    0.09 sec
+      Start 64: Conditional - ShaderInterpreterTest
+50/69 Test #27: DP3 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start  3: NormalizeNFDToNFC Sanity
+51/69 Test #23: ADD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 58: Address Register Offset - ShaderJitTest
+52/69 Test #59: Dest Mask - ShaderInterpreterTest ......................   Passed    0.09 sec
+      Start 40: SGE - ShaderJitTest
+53/69 Test #64: Conditional - ShaderInterpreterTest ....................   Passed    0.09 sec
+      Start 51: RSQ - ShaderInterpreterTest
+54/69 Test  #3: NormalizeNFDToNFC Sanity ...............................   Passed    0.09 sec
+55/69 Test #58: Address Register Offset - ShaderJitTest ................   Passed    0.09 sec
+      Start 62: MAD - ShaderJitTest
+      Start 50: RCP - ShaderJitTest
+56/69 Test #40: SGE - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  8: CoreTiming[PredictableLateness]
+57/69 Test #51: RSQ - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 57: Address Register Offset - ShaderInterpreterTest
+58/69 Test #62: MAD - ShaderJitTest ....................................   Passed    0.09 sec
+59/69 Test #50: RCP - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 34: LG2 - ShaderJitTest
+      Start 33: LG2 - ShaderInterpreterTest
+60/69 Test  #8: CoreTiming[PredictableLateness] ........................   Passed    0.09 sec
+      Start 22: float16
+61/69 Test #57: Address Register Offset - ShaderInterpreterTest ........   Passed    0.09 sec
+      Start 16: DSP LLE vs HLE
+62/69 Test #34: LG2 - ShaderJitTest ....................................   Passed    0.09 sec
+63/69 Test #33: LG2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 17: Verify SourceStatus::Status::last_buffer_id 1
+      Start 18: Verify SourceStatus::Status::last_buffer_id 2
+64/69 Test #22: float16 ................................................   Passed    0.09 sec
+      Start 19: DSP LLE Sanity
+65/69 Test #16: DSP LLE vs HLE .........................................***Skipped   0.15 sec
+      Start 68: AudioTest-BiquadFilter
+66/69 Test #17: Verify SourceStatus::Status::last_buffer_id 1 ..........***Skipped   0.15 sec
+67/69 Test #18: Verify SourceStatus::Status::last_buffer_id 2 ..........***Skipped   0.15 sec
+68/69 Test #19: DSP LLE Sanity .........................................***Skipped   0.15 sec
+69/69 Test #68: AudioTest-BiquadFilter .................................***Skipped   0.13 sec
+
+100% tests passed out of 69
+
+Total Test time (real) =   2.96 sec
+
+The following tests did not run:
+	 16 - DSP LLE vs HLE (Skipped)
+	 17 - Verify SourceStatus::Status::last_buffer_id 1 (Skipped)
+	 18 - Verify SourceStatus::Status::last_buffer_id 2 (Skipped)
+	 19 - DSP LLE Sanity (Skipped)
+	 68 - AudioTest-BiquadFilter (Skipped)
++zsh:29> /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests '[video_core]' --rng-seed 225818237
+Filters: [video_core]
+Randomness seeded to: 225818237
+===============================================================================
+All tests passed (801 assertions in 48 test cases)
+
++zsh:30> otool -L /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests
+/tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests:
+	/System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa (compatibility version 1.0.0, current version 24.0.0)
+	/System/Library/Frameworks/AVFoundation.framework/Versions/A/AVFoundation (compatibility version 1.0.0, current version 2.0.0)
+	/System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface (compatibility version 1.0.0, current version 1.0.0)
+	/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib (compatibility version 3.0.0, current version 3.0.0)
+	/opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib (compatibility version 3.0.0, current version 3.0.0)
+	/System/Library/Frameworks/Metal.framework/Versions/A/Metal (compatibility version 1.0.0, current version 381.0.0)
+	/System/Library/Frameworks/MetalFX.framework/Versions/A/MetalFX (compatibility version 1.0.0, current version 1.0.0)
+	/System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore (compatibility version 1.2.0, current version 1222.2.0)
+	/System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit (compatibility version 1.0.0, current version 1.0.0)
+	/System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio (compatibility version 1.0.0, current version 1.0.0)
+	/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices (compatibility version 1.0.0, current version 1226.0.0)
+	/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox (compatibility version 1.0.0, current version 1000.0.0)
+	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices (compatibility version 1.0.0, current version 66.0.0)
+	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)
+	/opt/homebrew/opt/sdl2-compat/lib/libSDL2-2.0.0.dylib (compatibility version 3201.0.0, current version 3201.72.0)
+	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 5027.0.51)
+	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit (compatibility version 1.0.0, current version 275.0.0)
+	/System/Library/Frameworks/Security.framework/Versions/A/Security (compatibility version 1.0.0, current version 62426.0.0)
+	/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)
+	/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2200.22.0)
+	/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit (compatibility version 45.0.0, current version 2757.5.0)
+	/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics (compatibility version 64.0.0, current version 2039.0.0)
+	/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 5027.0.51)

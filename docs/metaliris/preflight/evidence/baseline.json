@@ -1,0 +1,28 @@
+{
+  "revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "branch": "mtl-4-backend",
+  "specification": {
+    "title": "Metaliris Native Metal 4 Engineering Master — Revision 11",
+    "filename": "Metaliris_Native_Metal4_Engineering_Master_Revision11(3).pdf",
+    "library_id": "libfile_1d4920d162a48191a80140f79b5c488c",
+    "attachment_file_id": "file_000000001ac88212ae0bede596a11447",
+    "pages": 103,
+    "text_extraction": "4,206 indexed lines from attached version",
+    "raw_pdf_sha256": null,
+    "raw_pdf_unavailable_reason": "Signed byte transfer failed DNS in the managed session. The attached PDF text was read in full.",
+    "recorded_archive_sha256": {
+      "azahar-master(8).zip": "b28dbd1cbe4f2912c3f0c09d8fbd729c9d580ad6b522755e7df8c8406576e293",
+      "renderer_vulkan(7).zip": "747a0474c436beed6b5307289e6c5acb75a378e05177099078e926d54430bbd0"
+    }
+  },
+  "checkout_tracking": {
+    "top_level_git_index_entries": 2359,
+    "tracked_paths_with_submodules": 21026,
+    "preexisting_missing_paths": [
+      "AI-POLICY.md"
+    ],
+    "vulkan_files": 42
+  },
+  "matching_source_fingerprints": 75,
+  "phase_owners": 91
+}

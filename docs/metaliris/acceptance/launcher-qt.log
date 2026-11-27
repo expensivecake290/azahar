@@ -1,0 +1,3 @@
+Command: ['/usr/bin/open', '-n', '-g', '-W', '-o', '/private/tmp/metaliris-r12.lKARZLkI/acceptance/launcher-qt-stdout.log', '--stderr', '/private/tmp/metaliris-r12.lKARZLkI/acceptance/launcher-qt-stderr.log', '/private/tmp/metaliris-r12.lKARZLkI/qt/bin/Release/azahar.app', '--args', '-platform', 'cocoa']
+The application cannot be opened for an unexpected reason, error=Error Domain=NSOSStatusErrorDomain Code=-10827 "kLSNoExecutableErr: The executable is missing" UserInfo={_LSLine=4357, _LSFunction=_LSOpenStuffCallLocal, _LSFile=LSOpenCore.mm, _LSErrorMessage=kLSNoExecutableErr}
+LaunchServices exit: 1

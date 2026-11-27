@@ -1,0 +1,58 @@
+{
+  "phase": "005",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-SETTINGS-NONNATIVE",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 264,
+        "symbol": "auto graphics_api = Settings::values.graphics_api.GetValue();"
+      },
+      "contract": "Settings execution needs no GPU.",
+      "native_mapping": "Compile and run the actual implementation in the non-Metal fixture and verify existing effective API and name mapping.",
+      "expected_result": "Metal-off implementation fixture compiles, links and passes.",
+      "dependency_owner": "005",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> off",
+      "evidence_path": "005/implementation-off.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "MTL-SETTINGS-NATIVE",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 264,
+        "symbol": "auto graphics_api = Settings::values.graphics_api.GetValue();"
+      },
+      "contract": "Native selection requires the canonical key and selected build define.",
+      "native_mapping": "Build and run ordinary C++20 fixture using real generated declarations.",
+      "expected_result": "Native default, saved legacy values, software when compiled, and global restoration all pass.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> metal",
+      "evidence_path": "005/implementation-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "MTL-SETTINGS-NATIVE-NOSW",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+        "line": 264,
+        "symbol": "auto graphics_api = Settings::values.graphics_api.GetValue();"
+      },
+      "contract": "Software is not available when its option is disabled.",
+      "native_mapping": "Resolve a saved Software value to Metal under native-only compile configuration.",
+      "expected_result": "Fixture with no software define resolves Software to Metal.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/004/verify.py implementation <build-dir> metal-nosw",
+      "evidence_path": "005/implementation-metal-nosw.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    }
+  ],
+  "owner_sha256_after": "34604c1b62edc5d12a2d2949c8ef7a61b9406f78909a444ffe650c2225cfc448"
+}

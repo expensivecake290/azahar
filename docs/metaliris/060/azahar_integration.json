@@ -1,0 +1,92 @@
+{
+  "phase": "060",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-060-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_disk_cache.h",
+        "sha256": "19a070dd2abd7ad3f5bb8b538ae5c5c82051e472ee56cd68453ea250bd2b4d76",
+        "line": 92,
+        "symbol": ""
+      },
+      "contract": "Implement all file, native archive and identity APIs declared by Phase 059.",
+      "native_mapping": "One file owner, reuse shared Azahar hash, Zstd and FileUtil; no Vulkan include, compile or execution.",
+      "expected_result": "Complete link through public methods and arm64 native dependency mapping.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-060-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+        "sha256": "7d4559f4a3ce7945c68ff24f30c0954e9191331220589296d0e95fdc5a48a8d8",
+        "line": 191,
+        "symbol": "}"
+      },
+      "contract": "Complete key identity implies every scalar and stage survives persistence.",
+      "native_mapping": "Encode all key members and shader options explicitly, compare decoded structural key. Unsupported schema or trailing field fails.",
+      "expected_result": "Perturb actual key and recover identical typed immutable pipeline keys.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-060-03",
+      "source": {
+        "path": "src/common/file_util.h",
+        "sha256": "705c4dcad5056975d5ed9aa994d48560ae2769f9f52246c8c0824cb786b3912d",
+        "line": 392,
+        "symbol": ""
+      },
+      "contract": "Durable filesystem I/O relies on Azahar FileUtil and Darwin APIs.",
+      "native_mapping": "Use IOFile for bounded reads/writes, scoped local lock, unique same-volume temp directory, fsync then atomic publication.",
+      "expected_result": "Test read\u2011only/unwritable parent, concurrent identical and distinct keys, canceled readers and orphaned staging.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-060-04",
+      "source": {
+        "path": "src/common/zstd_compression.h",
+        "sha256": "76de458cc00d44cb18da2053353614fe7181db6150328175699465bf5f8de33f",
+        "line": 35,
+        "symbol": "*"
+      },
+      "contract": "Compressed payload has known exact size and returns failure cleanly.",
+      "native_mapping": "Reuse repository zstd and reject both mismatched target lengths and decompressor failure before constructing entries.",
+      "expected_result": "Invalid frame, genuine packing with native source text, transfer bounds and signature tests.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-060-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 208,
+        "symbol": "bool PipelineCache::SetCacheLoadFlag(u64 title_id) {"
+      },
+      "contract": "Pending title preload and driver failure/cache crash handling must not masquerade as completed progress.",
+      "native_mapping": "I/O owner publishes only a complete scoped snapshot; caller tracks unsafe warmup/progress and real completion under title lifecycle.",
+      "expected_result": "Integration triggers live compile after failure without discarding already completed title state.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5e20a597ece105f39676a7d0367c0f87886c549d5a3102a6e71a77e311144afd"
+}

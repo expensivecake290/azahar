@@ -1,0 +1,75 @@
+{
+  "phase": "057",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-057-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 48,
+        "symbol": "u16 PipelineInfo::GetFinalColorWriteMask(const Instance& instance) {"
+      },
+      "contract": "Per-channel write mask and color NoOp independent of depth/stencil behavior.",
+      "native_mapping": "Compile live SDK enumerations with a CPU known-answer case matrix for color and depth predicates.",
+      "expected_result": "All 16 component masks map to expected SDK flags, depth and masked stencil cases exactly match.",
+      "dependency_owner": "057",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native header consumer against the Apple Metal SDK, exact equality across 76 keys and all write masks and depth/stencil predicates; PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "MTL-057-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 112,
+        "symbol": "const u32 stride_alignment = instance.GetMinVertexStrideAlignment();"
+      },
+      "contract": "Complete immutable key accepts different vertex options, shader identity and every immutable attachment state.",
+      "native_mapping": "Mutate every field of the actual key in a linked C++ consumer. Test maps with complete structural comparison instead of treating digest distinctness as correctness.",
+      "expected_result": "Test every structural field, including sources and binaries with same prefix, and SDK types.",
+      "dependency_owner": "057",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native header consumer against the Apple Metal SDK, exact equality across 76 keys and all write masks and depth/stencil predicates; PICA200 48 cases/801 assertions and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "MTL-057-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 271,
+        "symbol": "u32 shader_count = 0;"
+      },
+      "contract": "Actual native mesh, vertex, and compute variant compatibility and state publication.",
+      "native_mapping": "Compile actual Metal APIs in consumer; execute depth, stencil, blend, cull, mesh/object and ordered compute expansion with API validation on real physical GPU.",
+      "expected_result": "Live equality against independent correctness fixtures and parity under synchronous and asynchronous compilation.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/057/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "057/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-057-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+        "sha256": "7d4559f4a3ce7945c68ff24f30c0954e9191331220589296d0e95fdc5a48a8d8",
+        "line": 271,
+        "symbol": "class PipelineCompiler {"
+      },
+      "contract": "Native archive flush must have an explicit quiescence boundary before serialization, including async jobs whose waiters were canceled.",
+      "native_mapping": "Add WaitForIdle interface with producer quiescence precondition and recompile the structural key/SDK consumer.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "057/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Add WaitForIdle interface with producer quiescence precondition and recompile the structural key/SDK consumer. Captured in 057/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "721c92b69c6efb463c4a6c94cfcf7e6a0269d2676c94dd3a5a7d7f47319cdbb6"
+}

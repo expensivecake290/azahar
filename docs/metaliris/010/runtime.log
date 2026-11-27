@@ -1,0 +1,6 @@
++docs/metaliris/010/verify.sh:11> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -I /Users/anthonygarcia/azahar/src -Wall -Wextra -Werror -MD -MF /tmp/metaliris-r12.lKARZLkI/phase010/mtl-common.d -c /Users/anthonygarcia/azahar/src/video_core/renderer_metal/mtl_common.mm -o /tmp/metaliris-r12.lKARZLkI/phase010/mtl-common.o
++docs/metaliris/010/verify.sh:15> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -I /Users/anthonygarcia/azahar/src -Wall -Wextra -Werror /Users/anthonygarcia/azahar/docs/metaliris/010/verify.mm /tmp/metaliris-r12.lKARZLkI/phase010/mtl-common.o -framework Foundation -framework Metal -o /tmp/metaliris-r12.lKARZLkI/phase010/metal-context-tests
++docs/metaliris/010/verify.sh:19> env 'MTL_DEBUG_LAYER=1' /tmp/metaliris-r12.lKARZLkI/phase010/metal-context-tests
+2026-11-26 03:13:10.930 metal-context-tests[90623:36311243] Metal API Validation Enabled
+PASS checked ownership, NSError identity, missing device and empty lease
+PENDING no process-visible Metal device for lease and guarded submission tests

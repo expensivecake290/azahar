@@ -1,0 +1,160 @@
+{
+  "phase": "072",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-072-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 27,
+        "symbol": "u32 height;"
+      },
+      "contract": "Frame owns pixel contents and actual native completion state.",
+      "native_mapping": "Move-only frame checkout owns exact sized/color/sample Metal allocation, resolve attachment and budget reservation. Producer explicitly retains it in actual encoding.",
+      "expected_result": "Compile owning ABI and verify checkout move, slot reuse and abandonment in 073.",
+      "dependency_owner": "072",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header compile, native resolve descriptor, 68 exact independent transfer selection cases and neutral include closure. PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-072-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 40,
+        "symbol": "Scheduler& scheduler, bool low_refresh_rate);"
+      },
+      "contract": "Constructor binds independent frontend, device, renderer scheduler and worker policy.",
+      "native_mapping": "Use existing EmuWindow and its generation, explicit device instance, actual source scheduler and bounded native pool. Native sync and async caller modes share one implementation.",
+      "expected_result": "Compile shared consumer, exercise primary and secondary windows plus both modes.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-072-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 44,
+        "symbol": "void WaitPresent();"
+      },
+      "contract": "Wait for all queued frames and in-progress submits before reuse.",
+      "native_mapping": "Wait for all submitted presentation work covered by a real terminal ticket; support a caller deadline for event loop. Headless completion uses the same slot retirement.",
+      "expected_result": "Known deadline and successful, dropped, failed and device-lost outcomes.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-072-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 47,
+        "symbol": "Frame* GetRenderFrame();"
+      },
+      "contract": "Acquire free frame and recreate sized backing when output shape requires it.",
+      "native_mapping": "GetRenderFrame takes an exact pixel extent and sample count. Bounded pool reuses old backing only after safe retirement; private generation stores native render target or resolve pair.",
+      "expected_result": "Compile stop/deadline/population contract, then test with sized live and headless frames.",
+      "dependency_owner": "072",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header compile, native resolve descriptor, 68 exact independent transfer selection cases and neutral include closure. PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-072-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 53,
+        "symbol": "void Present(Frame* frame);"
+      },
+      "contract": "Present frame from completed producer GPU work; synchronous and asynchronous paths.",
+      "native_mapping": "Consume checkout and bind a real previously issued source ticket + scope, preserve return and ordered wait/reuse. No partial readiness or guessed progress.",
+      "expected_result": "Check invalid owner/ticket, rendering writes before presentation/retirement.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-072-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 56,
+        "symbol": "void NotifySurfaceChanged();"
+      },
+      "contract": "Notification observes surface changes and safely replaces old surface.",
+      "native_mapping": "Wake present worker to refresh versioned frontend snapshot without acquiring layer on frontend event thread. Independently handle headless and suspended.",
+      "expected_result": "Replace/minimize/resize during inflight production and restore.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-072-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 59,
+        "symbol": "return present_renderpass;"
+      },
+      "contract": "Renderpass, surface format and image count visible to producer.",
+      "native_mapping": "Provide typed RenderPass with explicit color/resolve attachments, frame format distinct from native drawable availability, and bounded frame count.",
+      "expected_result": "Compile exact API and verify concrete sample / size selection.",
+      "dependency_owner": "072",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header compile, native resolve descriptor, 68 exact independent transfer selection cases and neutral include closure. PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-072-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+        "sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+        "line": 75,
+        "symbol": "vk::RenderPass CreateRenderpass();"
+      },
+      "contract": "Worker supports graphics copy/stretch/nearest/linear fallback and resource reclamation.",
+      "native_mapping": "Use explicit native exact copy when compatible, direct MSL raster sampling for scaling/color channel conversion, and true render-pass resolve for multisample producer output.",
+      "expected_result": "Independent CPU decision oracle then actual native 8x8 to 9x7 many color sentinel comparison.",
+      "dependency_owner": "072",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header compile, native resolve descriptor, 68 exact independent transfer selection cases and neutral include closure. PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "REOPEN-072-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_present_window.h",
+        "sha256": "404e9952a169e228b0c4575a06f23910a4e8139fbcc6128f60b3e48107d45130",
+        "line": 67,
+        "symbol": "void Retain(EncodingContext& context) const;"
+      },
+      "contract": "The renderer records asynchronous commands before handing the frame to Present. A Retain call on the original Frame inside the worker can race with moving the Frame into Present.",
+      "native_mapping": "Pin the exact allocation in a producer-side scheduler command before any consumer ownership transfer.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/072/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "072/reopen-073.log",
+      "status": "PENDING",
+      "actual_result": "Actual SDK compiler and available targeted fixture passed. Live pacing or frame retirement still requires Metal 4 hardware."
+    }
+  ],
+  "owner_sha256_after": "ba42b6faea81f93543fbe19bafe0cabee2b7fcfe78dced0d38991c9de004a88e"
+}

@@ -1,0 +1,75 @@
+{
+  "phase": "035",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-035-01",
+      "source": {
+        "path": "src/video_core/shader/generator/shader_gen.h",
+        "sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+        "line": 27,
+        "symbol": "enum Attributes {"
+      },
+      "contract": "Exact PICA stage semantics and register API.",
+      "native_mapping": "Use shared program/setup, semantic map, VS and FS uniform structures and load types.",
+      "expected_result": "Native include scan only permits neutral PICA and SDK dependencies.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PASS",
+      "actual_result": "Host source/configuration oracles, native source registration and arm64 linking passed. Compiled 12 Metal 4 libraries each with and without FreeCam. PICA and CTest passed."
+    },
+    {
+      "id": "AZ-035-02",
+      "source": {
+        "path": "src/video_core/shader/generator/pica_fs_config.h",
+        "sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+        "line": 396,
+        "symbol": "struct FSConfig {"
+      },
+      "contract": "Vertex consumers must provide the matching native fragment stage inputs.",
+      "native_mapping": "MSL native clip output has exactly the same user interfaces and quaternion paths.",
+      "expected_result": "Compile a fragment stage in the same native module and pair states at runtime.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-035-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 194,
+        "symbol": "std::array<bool, 16> used_regs{};"
+      },
+      "contract": "Native library identity depends on immutable source and full shader parameters.",
+      "native_mapping": "Return deterministic Metal 4 source and compiler-visible error state for both compile modes.",
+      "expected_result": "Future pipeline owner validates cache reuse and sync/async results.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-035-04",
+      "source": {
+        "path": "src/video_core/pica/geometry_pipeline.cpp",
+        "sha256": "2f0b157479f0e875c23c89c652306fe6cd8a0244be7db4666ee5fa4c659abad7",
+        "line": 352,
+        "symbol": "backend = std::make_unique<GeometryPipeline_VariablePrimitive>(regs, gs);"
+      },
+      "contract": "Geometry and shader state must remain resident and ordered through dependent draws.",
+      "native_mapping": "Later native draw owns barrier, synchronization, array bounds and device memory lifetime, reads result before presenting faults.",
+      "expected_result": "Run native rasterizer draw with shared compute readback and mesh path; no implicit synchronizations.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "57bb415ef88ccf3de0a60ef8229a88dd559294f719aba65e23bb1015ebb946a6"
+}

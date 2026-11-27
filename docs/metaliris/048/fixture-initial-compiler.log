@@ -1,0 +1,10 @@
++docs/metaliris/verify_host_shader.sh:35> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' -Werror '-fmodules-cache-path=/tmp/metaliris-r12.lKARZLkI/phase048/modules' -MD -MF /tmp/metaliris-r12.lKARZLkI/phase048/native-msl.d /Users/anthonygarcia/azahar/src/video_core/host_shaders/metal/cursor_frag.metal -o /tmp/metaliris-r12.lKARZLkI/phase048/cursor_frag.metallib
++docs/metaliris/verify_host_shader.sh:38> file /tmp/metaliris-r12.lKARZLkI/phase048/cursor_frag.metallib
+/tmp/metaliris-r12.lKARZLkI/phase048/cursor_frag.metallib: MetalLib executable (MacOS), version 1.2.9
++docs/metaliris/verify_host_shader.sh:39> fixture_libraries=( ) 
++docs/metaliris/verify_host_shader.sh:40> [[ -f /Users/anthonygarcia/azahar/docs/metaliris/048/verify.metal ]]
++docs/metaliris/verify_host_shader.sh:41> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' -Werror '-fmodules-cache-path=/tmp/metaliris-r12.lKARZLkI/phase048/modules' -MD -MF /tmp/metaliris-r12.lKARZLkI/phase048/fixture-msl.d /Users/anthonygarcia/azahar/docs/metaliris/048/verify.metal -o /tmp/metaliris-r12.lKARZLkI/phase048/fixture.metallib
+/Users/anthonygarcia/azahar/docs/metaliris/048/verify.metal:5:65: error: 'position' attribute cannot be applied to types
+vertex float4 fixture_cursor_vertex(uint index [[vertex_id]]) [[position]] {
+                                                                ^
+1 error generated.

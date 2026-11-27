@@ -1,0 +1,194 @@
+{
+  "phase": "065",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-065-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 28,
+        "symbol": "enum Type {"
+      },
+      "contract": "Surface has active base/scaled storage, a separate multisample image, optional custom data and immutable feedback.",
+      "native_mapping": "Use native strongly-owned base/scaled/MSAA/material-normal/snapshot allocations and role-specific sampled, storage, attachment and stencil views.",
+      "expected_result": "Compile direct native traits and prove types/shape are distinct; validate alias and lifetime under executable runtime.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-065-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 47,
+        "symbol": "struct Handle {"
+      },
+      "contract": "Allocation ownership moves safely across surface containers without prematurely destroying image/view/storage.",
+      "native_mapping": "Share ARC objects and budget reservations through immutable TextureResource owners. Render snapshots store strong usage through completed scheduler work.",
+      "expected_result": "Actual destruction, moves, alias reuse, and retirement status under implementation.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-065-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 109,
+        "symbol": "class TextureRuntime {"
+      },
+      "contract": "Runtime helper is backend-specific facade for shared texture/rasterizer cache.",
+      "native_mapping": "Keep existing neutral resource times, finish, staging, format transfer traits and copy/clear/resolve/mipmap calls with native internals.",
+      "expected_result": "Compile real shared traits and runtime entrypoint/named-call signatures.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-065-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 147,
+        "symbol": "/// Attempts to reinterpret a rectangle of source to another rectangle of dest"
+      },
+      "contract": "D24S8 to RGBA8 reinterpret, clear and copies/batches.",
+      "native_mapping": "Reuse standard shared transfer descriptions and native BlitHelper, GPU buffer/range checks, exact scheduled hazards and converted guest bytes.",
+      "expected_result": "Mixed texture formats and pitches, odd extents and exact reinterpret guarded outputs.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-065-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 184,
+        "symbol": "class Surface : public VideoCore::SurfaceBase {"
+      },
+      "contract": "Surface shares guest parameters, fills, cache coherence and staging.",
+      "native_mapping": "Inherit actual SurfaceBase. Retain original region invalidations/ticks and offer limit-checked transfer layouts and native storage queries.",
+      "expected_result": "Shared base/constructor compile proof and arithmetic oracle.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-065-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 255,
+        "symbol": "/// Uploads pixel data in staging to a rectangle region of the surface texture"
+      },
+      "contract": "Upload base/current, custom uploads and download exact requested region.",
+      "native_mapping": "Explicit native format row-pitch helper supports tiled/linear converted tight CPU layout and block compressed row counts; lease storage through GPU retirement.",
+      "expected_result": "Check odd pitch and dimensions, overflow, BC blocks, all configured selected fallback formats.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-065-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 265,
+        "symbol": "/// Scales up the surface to match the new resolution scale and sample-count."
+      },
+      "contract": "Rescale, mip chain and MSAA representation stay coherent across reads and writes.",
+      "native_mapping": "Store independent resolve-valid and same-sample-contents state, keep old resources through reseeding, single output owned by role, first-use MSAA preserve.",
+      "expected_result": "Native upgrade/downgrade, dirty alias, and sample refill checks in owner.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-065-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 299,
+        "symbol": "class Framebuffer : public VideoCore::FramebufferParams {"
+      },
+      "contract": "Framebuffer uses separate role-specific color/depth/stencil/native format, subresource levels, sample count and shadow storage.",
+      "native_mapping": "Build RenderPass on mutually valid attachments and resolve targets; provide immutable format/status and host reference retention.",
+      "expected_result": "Actual draw and seamless shared framebuffer template integration.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-065-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 390,
+        "symbol": "class Sampler {"
+      },
+      "contract": "Sampler identity includes actual guest wrap, native filter/LOD and custom border color.",
+      "native_mapping": "Expose native sampler with per-axis exact encoded guest fallback metadata; direct unit conversion, nearest/linear/anisotropy gating and custom UV semantics.",
+      "expected_result": "Validate all guest wrap settings and quantized border metadata in host tests and physical nearest/interpolation later.",
+      "dependency_owner": "065",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer compiled and linked, shared rasterizer-cache trait signatures and row/pitch, block, overflow, custom-color metadata CPU invariants passed. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-065-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+        "sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+        "line": 409,
+        "symbol": "class DebugScope {"
+      },
+      "contract": "Native trace marker scope observes capture order and shared compile traits.",
+      "native_mapping": "Native MTL4CommandBuffer debug groups at actual scheduler scope, and Traits use shared cache template with this owner.",
+      "expected_result": "Interface compile and actual captured profiling with capture tool.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-065-068",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "2e983c7981823d32951465b9ba383d095a56ab44a0f350eafc351d174a69277b",
+        "line": 200,
+        "symbol": "[[nodiscard]] id<MTLTexture> StorageView();"
+      },
+      "contract": "Fragment sampling needs a retained converted R32 shadow image on devices whose writes use the atomic buffer path. StorageView currently requires texture atomics and drops the budget owner.",
+      "native_mapping": "Expose and implement a strong read-only R32 shadow binding independent of native texture-atomic write capability.",
+      "expected_result": "Compile retained image against the SDK. Confirm actual shadow contents and no atomic requirement with Metal API validation when a device is accessible.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/065/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "065/reopen-068.log",
+      "status": "PENDING",
+      "actual_result": "Actual arm64 native SDK compilation and applicable host tests passed. Physical R32 sampling and read/write storage lifetime require Metal 4 device output."
+    }
+  ],
+  "owner_sha256_after": "5266a1c9f09253a13a24d14dd9927b4cea2be2da2aed1cad9d4928619d47bf65"
+}

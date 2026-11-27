@@ -1,0 +1,58 @@
+{
+  "phase": "037",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-037-01",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp",
+        "sha256": "cdafb016f297928c8252f3ea38fac2feff3a6176be5d1c7e39c4c2b8e2445ed0",
+        "line": 11,
+        "symbol": "layout(set = 0, binding = 2, rgba8) uniform highp writeonly image2DMS color;"
+      },
+      "contract": "MSL4 supports reading sample textures. Alias-safe native color rendering supports per-sample output.",
+      "native_mapping": "Test actual SDK rejection of texture2d_ms write and successful native vertex/fragment counterpart under MSL4.",
+      "expected_result": "Negative capability probe plus native metallib expected.",
+      "dependency_owner": "037",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 037 <native-build-dir> <scratch-dir>",
+      "evidence_path": "037/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual MSL compiler rejects writable texture2d_ms and accepts the per-sample native raster implementation. Packaged bytes and host sample/resolve oracles, PICA and CTest passed."
+    },
+    {
+      "id": "MTL-037-02",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp",
+        "sha256": "cdafb016f297928c8252f3ea38fac2feff3a6176be5d1c7e39c4c2b8e2445ed0",
+        "line": 19,
+        "symbol": "void main() {"
+      },
+      "contract": "Guard overdraw, pixel destination below origin, wrong sample count, and overflow.",
+      "native_mapping": "Compute source read coordinate with difference and bounds checks before additions; discard only unmatched fragments.",
+      "expected_result": "Independent 64-bit bounds test including invalid origin and MSAA byte fixture.",
+      "dependency_owner": "037",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 037 <native-build-dir> <scratch-dir>",
+      "evidence_path": "037/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-037-03",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8_ms.comp",
+        "sha256": "cdafb016f297928c8252f3ea38fac2feff3a6176be5d1c7e39c4c2b8e2445ed0",
+        "line": 23,
+        "symbol": "int sample_count = textureSamples(depth);"
+      },
+      "contract": "Run exact distinct-sample and resolve oracle.",
+      "native_mapping": "Render known native D32F/S8 values at sample frequency, then read all sampled RGBA bytes and resolve bytes.",
+      "expected_result": "All per-sample outputs and retained neighbors match independent reference.",
+      "dependency_owner": "037",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 037 <native-build-dir> <scratch-dir>",
+      "evidence_path": "037/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "c244e39a96ccc31da9be36e8b99367816c0e299cb3952e32a28f38b48a644047"
+}

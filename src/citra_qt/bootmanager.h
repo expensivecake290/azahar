@@ -12,6 +12,9 @@
 #include <QWidget>
 #include "core/core.h"
 #include "core/frontend/emu_window.h"
+#ifdef ENABLE_METAL
+#include "video_core/renderer_metal/mtl_surface_adapter.h"
+#endif
 
 class QKeyEvent;
 class QTouchEvent;
@@ -196,6 +199,14 @@ private:
 #endif
 #ifdef ENABLE_VULKAN
     void InitializeVulkan();
+#endif
+#ifdef ENABLE_METAL
+    bool InitializeMetal();
+    void UpdateMetalSurface();
+    void DetachMetalSurface();
+    bool eventFilter(QObject* object, QEvent* event) override;
+
+    std::unique_ptr<Metal::SurfaceAdapter> metal_surface;
 #endif
 #ifdef ENABLE_SOFTWARE_RENDERER
     void InitializeSoftware();

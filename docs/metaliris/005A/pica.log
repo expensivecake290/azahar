@@ -1,0 +1,1275 @@
++ cmake --build /private/tmp/metaliris-r12.lKARZLkI/metal --target tests --parallel 8
+[1/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/threading.c.o
+[2/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/debug.c.o
+[3/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/error_private.c.o
+[4/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/pool.c.o
+[5/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/xxhash.c.o
+[6/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/entropy_common.c.o
+[7/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/zstd_common.c.o
+[8/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/common/fse_decompress.c.o
+[9/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/hist.c.o
+[10/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/fse_compress.c.o
+[11/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_compress_literals.c.o
+[12/1115] Building CXX object externals/fmt/CMakeFiles/fmt.dir/src/os.cc.o
+[13/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_compress_sequences.c.o
+[14/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_compress_superblock.c.o
+[15/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/huf_compress.c.o
+[16/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_ldm.c.o
+[17/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_preSplit.c.o
+[18/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstdmt_compress.c.o
+[19/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_compress.c.o
+[20/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_double_fast.c.o
+[21/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/decompress/zstd_ddict.c.o
+[22/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_fast.c.o
+[23/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/decompress/huf_decompress.c.o
+[24/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_opt.c.o
+[25/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/decompress/zstd_decompress.c.o
+[26/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/dictBuilder/cover.c.o
+[27/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/dictBuilder/fastcover.c.o
+[28/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_archive.cpp.o
+[29/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/dictBuilder/zdict.c.o
+[30/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_iserializer.cpp.o
+[31/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/decompress/zstd_decompress_block.c.o
+[32/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/dictBuilder/divsufsort.c.o
+[33/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_oserializer.cpp.o
+[34/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_pointer_iserializer.cpp.o
+[35/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_pointer_oserializer.cpp.o
+[36/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/archive_exception.cpp.o
+[37/1115] Building CXX object externals/fmt/CMakeFiles/fmt.dir/src/format.cc.o
+[38/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_iarchive.cpp.o
+[39/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_oarchive.cpp.o
+[40/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_serializer_map.cpp.o
+[41/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_text_iprimitive.cpp.o
+[42/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_text_wiprimitive.cpp.o
+[43/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_text_oprimitive.cpp.o
+[44/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_xml_archive.cpp.o
+[45/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/basic_text_woprimitive.cpp.o
+[46/1115] Building C object externals/zstd/build/cmake/lib/CMakeFiles/libzstd_static.dir/__/__/__/lib/compress/zstd_lazy.c.o
+[47/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/codecvt_null.cpp.o
+[48/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/extended_type_info_no_rtti.cpp.o
+[49/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/binary_oarchive.cpp.o
+[50/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/binary_iarchive.cpp.o
+[51/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/extended_type_info.cpp.o
+[52/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/binary_woarchive.cpp.o
+[53/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/binary_wiarchive.cpp.o
+[54/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/extended_type_info_typeid.cpp.o
+[55/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_binary_iarchive.cpp.o
+[56/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_iarchive.cpp.o
+[57/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_binary_oarchive.cpp.o
+[58/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_oarchive.cpp.o
+[59/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_text_iarchive.cpp.o
+[60/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_text_oarchive.cpp.o
+[61/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/stl_port.cpp.o
+[62/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_text_wiarchive.cpp.o
+[63/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_text_woarchive.cpp.o
+[64/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_xml_iarchive.cpp.o
+[65/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_xml_oarchive.cpp.o
+[66/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_xml_wiarchive.cpp.o
+[67/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/polymorphic_xml_woarchive.cpp.o
+[68/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/text_iarchive.cpp.o
+[69/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/text_oarchive.cpp.o
+[70/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/utf8_codecvt_facet.cpp.o
+[71/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_archive_exception.cpp.o
+[72/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/text_wiarchive.cpp.o
+[73/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/text_woarchive.cpp.o
+[74/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/void_cast.cpp.o
+[75/1115] Building CXX object externals/CMakeFiles/boost_iostreams.dir/boost/libs/iostreams/src/file_descriptor.cpp.o
+[76/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_oarchive.cpp.o
+[77/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_iarchive.cpp.o
+[78/1115] Building C object externals/CMakeFiles/microtar.dir/microtar/src/microtar.c.o
+[79/1115] Building C object externals/CMakeFiles/zstd_seekable.dir/zstd/contrib/seekable_format/zstdseek_compress.c.o
+[80/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_woarchive.cpp.o
+[81/1115] Building C object externals/CMakeFiles/zstd_seekable.dir/zstd/contrib/seekable_format/zstdseek_decompress.c.o
+[82/1115] Building CXX object externals/CMakeFiles/boost_iostreams.dir/boost/libs/iostreams/src/mapped_file.cpp.o
+[83/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_wiarchive.cpp.o
+[84/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_grammar.cpp.o
+[85/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/cpu.cpp.o
+[86/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/algebra.cpp.o
+[87/1115] Building CXX object externals/CMakeFiles/boost_serialization.dir/boost/libs/serialization/src/xml_wgrammar.cpp.o
+[88/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/allocate.cpp.o
+[89/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/algparam.cpp.o
+[90/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/cryptlib.cpp.o
+[91/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/fipsalgt.cpp.o
+[92/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/channels.cpp.o
+[93/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/fips140.cpp.o
+[94/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/asn.cpp.o
+[95/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/gf2_32.cpp.o
+[96/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/files.cpp.o
+[97/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/gf256.cpp.o
+[98/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/gf2n_simd.cpp.o
+[99/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/filters.cpp.o
+[100/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/iterhash.cpp.o
+[101/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/misc.cpp.o
+[102/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/gf2n.cpp.o
+[103/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/neon_simd.cpp.o
+[104/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/ppc_simd.cpp.o
+[105/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/mqueue.cpp.o
+[106/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/integer.cpp.o
+[107/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/polynomi.cpp.o
+[108/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/primetab.cpp.o
+[109/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/nbtheory.cpp.o
+[110/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/rdtables.cpp.o
+[111/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/strciphr.cpp.o
+[112/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/tftables.cpp.o
+[113/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/queue.cpp.o
+[114/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/adler32.cpp.o
+[115/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/blake2b_simd.cpp.o
+[116/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/tweetnacl.cpp.o
+[117/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/blake2s_simd.cpp.o
+[118/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/blake3_simd.cpp.o
+[119/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/blake3_avx512.cpp.o
+[120/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/blake3.cpp.o
+[121/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/blake2.cpp.o
+[122/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/crc_simd.cpp.o
+[123/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/crc.cpp.o
+[124/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/keccak.cpp.o
+[125/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/keccak_simd.cpp.o
+[126/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/lsh256.cpp.o
+[127/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/lsh512.cpp.o
+[128/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/md2.cpp.o
+[129/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/md5.cpp.o
+[130/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/md4.cpp.o
+[131/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/keccak_core.cpp.o
+[132/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/panama.cpp.o
+[133/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/ripemd.cpp.o
+[134/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/sha_simd.cpp.o
+[135/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/sha3.cpp.o
+[136/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/sha.cpp.o
+[137/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/shake.cpp.o
+[138/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/sm3.cpp.o
+[139/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/tiger.cpp.o
+[140/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/tigertab.cpp.o
+[141/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/core/dll.cpp.o
+[142/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/hash/whrlpool.cpp.o
+[143/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/ariatab.cpp.o
+[144/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/3way.cpp.o
+[145/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/arc4.cpp.o
+[146/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/bfinit.cpp.o
+[147/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/kdf/argon2.cpp.o
+[148/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/kdf/scrypt.cpp.o
+[149/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/aria.cpp.o
+[150/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/blowfish.cpp.o
+[151/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/camellia.cpp.o
+[152/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/casts.cpp.o
+[153/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/cast.cpp.o
+[154/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/chacha.cpp.o
+[155/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/cham_simd.cpp.o
+[156/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/chacha_simd.cpp.o
+[157/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/cham.cpp.o
+[158/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/dessp.cpp.o
+[159/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/des.cpp.o
+[160/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/gost.cpp.o
+[161/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/hc128.cpp.o
+[162/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/hc256.cpp.o
+[163/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/idea.cpp.o
+[164/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/hight.cpp.o
+[165/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/kalynatab.cpp.o
+[166/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/mars.cpp.o
+[167/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/marss.cpp.o
+[168/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/lea.cpp.o
+[169/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/lea_simd.cpp.o
+[170/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/kalyna.cpp.o
+[171/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/rabbit.cpp.o
+[172/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/rc5.cpp.o
+[173/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/rc2.cpp.o
+[174/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/rc6.cpp.o
+[175/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/rijndael.cpp.o
+[176/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/rijndael_simd.cpp.o
+[177/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/safer.cpp.o
+[178/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/seal.cpp.o
+[179/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/salsa.cpp.o
+[180/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/seed.cpp.o
+[181/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/serpent.cpp.o
+[182/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/sharkbox.cpp.o
+[183/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/shacal2_simd.cpp.o
+[184/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/shacal2.cpp.o
+[185/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/simeck.cpp.o
+[186/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/shark.cpp.o
+[187/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/simon.cpp.o
+[188/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/simon128_simd.cpp.o
+[189/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/sm4_simd.cpp.o
+[190/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/skipjack.cpp.o
+[191/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/sm4.cpp.o
+[192/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/sosemanuk.cpp.o
+[193/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/speck128_simd.cpp.o
+[194/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/square.cpp.o
+[195/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/speck.cpp.o
+[196/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/squaretb.cpp.o
+[197/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/tea.cpp.o
+[198/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/twofish.cpp.o
+[199/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/dh.cpp.o
+[200/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/dh2.cpp.o
+[201/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/wake.cpp.o
+[202/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/donna_32.cpp.o
+[203/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/dsa.cpp.o
+[204/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/elgamal.cpp.o
+[205/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/emsa2.cpp.o
+[206/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/eccrypto.cpp.o
+[207/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/ec2n.cpp.o
+[208/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/eprecomp.cpp.o
+[209/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/ecp.cpp.o
+[210/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/symmetric/threefish.cpp.o
+[211/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/mqv.cpp.o
+[212/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/esign.cpp.o
+[213/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/gfpcrypt.cpp.o
+[214/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/oaep.cpp.o
+[215/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/pkcspad.cpp.o
+[216/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/luc.cpp.o
+[217/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/pssr.cpp.o
+[218/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/pubkey.cpp.o
+[219/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/donna_64.cpp.o
+[220/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/rabin.cpp.o
+[221/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/rw.cpp.o
+[222/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/xtrcrypt.cpp.o
+[223/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/xtr.cpp.o
+[224/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/mac/cbcmac.cpp.o
+[225/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/mac/cmac.cpp.o
+[226/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/xed25519.cpp.o
+[227/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pubkey/rsa.cpp.o
+[228/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/mac/hmac.cpp.o
+[229/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/mac/ttmac.cpp.o
+[230/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/authenc.cpp.o
+[231/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/mac/vmac.cpp.o
+[232/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/mac/poly1305.cpp.o
+[233/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/ccm.cpp.o
+[234/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/chachapoly.cpp.o
+[235/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/eax.cpp.o
+[236/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/gcm_simd.cpp.o
+[237/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/gcm.cpp.o
+[238/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/modes.cpp.o
+[239/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/xts.cpp.o
+[240/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/basecode.cpp.o
+[241/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/modes/default.cpp.o
+[242/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/base32.cpp.o
+[243/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/base64.cpp.o
+[244/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/hex.cpp.o
+[245/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/gzip.cpp.o
+[246/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/darn.cpp.o
+[247/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/blumshub.cpp.o
+[248/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/osrng.cpp.o
+[249/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/zlib.cpp.o
+[250/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/zdeflate.cpp.o
+[251/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/encoding/zinflate.cpp.o
+[252/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/padlkrng.cpp.o
+[253/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/rdrand.cpp.o
+[254/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/randpool.cpp.o
+[255/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/util/hrtimer.cpp.o
+[256/1115] Linking CXX static library externals/fmt/libfmt.a
+[257/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/random/rng.cpp.o
+[258/1115] Linking C static library externals/zstd/build/cmake/lib/libzstd.a
+[259/1115] Linking CXX static library externals/libboost_serialization.a
+[260/1115] Building CXX object externals/dynarmic/externals/mcl/src/CMakeFiles/mcl.dir/assert.cpp.o
+[261/1115] Linking CXX static library externals/libboost_iostreams.a
+[262/1115] Linking C static library externals/libmicrotar.a
+[263/1115] Linking C static library externals/libzstd_seekable.a
+[264/1115] Linking CXX static library externals/dynarmic/externals/mcl/src/libmcl.a
+[265/1115] Building C object externals/enet/CMakeFiles/enet.dir/callbacks.c.o
+[266/1115] Building C object externals/enet/CMakeFiles/enet.dir/compress.c.o
+[267/1115] Building C object externals/enet/CMakeFiles/enet.dir/host.c.o
+[268/1115] Building C object externals/enet/CMakeFiles/enet.dir/list.c.o
+[269/1115] Building C object externals/xxHash/cmake_unofficial/CMakeFiles/xxhash.dir/__/xxhash.c.o
+[270/1115] Building C object externals/enet/CMakeFiles/enet.dir/packet.c.o
+[271/1115] Building C object externals/enet/CMakeFiles/enet.dir/unix.c.o
+[272/1115] Building C object externals/enet/CMakeFiles/enet.dir/peer.c.o
+[273/1115] Building C object externals/enet/CMakeFiles/enet.dir/win32.c.o
+[274/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pqc/xwing.cpp.o
+[275/1115] Linking C static library externals/xxHash/cmake_unofficial/libxxhash.a
+[276/1115] Building C object externals/enet/CMakeFiles/enet.dir/protocol.c.o
+[277/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/util/ida.cpp.o
+[278/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/cityhash.cpp.o
+[279/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/dynamic_library.cpp.o
+[280/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/error.cpp.o
+[281/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/detached_tasks.cpp.o
+[282/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/aarch64/cpu_detect.cpp.o
+[283/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/hacks/hack_list.cpp.o
+[284/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/hacks/hack_manager.cpp.o
+[285/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/logging/filter.cpp.o
+[286/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/logging/text_formatter.cpp.o
+[287/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/math_util.cpp.o
+[288/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/memory_detect.cpp.o
+[289/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/microprofile.cpp.o
+[290/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/file_derived.cpp.o
+[291/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/file_util.cpp.o
+[292/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/scm_rev.cpp.o
+[293/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/param_package.cpp.o
+[294/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/memory_ref.cpp.o
+[295/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pqc/slhdsa.cpp.o
+[296/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/play_time_manager.cpp.o
+[297/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/string_util.cpp.o
+[298/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/texture.cpp.o
+[299/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pqc/mlkem.cpp.o
+[300/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/logging/backend.cpp.o
+[301/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/x64/cpu_detect.cpp.o
+[302/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/tar_file.cpp.o
+[303/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/settings.cpp.o
+[304/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/apple_utils.cpp.o
+[305/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/a32_jitstate.cpp
+[306/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/abi.cpp
+[307/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/address_space.cpp
+[308/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64.cpp
+[309/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a32.cpp
+[310/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a32_coprocessor.cpp
+[311/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/web_util.cpp.o
+[312/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a32_memory.cpp
+[313/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a64.cpp
+[314/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a64_memory.cpp
+[315/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_cryptography.cpp
+[316/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_data_processing.cpp
+[317/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_floating_point.cpp
+[318/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_packed.cpp
+[319/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_memory.cpp
+[320/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_saturation.cpp
+[321/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_vector.cpp
+[322/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_vector_saturation.cpp
+[323/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_vector_floating_point.cpp
+[324/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/exclusive_monitor.cpp
+[325/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/fpsr_manager.cpp
+[326/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/thread.cpp.o
+[327/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/reg_alloc.cpp
+[328/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/verbose_debugging_output.cpp
+[329/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/common/spin_lock_arm64.cpp
+[330/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/a32_address_space.cpp
+[331/1115] Generating arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/a32_interface.cpp
+[332/1115] Linking C static library externals/enet/libenet.a
+[333/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/timer.cpp.o
+[334/1115] Generating default_hrtf.txt
+[335/1115] Building OBJCXX object src/common/CMakeFiles/citra_common.dir/apple_utils.mm.o
+[336/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/apple_authorization.cpp.o
+[337/1115] Building CXX object src/web_service/CMakeFiles/web_service.dir/__/common/apple_utils.cpp.o
+[338/1115] Building CXX object src/common/CMakeFiles/citra_common.dir/zstd_compression.cpp.o
+[339/1115] Building CXX object src/web_service/CMakeFiles/web_service.dir/__/common/apple_authorization.cpp.o
+[340/1115] Building OBJCXX object src/web_service/CMakeFiles/web_service.dir/__/common/apple_utils.mm.o
+[341/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/crypto/crc32.cpp.o
+[342/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/crypto/aes.cpp.o
+[343/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/crypto/sm4.cpp.o
+[344/1115] Building CXX object externals/cryptopp/CMakeFiles/cryptopp.dir/src/pqc/mldsa.cpp.o
+[345/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/fused.cpp.o
+[346/1115] Linking CXX static library externals/cryptopp/libcryptopp.a
+[347/1115] Building CXX object src/web_service/CMakeFiles/web_service.dir/verify_login.cpp.o
+[348/1115] Linking CXX static library src/common/libcitra_common.a
+[349/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/backend/block_range_information.cpp.o
+[350/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPCompare.cpp.o
+[351/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPConvert.cpp.o
+[352/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPMulAdd.cpp.o
+[353/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRecipEstimate.cpp.o
+[354/1115] Building CXX object src/web_service/CMakeFiles/web_service.dir/verify_user_jwt.cpp.o
+[355/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRecipExponent.cpp.o
+[356/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRecipStepFused.cpp.o
+[357/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRSqrtEstimate.cpp.o
+[358/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRoundInt.cpp.o
+[359/1115] Building CXX object src/web_service/CMakeFiles/web_service.dir/announce_room_json.cpp.o
+[360/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPRSqrtStepFused.cpp.o
+[361/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/process_exception.cpp.o
+[362/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/op/FPToFixed.cpp.o
+[363/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/process_nan.cpp.o
+[364/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/u128.cpp.o
+[365/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/llvm_disassemble.cpp.o
+[366/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/fp/unpacked.cpp.o
+[367/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/math_util.cpp.o
+[368/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/common/memory_pool.cpp.o
+[369/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/imm.cpp.o
+[370/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/a32_types.cpp.o
+[371/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A64/a64_types.cpp.o
+[372/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/location_descriptor.cpp.o
+[373/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/microinstruction.cpp.o
+[374/1115] Building CXX object src/web_service/CMakeFiles/web_service.dir/web_backend.cpp.o
+[375/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/basic_block.cpp.o
+[376/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/dead_code_elimination_pass.cpp.o
+[377/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/constant_propagation_pass.cpp.o
+[378/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/identity_removal_pass.cpp.o
+[379/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/naming_pass.cpp.o
+[380/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/polyfill_pass.cpp.o
+[381/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/value.cpp.o
+[382/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/ir_emitter.cpp.o
+[383/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/type.cpp.o
+[384/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/verification_pass.cpp.o
+[385/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/a32_location_descriptor.cpp.o
+[386/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/a32_ir_emitter.cpp.o
+[387/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/a32_translate.cpp.o
+[388/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/conditional_state.cpp.o
+[389/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_branch.cpp.o
+[390/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_crc32.cpp.o
+[391/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_exception_generating.cpp.o
+[392/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/disassembler/disassembler_thumb.cpp.o
+[393/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/a32_translate_impl.cpp.o
+[394/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_load_store_structures.cpp.o
+[395/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_one_reg_modified_immediate.cpp.o
+[396/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_misc.cpp.o
+[397/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_three_regs.cpp.o
+[398/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_two_regs_scalar.cpp.o
+[399/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_two_regs_misc.cpp.o
+[400/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/asimd_two_regs_shift.cpp.o
+[401/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/barrier.cpp.o
+[402/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/coprocessor.cpp.o
+[403/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/divide.cpp.o
+[404/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/extension.cpp.o
+[405/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/data_processing.cpp.o
+[406/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/hint.cpp.o
+[407/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/misc.cpp.o
+[408/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/load_store.cpp.o
+[409/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/packing.cpp.o
+[410/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/disassembler/disassembler_arm.cpp.o
+[411/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/parallel.cpp.o
+[412/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/multiply.cpp.o
+[413/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/reversal.cpp.o
+[414/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/saturated.cpp.o
+[415/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/status_register_access.cpp.o
+[416/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/synchronization.cpp.o
+[417/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_branch.cpp.o
+[418/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_control.cpp.o
+[419/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_coprocessor.cpp.o
+[420/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb16.cpp.o
+[421/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_modified_immediate.cpp.o
+[422/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_plain_binary_immediate.cpp.o
+[423/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_register.cpp.o
+[424/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_byte.cpp.o
+[425/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_data_processing_shifted_register.cpp.o
+[426/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_halfword.cpp.o
+[427/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_store_dual.cpp.o
+[428/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_store_multiple.cpp.o
+[429/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_load_word.cpp.o
+[430/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_long_multiply.cpp.o
+[431/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_misc.cpp.o
+[432/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_multiply.cpp.o
+[433/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_parallel.cpp.o
+[434/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/thumb32_store_single_data_item.cpp.o
+[435/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/a32_jitstate.cpp.o
+[436/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a32_constant_memory_reads_pass.cpp.o
+[437/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opt/a32_get_set_elimination_pass.cpp.o
+[438/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/impl/vfp.cpp.o
+[439/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/abi.cpp.o
+[440/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a32_memory.cpp.o
+[441/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a32_coprocessor.cpp.o
+[442/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64.cpp.o
+[443/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/address_space.cpp.o
+[444/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a32.cpp.o
+[445/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a64_memory.cpp.o
+[446/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/translate_arm.cpp.o
+[447/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_cryptography.cpp.o
+[448/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_a64.cpp.o
+[449/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/frontend/A32/translate/translate_thumb.cpp.o
+[450/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/ir/opcodes.cpp.o
+[451/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_saturation.cpp.o
+[452/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_packed.cpp.o
+[453/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/exclusive_monitor.cpp.o
+[454/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_floating_point.cpp.o
+[455/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/fpsr_manager.cpp.o
+[456/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_vector_saturation.cpp.o
+[457/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_memory.cpp.o
+[458/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_data_processing.cpp.o
+[459/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/common/spin_lock_arm64.cpp.o
+[460/1115] Building C object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/backend/exception_handler_macos_mig.c.o
+[461/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/bits.c.o
+[462/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/verbose_debugging_output.cpp.o
+[463/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_vector_floating_point.cpp.o
+[464/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/common.c.o
+[465/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/drc.c.o
+[466/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/cfft.c.o
+[467/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/decoder.c.o
+[468/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/error.c.o
+[469/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/is.c.o
+[470/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/huffman.c.o
+[471/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/filtbank.c.o
+[472/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/reg_alloc.cpp.o
+[473/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/mp4.c.o
+[474/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/backend/exception_handler_macos.cpp.o
+[475/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/ms.c.o
+[476/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/pulse.c.o
+[477/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/pns.c.o
+[478/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/mdct.c.o
+[479/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/specrec.c.o
+[480/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/output.c.o
+[481/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/tns.c.o
+[482/1115] Building C object externals/faad2/CMakeFiles/faad2.dir/faad2/libfaad/syntax.c.o
+[483/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/AAFilter.cpp.o
+[484/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/a32_interface.cpp.o
+[485/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/cpu_detect_x86.cpp.o
+[486/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/FIFOSampleBuffer.cpp.o
+[487/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/BPMDetect.cpp.o
+[488/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/InterpolateCubic.cpp.o
+[489/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/FIRFilter.cpp.o
+[490/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/InterpolateLinear.cpp.o
+[491/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/PeakFinder.cpp.o
+[492/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/InterpolateShannon.cpp.o
+[493/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/mmx_optimized.cpp.o
+[494/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/RateTransposer.cpp.o
+[495/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/a32_address_space.cpp.o
+[496/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/SoundTouch.cpp.o
+[497/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/sse_optimized.cpp.o
+[498/1115] Building CXX object externals/soundtouch/CMakeFiles/SoundTouch.dir/source/SoundTouch/TDStretch.cpp.o
+[499/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/apbp.cpp.o
+[500/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/ahbm.cpp.o
+[501/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/dma.cpp.o
+[502/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/btdmp.cpp.o
+[503/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/timer.cpp.o
+[504/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/memory_interface.cpp.o
+[505/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/core.c.o
+[506/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/parser.cpp.o
+[507/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/descriptor.c.o
+[508/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/hotplug.c.o
+[509/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/strerror.c.o
+[510/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/io.c.o
+[511/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/sync.c.o
+[512/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/os/events_posix.c.o
+[513/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/teakra.cpp.o
+[514/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/os/threads_posix.c.o
+[515/1115] Building C object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb.c.o
+[516/1115] Building C object externals/libusb/CMakeFiles/usb.dir/libusb/libusb/os/darwin_usb.c.o
+[517/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_mixer.cpp.o
+[518/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_audio_dump.cpp.o
+[519/1115] Building C object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_strings.c.o
+[520/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_resampler.cpp.o
+[521/1115] Building CXX object externals/dynarmic/src/dynarmic/CMakeFiles/dynarmic.dir/arch_gen/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/src/dynarmic/backend/arm64/emit_arm64_vector.cpp.o
+[522/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/mmio.cpp.o
+[523/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_osx_run_loop.cpp.o
+[524/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_utils.cpp.o
+[525/1115] Building C object externals/cubeb/CMakeFiles/speex.dir/subprojects/speex/resample.c.o
+[526/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_log.cpp.o
+[527/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/alassert.cpp.o
+[528/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/alsem.cpp.o
+[529/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/althrd_setname.cpp.o
+[530/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/dynload.cpp.o
+[531/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/alcomplex.cpp.o
+[532/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/alstring.cpp.o
+[533/1115] Building CXX object externals/cubeb/CMakeFiles/cubeb.dir/src/cubeb_audiounit.cpp.o
+[534/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/ringbuffer.cpp.o
+[535/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/strutils.cpp.o
+[536/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/polyphase_resampler.cpp.o
+[537/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/common/pffft.cpp.o
+[538/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/auxeffectslot.cpp.o
+[539/1115] Building CXX object externals/lodepng/CMakeFiles/lodepng.dir/lodepng/lodepng.cpp.o
+[540/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/buffer.cpp.o
+[541/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/autowah.cpp.o
+[542/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/debug.cpp.o
+[543/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/compressor.cpp.o
+[544/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/chorus.cpp.o
+[545/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/convolution.cpp.o
+[546/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effect.cpp.o
+[547/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/dedicated.cpp.o
+[548/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/distortion.cpp.o
+[549/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/echo.cpp.o
+[550/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/effects.cpp.o
+[551/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/equalizer.cpp.o
+[552/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/fshifter.cpp.o
+[553/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/modulator.cpp.o
+[554/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/null.cpp.o
+[555/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/pshifter.cpp.o
+[556/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/reverb.cpp.o
+[557/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/effects/vmorpher.cpp.o
+[558/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/error.cpp.o
+[559/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/event.cpp.o
+[560/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/extension.cpp.o
+[561/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/listener.cpp.o
+[562/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/filter.cpp.o
+[563/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/state.cpp.o
+[564/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/alconfig.cpp.o
+[565/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/al/source.cpp.o
+[566/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/context.cpp.o
+[567/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/test_generator.cpp.o
+[568/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/disassembler.cpp.o
+[569/1115] Building CXX object externals/teakra/src/CMakeFiles/teakra.dir/processor.cpp.o
+[570/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/alu.cpp.o
+[571/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/alc.cpp.o
+[572/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/device.cpp.o
+[573/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/compressor.cpp.o
+[574/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/dedicated.cpp.o
+[575/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/autowah.cpp.o
+[576/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/chorus.cpp.o
+[577/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/distortion.cpp.o
+[578/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/echo.cpp.o
+[579/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/null.cpp.o
+[580/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/equalizer.cpp.o
+[581/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/fshifter.cpp.o
+[582/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/convolution.cpp.o
+[583/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/modulator.cpp.o
+[584/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/pshifter.cpp.o
+[585/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/events.cpp.o
+[586/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/vmorpher.cpp.o
+[587/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/backends/base.cpp.o
+[588/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/backends/loopback.cpp.o
+[589/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/backends/null.cpp.o
+[590/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/backends/wave.cpp.o
+[591/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/panning.cpp.o
+[592/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/bs2b.cpp.o
+[593/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/effects/reverb.cpp.o
+[594/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/ambidefs.cpp.o
+[595/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/alc/backends/coreaudio.cpp.o
+[596/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/buffer_storage.cpp.o
+[597/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/bformatdec.cpp.o
+[598/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/devformat.cpp.o
+[599/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/ambdec.cpp.o
+[600/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/cubic_tables.cpp.o
+[601/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/bsinc_tables.cpp.o
+[602/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/cpu_caps.cpp.o
+[603/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/except.cpp.o
+[604/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/filters/splitter.cpp.o
+[605/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/fmt_traits.cpp.o
+[606/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/filters/biquad.cpp.o
+[607/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/filters/nfc.cpp.o
+[608/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/fpu_ctrl.cpp.o
+[609/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/effectslot.cpp.o
+[610/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/context.cpp.o
+[611/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/storage_formats.cpp.o
+[612/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/device.cpp.o
+[613/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/converter.cpp.o
+[614/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/uiddefs.cpp.o
+[615/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/logging.cpp.o
+[616/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/mixer.cpp.o
+[617/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/dbus_wrap.cpp.o
+[618/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/mastering.cpp.o
+[619/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/rtkit.cpp.o
+[620/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/helpers.cpp.o
+[621/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/mixer/mixer_c.cpp.o
+[622/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/mixer/mixer_neon.cpp.o
+[623/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/voice.cpp.o
+[624/1115] Building CXX object src/network/CMakeFiles/network.dir/packet.cpp.o
+[625/1115] Building CXX object src/network/CMakeFiles/network.dir/network.cpp.o
+[626/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/uhjfilter.cpp.o
+[627/1115] Building CXX object externals/openal-soft/CMakeFiles/OpenAL.dir/core/hrtf.cpp.o
+[628/1115] Building CXX object src/network/CMakeFiles/network.dir/__/common/apple_utils.cpp.o
+[629/1115] Building CXX object src/network/CMakeFiles/network.dir/socket_manager.cpp.o
+[630/1115] Building CXX object src/network/CMakeFiles/network.dir/announce_multiplayer_session.cpp.o
+[631/1115] Linking CXX static library src/web_service/libweb_service.a
+[632/1115] Linking CXX static library externals/dynarmic/src/dynarmic/libdynarmic.a
+[633/1115] Linking C static library externals/faad2/libfaad2.a
+[634/1115] Building CXX object src/network/CMakeFiles/network.dir/verify_user.cpp.o
+[635/1115] Linking CXX static library externals/soundtouch/libSoundTouch.a
+[636/1115] Linking C static library externals/libusb/libusb.a
+[637/1115] Linking CXX static library externals/teakra/src/libteakra.a
+[638/1115] Linking CXX static library externals/cubeb/libcubeb.a
+[639/1115] Linking CXX static library externals/lodepng/liblodepng.a
+[640/1115] Linking CXX static library externals/openal-soft/libopenal.a
+[641/1115] Building CXX object src/network/CMakeFiles/network.dir/artic_base/artic_base_client.cpp.o
+[642/1115] Building CXX object src/network/CMakeFiles/network.dir/__/common/apple_authorization.cpp.o
+[643/1115] Building OBJCXX object src/network/CMakeFiles/network.dir/__/common/apple_utils.mm.o
+[644/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/keyboard.cpp.o
+[645/1115] Building CXX object src/network/CMakeFiles/network.dir/room_member.cpp.o
+[646/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/analog_from_button.cpp.o
+[647/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/motion_emu.cpp.o
+[648/1115] Building CXX object src/network/CMakeFiles/network.dir/room.cpp.o
+[649/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/touch_from_button.cpp.o
+[650/1115] Linking CXX static library src/network/libnetwork.a
+[651/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/sdl/sdl.cpp.o
+[652/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/udp/protocol.cpp.o
+[653/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/main.cpp.o
+[654/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/__/common/apple_utils.cpp.o
+[655/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/sdl/sdl_joystick.cpp.o
+[656/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/gcadapter/gc_adapter.cpp.o
+[657/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/udp/udp.cpp.o
+[658/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/__/common/apple_authorization.cpp.o
+[659/1115] Building OBJCXX object src/input_common/CMakeFiles/input_common.dir/__/common/apple_utils.mm.o
+[660/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/gcadapter/gc_poller.cpp.o
+[661/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/codec.cpp.o
+[662/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/filter.cpp.o
+[663/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/csnd.cpp.o
+[664/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/effects.cpp.o
+[665/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/udp/client.cpp.o
+[666/1115] Building CXX object src/input_common/CMakeFiles/input_common.dir/sdl/sdl_impl.cpp.o
+[667/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/mixers.cpp.o
+[668/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/aac_decoder.cpp.o
+[669/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/dsp_interface.cpp.o
+[670/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/decoder.cpp.o
+[671/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/source.cpp.o
+[672/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/interpolate.cpp.o
+[673/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/sink_details.cpp.o
+[674/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/static_input.cpp.o
+[675/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/time_stretch.cpp.o
+[676/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/sdl2_sink.cpp.o
+[677/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/openal_input.cpp.o
+[678/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/openal_sink.cpp.o
+[679/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/__/common/apple_utils.cpp.o
+[680/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/cubeb_sink.cpp.o
+[681/1115] Linking CXX static library src/input_common/libinput_common.a
+[682/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/input_details.cpp.o
+[683/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/lle/lle.cpp.o
+[684/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/cubeb_input.cpp.o
+[685/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/__/common/apple_authorization.cpp.o
+[686/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generator_exception.cpp.o
+[687/1115] Building OBJCXX object src/audio_core/CMakeFiles/audio_core.dir/__/common/apple_utils.mm.o
+[688/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/benchmark/catch_chronometer.cpp.o
+[689/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_benchmark_function.cpp.o
+[690/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_analyse.cpp.o
+[691/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_run_for_at_least.cpp.o
+[692/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_stats.cpp.o
+[693/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generators.cpp.o
+[694/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generators_random.cpp.o
+[695/1115] Building CXX object src/audio_core/CMakeFiles/audio_core.dir/hle/hle.cpp.o
+[696/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_automake.cpp.o
+[697/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_common_base.cpp.o
+[698/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_compact.cpp.o
+[699/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_console.cpp.o
+[700/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_cumulative_base.cpp.o
+[701/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_event_listener.cpp.o
+[702/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_registrars.cpp.o
+[703/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_helpers.cpp.o
+[704/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_multi.cpp.o
+[705/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_junit.cpp.o
+[706/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_json.cpp.o
+[707/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_streaming_base.cpp.o
+[708/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_sonarqube.cpp.o
+[709/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_tap.cpp.o
+[710/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_teamcity.cpp.o
+[711/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_capture.cpp.o
+[712/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_generatortracker.cpp.o
+[713/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_config.cpp.o
+[714/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_xml.cpp.o
+[715/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_exception.cpp.o
+[716/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_registry_hub.cpp.o
+[717/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_factory.cpp.o
+[718/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_testcase.cpp.o
+[719/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter.cpp.o
+[720/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_assertion_result.cpp.o
+[721/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_approx.cpp.o
+[722/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_get_random_seed.cpp.o
+[723/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_registry_hub.cpp.o
+[724/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_tag_alias_autoregistrar.cpp.o
+[725/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_message.cpp.o
+[726/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_totals.cpp.o
+[727/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_config.cpp.o
+[728/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_timer.cpp.o
+[729/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_translate_exception.cpp.o
+[730/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_test_case_info.cpp.o
+[731/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_version.cpp.o
+[732/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_test_spec.cpp.o
+[733/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_context.cpp.o
+[734/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_tostring.cpp.o
+[735/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/catch_session.cpp.o
+[736/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_case_insensitive_comparisons.cpp.o
+[737/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_assertion_handler.cpp.o
+[738/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_debug_console.cpp.o
+[739/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_console_colour.cpp.o
+[740/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_errno_guard.cpp.o
+[741/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_debugger.cpp.o
+[742/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_floating_point_helpers.cpp.o
+[743/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_decomposer.cpp.o
+[744/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_getenv.cpp.o
+[745/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_enforce.cpp.o
+[746/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_enum_values_registry.cpp.o
+[747/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_clara.cpp.o
+[748/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_exception_translator_registry.cpp.o
+[749/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_leak_detector.cpp.o
+[750/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_fatal_condition_handler.cpp.o
+[751/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_jsonwriter.cpp.o
+[752/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_istream.cpp.o
+[753/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_polyfills.cpp.o
+[754/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_random_number_generator.cpp.o
+[755/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_message_info.cpp.o
+[756/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_lazy_expr.cpp.o
+[757/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_parse_numbers.cpp.o
+[758/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_commandline.cpp.o
+[759/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_output_redirect.cpp.o
+[760/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_list.cpp.o
+[761/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_random_seed_generation.cpp.o
+[762/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reusable_string_stream.cpp.o
+[763/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_spec_parser.cpp.o
+[764/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_singletons.cpp.o
+[765/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_registry.cpp.o
+[766/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_section.cpp.o
+[767/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_startup_exception_registry.cpp.o
+[768/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_source_line_info.cpp.o
+[769/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_stdstreams.cpp.o
+[770/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_run_context.cpp.o
+[771/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_stringref.cpp.o
+[772/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_string_manip.cpp.o
+[773/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_info_hasher.cpp.o
+[774/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_uncaught_exceptions.cpp.o
+[775/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_failure_exception.cpp.o
+[776/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_tag_alias_registry.cpp.o
+[777/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_registry.cpp.o
+[778/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_tracker.cpp.o
+[779/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_spec_parser.cpp.o
+[780/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_wildcard_pattern.cpp.o
+[781/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_registry_impl.cpp.o
+[782/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_textflow.cpp.o
+[783/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers.cpp.o
+[784/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/internal/catch_xmlwriter.cpp.o
+[785/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_container_properties.cpp.o
+[786/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_exception.cpp.o
+[787/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_floating_point.cpp.o
+[788/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/custom_textures/custom_format.cpp.o
+[789/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_predicate.cpp.o
+[790/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_quantifiers.cpp.o
+[791/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/internal/catch_matchers_impl.cpp.o
+[792/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.o
+[793/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/custom_textures/material.cpp.o
+[794/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/rasterizer_accelerated.cpp.o
+[795/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.o
+[796/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/output_vertex.cpp.o
+[797/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/primitive_assembly.cpp.o
+[798/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_base.cpp.o
+[799/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/debug_utils/debug_utils.cpp.o
+[800/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/regs_internal.cpp.o
+[801/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/shader_setup.cpp.o
+[802/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/rasterizer_cache/rasterizer_cache.cpp.o
+[803/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/geometry_pipeline.cpp.o
+[804/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/shader_unit.cpp.o
+[805/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/pica_core.cpp.o
+[806/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/rasterizer_cache/pixel_format.cpp.o
+[807/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/pica/vertex_loader.cpp.o
+[808/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/gpu.cpp.o
+[809/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/rasterizer_cache/surface_params.cpp.o
+[810/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/rasterizer_cache/surface_base.cpp.o
+[811/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/generator/pica_fs_config.cpp.o
+[812/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_blitter.cpp.o
+[813/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/shader.cpp.o
+[814/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/generator/shader_uniforms.cpp.o
+[815/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/custom_textures/custom_tex_manager.cpp.o
+[816/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/shader_jit_x64_compiler.cpp.o
+[817/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/generator/shader_gen.cpp.o
+[818/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/texture/etc1.cpp.o
+[819/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/rasterizer_cache/utils.cpp.o
+[820/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/right_eye_disabler.cpp.o
+[821/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/texture/texture_decode.cpp.o
+[822/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/shader_jit.cpp.o
+[823/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/shader_interpreter.cpp.o
+[824/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_clipper.cpp.o
+[825/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/video_core.cpp.o
+[826/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_framebuffer.cpp.o
+[827/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/__/common/apple_utils.cpp.o
+[828/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_proctex.cpp.o
+[829/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_lighting.cpp.o
+[830/1115] Linking CXX static library src/audio_core/libaudio_core.a
+[831/1115] Linking CXX static library externals/catch2/src/libCatch2.a
+[832/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_texturing.cpp.o
+[833/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/__/common/apple_authorization.cpp.o
+[834/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/renderer_software.cpp.o
+[835/1115] Building OBJCXX object src/video_core/CMakeFiles/video_core.dir/__/common/apple_utils.mm.o
+[836/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dyncom/arm_dyncom_dec.cpp.o
+[837/1115] Building CXX object externals/catch2/src/CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.o
+[838/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dyncom/arm_dyncom_thumb.cpp.o
+[839/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_software/sw_rasterizer.cpp.o
+[840/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/skyeye_common/armsupp.cpp.o
+[841/1115] Building CXX object src/video_core/CMakeFiles/video_core.dir/shader/shader_jit_a64_compiler.cpp.o
+[842/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/exclusive_monitor.cpp.o
+[843/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/skyeye_common/vfp/vfpinstr.cpp.o
+[844/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dyncom/arm_dyncom.cpp.o
+[845/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/exception_handler.cpp.o
+[846/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dyncom/arm_dyncom_trans.cpp.o
+[847/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/cheats/cheat_base.cpp.o
+[848/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/skyeye_common/vfp/vfp.cpp.o
+[849/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/skyeye_common/armstate.cpp.o
+[850/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/skyeye_common/vfp/vfpdouble.cpp.o
+[851/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/skyeye_common/vfp/vfpsingle.cpp.o
+[852/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dyncom/arm_dyncom_interpreter.cpp.o
+[853/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_backend.cpp.o
+[854/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/core_timing.cpp.o
+[855/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/cheats/cheats.cpp.o
+[856/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_artic.cpp.o
+[857/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/cheats/gateway_cheat.cpp.o
+[858/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_nand.cpp.o
+[859/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_extsavedata.cpp.o
+[860/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_sdmc.cpp.o
+[861/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_sdmcwriteonly.cpp.o
+[862/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_other_savedata.cpp.o
+[863/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_savedata.cpp.o
+[864/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/certificate.cpp.o
+[865/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/artic_cache.cpp.o
+[866/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_ncch.cpp.o
+[867/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/cia_container.cpp.o
+[868/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_selfncch.cpp.o
+[869/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/delay_generator.cpp.o
+[870/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_systemsavedata.cpp.o
+[871/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/archive_source_sd_savedata.cpp.o
+[872/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/core.cpp.o
+[873/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/disk_archive.cpp.o
+[874/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/path_parser.cpp.o
+[875/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/ivfc_archive.cpp.o
+[876/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/patch.cpp.o
+[877/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/otp.cpp.o
+[878/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/layered_fs.cpp.o
+[879/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/plugin_3gx.cpp.o
+[880/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/ncch_container.cpp.o
+[881/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/seed_db.cpp.o
+[882/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/savedata_archive.cpp.o
+[883/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/romfs_reader.cpp.o
+[884/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/secure_value_backend_artic.cpp.o
+[885/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/secure_value_backend.cpp.o
+[886/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/camera/interface.cpp.o
+[887/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/camera/factory.cpp.o
+[888/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/title_metadata.cpp.o
+[889/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/applets/default_applets.cpp.o
+[890/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/camera/blank_camera.cpp.o
+[891/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/applets/mii_selector.cpp.o
+[892/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/file_sys/ticket.cpp.o
+[893/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/applets/swkbd.cpp.o
+[894/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/framebuffer_layout.cpp.o
+[895/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/image_interface.cpp.o
+[896/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/frontend/emu_window.cpp.o
+[897/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/applets/applet.cpp.o
+[898/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/applets/erreula.cpp.o
+[899/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/applets/mii_selector.cpp.o
+[900/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/applets/mint.cpp.o
+[901/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/client_port.cpp.o
+[902/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/client_session.cpp.o
+[903/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/applets/swkbd.cpp.o
+[904/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/address_arbiter.cpp.o
+[905/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/config_mem.cpp.o
+[906/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/event.cpp.o
+[907/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/handle_table.cpp.o
+[908/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/ipc_debugger/recorder.cpp.o
+[909/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/ipc.cpp.o
+[910/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/object.cpp.o
+[911/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/memory.cpp.o
+[912/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/mutex.cpp.o
+[913/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/kernel.cpp.o
+[914/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/hle_ipc.cpp.o
+[915/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/semaphore.cpp.o
+[916/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/resource_limit.cpp.o
+[917/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/server_port.cpp.o
+[918/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/session.cpp.o
+[919/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/server_session.cpp.o
+[920/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/process.cpp.o
+[921/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/shared_memory.cpp.o
+[922/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/shared_page.cpp.o
+[923/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/romfs.cpp.o
+[924/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/mii.cpp.o
+[925/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/wait_object.cpp.o
+[926/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/svc.cpp.o
+[927/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/timer.cpp.o
+[928/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ac/ac_i.cpp.o
+[929/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/vm_manager.cpp.o
+[930/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/kernel/thread.cpp.o
+[931/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ac/ac.cpp.o
+[932/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ac/ac_u.cpp.o
+[933/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/act/act_errors.cpp.o
+[934/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/act/act.cpp.o
+[935/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/act/act_a.cpp.o
+[936/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/act/act_u.cpp.o
+[937/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/am/am_net.cpp.o
+[938/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/am/am_sys.cpp.o
+[939/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/am/am_app.cpp.o
+[940/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/am/am_u.cpp.o
+[941/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/am/trust_chain.cpp.o
+[942/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/applet_manager.cpp.o
+[943/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/apt_a.cpp.o
+[944/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/apt_s.cpp.o
+[945/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/apt_u.cpp.o
+[946/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/ns_c.cpp.o
+[947/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/ns.cpp.o
+[948/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/ns_s.cpp.o
+[949/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/bcfnt/bcfnt.cpp.o
+[950/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/boss/boss_p.cpp.o
+[951/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/apt/apt.cpp.o
+[952/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/boss/boss_u.cpp.o
+[953/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/boss/boss.cpp.o
+[954/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cam/cam_c.cpp.o
+[955/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cam/cam_q.cpp.o
+[956/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/am/am.cpp.o
+[957/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cam/cam_s.cpp.o
+[958/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/boss/online_service.cpp.o
+[959/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cam/cam_u.cpp.o
+[960/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cam/cam.cpp.o
+[961/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cecd/cecd_ndm.cpp.o
+[962/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cecd/cecd_s.cpp.o
+[963/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cam/y2r_u.cpp.o
+[964/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cfg/cfg_defaults.cpp.o
+[965/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cecd/cecd_u.cpp.o
+[966/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cfg/cfg_i.cpp.o
+[967/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cecd/cecd.cpp.o
+[968/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cfg/cfg.cpp.o
+[969/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cfg/cfg_nor.cpp.o
+[970/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cfg/cfg_s.cpp.o
+[971/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/cfg/cfg_u.cpp.o
+[972/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp.cpp.o
+[973/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp_clnt.cpp.o
+[974/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp_fkcl.cpp.o
+[975/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/csnd/csnd_snd.cpp.o
+[976/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp_base.cpp.o
+[977/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp_crypto.cpp.o
+[978/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp_clt_base.cpp.o
+[979/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dlp/dlp_srvr.cpp.o
+[980/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/dsp/dsp_dsp.cpp.o
+[981/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/err/err_f.cpp.o
+[982/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/frd/frd_a.cpp.o
+[983/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/frd/frd.cpp.o
+[984/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/frd/frd_u.cpp.o
+[985/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/fs/directory.cpp.o
+[986/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/gsp/gsp.cpp.o
+[987/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/fs/archive.cpp.o
+[988/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/gsp/gsp_lcd.cpp.o
+[989/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/fs/file.cpp.o
+[990/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/hid/hid_spvr.cpp.o
+[991/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/hid/hid_user.cpp.o
+[992/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/hid/hid.cpp.o
+[993/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ir/ir.cpp.o
+[994/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ir/extra_hid.cpp.o
+[995/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/gsp/gsp_gpu.cpp.o
+[996/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ir/ir_u.cpp.o
+[997/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/fs/fs_user.cpp.o
+[998/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ir/ir_rst.cpp.o
+[999/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ldr_ro/cro_helper.cpp.o
+[1000/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ldr_ro/ldr_ro.cpp.o
+[1001/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ir/ir_user.cpp.o
+[1002/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/mcu/mcu_hwc.cpp.o
+[1003/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/mcu/mcu.cpp.o
+[1004/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/mcu/mcu_rtc.cpp.o
+[1005/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/mvd/mvd.cpp.o
+[1006/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/mvd/mvd_std.cpp.o
+[1007/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/mic/mic_u.cpp.o
+[1008/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ndm/ndm_u.cpp.o
+[1009/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/news/news_s.cpp.o
+[1010/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/news/news_u.cpp.o
+[1011/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/news/news.cpp.o
+[1012/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nfc/amiibo_crypto.cpp.o
+[1013/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nfc/nfc.cpp.o
+[1014/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nfc/nfc_u.cpp.o
+[1015/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nfc/nfc_m.cpp.o
+[1016/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nim/nim.cpp.o
+[1017/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nfc/nfc_device.cpp.o
+[1018/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nim/nim_aoc.cpp.o
+[1019/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nim/nim_s.cpp.o
+[1020/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/http/http_c.cpp.o
+[1021/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_cec.cpp.o
+[1022/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_ext.cpp.o
+[1023/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm.cpp.o
+[1024/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nim/nim_u.cpp.o
+[1025/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_inf.cpp.o
+[1026/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_sap.cpp.o
+[1027/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_soc.cpp.o
+[1028/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_tst.cpp.o
+[1029/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/uds_connection.cpp.o
+[1030/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/uds_data.cpp.o
+[1031/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/uds_beacon.cpp.o
+[1032/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/pm/pm.cpp.o
+[1033/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/plgldr/plgldr.cpp.o
+[1034/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/pm/pm_dbg.cpp.o
+[1035/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/pm/pm_app.cpp.o
+[1036/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/nwm/nwm_uds.cpp.o
+[1037/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ptm/ptm_gets.cpp.o
+[1038/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ptm/ptm_play.cpp.o
+[1039/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ps/ps_ps.cpp.o
+[1040/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ptm/ptm.cpp.o
+[1041/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ptm/ptm_sets.cpp.o
+[1042/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ptm/ptm_sysm.cpp.o
+[1043/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/pxi/dev.cpp.o
+[1044/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ptm/ptm_u.cpp.o
+[1045/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/qtm/qtm_c.cpp.o
+[1046/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/pxi/pxi.cpp.o
+[1047/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/qtm/qtm.cpp.o
+[1048/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/qtm/qtm_s.cpp.o
+[1049/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/qtm/qtm_sp.cpp.o
+[1050/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/aes/arithmetic128.cpp.o
+[1051/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/qtm/qtm_u.cpp.o
+[1052/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/sm/sm.cpp.o
+[1053/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/aes/ccm.cpp.o
+[1054/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/ssl/ssl_c.cpp.o
+[1055/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/ecc.cpp.o
+[1056/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/sm/srv.cpp.o
+[1057/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/service.cpp.o
+[1058/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/rsa/rsa.cpp.o
+[1059/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/aes/key.cpp.o
+[1060/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hle/service/soc/soc_u.cpp.o
+[1061/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/unique_data.cpp.o
+[1062/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/hw/y2r.cpp.o
+[1063/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/loader/3dsx.cpp.o
+[1064/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/loader/smdh.cpp.o
+[1065/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/loader/elf.cpp.o
+[1066/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/loader/artic.cpp.o
+[1067/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/loader/loader.cpp.o
+[1068/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/loader/ncch.cpp.o
+[1069/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/rpc/packet.cpp.o
+[1070/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/tracer/recorder.cpp.o
+[1071/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/perf_stats.cpp.o
+[1072/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/system_titles.cpp.o
+[1073/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/movie.cpp.o
+[1074/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/memory.cpp.o
+[1075/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/savestate.cpp.o
+[1076/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/rpc/rpc_server.cpp.o
+[1077/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/rpc/server.cpp.o
+[1078/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/nus_download.cpp.o
+[1079/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dynarmic/arm_dynarmic_cp15.cpp.o
+[1080/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/rpc/udp_server.cpp.o
+[1081/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dynarmic/arm_exclusive_monitor.cpp.o
+[1082/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/__/common/apple_utils.cpp.o
+[1083/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/gdbstub/hio.cpp.o
+[1084/1115] Linking CXX static library src/video_core/libvideo_core.a
+[1085/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/__/common/apple_authorization.cpp.o
+[1086/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dynarmic/arm_dynarmic.cpp.o
+[1087/1115] Linking CXX static library externals/catch2/src/libCatch2Main.a
+[1088/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/fastinterp/fastinterp_decode.cpp.o
+[1089/1115] Building OBJCXX object src/core/CMakeFiles/citra_core.dir/__/common/apple_utils.mm.o
+[1090/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/gdbstub/gdbstub.cpp.o
+[1091/1115] Building CXX object src/tests/CMakeFiles/tests.dir/common/bit_field.cpp.o
+[1092/1115] Building CXX object src/tests/CMakeFiles/tests.dir/common/file_util.cpp.o
+[1093/1115] Building CXX object src/tests/CMakeFiles/tests.dir/common/param_package.cpp.o
+[1094/1115] Building CXX object src/tests/CMakeFiles/tests.dir/common/slot_vector.cpp.o
+[1095/1115] Building CXX object src/tests/CMakeFiles/tests.dir/core/file_sys/path_parser.cpp.o
+[1096/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/dynarmic/arm_tick_counts.cpp.o
+[1097/1115] Building CXX object src/tests/CMakeFiles/tests.dir/core/core_timing.cpp.o
+[1098/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/decoder_tests.cpp.o
+[1099/1115] Building CXX object src/tests/CMakeFiles/tests.dir/core/memory/memory.cpp.o
+[1100/1115] Building CXX object src/core/CMakeFiles/citra_core.dir/arm/fastinterp/fastinterp.cpp.o
+[1101/1115] Building CXX object src/tests/CMakeFiles/tests.dir/core/memory/vm_manager.cpp.o
+[1102/1115] Building CXX object src/tests/CMakeFiles/tests.dir/core/hle/kernel/hle_ipc.cpp.o
+[1103/1115] Linking CXX static library src/core/libcitra_core.a
+[1104/1115] Building CXX object src/tests/CMakeFiles/tests.dir/video_core/pica_types.cpp.o
+[1105/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/hle/hle.cpp.o
+[1106/1115] Building CXX object src/tests/CMakeFiles/tests.dir/__/common/apple_utils.cpp.o
+[1107/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/hle/source.cpp.o
+[1108/1115] Building CXX object src/tests/CMakeFiles/tests.dir/__/common/apple_authorization.cpp.o
+[1109/1115] Building OBJCXX object src/tests/CMakeFiles/tests.dir/__/common/apple_utils.mm.o
+[1110/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/lle/lle.cpp.o
+[1111/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/merryhime_3ds_audio/merry_audio/merry_audio.cpp.o
+[1112/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/merryhime_3ds_audio/merry_audio/service_fixture.cpp.o
+[1113/1115] Building CXX object src/tests/CMakeFiles/tests.dir/audio_core/merryhime_3ds_audio/audio_test_biquad_filter.cpp.o
+[1114/1115] Building CXX object src/tests/CMakeFiles/tests.dir/video_core/shader.cpp.o
+[1115/1115] Linking CXX executable bin/Release/tests
+ld: warning: ignoring duplicate libraries: 'src/audio_core/libaudio_core.a', 'src/common/libcitra_common.a', 'src/core/libcitra_core.a', 'src/input_common/libinput_common.a', 'src/network/libnetwork.a', 'src/video_core/libvideo_core.a', 'src/web_service/libweb_service.a'
++ ctest --test-dir /private/tmp/metaliris-r12.lKARZLkI/metal --output-on-failure -j 4
+Test project /private/tmp/metaliris-r12.lKARZLkI/metal
+      Start 69: tests
+      Start 15: Memory Basics
+      Start 13: HLERequestContext::WriteToOutgoingCommandBuffer
+      Start 14: memory.IsValidVirtualAddress
+ 1/69 Test #14: memory.IsValidVirtualAddress ...........................   Passed    0.95 sec
+      Start 12: HLERequestContext::PopulateFromIncomingCommandBuffer
+ 2/69 Test #13: HLERequestContext::WriteToOutgoingCommandBuffer ........   Passed    1.11 sec
+      Start 65: Conditional - ShaderJitTest
+ 3/69 Test #15: Memory Basics ..........................................   Passed    1.20 sec
+      Start 54: SETEMIT - ShaderJitTest
+ 4/69 Test #65: Conditional - ShaderJitTest ............................   Passed    0.14 sec
+      Start 60: Dest Mask - ShaderJitTest
+ 5/69 Test #54: SETEMIT - ShaderJitTest ................................   Passed    0.12 sec
+      Start 21: float20
+ 6/69 Test #60: Dest Mask - ShaderJitTest ..............................   Passed    0.12 sec
+      Start 55: Uniform Read - ShaderInterpreterTest
+ 7/69 Test #12: HLERequestContext::PopulateFromIncomingCommandBuffer ...   Passed    0.46 sec
+      Start  6: CoreTiming[BasicOrder]
+ 8/69 Test #21: float20 ................................................   Passed    0.11 sec
+      Start 63: Nested Loop - ShaderJitTest
+ 9/69 Test #55: Uniform Read - ShaderInterpreterTest ...................   Passed    0.11 sec
+      Start 36: EX2 - ShaderJitTest
+10/69 Test  #6: CoreTiming[BasicOrder] .................................   Passed    0.10 sec
+      Start 20: float24
+11/69 Test #63: Nested Loop - ShaderJitTest ............................   Passed    0.10 sec
+      Start 61: MAD - ShaderInterpreterTest
+12/69 Test #36: EX2 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 67: Source Swizzle - ShaderJitTest
+13/69 Test #20: float24 ................................................   Passed    0.10 sec
+      Start  7: CoreTiming[SharedSlot]
+14/69 Test #61: MAD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 49: RCP - ShaderInterpreterTest
+15/69 Test #67: Source Swizzle - ShaderJitTest .........................   Passed    0.10 sec
+      Start  5: SlotVector contains
+16/69 Test  #7: CoreTiming[SharedSlot] .................................   Passed    0.09 sec
+      Start  1: BitField
+17/69 Test #49: RCP - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 31: DPH - ShaderInterpreterTest
+18/69 Test #69: tests ..................................................   Passed    1.74 sec
+      Start 32: DPH - ShaderJitTest
+19/69 Test  #5: SlotVector contains ....................................   Passed    0.09 sec
+      Start 37: MUL - ShaderInterpreterTest
+20/69 Test  #1: BitField ...............................................   Passed    0.09 sec
+      Start 35: EX2 - ShaderInterpreterTest
+21/69 Test #31: DPH - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 41: SLT - ShaderInterpreterTest
+22/69 Test #32: DPH - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 56: Uniform Read - ShaderJitTest
+23/69 Test #37: MUL - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 43: FLR - ShaderInterpreterTest
+24/69 Test #35: EX2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 66: Source Swizzle - ShaderInterpreterTest
+25/69 Test #41: SLT - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 42: SLT - ShaderJitTest
+26/69 Test #56: Uniform Read - ShaderJitTest ...........................   Passed    0.09 sec
+      Start  2: SplitFilename83 Sanity
+27/69 Test #43: FLR - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 11: PathParser - Host file system
+28/69 Test #66: Source Swizzle - ShaderInterpreterTest .................   Passed    0.09 sec
+      Start 44: FLR - ShaderJitTest
+29/69 Test #42: SLT - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  4: ParamPackage
+30/69 Test  #2: SplitFilename83 Sanity .................................   Passed    0.09 sec
+      Start 26: CALL - ShaderJitTest
+31/69 Test #11: PathParser - Host file system ..........................   Passed    0.09 sec
+      Start 38: MUL - ShaderJitTest
+32/69 Test #44: FLR - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  9: CoreTiming[ChainScheduling]
+33/69 Test  #4: ParamPackage ...........................................   Passed    0.09 sec
+      Start 39: SGE - ShaderInterpreterTest
+34/69 Test #26: CALL - ShaderJitTest ...................................   Passed    0.09 sec
+      Start 10: PathParser
+35/69 Test #38: MUL - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 28: DP3 - ShaderJitTest
+36/69 Test  #9: CoreTiming[ChainScheduling] ............................   Passed    0.09 sec
+      Start 46: MAX - ShaderJitTest
+37/69 Test #39: SGE - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 64: Conditional - ShaderInterpreterTest
+38/69 Test #10: PathParser .............................................   Passed    0.09 sec
+      Start  3: NormalizeNFDToNFC Sanity
+39/69 Test #28: DP3 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 45: MAX - ShaderInterpreterTest
+40/69 Test #46: MAX - ShaderJitTest ....................................   Passed    0.09 sec
+41/69 Test #64: Conditional - ShaderInterpreterTest ....................   Passed    0.09 sec
+      Start 29: DP4 - ShaderInterpreterTest
+      Start 48: MIN - ShaderJitTest
+42/69 Test  #3: NormalizeNFDToNFC Sanity ...............................   Passed    0.09 sec
+      Start 52: RSQ - ShaderJitTest
+43/69 Test #45: MAX - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 47: MIN - ShaderInterpreterTest
+44/69 Test #29: DP4 - ShaderInterpreterTest ............................   Passed    0.09 sec
+45/69 Test #48: MIN - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 23: ADD - ShaderInterpreterTest
+      Start 59: Dest Mask - ShaderInterpreterTest
+46/69 Test #52: RSQ - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 30: DP4 - ShaderJitTest
+47/69 Test #47: MIN - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 24: ADD - ShaderJitTest
+48/69 Test #23: ADD - ShaderInterpreterTest ............................   Passed    0.09 sec
+49/69 Test #59: Dest Mask - ShaderInterpreterTest ......................   Passed    0.09 sec
+      Start 25: CALL - ShaderInterpreterTest
+      Start 27: DP3 - ShaderInterpreterTest
+50/69 Test #30: DP4 - ShaderJitTest ....................................   Passed    0.10 sec
+      Start 53: SETEMIT - ShaderInterpreterTest
+51/69 Test #24: ADD - ShaderJitTest ....................................   Passed    0.10 sec
+      Start 58: Address Register Offset - ShaderJitTest
+52/69 Test #25: CALL - ShaderInterpreterTest ...........................   Passed    0.09 sec
+53/69 Test #27: DP3 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 40: SGE - ShaderJitTest
+      Start 57: Address Register Offset - ShaderInterpreterTest
+54/69 Test #53: SETEMIT - ShaderInterpreterTest ........................   Passed    0.09 sec
+      Start 62: MAD - ShaderJitTest
+55/69 Test #58: Address Register Offset - ShaderJitTest ................   Passed    0.09 sec
+      Start  8: CoreTiming[PredictableLateness]
+56/69 Test #57: Address Register Offset - ShaderInterpreterTest ........   Passed    0.09 sec
+      Start 34: LG2 - ShaderJitTest
+57/69 Test #40: SGE - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 51: RSQ - ShaderInterpreterTest
+58/69 Test #62: MAD - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 22: float16
+59/69 Test  #8: CoreTiming[PredictableLateness] ........................   Passed    0.09 sec
+      Start 50: RCP - ShaderJitTest
+60/69 Test #34: LG2 - ShaderJitTest ....................................   Passed    0.09 sec
+61/69 Test #51: RSQ - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 33: LG2 - ShaderInterpreterTest
+      Start 16: DSP LLE vs HLE
+62/69 Test #22: float16 ................................................   Passed    0.09 sec
+      Start 17: Verify SourceStatus::Status::last_buffer_id 1
+63/69 Test #50: RCP - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 18: Verify SourceStatus::Status::last_buffer_id 2
+64/69 Test #33: LG2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 19: DSP LLE Sanity
+65/69 Test #16: DSP LLE vs HLE .........................................***Skipped   0.23 sec
+      Start 68: AudioTest-BiquadFilter
+66/69 Test #18: Verify SourceStatus::Status::last_buffer_id 2 ..........***Skipped   0.24 sec
+67/69 Test #19: DSP LLE Sanity .........................................***Skipped   0.21 sec
+68/69 Test #17: Verify SourceStatus::Status::last_buffer_id 1 ..........***Skipped   0.29 sec
+69/69 Test #68: AudioTest-BiquadFilter .................................***Skipped   0.15 sec
+
+100% tests passed out of 69
+
+Total Test time (real) =   3.12 sec
+
+The following tests did not run:
+	 16 - DSP LLE vs HLE (Skipped)
+	 17 - Verify SourceStatus::Status::last_buffer_id 1 (Skipped)
+	 18 - Verify SourceStatus::Status::last_buffer_id 2 (Skipped)
+	 19 - DSP LLE Sanity (Skipped)
+	 68 - AudioTest-BiquadFilter (Skipped)
++ /private/tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests [video_core] --rng-seed 225818237
+Filters: [video_core]
+Randomness seeded to: 225818237
+===============================================================================
+All tests passed (801 assertions in 48 test cases)
+
+PASS pica

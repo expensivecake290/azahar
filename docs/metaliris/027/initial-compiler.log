@@ -1,0 +1,8 @@
+src/video_core/renderer_metal/mtl_descriptor_update_queue.mm:105:25: error: loop variable 'sampler' creates a copy from type 'const __strong id<MTLSamplerState>' [-Werror,-Wrange-loop-construct]
+  105 |         for (const auto sampler : samplers) {
+      |                         ^
+src/video_core/renderer_metal/mtl_descriptor_update_queue.mm:105:14: note: use reference type 'const __strong id<MTLSamplerState> &' to prevent copying
+  105 |         for (const auto sampler : samplers) {
+      |              ^~~~~~~~~~~~~~~~~~~~
+      |                         &
+1 error generated.

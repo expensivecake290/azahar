@@ -1,0 +1,177 @@
+{
+  "phase": "021",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_resource_pool-018",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 18,
+        "symbol": "ResourcePool::ResourcePool(MasterSemaphore* master_semaphore_, std::size_t grow_step_)"
+      },
+      "contract": "Pool initializes completion owner and capacity",
+      "native_mapping": "Validate one device and bounded slots before allocation",
+      "expected_result": "Reject zero and mismatched device",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-021",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 21,
+        "symbol": "std::size_t ResourcePool::CommitResource() {"
+      },
+      "contract": "Check retirement and scan from hint through both halves",
+      "native_mapping": "Use round-robin plus preferred identity; only released/completed generations are available",
+      "expected_result": "Exhaustion, fragment, preferred miss, future retirement and stale release fixture",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PASS",
+      "actual_result": "CPU slot oracle, real native compiler and linker passed."
+    },
+    {
+      "id": "vk_resource_pool-059",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 59,
+        "symbol": "std::size_t ResourcePool::ManageOverflow() {"
+      },
+      "contract": "Allocate an additional resource chunk when full",
+      "native_mapping": "Lazily grow to explicit capacity and then report backpressure; trim completed native storage under pressure",
+      "expected_result": "No live allocations are discarded at capacity",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-068",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 68,
+        "symbol": "CommandPool::CommandPool(const Instance& instance, MasterSemaphore* master_semaphore)"
+      },
+      "contract": "Command pool selects queue and debug labels",
+      "native_mapping": "Create native Metal 4 allocators for the validated device and add label",
+      "expected_result": "Native descriptor creates the expected owner",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-084",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 84,
+        "symbol": "void CommandPool::Allocate(std::size_t begin, std::size_t end) {"
+      },
+      "contract": "Allocate real commands in bounded slots",
+      "native_mapping": "Recover from nil by dropping only completed cached objects then retry once",
+      "expected_result": "Native device fixture observes allocator reuse only after feedback",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-105",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 105,
+        "symbol": "vk::CommandBuffer CommandPool::Commit() {"
+      },
+      "contract": "Return committed reusable command storage",
+      "native_mapping": "Return move-only native allocator checkout with ticket pin",
+      "expected_result": "Pool exhaustion until the completion timeline advances",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-113",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 113,
+        "symbol": "DescriptorHeap::DescriptorHeap(const Instance& instance, MasterSemaphore* master_semaphore,"
+      },
+      "contract": "Binding layout and per-type capacity",
+      "native_mapping": "Validate SDK argument counts and preserve exact layout; initialized nil bindings on fresh object",
+      "expected_result": "Real MTL4 initialized table and exact identity reuse",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-145",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 145,
+        "symbol": "void DescriptorHeap::Allocate(std::size_t begin, std::size_t end) {"
+      },
+      "contract": "Allocate descriptor batch, fragment/overflow retry",
+      "native_mapping": "Complete cached entries can be used at any index; failed factory or initializer releases the checkout",
+      "expected_result": "Fragmented slots and rejected init do not mutate existing generations",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-181",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 181,
+        "symbol": "vk::DescriptorSet DescriptorHeap::Commit() {"
+      },
+      "contract": "Return committed descriptor storage",
+      "native_mapping": "Publish immutable generation snapshot and keep all referenced resources alive",
+      "expected_result": "Changing binding key and layout cannot affect in-flight table",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_resource_pool-186",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+        "sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+        "line": 186,
+        "symbol": "void DescriptorHeap::AppendDescriptorPool() {"
+      },
+      "contract": "Append a pool when previous exhausted",
+      "native_mapping": "Distinct fixed capacity per kind. Trim and reuse completed entries or report backpressure",
+      "expected_result": "Native live pressure fixture with both resource classes",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "1444f003f39868f78cf94b8a6de4878f18d51c936b9dd6075faff47853bf86ad"
+}

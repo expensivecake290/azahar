@@ -1,0 +1,36 @@
++zsh:5> otool -l /tmp/metaliris-gate0-84oi2too/native-harness/device-smoke
++zsh:5> rg -A5 LC_BUILD_VERSION
+      cmd LC_BUILD_VERSION
+  cmdsize 32
+ platform 1
+    minos 26.0
+      sdk 27.0
+   ntools 1
++zsh:6> ar -t /tmp/metaliris-gate0-84oi2too/vulkan-build/src/video_core/libvideo_core.a
++zsh:6> rg '(renderer_vulkan|vk_|spv_fs)'
+renderer_vulkan.cpp.o
+vk_blit_helper.cpp.o
+vk_common.cpp.o
+vk_descriptor_update_queue.cpp.o
+vk_graphics_pipeline.cpp.o
+vk_master_semaphore.cpp.o
+vk_memory_util.cpp.o
+vk_rasterizer.cpp.o
+vk_rasterizer_cache.cpp.o
+vk_scheduler.cpp.o
+vk_resource_pool.cpp.o
+vk_instance.cpp.o
+vk_pipeline_cache.cpp.o
+vk_platform.cpp.o
+vk_present_window.cpp.o
+vk_render_manager.cpp.o
+vk_shader_disk_cache.cpp.o
+vk_shader_util.cpp.o
+vk_stream_buffer.cpp.o
+vk_swapchain.cpp.o
+vk_texture_runtime.cpp.o
+spv_fs_shader_gen.cpp.o
++zsh:7> shasum -a 256 /tmp/metaliris-gate0-84oi2too/vulkan-build/src/video_core/libvideo_core.a /tmp/metaliris-gate0-84oi2too/pica-build/bin/Release/tests /tmp/metaliris-gate0-84oi2too/native-harness/smoke.metallib
+2c8ff444adeb02bbf767852e8ab1eb1809dd00c54f282ee0e05fd99fa1e6dc5e  /tmp/metaliris-gate0-84oi2too/vulkan-build/src/video_core/libvideo_core.a
+6a746a0030fbd88a2d603487b8e158d7ac3ef4e1181aea70b86af91af991c8e2  /tmp/metaliris-gate0-84oi2too/pica-build/bin/Release/tests
+1aedec95a885c3f8c9054be64463abe1cbfabdeee9c2178e45cfc34441882327  /tmp/metaliris-gate0-84oi2too/native-harness/smoke.metallib

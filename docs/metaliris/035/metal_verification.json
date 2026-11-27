@@ -1,0 +1,75 @@
+{
+  "phase": "035",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-035-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 26,
+        "symbol": "} uniforms;"
+      },
+      "contract": "Metal vertex uniforms and invariant clip outputs.",
+      "native_mapping": "Compile MSL 4 with -fpreserve-invariance, default and FreeCam configurations and actual native signatures.",
+      "expected_result": "Host and native compiler detect offsets and function type mismatches.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PASS",
+      "actual_result": "Host source/configuration oracles, native source registration and arm64 linking passed. Compiled 12 Metal 4 libraries each with and without FreeCam. PICA and CTest passed."
+    },
+    {
+      "id": "MTL-035-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 194,
+        "symbol": "std::array<bool, 16> used_regs{};"
+      },
+      "contract": "Exact native transform compact output and sparse guest register layout.",
+      "native_mapping": "Use SDK Metal 4 compute state and independent CPU program expectations.",
+      "expected_result": "Live byte check for signed, unsigned, float, projected fields and ZeroW.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-035-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+        "sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+        "line": 430,
+        "symbol": ""
+      },
+      "contract": "Native object/mesh and compute shader alternatives with matching triangle order.",
+      "native_mapping": "Use MTL4 mesh descriptor and explicit buffers for triangle expansion.",
+      "expected_result": "Confirm primitive ordering, interpolated values and clipping on native pixels.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-035-04",
+      "source": {
+        "path": "src/video_core/pica/geometry_pipeline.cpp",
+        "sha256": "2f0b157479f0e875c23c89c652306fe6cd8a0244be7db4666ee5fa4c659abad7",
+        "line": 370,
+        "symbol": "backend->SubmitIndex(val);"
+      },
+      "contract": "Persistent GS output, winding, uniform reload, atomic publication and overflow.",
+      "native_mapping": "Run native compute geometry compared against guest interpreter and bound retry metadata.",
+      "expected_result": "Compare exact output bytes and continuation on native devices.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/035/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "035/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "57bb415ef88ccf3de0a60ef8229a88dd559294f719aba65e23bb1015ebb946a6"
+}

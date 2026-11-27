@@ -1,0 +1,92 @@
+{
+  "phase": "024",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-024-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+        "sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+        "line": 7,
+        "symbol": "#include <optional>"
+      },
+      "contract": "Resolve standard optional, span, tuple and vector; use typed mapping types instead of raw tuple.",
+      "native_mapping": "Compiler resolves standard C++20 types with ARC.",
+      "expected_result": "Compile real consumer against macOS 26 floor.",
+      "dependency_owner": "024",
+      "command": "zsh docs/metaliris/024/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "024/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC consumer and independent alignment boundary oracle passed."
+    },
+    {
+      "id": "AZ-024-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+        "sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+        "line": 11,
+        "symbol": "#include \"video_core/renderer_vulkan/vk_common.h\""
+      },
+      "contract": "Vulkan common excluded; native aliases, range and pool via mtl_memory_util.h.",
+      "native_mapping": "Compile shared common_types.h and Apple SDK; link no Vulkan types.",
+      "expected_result": "No renderer_vulkan header in consumer dependency graph.",
+      "dependency_owner": "024",
+      "command": "zsh docs/metaliris/024/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "024/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC consumer and independent alignment boundary oracle passed."
+    },
+    {
+      "id": "AZ-024-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 258,
+        "symbol": "auto [array_ptr, array_offset, invalidate] = stream_buffer.Map(vs_input_size, 16);"
+      },
+      "contract": "Vertex uploads require byte width, stride alignment and wrap invalidation.",
+      "native_mapping": "Mapping and Slice expose range and wrap; AcquireGPUAccess exposes native buffer.",
+      "expected_result": "Native rasterizer binds correct aligned vertex/index/uniform slices.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-024-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 305,
+        "symbol": "StreamBuffer& buffer = upload ? upload_buffer : download_buffer;"
+      },
+      "contract": "Texture staging switches upload/download ring and reports offset and mapped bytes.",
+      "native_mapping": "Separate upload mapping, download reservation and ordered read.",
+      "expected_result": "Native staging copy and readback preserve exact bytes.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-024-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 278,
+        "symbol": "scheduler.Wait(watch.tick);"
+      },
+      "contract": "Scheduler waits for relevant range before overwrite; refresh is observable before map.",
+      "native_mapping": "Use Scheduler Wait and actual successful watermark; propagate fault.",
+      "expected_result": "One wrapped live range completes and a failed producer cannot be recycled as success.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "03d423597546f4286804ce29845d705ca2884daf075fa792795ebf8c452546f1"
+}

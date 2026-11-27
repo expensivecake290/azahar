@@ -1,0 +1,41 @@
+{
+  "phase": "069",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-069-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "5266a1c9f09253a13a24d14dd9927b4cea2be2da2aed1cad9d4928619d47bf65",
+        "line": 281,
+        "symbol": "struct Traits {"
+      },
+      "contract": "Native traits carry shared templated runtime ABI without Vulkan-private includes.",
+      "native_mapping": "Compile Apple SDK arm64 ARC exact CMake target and verify include and framework closure. Verify all ten concrete draw cache entry points through production archive.",
+      "expected_result": "Symbol inspection and real link plus existing PICA/CTest.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native Apple SDK arm64 ARC, 12 concrete Metal cache symbols, one native CMake archive instantiation, real direct consumer link with no fixture specialization, neutral include graph, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "MTL-069-02",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache_base.h",
+        "sha256": "ecb3108b0df7e9f6959b7f617228e23cc34c800a9d65f95ec70b18493d543ff0",
+        "line": 68,
+        "symbol": "using Surface = typename T::Surface;"
+      },
+      "contract": "Native transfer and invalidation behavior must be exercised end to end.",
+      "native_mapping": "Run actual Metal draw through rasterizer and shared specialization, then read/replace data through guest cache.",
+      "expected_result": "Physical GPU bytes and Metal API validation with overlapping transfer and cache eviction fixtures.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "1b0233ac4e2cb74887b8084a8ff2e81223a3ef9a70b4edfb91c6478c7bfdd566"
+}

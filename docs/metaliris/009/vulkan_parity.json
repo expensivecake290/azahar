@@ -1,0 +1,143 @@
+{
+  "phase": "009",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-MACRO-8",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 8,
+        "symbol": "#define VK_ENABLE_BETA_EXTENSIONS"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-9",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 9,
+        "symbol": "#define VK_NO_PROTOTYPES"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 10,
+        "symbol": "#define VULKAN_HPP_DISPATCH_LOADER_DYNAMIC 1"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 11,
+        "symbol": "#define VULKAN_HPP_NO_CONSTRUCTORS"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 12,
+        "symbol": "#define VULKAN_HPP_NO_STRUCT_SETTERS"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 13,
+        "symbol": "#include <vulkan/vulkan.hpp>"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-15",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 15,
+        "symbol": "#define VMA_STATIC_VULKAN_FUNCTIONS 0"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-MACRO-16",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 16,
+        "symbol": "#define VMA_DYNAMIC_VULKAN_FUNCTIONS 1"
+      },
+      "contract": "Reference header sets backend-private dispatch or allocator configuration.",
+      "native_mapping": "Use Apple Metal declarations and ARC ownership. No Vulkan macro, allocator or dispatch loader is needed.",
+      "expected_result": "Compiler resolves native headers and no Vulkan/VMA executable interface is imported.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    }
+  ],
+  "owner_sha256_after": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9"
+}

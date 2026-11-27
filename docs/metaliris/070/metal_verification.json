@@ -1,0 +1,58 @@
+{
+  "phase": "070",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-070-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 149,
+        "symbol": ""
+      },
+      "contract": "Native header usable with real Apple CAMetalLayer/MTL4Queue and versioned frontend snapshot.",
+      "native_mapping": "Compile strong native lease and policy with actual Apple arm64 SDK; link a real consumer of neutral 007 snapshot and pacing.",
+      "expected_result": "Host execute all pacing branches; no Vulkan or legacy header edge.",
+      "dependency_owner": "070",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PASS",
+      "actual_result": "Apple ARC header ABI, 64 independent pacing cases, actual CAMetalLayer configuration, clean transitive dependencies, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "MTL-070-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+        "sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+        "line": 73,
+        "symbol": ".presentMode = present_mode,"
+      },
+      "contract": "Physical drawable lifecycle, resize and pacing.",
+      "native_mapping": "Run native Metal 4 app with real presentation drawable, scheduler and AppKit surface generation.",
+      "expected_result": "Exercise nil/occlusion, fullscreen/scale, 60/120/low refresh, unthrottled and bounded in-flight teardown.",
+      "dependency_owner": "071",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-070-073",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.h",
+        "sha256": "b7dee9c5baef9345bc95af0f1687db3b06a97ad305f8a457b086ef6c70770cfd",
+        "line": 29,
+        "symbol": "u32 frame_limit{100};"
+      },
+      "contract": "Azahar GetFrameLimit returns double. Integer pacing truncates temporary fractional rates and crosses the 100 percent mode threshold.",
+      "native_mapping": "Preserve the exact floating-point limit through the native pacing selector.",
+      "expected_result": "Compile the native caller and run deterministic host checks; add physical GPU ownership and pacing coverage in Phase 073.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/070/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "070/reopen-073.log",
+      "status": "PASS",
+      "actual_result": "Native header builds and fractional values below, at and above the limiter boundary select the expected policy."
+    }
+  ],
+  "owner_sha256_after": "09e41e79a301b194247659250e56b7c8f760a7c6e883561ef91249d72261c3be"
+}

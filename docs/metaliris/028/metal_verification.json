@@ -1,0 +1,109 @@
+{
+  "phase": "028",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-028-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.h",
+        "sha256": "04f0d211c8f9dffe9b6e86d65d2393acafeb3bf058be588ad7880334383a6357",
+        "line": 23,
+        "symbol": "struct RenderPass {"
+      },
+      "contract": "MTL4RenderPassDescriptor and native render encoder surface.",
+      "native_mapping": "Native formats and scoped typed draw method consume actual MTL4 SDK.",
+      "expected_result": "ARC SDK compile at macOS 26 minimum.",
+      "dependency_owner": "028",
+      "command": "zsh docs/metaliris/028/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "028/header.log",
+      "status": "PASS",
+      "actual_result": "Native draw consumer, exact rectangle arithmetic and merge/split policy passed."
+    },
+    {
+      "id": "MTL-028-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.h",
+        "sha256": "04f0d211c8f9dffe9b6e86d65d2393acafeb3bf058be588ad7880334383a6357",
+        "line": 30,
+        "symbol": "bool operator==(const RenderPass& other) const noexcept {"
+      },
+      "contract": "Pass continuation must preserve previous writes and never swallow a new clear.",
+      "native_mapping": "Continuation predicate and checked render-area arithmetic.",
+      "expected_result": "CPU tests a continued load, repeated clear split, attachment-less variety and invalid ranges.",
+      "dependency_owner": "028",
+      "command": "zsh docs/metaliris/028/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "028/header.log",
+      "status": "PASS",
+      "actual_result": "Native draw consumer, exact rectangle arithmetic and merge/split policy passed."
+    },
+    {
+      "id": "MTL-028-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.h",
+        "sha256": "04f0d211c8f9dffe9b6e86d65d2393acafeb3bf058be588ad7880334383a6357",
+        "line": 55,
+        "symbol": "void EndRendering();"
+      },
+      "contract": "Feedback uses tile-local path when supported and a distinct native snapshot when required.",
+      "native_mapping": "Explicit tile-feedback classification and same-device native blit after active pass end.",
+      "expected_result": "GPU clear, sampled snapshot and tile-local group preserve preceding value.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-028-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.h",
+        "sha256": "04f0d211c8f9dffe9b6e86d65d2393acafeb3bf058be588ad7880334383a6357",
+        "line": 67,
+        "symbol": "vk::UniqueRenderPass CreateRenderPassMSAA(vk::Format color, vk::Format depth,"
+      },
+      "contract": "Check MSAA resolve actions and format width; stencil and depth sample zero.",
+      "native_mapping": "Native MTL4 descriptors with correct lifetimes, filtered sample-zero behavior.",
+      "expected_result": "Deterministic color, depth/stencil resolve, invalid attachment combinations rejected.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "BUDGET-029-028",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.h",
+        "sha256": "8e78cb8b252f68a45b4be0771612b4e6b6c00be971cc91c756ca2ae816839ec9",
+        "line": 115,
+        "symbol": "RenderManager(const Instance& instance, Scheduler& scheduler);"
+      },
+      "contract": "Partial clear parameter buffers require the renderer's shared physical MemoryAllocator; allocating them directly would bypass its budget.",
+      "native_mapping": "Pass the already-owned shared MemoryAllocator to RenderManager for transient clear parameters.",
+      "expected_result": "Compile the draw consumer and link a real scissored clear that takes a checked GPU range lease.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/028/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "028/reopen-029.log",
+      "status": "PENDING",
+      "actual_result": "Reopened native header and companion compile/link passed, shared budget after live GPU retirement pending."
+    },
+    {
+      "id": "MSAA-033-028",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.h",
+        "sha256": "8f8e82e33521ea01d50c9e1bbca70018d1fa0fa5a3fa8b0ce5a1ac0a576cd7db",
+        "line": 140,
+        "symbol": "void CopyForFeedback(const RenderTexture& source, const RenderTexture& destination,"
+      },
+      "contract": "A resolved MSAA color snapshot loses per-sample values needed by framebuffer logic and factor-aware min/max. Metal 4 supports same-sample texture copies.",
+      "native_mapping": "Copy equal-format, equal-sample subresources to a distinct native snapshot and retain both through feedback.",
+      "expected_result": "Native compile and fixture verifies every copied sample individually.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/028/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "028/reopen-033.log",
+      "status": "PENDING",
+      "actual_result": "Native same-sample copy and readback compiled as MSL4, linked and passed PICA regression. GPU samples remain unverified."
+    }
+  ],
+  "owner_sha256_after": "65aec73c39852eab9c17c4a8585113132eb99b6e7f77ace854788068c7c1beb0"
+}

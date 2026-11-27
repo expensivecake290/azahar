@@ -1,0 +1,41 @@
+{
+  "phase": "043",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-043-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/tex_coord.vert",
+        "sha256": "9717eff5e2011e14f1bad536cce81c4582598b3397d45b5c55eb93968278f2a3",
+        "line": 12,
+        "symbol": "const vec2 vertices[4] ="
+      },
+      "contract": "Native Metal 4 strip compiler, vertex and fragment library linkage.",
+      "native_mapping": "Build actual MSL libraries, native SDK consumer and exact CMake-embedded output.",
+      "expected_result": "Positive offline artifacts, CPU oracle and regression evidence.",
+      "dependency_owner": "043",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 043 <native-build-dir> <scratch-dir>",
+      "evidence_path": "043/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native MSL4 strip compiled, host SDK fixture and independent topology/orientation oracle passed, exact bytes packaged and regressions passed."
+    },
+    {
+      "id": "MTL-043-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/tex_coord.vert",
+        "sha256": "9717eff5e2011e14f1bad536cce81c4582598b3397d45b5c55eb93968278f2a3",
+        "line": 16,
+        "symbol": "gl_Position = vec4(vertices[gl_VertexID], 0.0, 1.0);"
+      },
+      "contract": "Odd rectangles and narrow draw must interpolate normalized UV across the whole rectangle.",
+      "native_mapping": "Independent pixel-center formula and matching RGBA16Float native export fixture.",
+      "expected_result": "9x7 plus 1x1 target, no diagonal or winding artifacts.",
+      "dependency_owner": "043",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 043 <native-build-dir> <scratch-dir>",
+      "evidence_path": "043/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "a205c24f3a61c57120387dded341743c39eca148222bd8c8428fa7dac42002f5"
+}

@@ -1,0 +1,109 @@
+{
+  "phase": "041",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-041-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 29,
+        "symbol": "layout(binding = 0) uniform sampler2D HOOKED;"
+      },
+      "contract": "Separate color and luminance textures; color alpha is never used as luminance.",
+      "native_mapping": "MSL texture(0) color and texture(1) independent scalar, explicit level-zero sampling and native texel offsets.",
+      "expected_result": "Separate 5x3 color and 7x5 scalar planes with distinguishable content.",
+      "dependency_owner": "041",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-041-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 32,
+        "symbol": "const float LINE_DETECT_THRESHOLD = 0.4;"
+      },
+      "contract": "Threshold larger than 0.4 returns the center color, and no direction hit does likewise.",
+      "native_mapping": "Early color return before reading neighbors, strict comparisons and unchanged color/alpha fallback.",
+      "expected_result": "Flat input and values immediately on each side of the threshold.",
+      "dependency_owner": "041",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-041-03",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 42,
+        "symbol": "vec4 getAverage(vec4 cc, vec4 a, vec4 b, vec4 c) {"
+      },
+      "contract": "Combine 40 percent center with 20 percent each of three selected colors.",
+      "native_mapping": "Preserve independent RGBA including alpha and all native float32 lanes.",
+      "expected_result": "Independent exact integer-weight oracle for all eight directional kernels.",
+      "dependency_owner": "041",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-041-04",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 77,
+        "symbol": "// Kernel 0 and 4"
+      },
+      "contract": "First matching opposing horizontal, diagonal or vertical triplet in original sequence wins.",
+      "native_mapping": "Exact eight comparisons and priority order using separate min/max reductions; no changes to branch criteria.",
+      "expected_result": "One deterministic directional pattern per kernel plus overlapping conditions and fallback.",
+      "dependency_owner": "041",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-041-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 798,
+        "symbol": "void BlitHelper::FilterAnime4K(Surface& surface, const VideoCore::TextureBlit& blit) {"
+      },
+      "contract": "Native helper selects Anime4K refinement content; Vulkan helper aliases sampled binding entries to base input.",
+      "native_mapping": "Keep separate color/luma binding contract so callers can preserve the aliased reference path or the shared gradient input graph.",
+      "expected_result": "Phase 064 exercises reference aliases, independent gradient-input graph and actual runtime filter registration.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 041 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "041/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "LICENSE-044-041",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+        "sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+        "line": 21,
+        "symbol": "// SOFTWARE."
+      },
+      "contract": "Restore the final line of the source MIT notice in the packaged native port.",
+      "native_mapping": "Preserve all source notice lines.",
+      "expected_result": "Exact source notice plus regenerated Metal library and PICA check.",
+      "dependency_owner": "044",
+      "command": "Compare source notice and rebuild exact embedded native library.",
+      "evidence_path": "041/reopen-044-source-notice.log",
+      "status": "PASS",
+      "actual_result": "Exact originating notice, repackaged native Metal 4 library and established PICA baseline passed."
+    }
+  ],
+  "owner_sha256_after": "89c61868e5eebb8febaad755fa8e9b9a793da7542ea7dd63fcfe0a5ab2782b45"
+}

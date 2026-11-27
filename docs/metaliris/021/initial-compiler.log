@@ -1,0 +1,8 @@
++docs/metaliris/021/verify.sh:15> xcrun --sdk macosx clang++ -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -DENABLE_SOFTWARE_RENDERER -I /Users/anthonygarcia/azahar/src -I /tmp/metaliris-r12.lKARZLkI/metal/src -isystem /Users/anthonygarcia/azahar/externals/boost -isystem /Users/anthonygarcia/azahar/externals/fmt/include -Wall -Wextra -Werror -MD -MF /tmp/metaliris-r12.lKARZLkI/phase021/mtl-resource-pool.d -c /Users/anthonygarcia/azahar/src/video_core/renderer_metal/mtl_resource_pool.mm -o /tmp/metaliris-r12.lKARZLkI/phase021/mtl-resource-pool.o
+/Users/anthonygarcia/azahar/src/video_core/renderer_metal/mtl_resource_pool.mm:160:36: error: no known instance method for selector 'newCommandAllocatorWithDescriptor:'
+  160 |         allocator = [state->device newCommandAllocatorWithDescriptor:descriptor];
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/anthonygarcia/azahar/src/video_core/renderer_metal/mtl_resource_pool.mm:163:40: error: no known instance method for selector 'newCommandAllocatorWithDescriptor:'
+  163 |             allocator = [state->device newCommandAllocatorWithDescriptor:descriptor];
+      |                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 errors generated.

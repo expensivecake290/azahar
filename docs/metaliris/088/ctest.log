@@ -1,0 +1,150 @@
+Test project /tmp/metaliris-r12.lKARZLkI/metal
+      Start 69: tests
+      Start 15: Memory Basics
+      Start 13: HLERequestContext::WriteToOutgoingCommandBuffer
+      Start 14: memory.IsValidVirtualAddress
+ 1/69 Test #14: memory.IsValidVirtualAddress ...........................   Passed    0.36 sec
+      Start 12: HLERequestContext::PopulateFromIncomingCommandBuffer
+ 2/69 Test #13: HLERequestContext::WriteToOutgoingCommandBuffer ........   Passed    0.48 sec
+      Start 65: Conditional - ShaderJitTest
+ 3/69 Test #65: Conditional - ShaderJitTest ............................   Passed    0.13 sec
+      Start 54: SETEMIT - ShaderJitTest
+ 4/69 Test #15: Memory Basics ..........................................   Passed    0.63 sec
+      Start 60: Dest Mask - ShaderJitTest
+ 5/69 Test #54: SETEMIT - ShaderJitTest ................................   Passed    0.12 sec
+      Start 21: float20
+ 6/69 Test #12: HLERequestContext::PopulateFromIncomingCommandBuffer ...   Passed    0.38 sec
+      Start 55: Uniform Read - ShaderInterpreterTest
+ 7/69 Test #60: Dest Mask - ShaderJitTest ..............................   Passed    0.12 sec
+      Start 29: DP4 - ShaderInterpreterTest
+ 8/69 Test #21: float20 ................................................   Passed    0.11 sec
+      Start 48: MIN - ShaderJitTest
+ 9/69 Test #55: Uniform Read - ShaderInterpreterTest ...................   Passed    0.11 sec
+10/69 Test #29: DP4 - ShaderInterpreterTest ............................   Passed    0.10 sec
+      Start 63: Nested Loop - ShaderJitTest
+      Start 67: Source Swizzle - ShaderJitTest
+11/69 Test #48: MIN - ShaderJitTest ....................................   Passed    0.10 sec
+      Start 27: DP3 - ShaderInterpreterTest
+12/69 Test #63: Nested Loop - ShaderJitTest ............................   Passed    0.10 sec
+      Start  4: ParamPackage
+13/69 Test #67: Source Swizzle - ShaderJitTest .........................   Passed    0.10 sec
+      Start 40: SGE - ShaderJitTest
+14/69 Test #69: tests ..................................................   Passed    1.03 sec
+      Start 61: MAD - ShaderInterpreterTest
+15/69 Test #27: DP3 - ShaderInterpreterTest ............................   Passed    0.10 sec
+      Start 66: Source Swizzle - ShaderInterpreterTest
+16/69 Test  #4: ParamPackage ...........................................   Passed    0.09 sec
+17/69 Test #40: SGE - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 52: RSQ - ShaderJitTest
+      Start 24: ADD - ShaderJitTest
+18/69 Test #61: MAD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start  7: CoreTiming[SharedSlot]
+19/69 Test #66: Source Swizzle - ShaderInterpreterTest .................   Passed    0.09 sec
+      Start 25: CALL - ShaderInterpreterTest
+20/69 Test #24: ADD - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 47: MIN - ShaderInterpreterTest
+21/69 Test #52: RSQ - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 34: LG2 - ShaderJitTest
+22/69 Test  #7: CoreTiming[SharedSlot] .................................   Passed    0.09 sec
+      Start  6: CoreTiming[BasicOrder]
+23/69 Test #25: CALL - ShaderInterpreterTest ...........................   Passed    0.09 sec
+      Start 26: CALL - ShaderJitTest
+24/69 Test #47: MIN - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 51: RSQ - ShaderInterpreterTest
+25/69 Test #34: LG2 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  1: BitField
+26/69 Test  #6: CoreTiming[BasicOrder] .................................   Passed    0.09 sec
+      Start 20: float24
+27/69 Test #26: CALL - ShaderJitTest ...................................   Passed    0.09 sec
+      Start  8: CoreTiming[PredictableLateness]
+28/69 Test #51: RSQ - ShaderInterpreterTest ............................   Passed    0.10 sec
+      Start  2: SplitFilename83 Sanity
+29/69 Test  #1: BitField ...............................................   Passed    0.10 sec
+      Start 35: EX2 - ShaderInterpreterTest
+30/69 Test #20: float24 ................................................   Passed    0.09 sec
+      Start  3: NormalizeNFDToNFC Sanity
+31/69 Test  #8: CoreTiming[PredictableLateness] ........................   Passed    0.09 sec
+      Start 59: Dest Mask - ShaderInterpreterTest
+32/69 Test #35: EX2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 37: MUL - ShaderInterpreterTest
+33/69 Test  #2: SplitFilename83 Sanity .................................   Passed    0.10 sec
+      Start 62: MAD - ShaderJitTest
+34/69 Test  #3: NormalizeNFDToNFC Sanity ...............................   Passed    0.09 sec
+      Start 49: RCP - ShaderInterpreterTest
+35/69 Test #59: Dest Mask - ShaderInterpreterTest ......................   Passed    0.09 sec
+      Start  9: CoreTiming[ChainScheduling]
+36/69 Test #37: MUL - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 28: DP3 - ShaderJitTest
+37/69 Test #62: MAD - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 50: RCP - ShaderJitTest
+38/69 Test #49: RCP - ShaderInterpreterTest ............................   Passed    0.09 sec
+39/69 Test  #9: CoreTiming[ChainScheduling] ............................   Passed    0.09 sec
+      Start 11: PathParser - Host file system
+      Start 33: LG2 - ShaderInterpreterTest
+40/69 Test #50: RCP - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 39: SGE - ShaderInterpreterTest
+41/69 Test #28: DP3 - ShaderJitTest ....................................   Passed    0.10 sec
+      Start  5: SlotVector contains
+42/69 Test #33: LG2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 23: ADD - ShaderInterpreterTest
+43/69 Test #11: PathParser - Host file system ..........................   Passed    0.09 sec
+      Start 53: SETEMIT - ShaderInterpreterTest
+44/69 Test  #5: SlotVector contains ....................................   Passed    0.09 sec
+      Start 38: MUL - ShaderJitTest
+45/69 Test #39: SGE - ShaderInterpreterTest ............................   Passed    0.10 sec
+      Start 58: Address Register Offset - ShaderJitTest
+46/69 Test #23: ADD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 57: Address Register Offset - ShaderInterpreterTest
+47/69 Test #53: SETEMIT - ShaderInterpreterTest ........................   Passed    0.09 sec
+      Start 10: PathParser
+48/69 Test #38: MUL - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 30: DP4 - ShaderJitTest
+49/69 Test #58: Address Register Offset - ShaderJitTest ................   Passed    0.10 sec
+      Start 64: Conditional - ShaderInterpreterTest
+50/69 Test #57: Address Register Offset - ShaderInterpreterTest ........   Passed    0.10 sec
+51/69 Test #10: PathParser .............................................   Passed    0.10 sec
+      Start 36: EX2 - ShaderJitTest
+      Start 44: FLR - ShaderJitTest
+52/69 Test #30: DP4 - ShaderJitTest ....................................   Passed    0.10 sec
+      Start 56: Uniform Read - ShaderJitTest
+53/69 Test #64: Conditional - ShaderInterpreterTest ....................   Passed    0.10 sec
+      Start 41: SLT - ShaderInterpreterTest
+54/69 Test #36: EX2 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 46: MAX - ShaderJitTest
+55/69 Test #44: FLR - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 43: FLR - ShaderInterpreterTest
+56/69 Test #56: Uniform Read - ShaderJitTest ...........................   Passed    0.09 sec
+      Start 31: DPH - ShaderInterpreterTest
+57/69 Test #41: SLT - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 32: DPH - ShaderJitTest
+58/69 Test #46: MAX - ShaderJitTest ....................................   Passed    0.09 sec
+59/69 Test #43: FLR - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 42: SLT - ShaderJitTest
+      Start 45: MAX - ShaderInterpreterTest
+60/69 Test #31: DPH - ShaderInterpreterTest ............................   Passed    0.09 sec
+61/69 Test #32: DPH - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 22: float16
+      Start 16: DSP LLE vs HLE
+62/69 Test #42: SLT - ShaderJitTest ....................................   Passed    0.09 sec
+63/69 Test #45: MAX - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 17: Verify SourceStatus::Status::last_buffer_id 1
+      Start 18: Verify SourceStatus::Status::last_buffer_id 2
+64/69 Test #22: float16 ................................................   Passed    0.09 sec
+      Start 19: DSP LLE Sanity
+65/69 Test #16: DSP LLE vs HLE .........................................***Skipped   0.14 sec
+      Start 68: AudioTest-BiquadFilter
+66/69 Test #17: Verify SourceStatus::Status::last_buffer_id 1 ..........***Skipped   0.14 sec
+67/69 Test #18: Verify SourceStatus::Status::last_buffer_id 2 ..........***Skipped   0.14 sec
+68/69 Test #19: DSP LLE Sanity .........................................***Skipped   0.13 sec
+69/69 Test #68: AudioTest-BiquadFilter .................................***Skipped   0.13 sec
+
+100% tests passed out of 69
+
+Total Test time (real) =   2.37 sec
+
+The following tests did not run:
+	 16 - DSP LLE vs HLE (Skipped)
+	 17 - Verify SourceStatus::Status::last_buffer_id 1 (Skipped)
+	 18 - Verify SourceStatus::Status::last_buffer_id 2 (Skipped)
+	 19 - DSP LLE Sanity (Skipped)
+	 68 - AudioTest-BiquadFilter (Skipped)

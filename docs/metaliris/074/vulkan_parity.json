@@ -1,0 +1,109 @@
+{
+  "phase": "074",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-074-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 164,
+        "symbol": "void RendererVulkan::PrepareRendertarget() {"
+      },
+      "contract": "Guest screen cache and register fills produce three independent view inputs.",
+      "native_mapping": "Accept only retained presentation source textures. Read-only input contract, render into distinct budgeted native output so PICA bytes, guest textures and cache ownership are unchanged.",
+      "expected_result": "Control alpha/color, input bytes and separate three eye/display output lifetimes.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/074/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "074/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-074-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 237,
+        "symbol": "void RendererVulkan::RenderToWindow(PresentWindow& window, const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Rendering uses current framebuffer layout, dimensions and settings with independent visible/headless lanes.",
+      "native_mapping": "Carry request dimensions, valid content bounds, target sizes and explicit enabled state per batch. Permit consumer to keep baseline path for disabled or unsupported results.",
+      "expected_result": "Odd dimensions, enable/disable, incomplete source and surface resize with retained output.",
+      "dependency_owner": "074",
+      "command": "zsh docs/metaliris/074/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "074/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple ARC presentation types, Metal 4-only compiler and encoding selectors, native MetalFX SDK descriptor, host geometry, format and bypass policy, transitive dependency closure, PICA 48 / 801 and CTest 64 plus 5 existing skips."
+    },
+    {
+      "id": "VK-074-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 264,
+        "symbol": "void RendererVulkan::LoadFBToScreenInfo(const Pica::FramebufferConfig& framebuffer,"
+      },
+      "contract": "Left/right sourcing and fallback layouts cover different guest framebuffer sizes and offsets.",
+      "native_mapping": "Native Spatial accepts origin-based prepared presentation input. Return results in request order and use caller-selected target and channel formats. The caller preserves existing composition and stereo settings.",
+      "expected_result": "Per-eye distinct known inputs/outputs, unchanged source and orientation after resize.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/074/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "074/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-074-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 296,
+        "symbol": "void RendererVulkan::CompileShaders() {"
+      },
+      "contract": "Native render shader pipeline is independently managed and presentation filtering config is separate from PICA texture filtering.",
+      "native_mapping": "Only Metal 4 Spatial state from native SDK descriptor/compiler and separate color flow. Explicit format and signaling contract at producer/consumer boundaries.",
+      "expected_result": "SDK declarations checked at target 26.0 and capability fallback, disabled bypass.",
+      "dependency_owner": "074",
+      "command": "zsh docs/metaliris/074/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "074/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple ARC presentation types, Metal 4-only compiler and encoding selectors, native MetalFX SDK descriptor, host geometry, format and bypass policy, transitive dependency closure, PICA 48 / 801 and CTest 64 plus 5 existing skips."
+    },
+    {
+      "id": "VK-074-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 718,
+        "symbol": ""
+      },
+      "contract": "Presentation preserves native format conversion and base fallback color/eyes.",
+      "native_mapping": "Keep perceptual, SDR linear and checked HDR input/output representation typed. Model incompatible (including depth, zero, shrinking and out-of-range sizes) as explicit bypass, with no legacy scaler fallback.",
+      "expected_result": "Rational and odd upscale shapes, linear/perceptual formats, mismatch and readiness reason.",
+      "dependency_owner": "074",
+      "command": "zsh docs/metaliris/074/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "074/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple ARC presentation types, Metal 4-only compiler and encoding selectors, native MetalFX SDK descriptor, host geometry, format and bypass policy, transitive dependency closure, PICA 48 / 801 and CTest 64 plus 5 existing skips."
+    },
+    {
+      "id": "VK-074-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 413,
+        "symbol": ".srcAccessMask = vk::AccessFlagBits::eNone,"
+      },
+      "contract": "Presentation texture copy follows actual producer work and its lifetime.",
+      "native_mapping": "Return Metal completion ticket for the applied batch while outputs pin allocations independently. The scheduler waits exact producer feedback before running opaque MetalFX stages, then composite at its exact consumer ticket.",
+      "expected_result": "Concurrent producer/consumer, stale ticket and device epoch, real Metal encode and exact native readback.",
+      "dependency_owner": "075",
+      "command": "zsh docs/metaliris/074/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "074/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "caeba072500926753d302a38439ae0fd3612b57d9fbea6d15c2d69d84f717331"
+}

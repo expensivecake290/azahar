@@ -1,0 +1,41 @@
+{
+  "phase": "054",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-054-01",
+      "source": {
+        "path": "src/video_core/host_shaders/metal/present_vert.metal",
+        "sha256": "f54eb9d4ad2685c35f477e632282c1bf802cf45178e89738230ab1cd56925807",
+        "line": 14,
+        "symbol": "struct PresentOutput {"
+      },
+      "contract": "Native vertex stage passes locn0 UV in placement/rotation configured by frontend.",
+      "native_mapping": "Native pair links behind common presentation ABI and selectable modes.",
+      "expected_result": "Actual vertex library paired with both horizontal/rotated geometry and invalid selected IDs.",
+      "dependency_owner": "054",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 054 <native-build-dir> <scratch-dir> <present-vertex-library>",
+      "evidence_path": "054/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-054-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 739,
+        "symbol": "draw_info.reverse_interlaced = render_3d == Settings::StereoRenderOption::ReverseInterlaced;"
+      },
+      "contract": "Reverse interlacing toggles eye order without modifying shaders or textures.",
+      "native_mapping": "Native bit uniform and unchanged caller-friendly role; actual state transition on later renderer owner.",
+      "expected_result": "Integrated settings update and dynamic GPU output/rotation checks.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 054 <native-build-dir> <scratch-dir> <present-vertex-library>",
+      "evidence_path": "054/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "bdf8265375f027b6a8c5da738b2c305375d7f42ff315864a1d8b8e0d10a08a33"
+}

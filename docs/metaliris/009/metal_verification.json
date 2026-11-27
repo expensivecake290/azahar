@@ -1,0 +1,41 @@
+{
+  "phase": "009",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-ARC-INTERFACE",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 460,
+        "symbol": "@protocol MTLDevice <NSObject>"
+      },
+      "contract": "Private Objective-C++ header uses ordinary Metal protocol reference types under ARC.",
+      "native_mapping": "Require native ARC consumers and test types using the selected Objective-C++20 SDK.",
+      "expected_result": "Header fixture checks real device pointer, typed resource and lease/guard construction signatures.",
+      "dependency_owner": "009",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only docs/metaliris/009/verify.mm",
+      "evidence_path": "009/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "MTL-RUNTIME-LEASE",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 474,
+        "symbol": "@property (readonly) uint64_t registryID API_AVAILABLE(macos(10.13), ios(11.0)) ;"
+      },
+      "contract": "Device-originated lease and guard behavior requires a real device.",
+      "native_mapping": "Run the real Metal runtime fixture when a system device exists. Keep CPU NSError and missing-device checks available.",
+      "expected_result": "Native lease tests verify strict context identity, generation advance, close, and bounded concurrent operation.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Real Metal device or dependent scheduler is unavailable; CPU diagnostics passed."
+    }
+  ],
+  "owner_sha256_after": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9"
+}

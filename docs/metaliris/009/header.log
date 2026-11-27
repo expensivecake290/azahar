@@ -1,0 +1,1 @@
++zsh:115> xcrun --sdk macosx clang++ -arch arm64 '-mmacosx-version-min=26.0' '-std=c++20' -fobjc-arc -I src -Wall -Wextra -Werror -fsyntax-only -MD -MF /tmp/metaliris-r12.lKARZLkI/phase009-header.d docs/metaliris/009/verify.mm

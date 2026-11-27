@@ -1,0 +1,602 @@
+[
+  {
+    "path": "CMakeLists.txt",
+    "expected_sha256": "b45008450cddbb5ddb9d96475aa3a24f62b8969b82b39eb2e1f8da1b9a60ac81",
+    "actual_sha256": "b45008450cddbb5ddb9d96475aa3a24f62b8969b82b39eb2e1f8da1b9a60ac81",
+    "expected_lines": 664,
+    "actual_lines": 664,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/CMakeLists.txt",
+    "expected_sha256": "a88c33d05ffec209c6f13ad64ddfb473c0294b1d247690fa9507927bf3496e6a",
+    "actual_sha256": "a88c33d05ffec209c6f13ad64ddfb473c0294b1d247690fa9507927bf3496e6a",
+    "expected_lines": 378,
+    "actual_lines": 378,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/bootmanager.cpp",
+    "expected_sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+    "actual_sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+    "expected_lines": 912,
+    "actual_lines": 912,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/bootmanager.h",
+    "expected_sha256": "6ec4052d1990ca87844df9a76aed4485c63a01ba40f666fc17fb177553d8f218",
+    "actual_sha256": "6ec4052d1990ca87844df9a76aed4485c63a01ba40f666fc17fb177553d8f218",
+    "expected_lines": 222,
+    "actual_lines": 222,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/citra_qt.cpp",
+    "expected_sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+    "actual_sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+    "expected_lines": 4916,
+    "actual_lines": 4916,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/configuration/config.cpp",
+    "expected_sha256": "6f9de3ed7903629092b8a2009222f6396cd54a81852a640ddcb3d4379f817b60",
+    "actual_sha256": "6f9de3ed7903629092b8a2009222f6396cd54a81852a640ddcb3d4379f817b60",
+    "expected_lines": 1520,
+    "actual_lines": 1520,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/configuration/configure_debug.cpp",
+    "expected_sha256": "74e220454d822275d256e76dbae0d7d805ef130074a1cb427fa8b6fda56686b2",
+    "actual_sha256": "74e220454d822275d256e76dbae0d7d805ef130074a1cb427fa8b6fda56686b2",
+    "expected_lines": 224,
+    "actual_lines": 224,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/configuration/configure_graphics.cpp",
+    "expected_sha256": "28dfca5acbae5507c672a4d0deecf3c4489f24ad7d5590ab8cd133f8e11b37e4",
+    "actual_sha256": "28dfca5acbae5507c672a4d0deecf3c4489f24ad7d5590ab8cd133f8e11b37e4",
+    "expected_lines": 312,
+    "actual_lines": 312,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/configuration/configure_graphics.h",
+    "expected_sha256": "8cac78f8071117711c188cb3a6f9c175d54f54bdc0100efd21bd54a9b373099b",
+    "actual_sha256": "8cac78f8071117711c188cb3a6f9c175d54f54bdc0100efd21bd54a9b373099b",
+    "expected_lines": 52,
+    "actual_lines": 52,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/configuration/configure_graphics.ui",
+    "expected_sha256": "d76c814203d1f7286dce57154a414db3dab4bca4450ed5e23f6b007e4867ced4",
+    "actual_sha256": "d76c814203d1f7286dce57154a414db3dab4bca4450ed5e23f6b007e4867ced4",
+    "expected_lines": 460,
+    "actual_lines": 460,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/util/graphics_device_info.cpp",
+    "expected_sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+    "actual_sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+    "expected_lines": 50,
+    "actual_lines": 50,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/util/metal_util.h",
+    "expected_sha256": "de52389046efec90bdcd5100bec48bec87be18e9d013a2b06280192eab5d2eea",
+    "actual_sha256": "de52389046efec90bdcd5100bec48bec87be18e9d013a2b06280192eab5d2eea",
+    "expected_lines": 11,
+    "actual_lines": 11,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/citra_qt/util/metal_util.mm",
+    "expected_sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+    "actual_sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+    "expected_lines": 23,
+    "actual_lines": 23,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/common/settings.cpp",
+    "expected_sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+    "actual_sha256": "f0539a01e8a2265b01b0baa3e4bd0d2516a31cf5b744555aa641ff8f8b7a2529",
+    "expected_lines": 299,
+    "actual_lines": 299,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/common/settings.h",
+    "expected_sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+    "actual_sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+    "expected_lines": 756,
+    "actual_lines": 756,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/core/frontend/emu_window.cpp",
+    "expected_sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+    "actual_sha256": "324341eaff61a5a8e0ddc5363cf74fb0ed9aeb7354bc38d3c6ea1b31e8d7548a",
+    "expected_lines": 296,
+    "actual_lines": 296,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/core/frontend/emu_window.h",
+    "expected_sha256": "65c136feedc3263202b2aa86dd7fc86a75333db2c2210ce83065c742287dc31c",
+    "actual_sha256": "65c136feedc3263202b2aa86dd7fc86a75333db2c2210ce83065c742287dc31c",
+    "expected_lines": 354,
+    "actual_lines": 354,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/CMakeLists.txt",
+    "expected_sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+    "actual_sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+    "expected_lines": 230,
+    "actual_lines": 230,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/CMakeLists.txt",
+    "expected_sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+    "actual_sha256": "fc428aaa497192db4c1b5790255b135968c43ad1ab3376c8af039a89b782ba4d",
+    "expected_lines": 67,
+    "actual_lines": 67,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/full_screen_triangle.vert",
+    "expected_sha256": "25632a1dbe608ef035dd01de3137ee45fe8ec716c4e6ea8c0a5170ab97a90c72",
+    "actual_sha256": "25632a1dbe608ef035dd01de3137ee45fe8ec716c4e6ea8c0a5170ab97a90c72",
+    "expected_lines": 33,
+    "actual_lines": 33,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/texture_filtering/refine.frag",
+    "expected_sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+    "actual_sha256": "459d3f250912a506c95343fd178331a3752b3c3ecac5f9169f4e3f7b36cd3b17",
+    "expected_lines": 138,
+    "actual_lines": 138,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/vulkan_cursor.frag",
+    "expected_sha256": "fa97da515ef2d6d0d219bd30e980dedeb7b278c378fe7529815a668f71cc589e",
+    "actual_sha256": "fa97da515ef2d6d0d219bd30e980dedeb7b278c378fe7529815a668f71cc589e",
+    "expected_lines": 12,
+    "actual_lines": 12,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/vulkan_cursor.vert",
+    "expected_sha256": "8862f9cc779a90253cfb9ba229a087adfb560e758e4e7d9a9c4091c9a588d6f2",
+    "actual_sha256": "8862f9cc779a90253cfb9ba229a087adfb560e758e4e7d9a9c4091c9a588d6f2",
+    "expected_lines": 12,
+    "actual_lines": 12,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/vulkan_present.frag",
+    "expected_sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+    "actual_sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+    "expected_lines": 40,
+    "actual_lines": 40,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/host_shaders/vulkan_present.vert",
+    "expected_sha256": "f77e074a78d6692fbd1e8bb49d5aed858ec2f86ca4497eb5a31de9bf84b0b7df",
+    "actual_sha256": "f77e074a78d6692fbd1e8bb49d5aed858ec2f86ca4497eb5a31de9bf84b0b7df",
+    "expected_lines": 25,
+    "actual_lines": 25,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+    "expected_sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+    "actual_sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+    "expected_lines": 214,
+    "actual_lines": 214,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+    "expected_sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+    "actual_sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+    "expected_lines": 1507,
+    "actual_lines": 1507,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+    "expected_sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+    "actual_sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+    "expected_lines": 160,
+    "actual_lines": 160,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+    "expected_sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+    "actual_sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+    "expected_lines": 1037,
+    "actual_lines": 1037,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+    "expected_sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+    "actual_sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+    "expected_lines": 108,
+    "actual_lines": 108,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_common.cpp",
+    "expected_sha256": "8815646e75e49075ab2aed78ac68143f5f74cfa6d89f3ddb120931bc6d153bd9",
+    "actual_sha256": "8815646e75e49075ab2aed78ac68143f5f74cfa6d89f3ddb120931bc6d153bd9",
+    "expected_lines": 12,
+    "actual_lines": 12,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_common.h",
+    "expected_sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+    "actual_sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+    "expected_lines": 16,
+    "actual_lines": 16,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+    "expected_sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+    "actual_sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+    "expected_lines": 109,
+    "actual_lines": 109,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.h",
+    "expected_sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+    "actual_sha256": "fdc7c15858d9fd38ffd6bf2bfb9681a2607cf888e14a7c5712fcf4053215dfc6",
+    "expected_lines": 53,
+    "actual_lines": 53,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+    "expected_sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+    "actual_sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+    "expected_lines": 321,
+    "actual_lines": 321,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.h",
+    "expected_sha256": "7ac323513aa3112f16f4e325e9b7e519d321c09617be46c13000a433bab0a80f",
+    "actual_sha256": "7ac323513aa3112f16f4e325e9b7e519d321c09617be46c13000a433bab0a80f",
+    "expected_lines": 350,
+    "actual_lines": 350,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_instance.cpp",
+    "expected_sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+    "actual_sha256": "38d556234794b644e6244c92f4f81d334a04c6f5df36f3803da71ff81308b840",
+    "expected_lines": 717,
+    "actual_lines": 717,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_instance.h",
+    "expected_sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+    "actual_sha256": "e26551407c08eb82b9bec4cea548c5e6dea8ae5dc6470e49c0c632c1d0b6bcb4",
+    "expected_lines": 360,
+    "actual_lines": 360,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_master_semaphore.cpp",
+    "expected_sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+    "actual_sha256": "c03c8c4273042b4521a150738d05663b835d72a0920818e201405f2c100cc483",
+    "expected_lines": 201,
+    "actual_lines": 201,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_master_semaphore.h",
+    "expected_sha256": "638f3635825e8987429386c0ce83a901492d24ac0b41b89c34f46731d528dce0",
+    "actual_sha256": "638f3635825e8987429386c0ce83a901492d24ac0b41b89c34f46731d528dce0",
+    "expected_lines": 104,
+    "actual_lines": 104,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_memory_util.cpp",
+    "expected_sha256": "0970a8daa0cd7fbb1cf2821ab8b56a3333938a84734cfdcb7751ceac019a79d5",
+    "actual_sha256": "0970a8daa0cd7fbb1cf2821ab8b56a3333938a84734cfdcb7751ceac019a79d5",
+    "expected_lines": 23,
+    "actual_lines": 23,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_memory_util.h",
+    "expected_sha256": "b2f75640c45d3bab2e8d83e767582c662c350209ae0433e73904a3af77684367",
+    "actual_sha256": "b2f75640c45d3bab2e8d83e767582c662c350209ae0433e73904a3af77684367",
+    "expected_lines": 21,
+    "actual_lines": 21,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+    "expected_sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+    "actual_sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+    "expected_lines": 703,
+    "actual_lines": 703,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.h",
+    "expected_sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+    "actual_sha256": "09aa121f8320f8e256d08ec1f6abec17d580871a264ceb41b4a7e8c63697a9ff",
+    "expected_lines": 187,
+    "actual_lines": 187,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+    "expected_sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+    "actual_sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+    "expected_lines": 441,
+    "actual_lines": 441,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_platform.h",
+    "expected_sha256": "4795f853b0b98730fcd659945ef01de529dd34f05b184c2eed7eabc80949cbd8",
+    "actual_sha256": "4795f853b0b98730fcd659945ef01de529dd34f05b184c2eed7eabc80949cbd8",
+    "expected_lines": 58,
+    "actual_lines": 58,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+    "expected_sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+    "actual_sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+    "expected_lines": 553,
+    "actual_lines": 553,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_present_window.h",
+    "expected_sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+    "actual_sha256": "39bd9d0deeb091c3220847497322506dbc53888a82de7c47adf3e81f7cb14b7e",
+    "expected_lines": 105,
+    "actual_lines": 105,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+    "expected_sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+    "actual_sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+    "expected_lines": 1093,
+    "actual_lines": 1093,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+    "expected_sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+    "actual_sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+    "expected_lines": 148,
+    "actual_lines": 148,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_rasterizer_cache.cpp",
+    "expected_sha256": "73a49fb269931898887401989041a033a958443a7bd6d0a3c0e1771f311fa1f3",
+    "actual_sha256": "73a49fb269931898887401989041a033a958443a7bd6d0a3c0e1771f311fa1f3",
+    "expected_lines": 10,
+    "actual_lines": 10,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+    "expected_sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+    "actual_sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+    "expected_lines": 377,
+    "actual_lines": 377,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_render_manager.h",
+    "expected_sha256": "04f0d211c8f9dffe9b6e86d65d2393acafeb3bf058be588ad7880334383a6357",
+    "actual_sha256": "04f0d211c8f9dffe9b6e86d65d2393acafeb3bf058be588ad7880334383a6357",
+    "expected_lines": 84,
+    "actual_lines": 84,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_resource_pool.cpp",
+    "expected_sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+    "actual_sha256": "7f62eaaf1570387d1bbd9f17b876b45754ec52c940b5055f513db7236af56f80",
+    "expected_lines": 197,
+    "actual_lines": 197,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_resource_pool.h",
+    "expected_sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+    "actual_sha256": "9ecb80bb6ba9d04b64aea5f384fe6113dfae237223af22a20b7db58882657f87",
+    "expected_lines": 91,
+    "actual_lines": 91,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_scheduler.cpp",
+    "expected_sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+    "actual_sha256": "058d196bc1a5838def542f5a4b8bdd9bfb8a6c066d73d3ffddbd90d8a966a6ae",
+    "expected_lines": 212,
+    "actual_lines": 212,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+    "expected_sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+    "actual_sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+    "expected_lines": 213,
+    "actual_lines": 213,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+    "expected_sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+    "actual_sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+    "expected_lines": 1548,
+    "actual_lines": 1548,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+    "expected_sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+    "actual_sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+    "expected_lines": 366,
+    "actual_lines": 366,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+    "expected_sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+    "actual_sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+    "expected_lines": 243,
+    "actual_lines": 243,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_shader_util.h",
+    "expected_sha256": "640f04cb6cd5c507b22a88db2898de4924663dc690ccdbf71639bd6f7b8a884b",
+    "actual_sha256": "640f04cb6cd5c507b22a88db2898de4924663dc690ccdbf71639bd6f7b8a884b",
+    "expected_lines": 31,
+    "actual_lines": 31,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+    "expected_sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+    "actual_sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+    "expected_lines": 283,
+    "actual_lines": 283,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+    "expected_sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+    "actual_sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+    "expected_lines": 86,
+    "actual_lines": 86,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_swapchain.cpp",
+    "expected_sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+    "actual_sha256": "d950a543a8fc33a1ef639ff86e1a580f1b8fbc94e742256f1ce354745ac5b4f3",
+    "expected_lines": 307,
+    "actual_lines": 307,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_swapchain.h",
+    "expected_sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+    "actual_sha256": "ef185c1d10cc3548c2c42646863e91a6ddafaf16249f920cedaac017187c9dd0",
+    "expected_lines": 112,
+    "actual_lines": 112,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+    "expected_sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+    "actual_sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+    "expected_lines": 1696,
+    "actual_lines": 1696,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/renderer_vulkan/vk_texture_runtime.h",
+    "expected_sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+    "actual_sha256": "5372bd2202645f9a7e6c2fb92ff0980b687fae866e205247c8519991a272cc32",
+    "expected_lines": 433,
+    "actual_lines": 433,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+    "expected_sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+    "actual_sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+    "expected_lines": 1774,
+    "actual_lines": 1774,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+    "expected_sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+    "actual_sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+    "expected_lines": 104,
+    "actual_lines": 104,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/glsl_shader_gen.cpp",
+    "expected_sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+    "actual_sha256": "cf131fdc743d745acefd96596d88265bf68edba80644adee318b1f2eb71f4bd6",
+    "expected_lines": 461,
+    "actual_lines": 461,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/glsl_shader_gen.h",
+    "expected_sha256": "06720bdf964a212dbb34f710eb220d218e9746b2efba14241f5345939d30ecf7",
+    "actual_sha256": "06720bdf964a212dbb34f710eb220d218e9746b2efba14241f5345939d30ecf7",
+    "expected_lines": 58,
+    "actual_lines": 58,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/pica_fs_config.h",
+    "expected_sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+    "actual_sha256": "ef7ef16a9d6baf5dabb792498f2db5ec6dde352a00e6b6b10ce9fcb6aae51f13",
+    "expected_lines": 467,
+    "actual_lines": 467,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/shader_gen.h",
+    "expected_sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+    "actual_sha256": "943503e10cfb2c119caea8add6b66f57559b9d1990030bffeac2f631161772f5",
+    "expected_lines": 198,
+    "actual_lines": 198,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/shader/generator/spv_fs_shader_gen.cpp",
+    "expected_sha256": "9e04dba353abb10073c6954412c7c7fec633e33892ff487ce7d5f2fdfcb86f8e",
+    "actual_sha256": "9e04dba353abb10073c6954412c7c7fec633e33892ff487ce7d5f2fdfcb86f8e",
+    "expected_lines": 1631,
+    "actual_lines": 1631,
+    "matches_sha256": true
+  },
+  {
+    "path": "src/video_core/video_core.cpp",
+    "expected_sha256": "ad57cc868055d3e344da85b40ac5214d6456a61ba4f922d45cfe3c5e02a36076",
+    "actual_sha256": "ad57cc868055d3e344da85b40ac5214d6456a61ba4f922d45cfe3c5e02a36076",
+    "expected_lines": 65,
+    "actual_lines": 65,
+    "matches_sha256": true
+  }
+]

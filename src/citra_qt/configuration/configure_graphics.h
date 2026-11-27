@@ -34,6 +34,10 @@ public:
 private:
     void SetupPerGameUI();
     void SetPhysicalDeviceComboVisibility(int index);
+#ifdef ENABLE_METAL
+    void UpdateMetalFXSpatialAvailability(bool is_metal);
+    ConfigurationShared::CheckState use_metalfx_spatial{};
+#endif
 
     ConfigurationShared::CheckState use_hw_shader;
     ConfigurationShared::CheckState shaders_accurate_mul;

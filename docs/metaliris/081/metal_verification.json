@@ -1,0 +1,58 @@
+{
+  "phase": "081",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-081-01",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 46,
+        "symbol": "#include <qpa/qplatformnativeinterface.h>"
+      },
+      "contract": "Check SDK Cocoa Metal surface/bridge dependencies and Qt implementation in actual native/off build.",
+      "native_mapping": "Compile real CMake bootmanager and Qt MOC with dependency files, run regression and surface fixture.",
+      "expected_result": "Native and feature-off compiler and tests pass, no Vulkan, MoltenVK, or backend command includes in native input.",
+      "dependency_owner": "001/077/080",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/compile.log",
+      "status": "PASS",
+      "actual_result": "Real native and off Qt bootmanager and MOC compilation. Shared native surface concurrent host test and settings/atomic layout fixture, CTest 64 passes and PICA 48/801."
+    },
+    {
+      "id": "MTL-081-02",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 896,
+        "symbol": "void GRenderWindow::showEvent(QShowEvent* event) {"
+      },
+      "contract": "Real test of show and surface lifecycle and same-device drawable after completed renderer ownership.",
+      "native_mapping": "Visible/hidden/minimized/resized primary and secondary CAMetalLayer tests and display migration with Metal validation.",
+      "expected_result": "Real Metal4 image rects, ownership, retained lifetime and no GPU validation errors.",
+      "dependency_owner": "077/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-081-REOPEN-091",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "0fecef4ca0be7533eae05ef1b7b2872bdb087cc11938d13c7e2ed7dbd8faa6f9",
+        "line": 846,
+        "symbol": "screenshot_image = QImage(QSize(layout.width, layout.height), QImage::Format_RGB32);"
+      },
+      "contract": "Repeated screenshot requests cannot replace pending Qt readback memory.",
+      "native_mapping": "Test IsScreenshotPending before any QImage replacement. Existing renderer holds the flag through native readback and callback.",
+      "expected_result": "Native/off Qt bridge compile and real Qt target link. Physical first result guard bytes and repeated capture pending exposed GPU.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/080/verify.sh <native Qt> <scratch>",
+      "evidence_path": "081/reopen-091.log",
+      "status": "PENDING",
+      "actual_result": "Actual native/off Qt compile passed. Retained QImage guard behavior across physical screenshot requests is unverified until the 091 fixture runs."
+    }
+  ],
+  "owner_sha256_after": "d14695724e1a6af2be87cea59776587485a7b48e387c8181f95345e05c62bd7e"
+}

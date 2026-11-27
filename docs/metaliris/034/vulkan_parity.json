@@ -1,0 +1,109 @@
+{
+  "phase": "034",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-034-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.h",
+        "sha256": "06720bdf964a212dbb34f710eb220d218e9746b2efba14241f5345939d30ecf7",
+        "line": 40,
+        "symbol": "* @returns String of the shader source code"
+      },
+      "contract": "Pass supplied vertex position, quaternion and raster outputs in the software submission entry.",
+      "native_mapping": "Native stage-in matches shared HardwareVertex attributes; native buffer vertex entry serves compute output.",
+      "expected_result": "Consumer compiles native trivial and compute-expanded function choices.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-034-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.h",
+        "sha256": "06720bdf964a212dbb34f710eb220d218e9746b2efba14241f5345939d30ecf7",
+        "line": 47,
+        "symbol": "*/"
+      },
+      "contract": "Programmed vertex outputs, registered semantics, input numeric types and exact ZeroW.",
+      "native_mapping": "Shared PicaVSConfig, AttribLoadFlags by register, direct specialization and normalized ordered vertex stream for expansion.",
+      "expected_result": "Consumer constructs full configuration and matching MSL stage names.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-034-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_gen.h",
+        "sha256": "06720bdf964a212dbb34f710eb220d218e9746b2efba14241f5345939d30ecf7",
+        "line": 53,
+        "symbol": "* @returns String of the shader source code"
+      },
+      "contract": "Fixed geometry passes ordered triangles and corrects opposite quaternion hemispheres.",
+      "native_mapping": "Choose native mesh/object when primitives are independent and preserved in order, otherwise native compute and matching raster-input shader.",
+      "expected_result": "CPU primitive-order oracle and GPU mesh/compute stream comparison.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-034-04",
+      "source": {
+        "path": "src/video_core/pica/geometry_pipeline.cpp",
+        "sha256": "2f0b157479f0e875c23c89c652306fe6cd8a0244be7db4666ee5fa4c659abad7",
+        "line": 45,
+        "symbol": ""
+      },
+      "contract": "Point input grouping, fixed and variable primitive uniform input, optional leading count, b15 and emitter state across invocations.",
+      "native_mapping": "Typed geometry groups, exact input-attribute map, explicit device continuation and checked bounds; use sequential native compute for stateful PICA geometry.",
+      "expected_result": "Point, fixed and variable invocation paths check exact PICA interpreter output.",
+      "dependency_owner": "035",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-034-05",
+      "source": {
+        "path": "src/video_core/pica/primitive_assembly.cpp",
+        "sha256": "386a924372b322a132aab5f0e1f9fa10bd41880cbb496c15895bcec4ef0847b7",
+        "line": 11,
+        "symbol": ": topology(topology) {}"
+      },
+      "contract": "List, strip, fan and shader-mode winding rules.",
+      "native_mapping": "Overflow-checked ordered primitive calculation and typed persistent assembler state.",
+      "expected_result": "CPU oracle uses alternating strip winding and fan anchor, shader winding fixture after out-of-order emits.",
+      "dependency_owner": "034",
+      "command": "zsh docs/metaliris/034/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "034/header.log",
+      "status": "PASS",
+      "actual_result": "Objective-C++ SDK consumer and CPU native ABI, geometry path, topology/order and checked bounds checks passed."
+    },
+    {
+      "id": "GEOMETRY-035-034",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+        "sha256": "b2a5886c9f82a39fa81ae23bf74cb058883442a3004410a3105cd3b5f9eff72a",
+        "line": 119,
+        "symbol": "struct alignas(16) VertexTransformParams {"
+      },
+      "contract": "The fixed and programmable consumers need the per-vertex native transform status to distinguish Metal input/state errors from valid zero outputs.",
+      "native_mapping": "Define compact transformed-vertex result with exact status and offsets; no silent publication of failed transformations.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "034/reopen-035.log",
+      "status": "PENDING",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "876af4b9f60f0c87293945f2026e261209a7b3b4c4060014aa8226567027f330"
+}

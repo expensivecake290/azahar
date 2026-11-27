@@ -1,0 +1,41 @@
+{
+  "phase": "069",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-069-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer_cache.cpp",
+        "sha256": "73a49fb269931898887401989041a033a958443a7bd6d0a3c0e1771f311fa1f3",
+        "line": 5,
+        "symbol": "#include \"video_core/rasterizer_cache/rasterizer_cache.h\""
+      },
+      "contract": "Instantiate the complete neutral rasterizer cache template with the backend's traits.",
+      "native_mapping": "Explicitly instantiate the same neutral template with Metal's native runtime, surface, framebuffer, sampler and debug traits, and preserve shared behavior.",
+      "expected_result": "Compile the real complete specialization, inspect defined symbols and link its direct native rasterizer consumer.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native Apple SDK arm64 ARC, 12 concrete Metal cache symbols, one native CMake archive instantiation, real direct consumer link with no fixture specialization, neutral include graph, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "VK-069-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer_cache.cpp",
+        "sha256": "73a49fb269931898887401989041a033a958443a7bd6d0a3c0e1771f311fa1f3",
+        "line": 9,
+        "symbol": "template class RasterizerCache<Vulkan::Traits>;"
+      },
+      "contract": "Cache integration uses actual template members for dirty intervals, display transfers, copy/fill, formats and readback.",
+      "native_mapping": "Do not duplicate shared algorithms. Bind current Metal hardware resource calls to the exact shared contracts.",
+      "expected_result": "Independent native cache device fixture checks owned dirty intervals, aliasing and guest RAM.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/069/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "069/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "1b0233ac4e2cb74887b8084a8ff2e81223a3ef9a70b4edfb91c6478c7bfdd566"
+}

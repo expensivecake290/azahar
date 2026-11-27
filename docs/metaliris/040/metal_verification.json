@@ -1,0 +1,41 @@
+{
+  "phase": "040",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-040-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 11,
+        "symbol": ""
+      },
+      "contract": "Actual native Metal compiler and complete branch structure.",
+      "native_mapping": "Compile and embed the native fragment plus linked objective-C++ fixture for exact oracles.",
+      "expected_result": "Compiled library, exact embedded bytes and native dependency scan.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PASS",
+      "actual_result": "The Metal 4 source compiled; byte packaging, palette/alpha CPU oracles, native linking, PICA, and CTest passed."
+    },
+    {
+      "id": "MTL-040-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 89,
+        "symbol": "if (((same(D,B) && notsame(D,H) && notsame(D,F))) && ((El>=Dl) || same(E,A)) && any_eq3(E,A,C,G) && ((El<Dl) || notsame(A,D) || notsame(E,P) || notsame(E,Q))) J=mix(D, J, 0.5);"
+      },
+      "contract": "Directional blends, ordered continuations and luma behavior with alpha.",
+      "native_mapping": "Deterministic independent RGBA patterns and exact quadrant comparisons under Metal validation.",
+      "expected_result": "CPU layout oracle and pending GPU byte comparison.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "f0beb7e9634186f24363114ab1c25fab2a03ebe092ecf3d28386010f9006dda1"
+}

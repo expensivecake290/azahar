@@ -2,6 +2,7 @@
 // Licensed under GPLv3 or any later version
 // Refer to the LICENSE.txt file included.
 
+#include <mutex>
 #include "common/settings.h"
 #include "core/core.h"
 #include "core/frontend/emu_window.h"
@@ -84,6 +85,9 @@ bool RendererBase::IsScreenshotPending() const {
 
 void RendererBase::RequestScreenshot(void* data, std::function<void(bool)> callback,
                                      const Layout::FramebufferLayout& layout) {
+    // The Qt frontend and RPC can publish a request on different threads.
+    static std::mutex request_mutex;
+    std::scoped_lock lock(request_mutex);
     if (settings.screenshot_requested) {
         LOG_ERROR(Render, "A screenshot is already requested or in progress, ignoring the request");
         return;

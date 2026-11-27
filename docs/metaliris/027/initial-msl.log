@@ -1,0 +1,7 @@
++docs/metaliris/027/verify.sh:19> xcrun --sdk macosx metal '-std=metal4.0' '-mmacosx-version-min=26.0' -Werror -c /Users/anthonygarcia/azahar/docs/metaliris/027/verify.metal -o /tmp/metaliris-r12.lKARZLkI/phase027/descriptor.air
+error: unable to open output file '/Users/anthonygarcia/.cache/clang/ModuleCache/364LA75QPUBK8/metal_types-1YVSZS90GV762.pcm': 'Operation not permitted'
+<built-in>:1:10: fatal error: could not build module 'metal_types'
+#include "metal_types"
+ ~~~~~~~~^~~~~~~~~~~~~
+error: unable to open output file '/Users/anthonygarcia/.cache/clang/ModuleCache/364LA75QPUBK8/metal_stdlib-1YVSZS90GV762.pcm': 'Operation not permitted'
+3 errors generated.

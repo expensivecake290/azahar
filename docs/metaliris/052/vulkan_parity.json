@@ -1,0 +1,75 @@
+{
+  "phase": "052",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-052-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.vert",
+        "sha256": "f77e074a78d6692fbd1e8bb49d5aed858ec2f86ca4497eb5a31de9bf84b0b7df",
+        "line": 8,
+        "symbol": "layout (location = 0) in vec2 vert_position;"
+      },
+      "contract": "Read float2 position and float2 UV at locations 0 and 1 with exact 16-byte vertex stride.",
+      "native_mapping": "Native stage-in attributes use thread immutable stream and compatible buffer index distinct from uniform buffer.",
+      "expected_result": "Use real native descriptor and stream with nonzero first vertex.",
+      "dependency_owner": "052",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 052 <native-build-dir> <scratch-dir> <present-fragment-library>",
+      "evidence_path": "052/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-052-02",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.vert",
+        "sha256": "f77e074a78d6692fbd1e8bb49d5aed858ec2f86ca4497eb5a31de9bf84b0b7df",
+        "line": 12,
+        "symbol": "layout (push_constant, std140) uniform DrawInfo {"
+      },
+      "contract": "Present uniform prefix is a 4x4 plus resolution vectors and screen IDs.",
+      "native_mapping": "Keep the same 112-byte constant block across presentation stages; byte offsets and packed vertex stride compile-end checked.",
+      "expected_result": "Native SDK and host layout checks including sprite translated and untouched regions.",
+      "dependency_owner": "052",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 052 <native-build-dir> <scratch-dir> <present-fragment-library>",
+      "evidence_path": "052/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-052-03",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.vert",
+        "sha256": "f77e074a78d6692fbd1e8bb49d5aed858ec2f86ca4497eb5a31de9bf84b0b7df",
+        "line": 21,
+        "symbol": "void main() {"
+      },
+      "contract": "Row-vector matrix multiply, export x,y only with output z=0,w=1, pass UV.",
+      "native_mapping": "Use native row-vector multiplication; reverse projected Y for Metal\u2019s top-left viewport polarity and discard calculated z/w.",
+      "expected_result": "Fixture vertex rectangle and translation, reversed UV and nontrivial calculated z/w all verify exact expected output.",
+      "dependency_owner": "052",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 052 <native-build-dir> <scratch-dir> <present-fragment-library>",
+      "evidence_path": "052/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-052-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 747,
+        "symbol": "void RendererVulkan::DrawSingleScreen(u32 screen_id, float x, float y, float w, float h,"
+      },
+      "contract": "Renderer constructs rotated/mirrored stage UVs and screen rectangles ahead of the vertex shader.",
+      "native_mapping": "Pass all native input coordinates through untouched, keep host orientation selection in integration.",
+      "expected_result": "Actual renderer tests portrait and landscape rotation, clipping, per-surface viewport and opacity.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 052 <native-build-dir> <scratch-dir> <present-fragment-library>",
+      "evidence_path": "052/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "f54eb9d4ad2685c35f477e632282c1bf802cf45178e89738230ab1cd56925807"
+}

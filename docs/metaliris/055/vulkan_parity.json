@@ -1,0 +1,106 @@
+{
+  "phase": "055",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-055-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.h",
+        "sha256": "640f04cb6cd5c507b22a88db2898de4924663dc690ccdbf71639bd6f7b8a884b",
+        "line": 17,
+        "symbol": "*/"
+      },
+      "contract": "Source compiler accepts a bounded textual request with optional preamble and reports failure.",
+      "native_mapping": "Own complete direct MSL source and preamble, deterministic option maps and typed warnings/errors. Language version is fixed by implementation.",
+      "expected_result": "Native host compiler consumer and pure per-field option equality oracle.",
+      "dependency_owner": "055",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer and actual Metal 4 SDK descriptor compile; complete source-option key, byte signature and definition identifier CPU checks passed."
+    },
+    {
+      "id": "VK-055-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.h",
+        "sha256": "640f04cb6cd5c507b22a88db2898de4924663dc690ccdbf71639bd6f7b8a884b",
+        "line": 26,
+        "symbol": "vk::ShaderModule CompileSPV(std::span<const u32> code, vk::Device device);"
+      },
+      "contract": "Native artifact load path consumes bytes and must retain matching device/module identity.",
+      "native_mapping": "Typed span and Metal library signature validation; device and generation guarded native result.",
+      "expected_result": "Check bad/short header, zero/correct prefix, ABI, and native Metal binary load in paired implementation.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-055-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.h",
+        "sha256": "640f04cb6cd5c507b22a88db2898de4924663dc690ccdbf71639bd6f7b8a884b",
+        "line": 28,
+        "symbol": "vk::ShaderModule Compile(std::string_view code, vk::ShaderStageFlagBits stage, vk::Device device,"
+      },
+      "contract": "Synchronous compile combines full source creation with usable runtime result.",
+      "native_mapping": "Independent direct synchronously compiled MSL library. Async limit, deduplicated requests and actual cancel/publication prevent partial module reads.",
+      "expected_result": "Native compilation, concurrent repeated requests and forced capacity checks in 056.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-055-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.cpp",
+        "sha256": "94cbbc48b2bd19ab490675d61170ea7fa1e8495cbb739b04631cb5fc95625996",
+        "line": 177,
+        "symbol": ""
+      },
+      "contract": "Parse/link diagnostics and stable source compiler options affect observable output.",
+      "native_mapping": "Use source and warning provenance, same options in sync and async; do not translate source or import private includes.",
+      "expected_result": "Compiler error and warnings as independent native fixture.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-055-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "fe8868ae7267e3133b8549ac32a1cbf9c3702247d7a9a498e6db0a9fbf1d19e2",
+        "line": 135,
+        "symbol": "class ShaderCompiler {"
+      },
+      "contract": "Native cache must bind a title-specific MTL4 pipeline data serializer to its actual source/pipeline compiler. Preserve the existing non-capturing constructor ABI.",
+      "native_mapping": "Optional SDK serializer constructor typed compile and previously checked direct source-key contracts.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "055/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Optional SDK serializer constructor typed compile and previously checked direct source-key contracts. Captured in 055/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+  "verification_updates": [
+    {
+      "trigger_owner": "091",
+      "reason": "The final source fingerprint audit found that the recorded Phase 055 source hash differed from the linked header. Re-audited the current interface and ran both real header and companion compiler consumers. The production source was unchanged during this audit.",
+      "previous_recorded_sha256": "33aa54e272a3b5dd32b41fd3ec6d6ff1762d1c06f0c7cde2bf25b7759fde5d28",
+      "source_sha256_after": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+      "evidence": [
+        "055/final-consumer-audit.log",
+        "055/final-runtime-audit.log",
+        "091/link-audit.log"
+      ],
+      "result": "Header contracts and host queue/SDK behavior pass with the current header. Live shader compilation, library loading and dispatch remain pending."
+    }
+  ]
+}

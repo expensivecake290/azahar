@@ -13,6 +13,9 @@
 #ifdef ENABLE_VULKAN
 #include "video_core/renderer_vulkan/vk_instance.h"
 #endif
+#ifdef ENABLE_METAL
+#include "citra_qt/util/metal_util.h"
+#endif
 
 #ifdef ENABLE_OPENGL
 QString GetOpenGLRenderer() {
@@ -45,6 +48,19 @@ std::vector<QString> GetVulkanPhysicalDevices() {
         LOG_ERROR(Frontend, "Error occured while querying for physical devices: {}", err.what());
     }
 
+    return result;
+}
+#endif
+
+#ifdef ENABLE_METAL
+std::vector<QString> GetMetalPhysicalDevices() {
+    const auto devices = MetalUtil::EnumerateDevices();
+    std::vector<QString> result;
+    result.reserve(devices.size());
+    for (const auto& device : devices) {
+        result.push_back(
+            QString::fromUtf8(device.name.data(), static_cast<qsizetype>(device.name.size())));
+    }
     return result;
 }
 #endif

@@ -1,0 +1,41 @@
+{
+  "phase": "049",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-049-01",
+      "source": {
+        "path": "src/video_core/host_shaders/metal/cursor_frag.metal",
+        "sha256": "c56afe648590ca6fda21fc1babc5a9b7c6ffe619948bafc6eaf87748c16f3ef3",
+        "line": 7,
+        "symbol": "fragment metal::float4 cursor_frag() {"
+      },
+      "contract": "Cursor fragment outputs constant white and consumes no user varying.",
+      "native_mapping": "Match only native built-in Position and same opaque-white invert blend state.",
+      "expected_result": "Fixture uses actual Phase 048 packaged library and applies both bars in single draw.",
+      "dependency_owner": "049",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 049 <native-build-dir> <scratch-dir> <cursor-fragment-library>",
+      "evidence_path": "049/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-049-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1118,
+        "symbol": "scheduler.Record([this, offset = offset, pipeline = cursor_pipeline](vk::CommandBuffer cmdbuf) {"
+      },
+      "contract": "Nonzero vertex offset and fixed native stride preserve uploaded stream selection.",
+      "native_mapping": "Bind float2 via argument table and supply correct start/count, no hidden attribute layout.",
+      "expected_result": "Native tests include three leading unread sentinel vertices.",
+      "dependency_owner": "049",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 049 <native-build-dir> <scratch-dir> <cursor-fragment-library>",
+      "evidence_path": "049/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "75e9823fa7f4eebd62d255817e23aee61459019a7f6f0409e76a0e06385f7eaf"
+}

@@ -1,0 +1,1282 @@
+[
+  {
+    "fixture": "001",
+    "exit_code": 2,
+    "pending_messages": [
+      "Metal device APIs returned zero devices. Native command submission, object/mesh, Spatial and GPU trace were not run."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/preflight/harness/run-native.sh",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/001"
+    ],
+    "evidence": "acceptance/sweep/001.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "003",
+    "command": [
+      "python3",
+      "docs/metaliris/003/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/003"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "evidence": "acceptance/sweep/003.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "006",
+    "command": [
+      "python3",
+      "docs/metaliris/006/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/metal"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "evidence": "acceptance/sweep/006.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "007",
+    "command": [
+      "python3",
+      "docs/metaliris/007/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/metal"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "evidence": "acceptance/sweep/007.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "008",
+    "command": [
+      "python3",
+      "docs/metaliris/008/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/metal"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "evidence": "acceptance/sweep/008.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "009",
+    "command": [
+      "xcrun",
+      "--sdk",
+      "macosx",
+      "clang++",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=26.0",
+      "-std=c++20",
+      "-fobjc-arc",
+      "-I",
+      "src",
+      "-I",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src",
+      "-isystem",
+      "externals/boost",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsyntax-only",
+      "-MD",
+      "-MF",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/009.d",
+      "docs/metaliris/009/verify.mm"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "evidence": "acceptance/sweep/009.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "010",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING no process-visible Metal device for lease and guarded submission tests"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/010/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/010"
+    ],
+    "evidence": "acceptance/sweep/010.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "011",
+    "command": [
+      "xcrun",
+      "--sdk",
+      "macosx",
+      "clang++",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=26.0",
+      "-std=c++20",
+      "-fobjc-arc",
+      "-DENABLE_METAL",
+      "-I",
+      "src",
+      "-I",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src",
+      "-isystem",
+      "externals/boost",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsyntax-only",
+      "-MD",
+      "-MF",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/011.d",
+      "docs/metaliris/011/verify.mm"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "first_attempt_exit_code": 1,
+    "first_attempt_evidence": "acceptance/sweep/011-initial.log",
+    "evidence": "acceptance/sweep/011.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "012",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live Metal device enumeration and capability matrix"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/012/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/012"
+    ],
+    "evidence": "acceptance/sweep/012.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "013",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/013/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/013"
+    ],
+    "evidence": "acceptance/sweep/013.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "014",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live Metal 4 selection, limits and texture descriptors"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/014/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/014"
+    ],
+    "evidence": "acceptance/sweep/014.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "015",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/015/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/015"
+    ],
+    "evidence": "acceptance/sweep/015.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "016",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/016/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/016"
+    ],
+    "evidence": "acceptance/sweep/016.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "017",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING real buffer allocation, scoped GPU/CPU overlap and zero-copy lifetime"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/017/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/017"
+    ],
+    "evidence": "acceptance/sweep/017.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "018",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/018/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/018"
+    ],
+    "evidence": "acceptance/sweep/018.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "019",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING Metal 4 commit feedback and cross-queue copy ordering"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/019/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/019"
+    ],
+    "evidence": "acceptance/sweep/019.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "020",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/020/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/020"
+    ],
+    "evidence": "acceptance/sweep/020.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "021",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING real Metal allocator reset, immutable table reuse and pressure trim"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/021/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/021"
+    ],
+    "evidence": "acceptance/sweep/021.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "022",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/022/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/022"
+    ],
+    "evidence": "acceptance/sweep/022.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "023",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING scheduler FIFO, allocator exhaustion, native feedback, stages, shared visibility, generation rejection, checkpoints, and shutdown on Metal 4 GPU"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/023/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/023"
+    ],
+    "evidence": "acceptance/sweep/023.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "024",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/024/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/024"
+    ],
+    "evidence": "acceptance/sweep/024.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "025",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING native stream upload/readback visibility and budget fallback"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/025/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/025"
+    ],
+    "evidence": "acceptance/sweep/025.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "026",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/026/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/026"
+    ],
+    "evidence": "acceptance/sweep/026.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "027",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING descriptor generation mutation, cache exhaustion, and context checks on Metal 4 GPU"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/027/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/027"
+    ],
+    "evidence": "acceptance/sweep/027.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "028",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/028/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/028"
+    ],
+    "evidence": "acceptance/sweep/028.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "029",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING Metal 4 merge/split, full and partial clears, feedback and color/depth/stencil resolves"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/029/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/029"
+    ],
+    "evidence": "acceptance/sweep/029.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "030",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/030/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/030"
+    ],
+    "evidence": "acceptance/sweep/030.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "031",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING native PICA arithmetic, control flow and geometry-bank differential"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/031/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/031"
+    ],
+    "evidence": "acceptance/sweep/031.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "032",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/032/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/032"
+    ],
+    "evidence": "acceptance/sweep/032.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "033",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: Apple GPU unavailable; generated constant/discard and byte XOR on ordered and copied attachments require native hardware."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/033/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/033"
+    ],
+    "evidence": "acceptance/sweep/033.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "034",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/034/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/034"
+    ],
+    "evidence": "acceptance/sweep/034.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "035",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: no process-visible Apple GPU. Native typed transform, mesh versus compute clip and interpolation, and programmable geometry winding, persistence and overflow replay require Metal 4 hardware."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/035/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/035"
+    ],
+    "evidence": "acceptance/sweep/035.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "036",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native Depth32Float_Stencil8->RGBA8 test needs a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "036",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/036"
+    ],
+    "evidence": "acceptance/sweep/036.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "037",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: multisample depth/stencil render, sample readback and resolve require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "037",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/037"
+    ],
+    "evidence": "acceptance/sweep/037.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "038",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: full-screen triangle viewport pixels need a native Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "038",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/038"
+    ],
+    "evidence": "acceptance/sweep/038.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "039",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native bicubic pixels require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "039",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/039",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/full_screen_triangle_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/039.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "040",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native MMPX quadrants and edges require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "040",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/040",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/full_screen_triangle_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/040.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "041",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native refinement pixels require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "041",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/041",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/full_screen_triangle_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/041.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "042",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native ScaleForce pixels require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "042",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/042",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/full_screen_triangle_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/042.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "043",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native strip pixels require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "043",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/043"
+    ],
+    "evidence": "acceptance/sweep/043.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "044",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native X gradient RG16Float pixels require a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "044",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/044",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/tex_coord_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/044.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "045",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native xBRZ output requires a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "045",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/045",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/full_screen_triangle_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/045.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "046",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native vertical gradient and X-to-Y reuse require a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "046",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/046",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/tex_coord_vert.metallib",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/x_gradient_frag.metallib"
+    ],
+    "evidence": "acceptance/sweep/046.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "047",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native stencil export and depth/stencil readback require a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "047",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/047",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/full_screen_triangle_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/047.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "048",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native cursor blend pixels require a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "048",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/048"
+    ],
+    "evidence": "acceptance/sweep/048.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "049",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native cursor vertex and blend integration require a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "049",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/049",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/cursor_frag.metallib"
+    ],
+    "evidence": "acceptance/sweep/049.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "050",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: exact native D24S8 readback requires a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "050",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/050"
+    ],
+    "evidence": "acceptance/sweep/050.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "051",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native presentation screen selection requires a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "051",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/051"
+    ],
+    "evidence": "acceptance/sweep/051.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "052",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native presentation vertex/fragment output requires a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "052",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/052",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/present_frag.metallib"
+    ],
+    "evidence": "acceptance/sweep/052.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "053",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native anaglyph projection pixels require a Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "053",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/053",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/present_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/053.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "054",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING: native interlaced output parity requires a process-visible Metal 4 GPU."
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/verify_host_shader.sh",
+      "054",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/054",
+      "/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/metal/present_vert.metallib"
+    ],
+    "evidence": "acceptance/sweep/054.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "055",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/055/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/055"
+    ],
+    "evidence": "acceptance/sweep/055.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "056",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live Metal 4 synchronous and asynchronous compilation, diagnostics, native metallib load and three known-answer compute dispatches"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/056/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/056"
+    ],
+    "evidence": "acceptance/sweep/056.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "057",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/057/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/057"
+    ],
+    "evidence": "acceptance/sweep/057.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "058",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live Metal 4 vertex, object/mesh, compute-expanded and renderless pipeline synchronization with blended color, depth/stencil and MSAA readback"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/058/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/058"
+    ],
+    "evidence": "acceptance/sweep/058.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "059",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/059/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/059"
+    ],
+    "evidence": "acceptance/sweep/059.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "060",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING real Metal 4 pipeline archive commit, GPU cold/warm dispatch readback and invalid archive fallback"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/060/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/060"
+    ],
+    "evidence": "acceptance/sweep/060.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "061",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/061/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/061"
+    ],
+    "evidence": "acceptance/sweep/061.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "062",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live native Metal 4 title archive, cold and warm cache draws, and retained native argument and pipeline lifetimes"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/062/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/062"
+    ],
+    "evidence": "acceptance/sweep/062.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "063",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/063/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/063"
+    ],
+    "evidence": "acceptance/sweep/063.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "064",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING real Metal 4 depth/stencil, packed readback, per-sample resolve, alias and all texture-filter runs"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/064/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/064"
+    ],
+    "evidence": "acceptance/sweep/064.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "065",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/065/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/065"
+    ],
+    "evidence": "acceptance/sweep/065.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "066",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING real Metal 4 transfer roundtrips, native clears, mips, aliases, custom block textures, shadow storage and framebuffer resolves"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/066/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/066"
+    ],
+    "evidence": "acceptance/sweep/066.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "067",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/067/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/067"
+    ],
+    "evidence": "acceptance/sweep/067.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "068",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING actual Metal 4 rasterizer draw, submission and guest readback"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/068/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/068"
+    ],
+    "evidence": "acceptance/sweep/068.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "069",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING actual Metal 4 rasterizer draw, submission and guest readback"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/069/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/069"
+    ],
+    "evidence": "acceptance/sweep/069.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "070",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING physical Metal 4 drawable lifecycle and pacing tests"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/070/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/070"
+    ],
+    "evidence": "acceptance/sweep/070.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "071",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live Metal 4 window with drawable exhaustion, resize, stale lease and present"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/071/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/071"
+    ],
+    "evidence": "acceptance/sweep/071.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "072",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/072/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/072"
+    ],
+    "evidence": "acceptance/sweep/072.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "073",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING physical Metal 4 frame pool, native color resolve, copy/scale and worker lifecycle"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/073/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/073"
+    ],
+    "evidence": "acceptance/sweep/073.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "074",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING physical Metal 4 Spatial output, synchronization, resize and stereo"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/074/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/074"
+    ],
+    "evidence": "acceptance/sweep/074.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "075",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING real Metal 4 Spatial odd-size and per-screen texture output"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/075/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/075"
+    ],
+    "evidence": "acceptance/sweep/075.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "076",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/076/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/076"
+    ],
+    "evidence": "acceptance/sweep/076.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "077",
+    "exit_code": 2,
+    "pending_messages": [
+      "PENDING live Apple display Retina/refresh/fullscreen and native presentation retirement"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/077/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/077"
+    ],
+    "evidence": "acceptance/sweep/077.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "078",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/078/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/078"
+    ],
+    "evidence": "acceptance/sweep/078.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "079",
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING physical native Metal device properties, Qt live drawable and trace capture"
+    ],
+    "command": [
+      "zsh",
+      "docs/metaliris/079/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/079"
+    ],
+    "evidence": "acceptance/sweep/079.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "080",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "zsh",
+      "docs/metaliris/080/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/080"
+    ],
+    "evidence": "acceptance/sweep/080.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "081",
+    "command": [
+      "python3",
+      "docs/metaliris/081/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/081"
+    ],
+    "exit_code": 0,
+    "pending_messages": [
+      "PENDING Qt Cocoa exposes no screens to this process"
+    ],
+    "evidence": "acceptance/sweep/081.log",
+    "result": "HOST_EVIDENCE_DEVICE_OR_DISPLAY_PENDING"
+  },
+  {
+    "fixture": "082",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "python3",
+      "docs/metaliris/082/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/082"
+    ],
+    "evidence": "acceptance/sweep/082.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "083",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "python3",
+      "docs/metaliris/083/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/083"
+    ],
+    "evidence": "acceptance/sweep/083.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "084",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "python3",
+      "docs/metaliris/084/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/084"
+    ],
+    "evidence": "acceptance/sweep/084.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "085",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "python3",
+      "docs/metaliris/085/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/085"
+    ],
+    "evidence": "acceptance/sweep/085.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "089",
+    "command": [
+      "zsh",
+      "docs/metaliris/089/verify.sh",
+      "/tmp/metaliris-r12.lKARZLkI/qt",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/089-final",
+      "/tmp/metaliris-r12.lKARZLkI/qt-env.zsh"
+    ],
+    "exit_code": 0,
+    "pending_messages": [],
+    "first_attempt_exit_code": 1,
+    "first_attempt_evidence": "acceptance/sweep/089-initial.log",
+    "evidence": "acceptance/sweep/089.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "090",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "python3",
+      "docs/metaliris/090/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/qt-single-software",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/090"
+    ],
+    "evidence": "acceptance/sweep/090.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  },
+  {
+    "fixture": "091-shared",
+    "exit_code": 0,
+    "pending_messages": [],
+    "command": [
+      "python3",
+      "docs/metaliris/091/shared-renderer-base/verify.py",
+      "/tmp/metaliris-r12.lKARZLkI/metal",
+      "/tmp/metaliris-r12.lKARZLkI/acceptance/sweep/091-shared"
+    ],
+    "evidence": "acceptance/sweep/091-shared.log",
+    "result": "HOST_FIXTURE_COMPLETED"
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "phase": "060",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-060-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 381,
+        "symbol": "void ShaderDiskCache::CacheFile::Append(CacheEntryType type, u64 id, std::span<const u8> data,"
+      },
+      "contract": "Exercise native header, compiler, dependency and linker verification without Vulkan.",
+      "native_mapping": "Compile production arm64 Objective-C++20 ARC, SDK Metal4 serializer/archive calls, CMake native registration and dependency graph check.",
+      "expected_result": "Link and run native CPU fixtures full PICA baseline and CTest.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "MTL-060-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 318,
+        "symbol": "ShaderDiskCache::CacheEntry ShaderDiskCache::CacheFile::ReadAt(size_t position) {"
+      },
+      "contract": "Exercise corrupt/incompatible/truncated/duplicate/interrupted files and thread-safe native title records.",
+      "native_mapping": "Test actual temporary filesystem reads/writes, native source options/artifacts, explicit full equality, predictable progress and interruption.",
+      "expected_result": "All CPU adversarial fixtures including restored roundtrip and concurrent writes pass.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC compiler and CMake link, Metal 4 executable, exact record roundtrips, corrupt/incompatible/truncation and disabled or blocked paths, actual cancellation/progress, and concurrent commit fixtures passed. PICA200 48 cases / 801 assertions, and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "MTL-060-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.cpp",
+        "sha256": "d1b808bc07ed66851f95935091957568d2a8e92c6d62243fb2c2f6aab70ed3a6",
+        "line": 1334,
+        "symbol": "bool ShaderDiskCache::InitPLCache(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Native GPU creates serialized Metal 4 pipeline archive and reuses it with identical outputs.",
+      "native_mapping": "Capture native shaders via native MTL4PipelineDataSetSerializer, commit atomically, load MTL4Archive, resolve real pipeline and dispatch exact output.",
+      "expected_result": "Apple Silicon Metal4 visible and validation enabled; archive malformed check, exact GPU output cold/warm and different-title isolation.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/060/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "060/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5e20a597ece105f39676a7d0367c0f87886c549d5a3102a6e71a77e311144afd"
+}

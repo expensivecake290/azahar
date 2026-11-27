@@ -1,0 +1,109 @@
+{
+  "phase": "066",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-066-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "2e983c7981823d32951465b9ba383d095a56ab44a0f350eafc351d174a69277b",
+        "line": 130,
+        "symbol": "TextureRuntime(const TextureRuntime&) = delete;"
+      },
+      "contract": "Native runtime implements shared surface and texture cache contracts.",
+      "native_mapping": "Allocator, scheduler and existing frontend-neutral indicators retained. Native shader source for simple texture manipulation.",
+      "expected_result": "Native build and public linkage.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration, arm64 ARC link, neutral transitive graph, packed-color assertions, sampler metadata/layout fixture, native MSL 4 offline compilation, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-066-02",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/texture_codec.h",
+        "sha256": "548f680f1933fa1fc023149ccb15d9b8b48f481d04fb77a6d2383f121fffc634",
+        "line": 112,
+        "symbol": "} else if constexpr (format == PixelFormat::D24S8) {"
+      },
+      "contract": "Azahar owns linear/tiled codec and packed stencil-byte convention.",
+      "native_mapping": "Reuse current shared codec. Native staging copies receive existing decoded bytes and maintain exact format.",
+      "expected_result": "Independent all-format conversion oracle.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-066-03",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 1251,
+        "symbol": "const auto staging = runtime.FindStaging("
+      },
+      "contract": "Caller decodes staging immediately after download returns.",
+      "native_mapping": "Retain actual transfer resources until GPU completion, then return exactly CPU-written span.",
+      "expected_result": "Dirty data readback and exact eviction scenarios.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-066-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_blit_helper.h",
+        "sha256": "7dc030a3870f26872a497a357cfe2f4d5fdbad60502d8e85e9c168e320c1fb01",
+        "line": 123,
+        "symbol": "Compute,"
+      },
+      "contract": "Use prior native helper for pack/filter and resolve.",
+      "native_mapping": "Integrate helper with direct native transfers and requested region/sample dimensions.",
+      "expected_result": "Runtime fidelity and no Vulkan private or execution dependencies.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-066-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.h",
+        "sha256": "d9ebf7424af2d76c6a0ebec3ac79d58fc2a22da93084c19e054fccd9e52d1bba",
+        "line": 37,
+        "symbol": "MTLStages stages;"
+      },
+      "contract": "Track actual transfer/dispatch/render resource hazards and shared ownership.",
+      "native_mapping": "Retain detached textures and budget reservations through actual GPU retirement; guard overlapping allocations.",
+      "expected_result": "Native validation and asynchronous dirty surfaces.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-066-068",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.mm",
+        "sha256": "b14cab9be9097128dab5f7736bb6d41d1e2099756739eebce1672adaef865387",
+        "line": 1054,
+        "symbol": "return StorageView();"
+      },
+      "contract": "Fragment sampling needs a retained converted R32 shadow image on devices whose writes use the atomic buffer path. StorageView currently requires texture atomics and drops the budget owner.",
+      "native_mapping": "Expose and implement a strong read-only R32 shadow binding independent of native texture-atomic write capability.",
+      "expected_result": "Compile retained image against the SDK. Confirm actual shadow contents and no atomic requirement with Metal API validation when a device is accessible.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/reopen-068.log",
+      "status": "PENDING",
+      "actual_result": "Actual arm64 native SDK compilation and applicable host tests passed. Physical R32 sampling and read/write storage lifetime require Metal 4 device output."
+    }
+  ],
+  "owner_sha256_after": "62bde2a5aaa333572877412ecb96292844e3ab7ab666bdbbad67e3fa8fdf2514"
+}

@@ -1,0 +1,364 @@
+{
+  "phase": "066",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-066-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 57,
+        "symbol": "vk::Filter MakeFilter(VideoCore::PixelFormat pixel_format) {"
+      },
+      "contract": "Native point and linear transfer filter chosen by texture format/aspect.",
+      "native_mapping": "Select nearest for depth, scale-roundtrip, integer data and explicit guest selection; direct native sampler for ordinary RGBA.",
+      "expected_result": "Odd scale, mirroring and exact sample checks.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 89,
+        "symbol": "u32 UnpackDepthStencil(const VideoCore::StagingData& data, vk::Format dest) {"
+      },
+      "contract": "Split combined depth/stencil transfers and preserve packed guest order.",
+      "native_mapping": "Deinterleave logical u32 depth-stencil staging into Metal depth32 and stencil planes, using the two native buffer-copy aspect selectors. Read back exact D24S8 via previous utility or the native aspect route.",
+      "expected_result": "Check masks, positive depth range, known words, odd row and mip.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 171,
+        "symbol": "void Handle::Create(u32 width, u32 height, u32 levels, TextureType type, vk::Format format,"
+      },
+      "contract": "Create and release dimensional/formatted image, multilevel/array views and mutable-compatible access.",
+      "native_mapping": "Budgeted native private allocation with actual flags; retain old storage and budget through completion, separate shadow word/texture backing and immutable views.",
+      "expected_result": "Use every format/block, views, custom compression and release/lifetime.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 304,
+        "symbol": "VideoCore::StagingData TextureRuntime::FindStaging(u32 size, bool upload) {"
+      },
+      "contract": "Staging allocates and exposes correct CPU bytes; retirement ticks reflect actual GPU work.",
+      "native_mapping": "Reuse shared CPU staging contract and allocate/retain shared Metal upload and readback buffers; return CPU-visible readback only after actual native completion.",
+      "expected_result": "Subrange, timeout/failure visibility and output stability.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 329,
+        "symbol": "bool TextureRuntime::Reinterpret(Surface& source, Surface& dest,"
+      },
+      "contract": "VK reinterpretation can copy same layout, convert D24S8 to RGBA8, or permit guest-memory correct fallback.",
+      "native_mapping": "Native identical-layout copy, matched combined-depth conversion through 064, explicit false to trigger existing guest coherence conversion for incompatible layouts.",
+      "expected_result": "Compare exact D24S8 bytes and alias semantics.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 351,
+        "symbol": "bool TextureRuntime::ClearTexture(Surface& surface, const VideoCore::TextureClear& clear) {"
+      },
+      "contract": "Native clear of full and partial areas with distinct depth/stencil and color values.",
+      "native_mapping": "RenderManager exact attachment/action with scoped partial clears; keep current resolved and per-sample representations coherent.",
+      "expected_result": "Render known region with preserved guard bytes, all applicable formats.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 508,
+        "symbol": "bool TextureRuntime::CopyTextures(Surface& source, Surface& dest,"
+      },
+      "contract": "Batch copy across endpoints, level, slice, sample compatibility and alias.",
+      "native_mapping": "Validate all ranges before queuing. Native exact same layout copy and independent snapshot for aliased sources. Preserve compatible per-sample data or resolve first.",
+      "expected_result": "Self-overlap, mip, cube faces and single/MSAA combinations.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 610,
+        "symbol": "bool TextureRuntime::BlitTextures(Surface& source, Surface& dest,"
+      },
+      "contract": "Scaled transfer; nearest stencil/depth fallback and linear color by format.",
+      "native_mapping": "Use native direct MSL color/depth resizing; existing nearest D24S8 path, private aliases, correct viewport and clipping.",
+      "expected_result": "Odd resolution and mirrored axes with preserved untouched pixels.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 729,
+        "symbol": "void TextureRuntime::GenerateMipmaps(Surface& surface) {"
+      },
+      "contract": "Generate all mips for active representation, with correct order.",
+      "native_mapping": "Native Metal 4 mipmap encoder for eligible color textures and format-compatible depth/custom conversion paths.",
+      "expected_result": "Mip0 stability and every generated mip, single/multi-subresource.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 755,
+        "symbol": "bool TextureRuntime::NeedsConversion(const Surface& surface) const {"
+      },
+      "contract": "Correct conversion view and forced native shadow compatibility.",
+      "native_mapping": "Existing shared texture codec converts RGBA8/RGB8/D24; packed native color repack retains original quantization. Combined depth/stencil is separate.",
+      "expected_result": "Independent roundtrip guest format and native normalized conversion.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 762,
+        "symbol": "Surface::Surface(TextureRuntime& runtime_, const VideoCore::SurfaceParams& params,"
+      },
+      "contract": "Allocate base/scaled/multisample images, skipping invalid/unsupported surface and existing guest fill types.",
+      "native_mapping": "TextureSurface holds strong native resources and both representations. Core shared cache applies invalidations; native layers are paid and resident.",
+      "expected_result": "Surface dimensions, sample count, reuse/delete while GPU in flight, and invalid-format limits.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 847,
+        "symbol": "Surface::Surface(TextureRuntime& runtime_, const VideoCore::SurfaceBase& surface,"
+      },
+      "contract": "Custom texture/normal and resolution combos have proper format and texture size.",
+      "native_mapping": "Create independent compatible base/normal allocation, native BC/ASTC or RGBA8 scaling, actual bytes in native row/block order.",
+      "expected_result": "Texture pack with normal map, partial pending and block edge handling.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 909,
+        "symbol": "void Surface::Upload(const VideoCore::BufferTextureCopy& upload,"
+      },
+      "contract": "Upload, staging, exact pitched widths and optional filtering or fallback upscale.",
+      "native_mapping": "True Metal 4 buffer copy and scoped visibility, correct native mip and sample seed invalidation. Shared staged guest codec preserves layout.",
+      "expected_result": "Roundtrip and edge block oracle, ordinary and distinct guarded native bytes.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-14",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1071,
+        "symbol": "void Surface::Download(const VideoCore::BufferTextureCopy& download,"
+      },
+      "contract": "Download scaled, packed native depth/stencil or current base by region and wait critical completion.",
+      "native_mapping": "Downsample requested region to base, transfer exact aspect, bytes and pitch in real Metal, then CPU copies valid range only.",
+      "expected_result": "Guest writes and dirty readback with exact old pixels outside region.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-15",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1157,
+        "symbol": "void Surface::ScaleUp(u32 new_scale, u8 new_sample_count) {"
+      },
+      "contract": "Change resolution/MSAA and retain previous contents, always retain resolved active content.",
+      "native_mapping": "Native resolved texture remains main representation; seed actual sample storage from current contents and reuse accurate native resolves.",
+      "expected_result": "Rescale both ways and preserve prior PICA color/depth and exact mips.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-16",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1261,
+        "symbol": "vk::ImageView Surface::CopyImageView() noexcept {"
+      },
+      "contract": "Feedback view preserves original texture contents and mip chain.",
+      "native_mapping": "Make distinct budgeted native copies of each needed layer/level and same samples, scheduler enforces hazards.",
+      "expected_result": "Distinguish alias and sample-sensitive feedback snapshot.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-17",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1365,
+        "symbol": "vk::ImageView Surface::ImageView(ViewType view_type, Type type) noexcept {"
+      },
+      "contract": "Runtime view is role-, layer- and format-aware, plus R32 shadow use.",
+      "native_mapping": "Create actual native layer/mip/stencil views and explicit R32UInt or shared atomic-buffer shadow storage with reversible rotation/packing.",
+      "expected_result": "Native write/read full uint words and texture/image shadow-path parity.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-18",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1541,
+        "symbol": "Framebuffer::Framebuffer(TextureRuntime& runtime, const VideoCore::FramebufferParams& params,"
+      },
+      "contract": "Framebuffer owns correct live attachments, levels, resolve and shadow payload.",
+      "native_mapping": "Retain native colored/depth wrappers, create pass from exact active role. Support depth-only/shadow-only and shared invalidation.",
+      "expected_result": "FramebufferHelper trait integration, different levels and explicit resolve.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-19",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1620,
+        "symbol": "Sampler::Sampler(TextureRuntime& runtime, const VideoCore::SamplerParams& params) {"
+      },
+      "contract": "Sampler guest filter, mip/LOD, all wrap modes, border color and anisotropy branch.",
+      "native_mapping": "Native sampler hardware selection and exact deferred register metadata for supported guest shader fallback. Disable anisotropy with nearest filter.",
+      "expected_result": "Validate actual SDK modes plus sample boundaries and custom border once bound.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-066-20",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 1674,
+        "symbol": "DebugScope::DebugScope(TextureRuntime& runtime, Common::Vec4f color, std::string_view label)"
+      },
+      "contract": "Balanced debug group during active native capture.",
+      "native_mapping": "Record native MTL4 command-buffer push and pop on same ordered scheduler scope.",
+      "expected_result": "Compile SDK debug group capabilities, optional capture under hardware.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-066-068",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.mm",
+        "sha256": "b14cab9be9097128dab5f7736bb6d41d1e2099756739eebce1672adaef865387",
+        "line": 1054,
+        "symbol": "return StorageView();"
+      },
+      "contract": "Fragment sampling needs a retained converted R32 shadow image on devices whose writes use the atomic buffer path. StorageView currently requires texture atomics and drops the budget owner.",
+      "native_mapping": "Expose and implement a strong read-only R32 shadow binding independent of native texture-atomic write capability.",
+      "expected_result": "Compile retained image against the SDK. Confirm actual shadow contents and no atomic requirement with Metal API validation when a device is accessible.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/066/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "066/reopen-068.log",
+      "status": "PENDING",
+      "actual_result": "Actual arm64 native SDK compilation and applicable host tests passed. Physical R32 sampling and read/write storage lifetime require Metal 4 device output."
+    }
+  ],
+  "owner_sha256_after": "62bde2a5aaa333572877412ecb96292844e3ab7ab666bdbbad67e3fa8fdf2514"
+}

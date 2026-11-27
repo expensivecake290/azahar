@@ -1,0 +1,75 @@
+{
+  "phase": "024",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-024-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+        "sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+        "line": 24,
+        "symbol": "class StreamBuffer final {"
+      },
+      "contract": "Use MTLBuffer shared storage and immutable GPU range lease rather than Vulkan memory handles.",
+      "native_mapping": "Apple SDK type declarations through required MemoryAllocator.",
+      "expected_result": "ARC consumer compiles and type-checks using the existing MemoryAllocator/EncodingContext.",
+      "dependency_owner": "024",
+      "command": "zsh docs/metaliris/024/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "024/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC consumer and independent alignment boundary oracle passed."
+    },
+    {
+      "id": "MTL-024-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+        "sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+        "line": 38,
+        "symbol": "std::tuple<u8*, u32, bool> Map(u32 size, u64 alignment);"
+      },
+      "contract": "Checked alignment and exact range tracking across multiple in-flight submissions.",
+      "native_mapping": "Overflow-safe constexpr placement; exact slice watch owner in companion.",
+      "expected_result": "Independent CPU oracle for size zero, capacity, arbitrary alignment and overflow.",
+      "dependency_owner": "024",
+      "command": "zsh docs/metaliris/024/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "024/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC consumer and independent alignment boundary oracle passed."
+    },
+    {
+      "id": "MTL-024-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+        "sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+        "line": 41,
+        "symbol": "void Commit(u32 size);"
+      },
+      "contract": "Map CPU only while safe, publish initialized bytes and read back only after native feedback.",
+      "native_mapping": "MemoryAllocator read/write map plus scheduler-retained GPU lease.",
+      "expected_result": "Pending overlap is guarded; observed shared bytes equal deterministic pattern.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-024-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.h",
+        "sha256": "aaa112892087fff8aefdc3ded4e7e443b34f3a0472d51704d86a6f29d374e62e",
+        "line": 77,
+        "symbol": "std::vector<Watch> current_watches;           ///< Watches recorded in the current iteration."
+      },
+      "contract": "Preserve readback visibility and use-after-wrap behavior on real Metal GPU.",
+      "native_mapping": "Watch ticket, ownership and completed timeline.",
+      "expected_result": "Concurrent upload, reusable stream slices and pinned readback integration pass.",
+      "dependency_owner": "025",
+      "command": "zsh docs/metaliris/025/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "025/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "03d423597546f4286804ce29845d705ca2884daf075fa792795ebf8c452546f1"
+}

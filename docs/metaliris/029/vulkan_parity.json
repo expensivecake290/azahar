@@ -1,0 +1,262 @@
+{
+  "phase": "029",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-029-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 15,
+        "symbol": ""
+      },
+      "contract": "Track compatible draw count and device-specific Mali flush workaround.",
+      "native_mapping": "Use native pass continuation and explicit demand-driven flush, exclude Mali-only heuristic.",
+      "expected_result": "Compatible Metal draws retain one native encoder and no unnecessary tile store.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 21,
+        "symbol": "RenderManager::RenderManager(const Instance& instance, Scheduler& scheduler)"
+      },
+      "contract": "Constructor binds instance and scheduler, destructor releases pass cache.",
+      "native_mapping": "Same-device context and real render worker state, weak submit-hook lifecycle.",
+      "expected_result": "Pending work retains state without deadlocks.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 26,
+        "symbol": "void RenderManager::BeginRendering(const Framebuffer* framebuffer,"
+      },
+      "contract": "Framebuffer selects actual attachments, render area, types and shadow status.",
+      "native_mapping": "Validate native subresources and bounded coordinates; register attachment-free shadow dimensions and writes.",
+      "expected_result": "Exact subresource, dimensions and feedback path tested.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 51,
+        "symbol": "void RenderManager::BeginRendering(const RenderPass& new_pass) {"
+      },
+      "contract": "Equivalent pass increments coalescing and skips restart; new pass ends previous and records begin with render area and clear values.",
+      "native_mapping": "Known compatible native pass stays open; changed area/actions, clear or targets trigger ordered encoder transitions.",
+      "expected_result": "Compatible draw callbacks see same encoder. Explicit new clear executes.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 72,
+        "symbol": "void RenderManager::EndRendering() {"
+      },
+      "contract": "Empty EndRendering no-ops; active pass caches copied image/aspect metadata and ends on worker.",
+      "native_mapping": "Only actual native encoder ends; snapshot metadata and resources remain owned until feedback.",
+      "expected_result": "End twice succeeds and captured targets stay alive.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 87,
+        "symbol": "const bool is_color = static_cast<bool>(aspects[i] & vk::ImageAspectFlagBits::eColor);"
+      },
+      "contract": "Color, shadow and depth/stencil writes use different real pipeline stages and transition for sampling/copy.",
+      "native_mapping": "Metal 4 fragment writes/RMW on fixed attachments or shadow storage, exact resolve writes and native blit dependency.",
+      "expected_result": "Next consumer reads stored output; no stage-all barrier.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 117,
+        "symbol": "cmdbuf.endRenderPass();"
+      },
+      "contract": "If no images, skip transitions; otherwise pipeline barrier after pass before reads.",
+      "native_mapping": "Attachmentless passes carry dimensions and shadow declaration when used; scheduler encodes stage-scoped consumer dependency for actual hazards.",
+      "expected_result": "Attach/no-attach native render work receives appropriate scope.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 130,
+        "symbol": "images = {};"
+      },
+      "contract": "Reset pass and images and selectively submit at source device quirk boundary.",
+      "native_mapping": "Release producer and worker active state after end; scheduler independently flushes on demand.",
+      "expected_result": "No duplicate encoder end, cache reset at splits and submit.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 142,
+        "symbol": "vk::RenderPass RenderManager::GetRenderpass(VideoCore::PixelFormat color,"
+      },
+      "contract": "Cache keyed by color/depth guest format, samples and clear choice; use unsupported sentinel.",
+      "native_mapping": "Metal format key independent of actions, FormatTable maps actual color, depth and stencil. Reject invalid type/sample.",
+      "expected_result": "PICA formats map correctly; invalid unsupported sample counts reject.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 179,
+        "symbol": "vk::UniqueRenderPass RenderManager::CreateRenderPass(vk::Format color, vk::Format depth,"
+      },
+      "contract": "Single-sample pass with optional color/depth and depth+stencil load/store; undefined slots suppressed.",
+      "native_mapping": "Use MTL4 attachment descriptor with independent load/store and clear values.",
+      "expected_result": "Exact color and depth/stencil preservation, no phantom attachment.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 249,
+        "symbol": "vk::UniqueRenderPass RenderManager::CreateRenderPassMSAA("
+      },
+      "contract": "MSAA path creates single-sample resolve and actual multisample attachments for present aspects.",
+      "native_mapping": "MTL4 native resolve target descriptor, retain stored samples only when requested and validate memoryless use.",
+      "expected_result": "Native color resolve and prior per-sample contents preserved for a following load.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 258,
+        "symbol": "vk::AttachmentReference2 color_attachment_ref{};"
+      },
+      "contract": "Skip absent color and depth branches and handle one or both valid attachments.",
+      "native_mapping": "Build attachments and sample count selectively for color, depth, depth-stencil or shadow.",
+      "expected_result": "Single and regular depth-only, stencil-only and combined fixtures.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 305,
+        "symbol": "// main attachment and the original attachments now get resolved into"
+      },
+      "contract": "Use multisample sample count on real color/depth attachments, single sample on resolve.",
+      "native_mapping": "Validate counts, format equality, mip/slice bounds and device identity.",
+      "expected_result": "Reject same texture as resolve, bad counts, foreign device and out-of-bounds. Exact resolved output.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-029-14",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_render_manager.cpp",
+        "sha256": "1da029300b0d9199bc7a4a149420208d91fc3ce2151e1f4c8fdd6b0ed44ec08b",
+        "line": 353,
+        "symbol": ".pInputAttachments = nullptr,"
+      },
+      "contract": "Resolve combined depth/stencil by sample zero.",
+      "native_mapping": "Use MTLMultisampleDepthResolveFilterSample0 and MTLMultisampleStencilResolveFilterSample0.",
+      "expected_result": "Native depth and stencil readback confirms sample-zero behavior.",
+      "dependency_owner": "029",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MSAA-033-029",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_render_manager.mm",
+        "sha256": "78585b1a1222459601b0bb1e0b8055d9556b91a3e17543045d0b6aa5741b92da",
+        "line": 632,
+        "symbol": "void RenderManager::CopyForFeedback(const RenderTexture& source, const RenderTexture& destination,"
+      },
+      "contract": "A resolved MSAA color snapshot loses per-sample values needed by framebuffer logic and factor-aware min/max. Metal 4 supports same-sample texture copies.",
+      "native_mapping": "Copy equal-format, equal-sample subresources to a distinct native snapshot and retain both through feedback.",
+      "expected_result": "Native compile and fixture verifies every copied sample individually.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/029/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "029/reopen-033.log",
+      "status": "PENDING",
+      "actual_result": "Native same-sample copy and readback compiled as MSL4, linked and passed PICA regression. GPU samples remain unverified."
+    }
+  ],
+  "owner_sha256_after": "a777ba9a63ac1319f543bb2c25879653bca7033665fa7d99a38883a543b7fc72"
+}

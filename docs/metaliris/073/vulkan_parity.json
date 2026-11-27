@@ -1,0 +1,228 @@
+{
+  "phase": "073",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-073-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 21,
+        "symbol": ""
+      },
+      "contract": "Device availability and format select filter/fast transfer.",
+      "native_mapping": "Native BGRA drawable with matching-format exact copy and direct MSL fallback for supported color conversion or scaling. Full texture limits validated by actual device.",
+      "expected_result": "CPU route table, native shader compilation and actual sentinel colors.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 35,
+        "symbol": "};"
+      },
+      "contract": "Source/destination rectangles scale consistently.",
+      "native_mapping": "Explicit full-frame texture dimensions. Exact native texel copy when unchanged; native nearest or linear at pixel centers when dimensions/color formats differ.",
+      "expected_result": "Read 9x7 source and 17x11 destination with corner checks.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 101,
+        "symbol": "Scheduler& scheduler_, bool low_refresh_rate_)"
+      },
+      "contract": "Construction binds frontend, independent swapchain, pool counts, sync/async policy and worker.",
+      "native_mapping": "One bounded private frame pool per window, real native MTL4 presentation scheduler and worker, reuse neutral window publication.",
+      "expected_result": "Native link and separate primary/secondary callback lifetimes.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 159,
+        "symbol": "// consumed, make sure to destroy it here to prevent a"
+      },
+      "contract": "Destructor drains real work before freeing both pending and active surfaces, frames and worker.",
+      "native_mapping": "Close intake, wake/join worker, retire committed rendering and presentation, close swapchain and release private budget. Abandoned leases pin native resources separately.",
+      "expected_result": "Close during source GPU work, pending presentation, and after independent failure.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 177,
+        "symbol": "vk::Device device = instance.GetDevice();"
+      },
+      "contract": "Frame recreate updates format/width/height, allocation and render target safely.",
+      "native_mapping": "On checkout, allocate exact requested storage with private/direct Metal4 attachment and optional same-size separate resolve target. Do not reuse unretired memory.",
+      "expected_result": "Headless resizing and 4x color resolves with actual output, budget cleanup and stale spans.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 249,
+        "symbol": ""
+      },
+      "contract": "Wait for free frame and previous presentation fence before returning image.",
+      "native_mapping": "Use bounded pool and exact device/size/sample identity. Wait for a real available slot or requested deadline. Reuse only after successful or failed GPU work has genuinely retired.",
+      "expected_result": "Three held frames, timed fourth, release return, render/source failure no unsafe reuse.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 285,
+        "symbol": "void PresentWindow::Present(Frame* frame) {"
+      },
+      "contract": "Synchronous present and asynchronous worker are complete paths.",
+      "native_mapping": "Shared job preparation and processing, configurable jthread only in asynchronous mode; validated source and presentation tickets and private context per window.",
+      "expected_result": "Run both modes with deterministic native workload and observable results.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 302,
+        "symbol": "return;"
+      },
+      "contract": "WaitPresent awaits empty queue and current presentation.",
+      "native_mapping": "Wait on monotonic exact completion or deadline, distinguish faults from successful retirement. A skipped headless frame must still retire source work.",
+      "expected_result": "Close/canceled timeout, successful pending work and fault propagation.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 321,
+        "symbol": ""
+      },
+      "contract": "Worker wakes for frames, FIFO orders work and recycles only once.",
+      "native_mapping": "Process independently from emulation/UI. Refresh frontend snapshot and select mailbox supersession only where policy allows, wait for old frame real producer retirement before freeing.",
+      "expected_result": "Burst mailbox pressure and FIFO readback, known safe completion order.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 346,
+        "symbol": ""
+      },
+      "contract": "Surface notification safely changes handle without leaking queued replacements.",
+      "native_mapping": "Wake and read existing retained native generations. Report headless/suspension and benign no-drawable without acquiring in frontend event loop.",
+      "expected_result": "Hidden, detached, resized and restored view, immediate retries with new exact geometry.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 367,
+        "symbol": ""
+      },
+      "contract": "Recreate selectors (size/VSYNC) and retry recoverable acquisition.",
+      "native_mapping": "Refresh valid published snapshot and frame limiter policy per work unit. Typed retry on changed drawable, return gracefully on bounded nil/backpressure without GUI blockage.",
+      "expected_result": "Low power, rate/size/occlusion transitions at 30/60/120 Hz.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 413,
+        "symbol": ".srcAccessMask = vk::AccessFlagBits::eNone,"
+      },
+      "contract": "Copy/blit and transition each image before native presentation.",
+      "native_mapping": "Encode exact shared-resource stages with MTL4 blit or argument-table-driven full-screen rendering, with the source timeline wait and swapchain wait/signal submission.",
+      "expected_result": "Native color/size and ordering, nearest/linear, scaling odd output and no implicit hazards.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-073-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_present_window.cpp",
+        "sha256": "9ff83f82dd61425dccd433a052886598c956fc2a6c9848b5be5a1df018713b44",
+        "line": 522,
+        "symbol": ".pipelineBindPoint = vk::PipelineBindPoint::eGraphics,"
+      },
+      "contract": "Render target resolves and keeps color until matched present copy.",
+      "native_mapping": "Create typed framebuffer pass with actual color, render clear, appropriate store and same-size explicit resolve at >1 samples.",
+      "expected_result": "4 distinct sample values and retained resolved screenshot/budget.",
+      "dependency_owner": "073",
+      "command": "zsh docs/metaliris/073/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "073/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "86d6571b77185af5b2f5c38427f98f29cfee1c30dc858c5cd87157d0d5566662"
+}

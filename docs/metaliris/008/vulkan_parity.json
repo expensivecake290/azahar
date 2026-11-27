@@ -1,0 +1,1163 @@
+{
+  "phase": "008",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-HEADER-042",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 42,
+        "symbol": "struct TextureInfo {"
+      },
+      "contract": "Tracks width, height, guest pixel format and native texture backing together.",
+      "native_mapping": "Retain guest metadata and Metal texture lifetime in the private implementation.",
+      "expected_result": "Interpret a color/aspect fixture and assert source and observed metadata.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-HEADER-051",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 51,
+        "symbol": "struct ScreenInfo {"
+      },
+      "contract": "Each source screen has texture state, coordinate rect and target view.",
+      "native_mapping": "Keep dual screen and right-eye state private, with backend-neutral geometry and Metal textures.",
+      "expected_result": "Verify exact screen regions and sampling coordinates for swapped dual screen.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-HEADER-057",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 57,
+        "symbol": "struct PresentUniformData {"
+      },
+      "contract": "Render pipeline pass receives transforms, source/destination resolution, stereo identity and layer mode.",
+      "native_mapping": "Private per-draw native bindings and MSL layout owned by the renderer and presentation shader phases.",
+      "expected_result": "Check native host/shader ABI and matrix, orientation, dual screen and interlaced pixel outputs.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-HEADER-066",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 66,
+        "symbol": "static_assert(sizeof(PresentUniformData) == 112,"
+      },
+      "contract": "Static layout assertion protects the original shader ABI.",
+      "native_mapping": "Use native uniform sizes and offsets validated against the matching MSL shader ABI.",
+      "expected_result": "Expected field sizes and alignment from corresponding MSL declarations.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-HEADER-073",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 73,
+        "symbol": "explicit RendererVulkan(Core::System& system, Pica::PicaCore& pica, Frontend::EmuWindow& window,"
+      },
+      "contract": "Initialize the renderer against shared core and PICA, optionally with a secondary window.",
+      "native_mapping": "Preserve complete constructor signature. Initialize real implementation later in 091.",
+      "expected_result": "Link and instantiate headless and single/dual window fixtures with the same shared core.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-HEADER-075",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 75,
+        "symbol": "~RendererVulkan() override;"
+      },
+      "contract": "Destroy the renderer and release all owned presentation and rasterization state.",
+      "native_mapping": "Out-of-line destructor retains the opaque implementation until its resources and jobs drain.",
+      "expected_result": "Cancel in-flight work, ensure safe destruction, and create another renderer.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-HEADER-077",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 77,
+        "symbol": "[[nodiscard]] VideoCore::RasterizerInterface* Rasterizer() override {"
+      },
+      "contract": "Return the live rasterizer through the backend-neutral interface.",
+      "native_mapping": "Expose the same override type and dispatch to the owned native rasterizer.",
+      "expected_result": "Verify Rasterizer points at the active native rasterizer.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-HEADER-081",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 81,
+        "symbol": "void NotifySurfaceChanged(bool second) override;"
+      },
+      "contract": "Notify the renderer of a changed primary or secondary surface.",
+      "native_mapping": "Preserve the override and pair with the per-window retained native generation.",
+      "expected_result": "Replace and detach each role, reject stale presentation, and verify retention.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-HEADER-083",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 83,
+        "symbol": "void SwapBuffers() override;"
+      },
+      "contract": "Finalize guest frames, load framebuffers, render and queue presentation.",
+      "native_mapping": "Keep SwapBuffers as the frontend-independent frame entry point.",
+      "expected_result": "Verify frame accounting, screen layout, screenshot and guest readback.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-HEADER-084",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 84,
+        "symbol": "void TryPresent(int timeout_ms, bool is_secondary) override {}"
+      },
+      "contract": "Vulkan presentation is driven internally; the shared base also supports TryPresent.",
+      "native_mapping": "Define the override as a real entry point for the chosen native presentation cadence, with both overloads available.",
+      "expected_result": "Exercise timeout, primary/secondary selection and duplicate presentation behavior.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-HEADER-095",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 95,
+        "symbol": "void LimitFramesAheadOfGpu() override;"
+      },
+      "contract": "Limit submitted native work to a bounded number of guest frames.",
+      "native_mapping": "Keep shared protected dispatch and implement completion-aware limit in the private renderer.",
+      "expected_result": "Validate frame checkpoints, bounded waits and cancellation.",
+      "dependency_owner": "008",
+      "command": "python3 docs/metaliris/008/verify.py <native-build-dir>",
+      "evidence_path": "008/header.log",
+      "status": "PASS",
+      "actual_result": "Real C++20 header consumer passed and no prohibited dependency resolved."
+    },
+    {
+      "id": "VK-PRIVATE-087",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 87,
+        "symbol": "void ReloadPipeline(Settings::StereoRenderOption render_3d);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-088",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 88,
+        "symbol": "void CompileShaders();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-089",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 89,
+        "symbol": "void BuildLayouts();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-090",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 90,
+        "symbol": "void BuildPipelines();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-091",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 91,
+        "symbol": "void ConfigureFramebufferTexture(TextureInfo& texture,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-092",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 92,
+        "symbol": "const Pica::FramebufferConfig& framebuffer);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-093",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 93,
+        "symbol": "void ConfigureRenderPipeline();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-094",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 94,
+        "symbol": "void PrepareRendertarget();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-096",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 96,
+        "symbol": "void RenderScreenshot();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-097",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 97,
+        "symbol": "void RenderScreenshotWithStagingCopy();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-098",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 98,
+        "symbol": "bool TryRenderScreenshotWithHostMemory();"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-099",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 99,
+        "symbol": "void PrepareDraw(Frame* frame, const Layout::FramebufferLayout& layout);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-100",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 100,
+        "symbol": "void RenderToWindow(PresentWindow& window, const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-101",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 101,
+        "symbol": "bool flipped);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-103",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 103,
+        "symbol": "void DrawScreens(Frame* frame, const Layout::FramebufferLayout& layout, bool flipped);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-104",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 104,
+        "symbol": "void DrawBottomScreen(const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-105",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 105,
+        "symbol": "const Common::Rectangle<u32>& bottom_screen);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-107",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 107,
+        "symbol": "void DrawTopScreen(const Layout::FramebufferLayout& layout,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-108",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 108,
+        "symbol": "const Common::Rectangle<u32>& top_screen);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-109",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 109,
+        "symbol": "void DrawSingleScreen(u32 screen_id, float x, float y, float w, float h,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-110",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 110,
+        "symbol": "Layout::DisplayOrientation orientation);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-111",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 111,
+        "symbol": "void DrawSingleScreenStereo(u32 screen_id_l, u32 screen_id_r, float x, float y, float w,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-112",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 112,
+        "symbol": "float h, Layout::DisplayOrientation orientation);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-114",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 114,
+        "symbol": "void ApplySecondLayerOpacity(float alpha);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-116",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 116,
+        "symbol": "void DrawCursor(const Layout::FramebufferLayout& layout);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-118",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 118,
+        "symbol": "void LoadFBToScreenInfo(const Pica::FramebufferConfig& framebuffer, ScreenInfo& screen_info,"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-119",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 119,
+        "symbol": "bool right_eye);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-120",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 120,
+        "symbol": "void FillScreen(Common::Vec3<u8> color, const TextureInfo& texture);"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-123",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 123,
+        "symbol": "Memory::MemorySystem& memory;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-124",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 124,
+        "symbol": "Pica::PicaCore& pica;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-127",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 127,
+        "symbol": "LibRetroVKInstance instance;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-129",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 129,
+        "symbol": "Instance instance;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-131",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 131,
+        "symbol": "Scheduler scheduler;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-132",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 132,
+        "symbol": "RenderManager renderpass_cache;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-133",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 133,
+        "symbol": "PresentWindow main_present_window;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-134",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 134,
+        "symbol": "StreamBuffer vertex_buffer;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-135",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 135,
+        "symbol": "DescriptorUpdateQueue update_queue;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-136",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 136,
+        "symbol": "RasterizerVulkan rasterizer;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-137",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 137,
+        "symbol": "std::unique_ptr<PresentWindow> secondary_present_window_ptr;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-138",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 138,
+        "symbol": "DescriptorHeap present_heap;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-139",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 139,
+        "symbol": "vk::UniquePipelineLayout present_pipeline_layout;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-140",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 140,
+        "symbol": "std::array<vk::Pipeline, PRESENT_PIPELINES> present_pipelines;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-141",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 141,
+        "symbol": "std::array<vk::ShaderModule, PRESENT_PIPELINES> present_shaders;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-142",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 142,
+        "symbol": "std::array<vk::Sampler, 2> present_samplers;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-143",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 143,
+        "symbol": "vk::ShaderModule present_vertex_shader;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-144",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 144,
+        "symbol": "u32 current_pipeline = 0;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-146",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 146,
+        "symbol": "std::array<ScreenInfo, 3> screen_infos{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-147",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 147,
+        "symbol": "PresentUniformData draw_info{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-148",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 148,
+        "symbol": "vk::ClearColorValue clear_color{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-150",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 150,
+        "symbol": "vk::ShaderModule cursor_vertex_shader{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-151",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 151,
+        "symbol": "vk::ShaderModule cursor_fragment_shader{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-152",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 152,
+        "symbol": "vk::Pipeline cursor_pipeline{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-153",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 153,
+        "symbol": "vk::UniquePipelineLayout cursor_pipeline_layout{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-154",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 154,
+        "symbol": "bool isSecondaryWindow;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-155",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 155,
+        "symbol": "bool secondaryWindowEnabled;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-156",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 156,
+        "symbol": "bool screenRendered;"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    },
+    {
+      "id": "VK-PRIVATE-157",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.h",
+        "sha256": "ba63c58d3b996a42086f6786d520af05a8d4e21fa467a33d312f158decc2fa3e",
+        "line": 157,
+        "symbol": "u64 previous_game_frame_tick{};"
+      },
+      "contract": "Private reference renderer behavior or execution state declared at this source line.",
+      "native_mapping": "Keep the equivalent native behavior in the private renderer implementation and its owning native dependencies.",
+      "expected_result": "Use Phase 091 exact screenshot, format, stereo, cursor, frame and lifecycle regression fixtures.",
+      "dependency_owner": "091",
+      "command": "Build and run the Phase 091 native renderer fixture from its phase-local evidence directory.",
+      "evidence_path": "008/header.log",
+      "status": "PENDING",
+      "actual_result": "Private native behavior requires real renderer implementation and its later owner dependencies."
+    }
+  ],
+  "owner_sha256_after": "5ee39efd95de023540559fbe13380f510b39f6475f075746d3e1da0669357e24"
+}

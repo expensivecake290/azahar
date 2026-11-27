@@ -1,0 +1,92 @@
+{
+  "phase": "040",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-040-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 12,
+        "symbol": "#define src(x, y) texture(tex, coord + vec2(x, y) * 1.0 / source_size)"
+      },
+      "contract": "All comparisons use complete RGBA texels and luma is attenuated by 1-alpha.",
+      "native_mapping": "Read centered LOD-zero texels with native integer coordinates and clamp to edge. Use float32 luma and exact full RGBA equality.",
+      "expected_result": "Transparent and opaque texels with reversed luma ordering; no drifting center blends.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-040-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 50,
+        "symbol": "void main()"
+      },
+      "contract": "Derive texel cell and fractional quadrants. The flat-neighborhood early return preserves exact color.",
+      "native_mapping": "Integer gathers equivalent to the source's centered samples with explicit safe coordinate bounds.",
+      "expected_result": "Constant and clamped 1x1 texture at reversed UV and odd 9x7 extent.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-040-03",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 78,
+        "symbol": "vec4 P  = src(0.0,2.0);"
+      },
+      "contract": "Preserve the shared positive Y+2 tap for P and S, directional tests and mutation order.",
+      "native_mapping": "Use one equal-valued tap for both labels, no reflected substitution. Apply all corner and continuation branches in source order.",
+      "expected_result": "Four directed corner blends and horizontal continuation with independent exact output colors.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-040-04",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 99,
+        "symbol": "if ((Bl<El) && all_eq4(E,G,H,I,S) && none_eq4(E,A,D,C,F)) {K=mix(K, B, 0.5); J=mix(J, K, 0.5);}"
+      },
+      "contract": "Contrast continuations and nested adjacency correction preserve earlier quadrant changes.",
+      "native_mapping": "Preserve relative luma compares and branch-specific side-tap asymmetries with float4 blending.",
+      "expected_result": "Independent test chart captures directional output and transparent-source alpha.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-040-05",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/mmpx.frag",
+        "sha256": "6b9086fc49daa6c065fb2519db5ed79459181762b8d5728eb0a17c1ab23d0b5a",
+        "line": 128,
+        "symbol": "vec2 a = fract(tex_coord * source_size);"
+      },
+      "contract": "The fractional UV chooses one of four ordered quadrant results.",
+      "native_mapping": "Use original half-texel quadrant threshold at each axis with Metal top-left viewport mapping.",
+      "expected_result": "Compare all four center quadrants of 7x7 source drawn at twice its size.",
+      "dependency_owner": "040",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 040 <native-build-dir> <scratch-dir> <full-screen-native-library>",
+      "evidence_path": "040/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "f0beb7e9634186f24363114ab1c25fab2a03ebe092ecf3d28386010f9006dda1"
+}

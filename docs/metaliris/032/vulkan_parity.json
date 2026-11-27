@@ -1,0 +1,211 @@
+{
+  "phase": "032",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-032-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 13,
+        "symbol": "explicit FragmentModule(const FSConfig& config, const UserConfig& user, const Profile& profile);"
+      },
+      "contract": "Load shared fragment state, user normal and hardware profile. Constructor prepares source, destructor releases it.",
+      "native_mapping": "Native profile and pure MSL generation, independent of any shader runtime or foreign profile.",
+      "expected_result": "All source generation calls are reentrant and produce same source for same config.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-02",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 20,
+        "symbol": "/// Undos the host perspective transformation and applies the PICA one"
+      },
+      "contract": "Apply guest perspective/orthographic depth and viewport/scissor rule.",
+      "native_mapping": "Native MSL exposes intended shared VSPica stage locations and guest depth/scissor output.",
+      "expected_result": "Native pixel fixtures cover Z/W and inclusive/exclusive modes.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-03",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 26,
+        "symbol": "/// Writes the code to emulate fragment lighting"
+      },
+      "contract": "Fragment lighting and fog inputs, with compatibility gas output.",
+      "native_mapping": "Preserve dynamic Light/FS uniform layout and shared lighting/fog LUT signatures; reproduce transparent gas output used by references.",
+      "expected_result": "Fog flip/endpoints, light LUT access and exact fallback transparent pixel.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-04",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 35,
+        "symbol": "/// Writes the code to emulate shadow-map rendering"
+      },
+      "contract": "Shadow updates use interlocked storage or atomic CAS, with SHADOW2D and cube sampling.",
+      "native_mapping": "Native texture atomics when available and linear shared-buffer atomics for fallback. Exact native resource roles.",
+      "expected_result": "Shader compile covers both resource representations and tests shadow D24/S8 depth reduction.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-05",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 38,
+        "symbol": "/// Writes the code to emulate logic ops in the fragment shader"
+      },
+      "contract": "Logic and blending require appropriate destination feedback and preserve depth for no-op.",
+      "native_mapping": "Plan no feedback, tile-local ordered fetch or native copies, with independent shader blend axes and color write mask.",
+      "expected_result": "CPU tests exact destination dependence for all 16 logic modes and MinMax factor path.",
+      "dependency_owner": "032",
+      "command": "zsh docs/metaliris/032/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "032/header.log",
+      "status": "PASS",
+      "actual_result": "Native C++ consumer, Metal shader resource-layout declarations and sample-aware framebuffer contracts passed."
+    },
+    {
+      "id": "VK-032-06",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 44,
+        "symbol": "/// Returns the specified TEV stage source component(s)"
+      },
+      "contract": "Sources and color/alpha modifiers implement guest TEV routing, independent operations and stage effects.",
+      "native_mapping": "Use exact shared TexturingRegs/FSConfig; native fragment generation specializes six ordered stages.",
+      "expected_result": "Direct MSLLUT/readback compare with guest reference pixels.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-07",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 63,
+        "symbol": ""
+      },
+      "contract": "Alpha comparison before fog and OutputMerger, TEV stage sequencing and output clamp.",
+      "native_mapping": "Read shared alpha threshold/TEV uniforms and generated MSL compare results.",
+      "expected_result": "Test early reject and alpha limits with exact expected output.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-08",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 70,
+        "symbol": "void AppendProcTexClamp(std::string_view var, Pica::TexturingRegs::ProcTexClamp mode);"
+      },
+      "contract": "Procedural shift/clamp/combine/noise and mipmap LUT sampling.",
+      "native_mapping": "Native texel buffers, typed procedural config and derivatives.",
+      "expected_result": "Native shader fragment points match CPU oracle for procedure endpoints and noise.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-09",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 79,
+        "symbol": "void DefineHelpers();"
+      },
+      "contract": "Vulkan and GL interface variants have layout, texture types and capability-dependent bindings.",
+      "native_mapping": "One native typed binding contract with Vk/GL-specific syntax excluded; resources need no translation.",
+      "expected_result": "MSL array counts and binding indices meet SDK limits.",
+      "dependency_owner": "032",
+      "command": "zsh docs/metaliris/032/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "032/header.log",
+      "status": "PASS",
+      "actual_result": "Native C++ consumer, Metal shader resource-layout declarations and sample-aware framebuffer contracts passed."
+    },
+    {
+      "id": "VK-032-10",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 89,
+        "symbol": "std::string out;"
+      },
+      "contract": "Private config, user/profile and mode predicates specialize generated shader.",
+      "native_mapping": "Return source and immutable native requirements for integration and cache keys.",
+      "expected_result": "Native output pipeline and argument tables reflect complete dependent configuration.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-032-11",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.h",
+        "sha256": "cacd86736aed4d74c6797c803344a0847b3f7f36d14efaffd8dc74f0c7ce3c43",
+        "line": 98,
+        "symbol": "*               configuration (NOTE: Use state in this struct only, not the Pica registers!)"
+      },
+      "contract": "Generate only from snapshot config and user profile, leave runtime data in shared uniform layout.",
+      "native_mapping": "Native MSLLibrary source contains no GLSL and no guest register reread.",
+      "expected_result": "Generation inputs and output handoff independently testable.",
+      "dependency_owner": "033",
+      "command": "zsh docs/metaliris/033/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "033/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MSAA-032-FEEDBACK",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_fs_shader_gen.cpp",
+        "sha256": "ea28f538da65de33a9c1bf37e732598f175df3e74e2f23aedc9d5584fb6b54e5",
+        "line": 897,
+        "symbol": "void FragmentModule::WriteBlending() {"
+      },
+      "contract": "Framebuffer destination value is the active sample; resolving before applying logic or factor-aware min/max loses information.",
+      "native_mapping": "Include sample count in the fragment profile and specialize readback to the same native sample.",
+      "expected_result": "032 host compatibility tests include the sample count. 033 compiles single and multi-sample snapshot variants.",
+      "dependency_owner": "032",
+      "command": "zsh docs/metaliris/032/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "032/header.log",
+      "status": "PASS",
+      "actual_result": "Native C++ consumer, Metal shader resource-layout declarations and sample-aware framebuffer contracts passed."
+    }
+  ],
+  "owner_sha256_after": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398"
+}

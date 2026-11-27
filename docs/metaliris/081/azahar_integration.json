@@ -1,0 +1,92 @@
+{
+  "phase": "081",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-081-01",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 743,
+        "symbol": "window_info = GetWindowSystemInfo(child_widget->windowHandle());"
+      },
+      "contract": "WindowSystemInfo is legacy information and has raw unretained handles.",
+      "native_mapping": "Use neutral native snapshot as the sole native layer/extent handoff. Set plain window system info without borrowing a layer, and preserve existing external backend branches.",
+      "expected_result": "Qt is isolated in frontend and renderer does not receive a raw native surface on the Metal path.",
+      "dependency_owner": "006/079/080/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/compile.log",
+      "status": "PASS",
+      "actual_result": "Real native and off Qt bootmanager and MOC compilation. Shared native surface concurrent host test and settings/atomic layout fixture, CTest 64 passes and PICA 48/801."
+    },
+    {
+      "id": "AZ-081-02",
+      "source": {
+        "path": "src/core/frontend/emu_window.cpp",
+        "sha256": "5777f4fa3a6b7bd510cedff6e4db88c474213a1364f4ef52c08775f61e13b837",
+        "line": 236,
+        "symbol": "void EmuWindow::UpdateCurrentFramebufferLayout(u32 width, u32 height, bool is_portrait_mode) {"
+      },
+      "contract": "Layout recomputation is shared by settings and touch handling; reading a newly published surface must yield matching layout.",
+      "native_mapping": "Controlled reopen neutral header and layout implementation to expose atomic size-based publication and mirror ordinary layout changes into the neutral snapshot; use the same minimum, stereo and layout math.",
+      "expected_result": "Exact host snapshot sequence, selection/swapping and retained owner match while size/layout changes, valid and invalid transitions.",
+      "dependency_owner": "006/007",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/shared-surface.log",
+      "status": "PASS",
+      "actual_result": "Real native and off Qt bootmanager and MOC compilation. Shared native surface concurrent host test and settings/atomic layout fixture, CTest 64 passes and PICA 48/801."
+    },
+    {
+      "id": "AZ-081-03",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 759,
+        "symbol": "void GRenderWindow::ReleaseRenderTarget() {"
+      },
+      "contract": "Qt releases the child widget after emulation stops and can repeat boot or recover when target creation fails.",
+      "native_mapping": "Remove child event filter on teardown, publish headless before deferred view deletion, reset only the render context owned here and distinguish initialization failures.",
+      "expected_result": "Complete release/restart, retained old surface and no request to recreate a destroyed native platform window.",
+      "dependency_owner": "077/080/086/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-081-04",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 529,
+        "symbol": "void GRenderWindow::OnFramebufferSizeChanged() {"
+      },
+      "contract": "Touch sizing follows device pixel ratio and shared framebuffer layout.",
+      "native_mapping": "Use native surface width and height with existing desktop layout for native windows; maintain touch pixel scale and ordinary Qt geometry for other backends.",
+      "expected_result": "On actual retina surface, screenshot/presentation and touch positions match the rendered viewport.",
+      "dependency_owner": "006/007/091",
+      "command": "zsh docs/metaliris/080/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "081/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-081-REOPEN-091",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "0fecef4ca0be7533eae05ef1b7b2872bdb087cc11938d13c7e2ed7dbd8faa6f9",
+        "line": 846,
+        "symbol": "screenshot_image = QImage(QSize(layout.width, layout.height), QImage::Format_RGB32);"
+      },
+      "contract": "Repeated screenshot requests cannot replace pending Qt readback memory.",
+      "native_mapping": "Test IsScreenshotPending before any QImage replacement. Existing renderer holds the flag through native readback and callback.",
+      "expected_result": "Native/off Qt bridge compile and real Qt target link. Physical first result guard bytes and repeated capture pending exposed GPU.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/080/verify.sh <native Qt> <scratch>",
+      "evidence_path": "081/reopen-091.log",
+      "status": "PENDING",
+      "actual_result": "Actual native/off Qt compile passed. Retained QImage guard behavior across physical screenshot requests is unverified until the 091 fixture runs."
+    }
+  ],
+  "owner_sha256_after": "d14695724e1a6af2be87cea59776587485a7b48e387c8181f95345e05c62bd7e"
+}

@@ -1,0 +1,160 @@
+{
+  "phase": "001",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-OPTION",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "b45008450cddbb5ddb9d96475aa3a24f62b8969b82b39eb2e1f8da1b9a60ac81",
+        "line": 149,
+        "symbol": "renderer options"
+      },
+      "contract": "Default Vulkan on outside NetBSD, with explicit Vulkan disable supported.",
+      "native_mapping": "Keep existing choices when Metal is off. Make Vulkan unavailable in a Metal configuration, even if it was requested.",
+      "expected_result": "CMake option fixture preserves the previous Vulkan cache preference and reports effective OFF only where required.",
+      "command": "python3 docs/metaliris/001/verify.py options <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/options.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "VK-APPLE-PLATFORM",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "b45008450cddbb5ddb9d96475aa3a24f62b8969b82b39eb2e1f8da1b9a60ac81",
+        "line": 458,
+        "symbol": "APPLE platform libraries"
+      },
+      "contract": "Cocoa, AVFoundation and IOSurface remain shared; MoltenVK is selected from system or bundled conditionally and differs between iOS and macOS.",
+      "native_mapping": "Leave all existing Apple branches intact. Use the effective Vulkan option to bypass MoltenVK in the Metal build and separately publish native framework paths.",
+      "expected_result": "Metal configure has no MoltenVK discovery, link dependency or download. Shared Cocoa and AVFoundation remain available.",
+      "command": "python3 docs/metaliris/001/verify.py metal <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/metal.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "VK-EXTERNALS",
+      "source": {
+        "path": "externals/CMakeLists.txt",
+        "sha256": "f4cf9ddb49dbdf14e7058ed372b301d9545b2c3ad2ec90e5b47c60097b4a0a14",
+        "line": 436,
+        "symbol": "ENABLE_VULKAN"
+      },
+      "contract": "The Vulkan build owns SPIR-V and Vulkan dependencies, with system and bundled alternatives.",
+      "native_mapping": "Exclude the entire branch in a native configuration.",
+      "expected_result": "Ninja graph has no Vulkan renderer, MoltenVK, Vulkan include directories, sirit, VMA, SPIR-V or glslang target edges.",
+      "command": "python3 docs/metaliris/001/verify.py metal <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/metal.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "VK-SOURCE-REGISTRATION",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+        "line": 158,
+        "symbol": "ENABLE_VULKAN"
+      },
+      "contract": "The renderer sources and private Vulkan target dependencies are conditionally added to video_core.",
+      "native_mapping": "Phase 001 disables these inputs in the native configuration. Phase 002 owns native target registration.",
+      "expected_result": "No renderer_vulkan translation units or execution dependencies appear in the native compiler or linker graph.",
+      "command": "python3 docs/metaliris/001/verify.py metal <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/metal.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "VK-FRONTEND",
+      "source": {
+        "path": "src/citra_qt/CMakeLists.txt",
+        "sha256": "a88c33d05ffec209c6f13ad64ddfb473c0294b1d247690fa9507927bf3496e6a",
+        "line": 317,
+        "symbol": "ENABLE_VULKAN"
+      },
+      "contract": "Qt adds Vulkan headers only when Vulkan is enabled.",
+      "native_mapping": "Frontend build sees Vulkan disabled when Metal is enabled and retains its own shared dependencies.",
+      "expected_result": "Real Qt CMake configure succeeds and has native-only backend dependency closure.",
+      "command": "python3 docs/metaliris/001/verify.py qt <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/qt.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "VK-UNOWNED-EXECUTION",
+      "source": {
+        "path": "src/video_core/CMakeLists.txt",
+        "sha256": "172a764da46cffbff41fb79b14c3015ef00739e46bcec4128d9a7127e034178b",
+        "line": 159,
+        "symbol": "renderer_vulkan source list"
+      },
+      "contract": "Per-draw behavior is outside the top-level build file contract.",
+      "native_mapping": "No Vulkan API or runtime mapping is imported in Phase 001. Existing Vulkan source is read-only.",
+      "expected_result": "Source and generated compiler dependency inspection excludes Vulkan execution sources and private headers.",
+      "command": "python3 docs/metaliris/001/verify.py metal <scratch-dir>",
+      "dependency_owner": "001",
+      "evidence_path": "001/metal.log",
+      "status": "PASS",
+      "actual_result": "Passed. See command output in evidence path."
+    },
+    {
+      "id": "REOPEN-001-078",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "eb3e2f9e0f8a40c528a413145a0716c30d96715dc09141a221c58b6f0d96dd2e",
+        "line": 467,
+        "symbol": "check_native_metal_sdk()"
+      },
+      "contract": "CMake enables native sources and SDK checks but actual settings.cpp and Qt frontend compile commands omit ENABLE_METAL; native settings selectors and conditional bridge would be inactive.",
+      "native_mapping": "Publish ENABLE_METAL to actual targets only after successful native mode and Apple SDK checks.",
+      "expected_result": "Native settings and Qt compile actual conditional code; off mode lacks modifier, native dependency graph has no Vulkan unit. PICA 48/801 and 64 CTest.",
+      "dependency_owner": "078",
+      "command": "cmake configure, SDK probe, build native tests and native Qt consumers",
+      "evidence_path": "001/reopen-078.log",
+      "status": "PASS",
+      "actual_result": "SDK arm64 ARC check and full native target rebuild; actual -DENABLE_METAL in settings and Qt compile commands; native GetWorkingGraphicsAPI/default Spatial and Software verified by linked fixture; off graph unchanged; no Vulkan compilation; PICA 48/801 and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "REOPEN-001-079",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "f427d83fff7ffd252a3c0b18a2b4905b7501016b17cb4a116ecda1d47b437a04",
+        "line": 715,
+        "symbol": "add_subdirectory(src)"
+      },
+      "contract": "The same native Qt Apple bridge is compiled by both citra_qt and citra_meta without ARC, which is incompatible with the retained Metal device handles returned by the ARC native platform interface.",
+      "native_mapping": "Enable ARC only on the existing Metal Qt bridge in its two source-owning target directories when ENABLE_METAL is selected.",
+      "expected_result": "Both native actual compile entries use ARC, opt-out remains independent, native SDK and regression continue to pass.",
+      "dependency_owner": "079",
+      "command": "cmake configure Qt and native tests; compile exact source entry",
+      "evidence_path": "001/reopen-079.log",
+      "status": "PASS",
+      "actual_result": "Native SDK configure succeeded and both actual Qt/Meta compile entries include ARC exactly once and ENABLE_METAL. Native-only per-source flag, no Vulkan units; real Qt bridge compile and link evidence follows in 079."
+    },
+    {
+      "id": "AZ-001-REOPEN-087",
+      "source": {
+        "path": "CMakeLists.txt",
+        "sha256": "8c07f6c5908bf9eb949266b1d469dd6017d900c9b16ea8e0b9150565e95e4938",
+        "line": 719,
+        "symbol": "TARGET_DIRECTORY citra_qt citra_meta"
+      },
+      "contract": "Native MetalARC bridge belongs to the Qt target alone.",
+      "native_mapping": "Remove the broad inherited root ARC property after ownership moves to citra_qt private build registration. Preserve native backend option and platform framework checks.",
+      "expected_result": "Compiler graph contains one Qt Objective-C++ ARC bridge, legacy feature-off Apple source registrations are unchanged, build and regression evidence passes.",
+      "dependency_owner": "087",
+      "command": "zsh docs/metaliris/087/verify.sh <source-mirror> <Qt build> <scratch>",
+      "evidence_path": "001/reopen-087.log",
+      "status": "PASS",
+      "actual_result": "Verified native/off Qt graph, role-local ARC and complete native target link."
+    }
+  ],
+  "owner_sha256_after": "f427d83fff7ffd252a3c0b18a2b4905b7501016b17cb4a116ecda1d47b437a04"
+}

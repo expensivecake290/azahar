@@ -1,0 +1,177 @@
+UpdateCTestConfiguration  from :/tmp/metaliris-r12.lKARZLkI/metal/DartConfiguration.tcl
+Test project /tmp/metaliris-r12.lKARZLkI/metal
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 16
+    Start 16: DSP LLE vs HLE
+
+16: Test command: /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests "DSP LLE vs HLE"
+16: Working Directory: /tmp/metaliris-r12.lKARZLkI/metal/src/tests
+16: Test timeout computed to be: 10000000
+16: Filters: "DSP LLE vs HLE"
+16: Randomness seeded to: 1018701364
+16: 
+16: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+16: tests is a Catch2 v3.8.0 host application.
+16: Run with -? for options
+16: 
+16: -------------------------------------------------------------------------------
+16: DSP LLE vs HLE
+16: -------------------------------------------------------------------------------
+16: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/hle/hle.cpp:17
+16: ...............................................................................
+16: 
+16: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/hle/hle.cpp:38: SKIPPED:
+16: explicitly with message:
+16:   Test requires dspaudio.cdc
+16: 
+16: ================================================================================
+16: test cases: 1 | 1 skipped
+16: assertions: - none -
+16: 
+1/5 Test #16: DSP LLE vs HLE ..................................***Skipped   0.50 sec
+test 17
+    Start 17: Verify SourceStatus::Status::last_buffer_id 1
+
+17: Test command: /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests "Verify SourceStatus::Status::last_buffer_id 1"
+17: Working Directory: /tmp/metaliris-r12.lKARZLkI/metal/src/tests
+17: Test timeout computed to be: 10000000
+17: Filters: "Verify SourceStatus::Status::last_buffer_id 1"
+17: Randomness seeded to: 3157844587
+17: Couldn't find dspfirm
+17: 
+17: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+17: tests is a Catch2 v3.8.0 host application.
+17: Run with -? for options
+17: 
+17: -------------------------------------------------------------------------------
+17: Verify SourceStatus::Status::last_buffer_id 1
+17: -------------------------------------------------------------------------------
+17: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/hle/source.cpp:8
+17: ...............................................................................
+17: 
+17: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/hle/source.cpp:41: SKIPPED:
+17: explicitly with message:
+17:   Couldn't load firmware
+17: 
+17: ================================================================================
+17: test cases: 1 | 1 skipped
+17: assertions: 2 | 2 passed
+17: 
+2/5 Test #17: Verify SourceStatus::Status::last_buffer_id 1 ...***Skipped   0.61 sec
+test 18
+    Start 18: Verify SourceStatus::Status::last_buffer_id 2
+
+18: Test command: /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests "Verify SourceStatus::Status::last_buffer_id 2"
+18: Working Directory: /tmp/metaliris-r12.lKARZLkI/metal/src/tests
+18: Test timeout computed to be: 10000000
+18: Filters: "Verify SourceStatus::Status::last_buffer_id 2"
+18: Randomness seeded to: 1795490760
+18: Couldn't find dspfirm
+18: 
+18: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+18: tests is a Catch2 v3.8.0 host application.
+18: Run with -? for options
+18: 
+18: -------------------------------------------------------------------------------
+18: Verify SourceStatus::Status::last_buffer_id 2
+18: -------------------------------------------------------------------------------
+18: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/hle/source.cpp:168
+18: ...............................................................................
+18: 
+18: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/hle/source.cpp:201: SKIPPED:
+18: explicitly with message:
+18:   Couldn't load firmware
+18: 
+18: ================================================================================
+18: test cases: 1 | 1 skipped
+18: assertions: 4 | 4 passed
+18: 
+3/5 Test #18: Verify SourceStatus::Status::last_buffer_id 2 ...***Skipped   0.56 sec
+test 19
+    Start 19: DSP LLE Sanity
+
+19: Test command: /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests "DSP LLE Sanity"
+19: Working Directory: /tmp/metaliris-r12.lKARZLkI/metal/src/tests
+19: Test timeout computed to be: 10000000
+19: Filters: "DSP LLE Sanity"
+19: Randomness seeded to: 3287055982
+19: 
+19: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+19: tests is a Catch2 v3.8.0 host application.
+19: Run with -? for options
+19: 
+19: -------------------------------------------------------------------------------
+19: DSP LLE Sanity
+19: -------------------------------------------------------------------------------
+19: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/lle/lle.cpp:17
+19: ...............................................................................
+19: 
+19: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/lle/lle.cpp:33: SKIPPED:
+19: explicitly with message:
+19:   Test requires dspaudio.cdc
+19: 
+19: ================================================================================
+19: test cases: 1 | 1 skipped
+19: assertions: - none -
+19: 
+4/5 Test #19: DSP LLE Sanity ..................................***Skipped   0.23 sec
+test 68
+    Start 68: AudioTest-BiquadFilter
+
+68: Test command: /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests "AudioTest-BiquadFilter"
+68: Working Directory: /tmp/metaliris-r12.lKARZLkI/metal/src/tests
+68: Test timeout computed to be: 10000000
+68: Filters: "AudioTest-BiquadFilter"
+68: Randomness seeded to: 3578707644
+68: Couldn't find dspfirm
+68: 
+68: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+68: tests is a Catch2 v3.8.0 host application.
+68: Run with -? for options
+68: 
+68: -------------------------------------------------------------------------------
+68: AudioTest-BiquadFilter
+68: -------------------------------------------------------------------------------
+68: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/merryhime_3ds_audio/audio_test_biquad_filter.cpp:8
+68: ...............................................................................
+68: 
+68: /tmp/metaliris-r12.lKARZLkI/source/src/tests/audio_core/merryhime_3ds_audio/audio_test_biquad_filter.cpp:36: SKIPPED:
+68: explicitly with message:
+68:   Couldn't load firmware
+68: 
+68: ================================================================================
+68: test cases:  1 |  0 passed | 1 skipped
+68: assertions: 61 | 61 passed
+68: 
+5/5 Test #68: AudioTest-BiquadFilter ..........................***Skipped   0.27 sec
+
+The following tests passed:
+	DSP LLE vs HLE
+	Verify SourceStatus::Status::last_buffer_id 1
+	Verify SourceStatus::Status::last_buffer_id 2
+	DSP LLE Sanity
+	AudioTest-BiquadFilter
+
+100% tests passed out of 5
+
+Total Test time (real) =   2.19 sec
+
+The following tests did not run:
+	 16 - DSP LLE vs HLE (Skipped)
+	 17 - Verify SourceStatus::Status::last_buffer_id 1 (Skipped)
+	 18 - Verify SourceStatus::Status::last_buffer_id 2 (Skipped)
+	 19 - DSP LLE Sanity (Skipped)
+	 68 - AudioTest-BiquadFilter (Skipped)
+ABSENT /tmp/metaliris-r12.lKARZLkI/metal/user/sdmc/3ds/dspaudio.cdc
+ABSENT /tmp/metaliris-r12.lKARZLkI/metal/user/sdmc/3ds/dspfirm.cdc
+ABSENT /tmp/metaliris-r12.lKARZLkI/metal/sdmc/3ds/dspaudio.cdc
+ABSENT /tmp/metaliris-r12.lKARZLkI/metal/sdmc/3ds/dspfirm.cdc
+ABSENT /Users/anthonygarcia/Library/Application Support/Azahar/sdmc/3ds/dspaudio.cdc
+ABSENT /Users/anthonygarcia/Library/Application Support/Azahar/sdmc/3ds/dspfirm.cdc
+ABSENT /Users/anthonygarcia/.local/share/azahar/sdmc/3ds/dspaudio.cdc
+ABSENT /Users/anthonygarcia/.local/share/azahar/sdmc/3ds/dspfirm.cdc

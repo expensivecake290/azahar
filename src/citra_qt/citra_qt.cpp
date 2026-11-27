@@ -2,7 +2,9 @@
 // Licensed under GPLv3 or any later version
 // Refer to the LICENSE.txt file included.
 
+#include <algorithm>
 #include <clocale>
+#include <exception>
 #include <format>
 #include <iostream>
 #include <memory>
@@ -85,6 +87,9 @@
 #endif
 #include "citra_qt/util/clickable_label.h"
 #include "citra_qt/util/graphics_device_info.h"
+#ifdef ENABLE_METAL
+#include "citra_qt/util/metal_util.h"
+#endif
 #include "citra_qt/util/util.h"
 #include "common/arch.h"
 #include "common/common_paths.h"
@@ -276,6 +281,17 @@ GMainWindow::GMainWindow(Core::System& system_)
       user_data_migrator{this}, config{std::make_unique<QtConfig>()}, emu_thread{nullptr} {
     Common::Log::Initialize();
     Common::Log::Start();
+
+#ifdef ENABLE_METAL
+    if (Settings::values.renderer_debug.GetValue() &&
+        !qEnvironmentVariableIsSet("MTL_DEBUG_LAYER")) {
+        qputenv("MTL_DEBUG_LAYER", "1");
+    }
+    if (Settings::values.dump_command_buffers.GetValue() &&
+        !qEnvironmentVariableIsSet("MTL_CAPTURE_ENABLED")) {
+        qputenv("MTL_CAPTURE_ENABLED", "1");
+    }
+#endif
 
     Debugger::ToggleConsole();
 
@@ -553,6 +569,8 @@ GMainWindow::GMainWindow(Core::System& system_)
 
 #ifdef ENABLE_VULKAN
     physical_devices = GetVulkanPhysicalDevices();
+#elif defined(ENABLE_METAL)
+    physical_devices = GetMetalPhysicalDevices();
 #endif
 
     if (!game_path.isEmpty()) {
@@ -1474,6 +1492,28 @@ bool GMainWindow::LoadROM(const QString& filename) {
         ShutdownGame();
     }
 
+#ifdef ENABLE_METAL
+    const bool use_metal = Settings::GetWorkingGraphicsAPI() == Settings::GraphicsAPI::Metal;
+    if (use_metal) {
+        const auto devices = MetalUtil::EnumerateDevices();
+        const auto index = Settings::values.physical_device.GetValue();
+        if (index >= devices.size() || !devices[index].supported) {
+            LOG_ERROR(Frontend, "Metal 4 device {} is unavailable or unsupported", index);
+            QMessageBox::critical(this, tr("Metal 4 Device Unavailable"),
+                                  tr("The selected device does not support Metal 4 with unified "
+                                     "memory or is unavailable to Azahar."));
+            return false;
+        }
+        if (Settings::values.use_metalfx_spatial.GetValue() && !devices[index].spatial_scaling) {
+            LOG_ERROR(Frontend, "Metal 4 device {} cannot run MetalFX Spatial", index);
+            QMessageBox::critical(this, tr("MetalFX Spatial Unavailable"),
+                                  tr("Choose a device that supports MetalFX Spatial or turn off "
+                                     "MetalFX Spatial in Graphics settings."));
+            return false;
+        }
+    }
+#endif
+
     if (!render_window->InitRenderTarget() || !secondary_window->InitRenderTarget()) {
         LOG_CRITICAL(Frontend, "Failed to initialize render targets!");
         return false;
@@ -1485,8 +1525,22 @@ bool GMainWindow::LoadROM(const QString& filename) {
         system.InsertCartridge(UISettings::values.inserted_cartridge.GetValue());
     }
 
-    const Core::System::ResultStatus result{
-        system.Load(*render_window, filename.toStdString(), secondary_window)};
+    Core::System::ResultStatus result;
+#ifdef ENABLE_METAL
+    try {
+#endif
+        result = system.Load(*render_window, filename.toStdString(), secondary_window);
+#ifdef ENABLE_METAL
+    } catch (const std::exception& error) {
+        if (!use_metal) {
+            throw;
+        }
+        LOG_ERROR(Frontend, "Could not start a Metal 4 session: {}", error.what());
+        system.Shutdown();
+        QMessageBox::critical(this, tr("Could Not Start Metal 4"), QString::fromUtf8(error.what()));
+        return false;
+    }
+#endif
 
     if (result != Core::System::ResultStatus::Success) {
         QString invalid_format = tr("Invalid application format");
@@ -3786,6 +3840,14 @@ void GMainWindow::OnExtractBundle() {
 
 #ifdef ENABLE_FFMPEG
 void GMainWindow::OnStartVideoDumping() {
+#ifdef ENABLE_METAL
+    if (Settings::GetWorkingGraphicsAPI() == Settings::GraphicsAPI::Metal) {
+        QMessageBox::critical(this, tr("Video Dumping"),
+                              tr("Video dumping is unavailable with Metal 4."));
+        ui->action_Dump_Video->setChecked(false);
+        return;
+    }
+#endif
     if (Settings::values.graphics_api.GetValue() == Settings::GraphicsAPI::Vulkan) {
         QMessageBox::critical(
             this, QStringLiteral("Azahar"),
@@ -3822,6 +3884,14 @@ void GMainWindow::OnStartVideoDumping() {
 }
 
 void GMainWindow::StartVideoDumping(const QString& path) {
+#ifdef ENABLE_METAL
+    if (Settings::GetWorkingGraphicsAPI() == Settings::GraphicsAPI::Metal) {
+        QMessageBox::critical(this, tr("Video Dumping"),
+                              tr("Video dumping is unavailable with Metal 4."));
+        ui->action_Dump_Video->setChecked(false);
+        return;
+    }
+#endif
     auto& renderer = system.GPU().Renderer();
     const auto layout{Layout::FrameLayoutFromResolutionScale(renderer.GetResolutionScaleFactor())};
 
@@ -4063,38 +4133,47 @@ void GMainWindow::UpdateVolumeUI() {
 }
 
 void GMainWindow::UpdateAPIIndicator(bool update) {
-    static std::array graphics_apis = {QStringLiteral("SOFTWARE"), QStringLiteral("OPENGL"),
-                                       QStringLiteral("VULKAN")};
+    static const std::array graphics_apis = {QStringLiteral("SOFTWARE"), QStringLiteral("OPENGL"),
+                                             QStringLiteral("VULKAN"), QStringLiteral("METAL 4")};
+    static const std::array graphics_api_colors = {
+        QStringLiteral("#3ae400"), QStringLiteral("#00ccdd"), QStringLiteral("#91242a"),
+        QStringLiteral("#a078df")};
 
-    static std::array graphics_api_colors = {QStringLiteral("#3ae400"), QStringLiteral("#00ccdd"),
-                                             QStringLiteral("#91242a")};
-
-    u32 api_index = static_cast<u32>(Settings::values.graphics_api.GetValue());
+    u32 api_index = static_cast<u32>(Settings::GetWorkingGraphicsAPI());
     if (update) {
-        api_index = (api_index + 1) % graphics_apis.size();
-        // Skip past any disabled renderers.
-#ifndef ENABLE_SOFTWARE_RENDERER
-        if (api_index == static_cast<u32>(Settings::GraphicsAPI::Software)) {
-            api_index = (api_index + 1) % graphics_apis.size();
-        }
+        const auto is_available = [this](Settings::GraphicsAPI api) {
+            switch (api) {
+#ifdef ENABLE_SOFTWARE_RENDERER
+            case Settings::GraphicsAPI::Software:
+                return true;
 #endif
-#ifndef ENABLE_OPENGL
-        if (api_index == static_cast<u32>(Settings::GraphicsAPI::OpenGL)) {
-            api_index = (api_index + 1) % graphics_apis.size();
-        }
+#ifdef ENABLE_OPENGL
+            case Settings::GraphicsAPI::OpenGL:
+                return true;
 #endif
-#ifndef ENABLE_VULKAN
-        if (api_index == static_cast<u32>(Settings::GraphicsAPI::Vulkan)) {
-            api_index = (api_index + 1) % graphics_apis.size();
-        }
-#else
-        if (physical_devices.empty()) {
-            if (api_index == static_cast<u32>(Settings::GraphicsAPI::Vulkan)) {
-                api_index = (api_index + 1) % graphics_apis.size();
+#ifdef ENABLE_VULKAN
+            case Settings::GraphicsAPI::Vulkan:
+                return !physical_devices.empty();
+#endif
+#ifdef ENABLE_METAL
+            case Settings::GraphicsAPI::Metal: {
+                const auto devices = MetalUtil::EnumerateDevices();
+                return std::ranges::any_of(devices, &MetalUtil::DeviceInfo::supported);
+            }
+#endif
+            default:
+                return false;
+            }
+        };
+        for (u32 offset = 1; offset <= graphics_apis.size(); ++offset) {
+            const auto candidate = (api_index + offset) % graphics_apis.size();
+            const auto api = static_cast<Settings::GraphicsAPI>(candidate);
+            if (is_available(api)) {
+                api_index = static_cast<u32>(candidate);
+                Settings::values.graphics_api = api;
+                break;
             }
         }
-#endif
-        Settings::values.graphics_api = static_cast<Settings::GraphicsAPI>(api_index);
     }
 
     const QString style_sheet = QStringLiteral("QPushButton { font-weight: bold; color: %0; }")
@@ -4233,12 +4312,17 @@ void GMainWindow::OnCoreError(Core::System::ResultStatus result, std::string det
         can_continue = false;
     } else if (result == Core::System::ResultStatus::ErrorShaderCacheCrash) {
         title = tr("Shader Cache Crash");
+#ifdef ENABLE_METAL
+        message = tr("A cached Metal pipeline failed to load. Check the log for the failing "
+                     "pipeline and the cache rebuild result.");
+#else
         message =
             tr("Azahar closed unexpectedly the last time it built the Vulkan shader cache of the "
                "current title. The graphics driver may have crashed on one of the cached shaders, "
                "and continuing may crash it again.<br/><br/>To reset the shader cache, "
                "right-click the application in the game list and select "
                "<b>Disk Shader Cache &gt; Delete Vulkan Shader Cache</b>.");
+#endif
         status_message = tr("Shader cache crash");
         error_severity_icon = QMessageBox::Icon::Critical;
     } else if (result == Core::System::ResultStatus::ErrorSavestateBuildMismatch) {

@@ -1,0 +1,41 @@
+{
+  "phase": "090",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-090-01",
+      "source": {
+        "path": "src/video_core/gpu.cpp",
+        "sha256": "d39da6647292836b6c37bb7a5b91ec1201d59fc8040cafdba471e08fdcf8212e",
+        "line": 577,
+        "symbol": ""
+      },
+      "contract": "Existing GPU recreation binds newly created renderer and rasterizer, reuses title cache and invalidates guest state.",
+      "native_mapping": "Native factory signature matches existing construction, retaining Core, PICA and both frontend windows through current interfaces.",
+      "expected_result": "Both initial and recreation paths compile and will link with native implementation. Hardware recreation integration pending.",
+      "dependency_owner": "008/068/091",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-090-02",
+      "source": {
+        "path": "src/common/settings.cpp",
+        "sha256": "34604c1b62edc5d12a2d2949c8ef7a61b9406f78909a444ffe650c2225cfc448",
+        "line": 271,
+        "symbol": "Settings::GraphicsAPI GetWorkingGraphicsAPI() {"
+      },
+      "contract": "Shared normalized settings remain canonical for graphics API choice. No Qt dependency in core.",
+      "native_mapping": "Consume existing Settings::GetWorkingGraphicsAPI and keep Qt startup diagnostics in frontend rather than dispatcher.",
+      "expected_result": "Native CPU-side feature selection scope and source isolation verified by actual compile database.",
+      "dependency_owner": "004/005/086",
+      "command": "python3 docs/metaliris/090/verify.py <native core build> <software Qt build> <output>",
+      "evidence_path": "090/compile.log",
+      "status": "PASS",
+      "actual_result": "Actual native and Software-only dispatcher compiled with matching CMake flags; exact native constructor dependency, software backend and no SDL/Vulkan symbols. PICA 48/801 and CTest 64 preserved. Native construction definition belongs to 091."
+    }
+  ],
+  "owner_sha256_after": "cf0a0166ad6cfe2282b00be1228e03f2ef520af87826681db4c75c74b74c319d"
+}

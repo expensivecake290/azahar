@@ -1,0 +1,41 @@
+{
+  "phase": "091/shared-renderer-base",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-SHARED-091-01",
+      "source": {
+        "path": "src/video_core/renderer_base.cpp",
+        "sha256": "232d3272c7bef501825f3de168dd3a86adefac6ee78de2168e9779a0670b118e",
+        "line": 85,
+        "symbol": "void RendererBase::RequestScreenshot(void* data, std::function<void(bool)> callback,"
+      },
+      "contract": "Qt GUI and RPC can concurrently submit screenshots. The shared writer check/set spans non-atomic fields.",
+      "native_mapping": "Serialize the writer check and publication under a local shared lock. Keep the existing atomic for published request visibility and native completion.",
+      "expected_result": "Real shared RequestScreenshot concurrency fixture exercises the publishers and public settings readout across 1024 epochs.",
+      "dependency_owner": "081/091",
+      "command": "python3 docs/metaliris/091/shared-renderer-base/verify.py <native-core> <scratch>",
+      "evidence_path": "091/shared-renderer-base/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native and feature-off compile, 1024 real concurrent screenshot publish pairs, final native/Qt link and regression baseline passed."
+    },
+    {
+      "id": "AZ-SHARED-091-02",
+      "source": {
+        "path": "src/core/rpc/rpc_server.cpp",
+        "sha256": "16f7d2a084eea03e9c213b87121e0ea7755e4f57222a0d591f204206534d9005",
+        "line": 177,
+        "symbol": "if (screenshot_in_progress || renderer.IsScreenshotPending()) {"
+      },
+      "contract": "A second publisher stays busy while a screenshot destination is already owned.",
+      "native_mapping": "Keep both RPC and Qt call sites and legacy reader semantics. The lock encloses only shared writer setup.",
+      "expected_result": "No racing callback/destination publication, no API or Qt dependency change.",
+      "dependency_owner": "081/091",
+      "command": "python3 docs/metaliris/091/shared-renderer-base/verify.py <native-core> <scratch>",
+      "evidence_path": "091/shared-renderer-base/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native and feature-off compile, 1024 real concurrent screenshot publish pairs, final native/Qt link and regression baseline passed."
+    }
+  ],
+  "owner_sha256_after": "2dd25449cdb08f095198e66780b146286472b328045eddb995812dad416cbe27"
+}

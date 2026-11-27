@@ -1,0 +1,75 @@
+{
+  "phase": "086",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-086-01",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 555,
+        "symbol": "physical_devices = GetVulkanPhysicalDevices();"
+      },
+      "contract": "Main window supplies adapters to global/per-game preferences before boot.",
+      "native_mapping": "Discover names and support via the ordered native bridge. Shared graphics status and controls use native effective working API.",
+      "expected_result": "Qt offscreen main window boots without array overflow when Metal default or Software, with no Vulkan init.",
+      "dependency_owner": "079/082/083/085",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-086-02",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 274,
+        "symbol": "GMainWindow::GMainWindow(Core::System& system_)"
+      },
+      "contract": "Read global settings before hardware creation. Diagnostic flags attach to application startup once.",
+      "native_mapping": "Set documented Metal API Validation and GPU capture environment toggles before the explicit native device probe and keep launch environment precedence.",
+      "expected_result": "Host widget fixture confirms persisted debug/capture on/off and preexisting environment preservation. Hardware effects pending.",
+      "dependency_owner": "084/085/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native and feature-off Qt compilation, full real native Qt link, persisted Metal diagnostic environment and precedence verified through GMainWindow startup. PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "AZ-086-03",
+      "source": {
+        "path": "src/citra_qt/citra_qt.cpp",
+        "sha256": "58157001b958108048edfa352f418671581d6f902fbbd5d7df02164d3fcc26c2",
+        "line": 1673,
+        "symbol": "render_window->ReleaseRenderTarget();"
+      },
+      "contract": "Failed LoadROM is cleaned through the primary and secondary ReleaseRenderTarget paths.",
+      "native_mapping": "Use same ownership and screenshot/user session flow. Selected-adapter checks precede window initialization; catch partial Metal load then reset Core before returning.",
+      "expected_result": "No stray target or splash after failing startup, with fixture for no device and actual hardware startup error path.",
+      "dependency_owner": "080/081/091",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-086-04",
+      "source": {
+        "path": "src/citra_qt/citra_qt.h",
+        "sha256": "940a4803b4dec6dd3c0fd5e80450b1b1ac88ddb961faaf270556e946b4cfc574",
+        "line": 404,
+        "symbol": "std::unique_ptr<QtConfig> config;"
+      },
+      "contract": "Existing Qt config and userdata migration maintain scope and ordering.",
+      "native_mapping": "No constructor signature changes. Keep private main-window methods and existing committed persisted settings.",
+      "expected_result": "Real app and linked host fixture with isolated temporary Qt settings load under arm64 macOS.",
+      "dependency_owner": "085/087",
+      "command": "python3 docs/metaliris/086/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "086/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native and feature-off Qt compilation, full real native Qt link, persisted Metal diagnostic environment and precedence verified through GMainWindow startup. PICA 48/801 and CTest 64 passes."
+    }
+  ],
+  "owner_sha256_after": "75f297bc618598e8435eacb947d21ac601e6abe04c9324d1114b80c6ca26bffa"
+}

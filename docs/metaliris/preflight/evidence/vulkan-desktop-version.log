@@ -1,0 +1,4 @@
++zsh:6> env 'XDG_CONFIG_HOME=/tmp/metaliris-gate0-84oi2too/vulkan-runtime-config' 'QT_QPA_PLATFORM=offscreen' /tmp/metaliris-gate0-84oi2too/vulkan-build/bin/Release/azahar.app/Contents/MacOS/azahar --version
+dyld[10165]: Symbol not found: __ZN14QObjectPrivateC2E16QtPrivate_6_11_1
+  Referenced from: <79285CDD-C89E-3664-9A06-50DF7A42233A> /opt/homebrew/Cellar/qtmultimedia/6.11.1/lib/QtMultimedia.framework/Versions/A/QtMultimedia
+  Expected in:     <A4D0AE4C-74E2-31A5-B1D5-B272CDD50E0E> /opt/homebrew/Cellar/qtbase/6.11.2/lib/QtCore.framework/Versions/A/QtCore

@@ -1,0 +1,109 @@
+{
+  "phase": "036",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-036-01",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 8,
+        "symbol": "layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;"
+      },
+      "contract": "Eight by eight samplerless group; bind depth, unsigned stencil and normalized RGBA8.",
+      "native_mapping": "Use native depth2d and stencil read texture, typed Metal RGBA write at slots 0,1,2 respectively.",
+      "expected_result": "Whole native depth/stencil pair dispatch with independent offsets.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-036-02",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 13,
+        "symbol": "layout(push_constant, std140) uniform ComputeInfo {"
+      },
+      "contract": "Offsets are relative to the selected mip/slice. Use copy extent, including dimensions that do not fill an 8x8 workgroup.",
+      "native_mapping": "Native 24-byte constant block, selected views, origin validation and overflow-safe distance checks.",
+      "expected_result": "7x5 offset copy within 11x7 target; 1x1 final border; invalid and overflowing offsets preserve all sentinels.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-036-03",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 22,
+        "symbol": "highp uint depth_val ="
+      },
+      "contract": "Represent native normalized depth as the high 24 bits of a 32-bit conversion. Reference float32 rounds the scale to 2^32.",
+      "native_mapping": "Convert with equivalent 2^24 scaling and saturate depth 1 to ffffff before extracting integer bytes.",
+      "expected_result": "Independent 64-bit reference checks 0, low-bit threshold, quarter, half, precision edges and far plane.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-036-04",
+      "source": {
+        "path": "src/video_core/host_shaders/format_reinterpreter/vulkan_d24s8_to_rgba8.comp",
+        "sha256": "6bf148283168bd8c91e810889522b8d51ebdd222deb08e8a6e7f04d6b7fe2b27",
+        "line": 24,
+        "symbol": "lowp uint stencil_val = texelFetch(stencil, src_coord, 0).x;"
+      },
+      "contract": "Output R=stencil, G=depth high byte, B=middle byte, A=low byte. Normalize each lane independently.",
+      "native_mapping": "Exact bit masks and RGBA8Unorm native writes, no filtering (integer texel).",
+      "expected_result": "Asymmetric stencil/depth, all channels and boundary values stay byte exact.",
+      "dependency_owner": "036",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-036-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 424,
+        "symbol": "bool BlitHelper::ConvertDS24S8ToRGBA8(Surface& source, Surface& dest,"
+      },
+      "contract": "Single-sample path is selected for single/differing surface samples; fully multisampled has distinct pipeline and resolves afterward.",
+      "native_mapping": "Keep single-sample aspect contract and explicit downstream MSAA phase; native transition ends render pass, tracks aliases and residency.",
+      "expected_result": "Live host blit consumer phase chooses subresources, decodes true aspects and preserves store/load order.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-036-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_texture_runtime.cpp",
+        "sha256": "813775d4fc9012d472c980ac327986365a2d1e053dcfb0608f002db7bdea80d6",
+        "line": 329,
+        "symbol": "bool TextureRuntime::Reinterpret(Surface& source, Surface& dest,"
+      },
+      "contract": "Reinterpret only compatible raw copies or explicit guest D24S8->RGBA8; unsupported direction returns failure.",
+      "native_mapping": "Native texture copy routing uses actual neutral format and exact encoded alignment.",
+      "expected_result": "First texture runtime consumer verifies both route branches and correct no-convert fallback.",
+      "dependency_owner": "066",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 036 <native-build-dir> <scratch-dir>",
+      "evidence_path": "036/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5aed4978a7f9018247597f3ac173b11715e64aa9914a67dc9d0c8ca7f50e9e77"
+}

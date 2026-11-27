@@ -1,0 +1,41 @@
+{
+  "phase": "077",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-077-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Actual Apple SDK, style and framework dependency verification.",
+      "native_mapping": "Compile arm64 Objective-C++ ARC, link AppKit/QuartzCore/Metal kit and whole native graph. Run host ObjC lifecycle fixture and PICA/CTest baseline.",
+      "expected_result": "Prove reflective layer ownership and no rejected backend dependency.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC and production AppKit target linkage, host real AppKit adoption/resize/restore and queued destruction, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "MTL-077-02",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.mm",
+        "sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+        "line": 16,
+        "symbol": "CAMetalLayer* metalLayer = [CAMetalLayer layer];"
+      },
+      "contract": "Physical AppKit monitor, native GPU and fullscreen/refresh replay.",
+      "native_mapping": "Use native Qt loop with a live Mac window and MTL_DEBUG_LAYER. Exercise real backing scale/refresh changes and typed suspension, followed by committed GPU retirement.",
+      "expected_result": "Actual live monitor settings and API validation from owning frontend/runtime.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "ea0419370c8a61f21041e18d13369c1fc45627a03f639e62bd377d9a3f438919"
+}

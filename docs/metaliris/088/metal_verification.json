@@ -1,0 +1,41 @@
+{
+  "phase": "088",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-088-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.h",
+        "sha256": "8cac78f8071117711c188cb3a6f9c175d54f54bdc0100efd21bd54a9b373099b",
+        "line": 35,
+        "symbol": "void SetupPerGameUI();"
+      },
+      "contract": "Compile actual consumers and MOC generated metadata, test valid/invalid control, then PICA and CTest.",
+      "native_mapping": "Native/off compilation and matched SDK Qt linkage plus deterministic available/unavailable toggle tests.",
+      "expected_result": "Native and disabled chart preserves independent filter and data scope. Runtime supported hardware remains outside this header.",
+      "dependency_owner": "083/089",
+      "command": "python3 docs/metaliris/083/verify.py <Qt build> <core> <output>",
+      "evidence_path": "088/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt MOC and application link, native/feature-off compilation, exact reproduced unsupported-device opt-out test repaired, normal and per-game controls, CTest 64 and PICA 48/801."
+    },
+    {
+      "id": "MTL-088-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.cpp",
+        "sha256": "56160892dbd05c66bc493942b618525c586a7c74e6efb7fc11c6f11762e1242a",
+        "line": 380,
+        "symbol": "auto* spatial = SpatialCheckBox(this);"
+      },
+      "contract": "Check the final Designer control conditional and settings lifecycle.",
+      "native_mapping": "Verify real UI on accessible device, especially a previously enabled profile applied to unsupported Spatial hardware.",
+      "expected_result": "Correct action availability and manual opt-out restore native session without invoking Spatial when off.",
+      "dependency_owner": "086/089/091",
+      "command": "python3 docs/metaliris/083/verify.py <Qt build> <core> <output>",
+      "evidence_path": "088/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "2a735768e47e408506639c0e1107a7c0f21eb6a05d32d32a6be56a4e39919d12"
+}

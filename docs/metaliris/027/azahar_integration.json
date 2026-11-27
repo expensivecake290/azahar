@@ -1,0 +1,92 @@
+{
+  "phase": "027",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-027-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_descriptor_update_queue.cpp",
+        "sha256": "0812e646fd6b3af029e8bcb16d295ee6f91313005667cfc360c14fd3e3708d1b",
+        "line": 5,
+        "symbol": "#include \"video_core/renderer_vulkan/vk_descriptor_update_queue.h\""
+      },
+      "contract": "Vulkan descriptor and instance headers are private; native header audit includes ARC and common buffer types.",
+      "native_mapping": "Use real Metal 4 argument table SDK, existing EncodingContext and ResourcePool.",
+      "expected_result": "Compile-time paths and binary target exclude Vulkan/GLSL/SPIR-V.",
+      "dependency_owner": "027",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PASS",
+      "actual_result": "ARC native host compilation and linking passed. MSL 4 typed fixture compiled and linked to a real Metal library."
+    },
+    {
+      "id": "AZ-027-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 99,
+        "symbol": "scheduler.RegisterOnDispatch([this] { update_queue.Flush(); });"
+      },
+      "contract": "Descriptor writes publish before worker reads them.",
+      "native_mapping": "Capture immutable generation before Record and allow a DispatchWork flush for queued changes.",
+      "expected_result": "062 pipeline-cache owner integrates both compilation modes.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-027-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 120,
+        "symbol": "update_queue.AddTexelBuffer(buffer_set, 3, *texture_lf_view);"
+      },
+      "contract": "PICA lighting and color tables sample typed texel buffer views; uniform binds via relative offsets.",
+      "native_mapping": "Map those to formatted textures and validated native address plus byte offset.",
+      "expected_result": "068 shader reads oracle LUT and uniform data.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-027-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.cpp",
+        "sha256": "767e738aa22de72d0ae8b7b51d6dd018c27fc63829fc4bdacf8816d3810c6bb1",
+        "line": 560,
+        "symbol": "update_queue.AddBuffer(descriptor_set, 2, buffer, copy.buffer_offset, copy.buffer_size,"
+      },
+      "contract": "Compute utilities bind writable storage buffers for native depth copy.",
+      "native_mapping": "BindCompute registers buffer range and required dispatch-stage write hazard.",
+      "expected_result": "064 verifies exact depth to buffer copy.",
+      "dependency_owner": "064",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-027-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 192,
+        "symbol": "update_queue.AddImageSampler(present_set, 0, index, screen_infos[index].image_view,"
+      },
+      "contract": "Presentation snapshots multiple sampled screens with their own sampler/texture indices.",
+      "native_mapping": "Immutable array slot resolution and distinct target captures.",
+      "expected_result": "091 verify display shader reads each independently.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/027/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "027/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "5eb2ba27a8e52afce970564c4c588693b53916926e05b22fe3819f2ef861d9d3"
+}

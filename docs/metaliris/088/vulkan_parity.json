@@ -1,0 +1,41 @@
+{
+  "phase": "088",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-088-01",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.h",
+        "sha256": "8cac78f8071117711c188cb3a6f9c175d54f54bdc0100efd21bd54a9b373099b",
+        "line": 20,
+        "symbol": "class ConfigureGraphics : public QWidget {"
+      },
+      "contract": "Qt graphics controls expose supported backend and scope-dependent settings without changing existing public constructors or slots.",
+      "native_mapping": "Keep public API unchanged. Declare the native-only availability updater and matching per-game CheckState behind ENABLE_METAL.",
+      "expected_result": "Real MOC, native/off compiler and exact Qt setter behavior with supported, unsupported and absent adapters.",
+      "dependency_owner": "083/089",
+      "command": "python3 docs/metaliris/083/verify.py <Qt build> <core> <output>",
+      "evidence_path": "088/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt MOC and application link, native/feature-off compilation, exact reproduced unsupported-device opt-out test repaired, normal and per-game controls, CTest 64 and PICA 48/801."
+    },
+    {
+      "id": "VK-088-02",
+      "source": {
+        "path": "src/citra_qt/configuration/configure_graphics.cpp",
+        "sha256": "56160892dbd05c66bc493942b618525c586a7c74e6efb7fc11c6f11762e1242a",
+        "line": 380,
+        "symbol": "auto* spatial = SpatialCheckBox(this);"
+      },
+      "contract": "The active graphics API and device affect the availability of hardware settings.",
+      "native_mapping": "Retain the current enabled Spatial setting when switching and permit turning it off on unsupported hardware, then prevent enabling it there.",
+      "expected_result": "With native Spatial enabled, switch to unsupported Spatial adapter, disable Spatial, apply successfully and preserve settings isolation.",
+      "dependency_owner": "083/086/089",
+      "command": "python3 docs/metaliris/083/verify.py <Qt build> <core> <output>",
+      "evidence_path": "088/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real Qt MOC and application link, native/feature-off compilation, exact reproduced unsupported-device opt-out test repaired, normal and per-game controls, CTest 64 and PICA 48/801."
+    }
+  ],
+  "owner_sha256_after": "2a735768e47e408506639c0e1107a7c0f21eb6a05d32d32a6be56a4e39919d12"
+}

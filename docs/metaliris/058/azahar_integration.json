@@ -1,0 +1,126 @@
+{
+  "phase": "058",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-058-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+        "sha256": "7d4559f4a3ce7945c68ff24f30c0954e9191331220589296d0e95fdc5a48a8d8",
+        "line": 191,
+        "symbol": "}"
+      },
+      "contract": "Use complete graphics build key and distinguish draw-time states.",
+      "native_mapping": "Avoid padding and pointer identity; keep exact shader and renderer compatibility across caches; bind only valid bundles.",
+      "expected_result": "Actual compile, native state oracle and sender context checks.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "AZ-058-02",
+      "source": {
+        "path": "src/common/thread_worker.h",
+        "sha256": "b4dda858082180024336e1fddd2dbfee175cb59358838f287ea3750f04bcf05b",
+        "line": 23,
+        "symbol": "template <class StateType = void>"
+      },
+      "contract": "Use project async worker and limit queued and running work.",
+      "native_mapping": "One bounded worker pool owns pipeline tasks; futures publish immutable state or typed cancellation. Destruction joins native work after cancellation.",
+      "expected_result": "Verify disabled pool, queue pressure, duplicate requests, title cancellation and shutdown.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "AZ-058-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "fe8868ae7267e3133b8549ac32a1cbf9c3702247d7a9a498e6db0a9fbf1d19e2",
+        "line": 132,
+        "symbol": ""
+      },
+      "contract": "Integrate shader library generation and compiler identity.",
+      "native_mapping": "Retain first library to check shader epoch on each successful result query, and guard native submission/callback with originating DeviceContext.",
+      "expected_result": "Device or title change rejects old pipelines and does not leak readiness.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "AZ-058-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.mm",
+        "sha256": "57bb415ef88ccf3de0a60ef8229a88dd559294f719aba65e23bb1015ebb946a6",
+        "line": 421,
+        "symbol": "struct PrimitivePayload {{"
+      },
+      "contract": "Mesh generator uses object/mesh functions from the same program and compute transformed PICA outputs.",
+      "native_mapping": "Include transform and native object/mesh functions, set required group sizes and payload mapping. Compute expansion route requires both transform and expand.",
+      "expected_result": "Observe exact all-stage publication and real mesh payload/compute expansion workloads.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "AZ-058-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.h",
+        "sha256": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398",
+        "line": 93,
+        "symbol": "[[nodiscard]] constexpr bool LogicReadsDestination(FramebufferRegs::LogicOp operation) noexcept {"
+      },
+      "contract": "Native fragment utilities classify logic destination reads and blend equation semantics.",
+      "native_mapping": "Validate feedback and exact fragment route capabilities before selecting the mutable attachment path.",
+      "expected_result": "Reject missing feedback when read is required and validate preserved native paths for color, depth and shadow.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-058-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.cpp",
+        "sha256": "73635f18d7a32276374d86a53b719bef1c7799ece74591741765cd73b51e2b5e",
+        "line": 235,
+        "symbol": "pipeline_info.dynamic_info.stencil_compare_mask = stencil_test.input_mask;"
+      },
+      "contract": "PICA depth write forces depth test enabled, references and write masks obey register protection.",
+      "native_mapping": "Native spec expects normalized key from draw owner. Reference encodes dynamic; masks compile into pipeline state.",
+      "expected_result": "Run actual high-level PICA register graphics integration under the rasterizer owner.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "REOPEN-058-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.mm",
+        "sha256": "d3a69638767d111db1b440da41655977d32241e0a60bb6b73c8cd625d63a67e0",
+        "line": 689,
+        "symbol": "PipelineCompiler::~PipelineCompiler() {"
+      },
+      "contract": "Native pipeline title owner requires a real worker idle barrier before serializing previously compiled pipelines without shutting down the active title.",
+      "native_mapping": "Join actual worker requests and check that a controlled in-flight SDK operation blocks the idle barrier until completion.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "058/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Join actual worker requests and check that a controlled in-flight SDK operation blocks the idle barrier until completion. Captured in 058/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "666d3ddba321c4012480661ba3d1077ed2687f00fe766dd222cd51b678ab345d"
+}

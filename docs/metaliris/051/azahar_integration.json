@@ -1,0 +1,58 @@
+{
+  "phase": "051",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-051-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.vert",
+        "sha256": "f77e074a78d6692fbd1e8bb49d5aed858ec2f86ca4497eb5a31de9bf84b0b7df",
+        "line": 10,
+        "symbol": "layout (location = 0) out vec2 frag_tex_coord;"
+      },
+      "contract": "Vertex stage passes native UV through to identical fragment interface.",
+      "native_mapping": "Compatible user(locn0) cross-library and a native 052 companion stage will own layout transform.",
+      "expected_result": "Initial test vertex then actual 052-stage pair included in SDK checks.",
+      "dependency_owner": "052",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-051-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 188,
+        "symbol": "void RendererVulkan::PrepareDraw(Frame* frame, const Layout::FramebufferLayout& layout) {"
+      },
+      "contract": "Reference binds three screen textures with one common normalized sampler selected by Settings.",
+      "native_mapping": "Native contiguous argument table texture slots 0..2 and a single common sampler at 0.",
+      "expected_result": "Render with matching sampler selection and three distinct retained resources.",
+      "dependency_owner": "051",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-051-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 747,
+        "symbol": "void RendererVulkan::DrawSingleScreen(u32 screen_id, float x, float y, float w, float h,"
+      },
+      "contract": "Later native presentation owns screen rectangles, opacity, cursor, fullscreen and resource lifecycle.",
+      "native_mapping": "Preserve valid array contract and neutral geometry; only source fragment stage here.",
+      "expected_result": "Actual texture allocation and presentation ordering in 073 and 091.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e970a003499db9d13fc0af64feea7f763c70ac6da3c097dd2d45dbb481818e3b"
+}

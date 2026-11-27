@@ -23,6 +23,7 @@ enum class GraphicsAPI {
     Software = 0,
     OpenGL = 1,
     Vulkan = 2,
+    Metal = 3,
 };
 
 enum class InitClock : u32 {
@@ -546,7 +547,9 @@ struct Values {
     // Renderer
     // clang-format off
     SwitchableSetting<GraphicsAPI, true> graphics_api{
-#if defined(ANDROID) && defined(ENABLE_VULKAN) // Prefer Vulkan on Android, OpenGL on everything else
+#if defined(ENABLE_METAL)
+        GraphicsAPI::Metal,
+#elif defined(ANDROID) && defined(ENABLE_VULKAN) // Prefer Vulkan on Android, OpenGL elsewhere
         GraphicsAPI::Vulkan,
 #elif defined(ENABLE_OPENGL)
         GraphicsAPI::OpenGL,
@@ -558,7 +561,11 @@ struct Values {
 // TODO: Add a null renderer backend for this, perhaps.
 #error "At least one renderer must be enabled."
 #endif
+#ifdef ENABLE_METAL
+        GraphicsAPI::Software, GraphicsAPI::Metal, Keys::graphics_api};
+#else
         GraphicsAPI::Software, GraphicsAPI::Vulkan, Keys::graphics_api};
+#endif
     // clang-format on
     SwitchableSetting<u32> physical_device{0, Keys::physical_device};
     Setting<bool> use_gles{false, Keys::use_gles};
@@ -584,6 +591,9 @@ struct Values {
         true, Keys::use_display_refresh_rate_detection};
     Setting<bool> use_shader_jit{true, Keys::use_shader_jit};
     SwitchableSetting<u32, true> resolution_factor{1, 0, 18, Keys::resolution_factor};
+#ifdef ENABLE_METAL
+    SwitchableSetting<bool> use_metalfx_spatial{false, Keys::use_metalfx_spatial};
+#endif
     SwitchableSetting<AntiAliasingMethod> antialiasing{AntiAliasingMethod::None, "antialiasing"};
     SwitchableSetting<bool> use_integer_scaling{false, Keys::use_integer_scaling};
     SwitchableSetting<double, true> frame_limit{100, 0, 1000, Keys::frame_limit};

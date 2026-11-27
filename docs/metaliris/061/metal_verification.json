@@ -1,0 +1,41 @@
+{
+  "phase": "061",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-061-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 542,
+        "symbol": "ExtraVSConfig PipelineCache::CalcExtraConfig(const PicaVSConfig& config) {"
+      },
+      "contract": "Verify native geometry route, restart and exact guest vertex selection.",
+      "native_mapping": "Compile and run constexpr oracle of legal routes and software-transformed buffers; classes are concrete Apple SDK POD and C++ types.",
+      "expected_result": "Independent matrix proves deterministic routes and both widths/sentinel branch, validates stable public result.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "MTL-061-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 409,
+        "symbol": "bool PipelineCache::BindPipeline(PipelineInfo& info, bool wait_built) {"
+      },
+      "contract": "Bind submitted Metal 4 buffers only after ready pipeline.",
+      "native_mapping": "Compile native cache, argument and generation declarations; targeted GPU readback with sync and async draws, persistent archives and context changes.",
+      "expected_result": "Live known-answer parity under native execution and clean validation.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e5daa2eb9a96e28045885db7702d156f2f114f1a1b0f197c047d09ba629ca4c9"
+}

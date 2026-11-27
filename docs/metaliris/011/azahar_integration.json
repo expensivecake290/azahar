@@ -1,0 +1,58 @@
+{
+  "phase": "011",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-HEADLESS",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 170,
+        "symbol": "struct NativeSurface {"
+      },
+      "contract": "Phase 006 publishes owned handle and physical geometry to the backend.",
+      "native_mapping": "Frontend-independent native view keeps the snapshot alive without accessing a toolkit.",
+      "expected_result": "Header requires only native SDK and shared C++ dependencies.",
+      "dependency_owner": "011",
+      "command": "xcrun --sdk macosx clang++ -arch arm64 -mmacosx-version-min=26.0 -std=c++20 -fobjc-arc -DENABLE_METAL -I src -I <native-build-dir>/src -isystem externals/boost -fsyntax-only docs/metaliris/011/verify.mm",
+      "evidence_path": "011/header.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "AZ-DEVICE-IDENTIFICATION",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 474,
+        "symbol": "@property (readonly) uint64_t registryID API_AVAILABLE(macos(10.13), ios(11.0)) ;"
+      },
+      "contract": "Native registry ID can identify the same hardware consistently.",
+      "native_mapping": "Expose retained native device and unique registry ID in the probe result.",
+      "expected_result": "The native device list avoids duplicate IDs and puts system default first.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    },
+    {
+      "id": "AZ-SURFACE-OWNERSHIP",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/CAMetalLayer.h",
+        "sha256": "074e50fdb4981d9da5f000b979bef047a78e00ac9bea682f85388e20bf47c73f",
+        "line": 54,
+        "symbol": "@interface CAMetalLayer : CALayer"
+      },
+      "contract": "CAMetalLayer is the native drawing surface.",
+      "native_mapping": "Provide ARC-backed type erasure and a retained, validated view from the shared snapshot.",
+      "expected_result": "A real layer stays alive after frontend reference drops and clears after the last snapshot.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    }
+  ],
+  "owner_sha256_after": "71cbc1f2022b01300db7f96dd9c51915676b08ac0335875777664161eb488c8c"
+}

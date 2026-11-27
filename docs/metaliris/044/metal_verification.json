@@ -1,0 +1,41 @@
+{
+  "phase": "044",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-044-01",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/x_gradient.frag",
+        "sha256": "bc61990bfe7c35cab01ba093d3b0c8392a873ab1dda279514a705ddbd4b8a781",
+        "line": 33,
+        "symbol": "#define GetLum(xoffset) dot(K, textureLodOffset(tex_input, tex_coord, 0.0, ivec2(xoffset, 0)).rgb)"
+      },
+      "contract": "Actual Metal 4 compilation and CMake embedding with native texture sampling offsets and float2 output.",
+      "native_mapping": "Compile, check package hashes, native host fixture/pure CPU reference and run PICA/CTest.",
+      "expected_result": "Successful Metal library and native arm64 host fixture source dependency proof.",
+      "dependency_owner": "044",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 044 <native-build-dir> <scratch-dir> <tex-coord-native-library>",
+      "evidence_path": "044/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native MSL, exact CMake embedding, CPU signed/smooth luma oracle, SDK fixture linking and PICA/CTest passed."
+    },
+    {
+      "id": "MTL-044-02",
+      "source": {
+        "path": "src/video_core/host_shaders/texture_filtering/x_gradient.frag",
+        "sha256": "bc61990bfe7c35cab01ba093d3b0c8392a873ab1dda279514a705ddbd4b8a781",
+        "line": 40,
+        "symbol": "frag_color = vec2(r - l, l + 2.0 * c + r);"
+      },
+      "contract": "Verify half-float tracks sign and high-amplitude smooth channel.",
+      "native_mapping": "Independent sample weights and native RG16Float output capture without color clamp.",
+      "expected_result": "Check all derivative and filter bytes, odd sizes, alpha changes and borders.",
+      "dependency_owner": "044",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 044 <native-build-dir> <scratch-dir> <tex-coord-native-library>",
+      "evidence_path": "044/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "3bd969c3005e7badf7b61fcb7d338832c6a989ca62541c9c8221a1b89db0d82f"
+}

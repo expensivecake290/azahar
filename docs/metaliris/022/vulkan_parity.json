@@ -1,0 +1,330 @@
+{
+  "phase": "022",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-022-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 18,
+        "symbol": "enum class StateFlags {"
+      },
+      "contract": "AllDirty, pipeline and descriptor bits denote clean cached state independently.",
+      "native_mapping": "Native StateFlags and individual reset/query methods; reset at submission.",
+      "expected_result": "Pipeline dirtiness and binding dirtiness independently observed.",
+      "dependency_owner": "022",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC arm64 Metal 4 consumer compiles; independent range and state flag cases pass."
+    },
+    {
+      "id": "VK-022-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 25,
+        "symbol": "class Instance;"
+      },
+      "contract": "Instance owns backend device identity and outlives scheduler.",
+      "native_mapping": "DeviceContext reference supplies a generation-bound device lease.",
+      "expected_result": "Reject stale or closed device context at commit.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 31,
+        "symbol": "explicit Scheduler(const Instance& instance);"
+      },
+      "contract": "Construct scheduler and allocate worker state; destructor safely terminates pending worker activity.",
+      "native_mapping": "Construct native queues, pool and worker; shutdown cancels uncommitted work and retains actually committed resources.",
+      "expected_result": "Stop while queued and while GPU pending; drain only actual retirements.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 35,
+        "symbol": "void Flush(vk::Semaphore signal = nullptr, vk::Semaphore wait = nullptr);"
+      },
+      "contract": "Flush issues current batch asynchronously; signal and wait interoperation.",
+      "native_mapping": "Flush publishes ticket, optional prior-ticket dependency and drawable handoff on owning queue.",
+      "expected_result": "Ticket issued once in submission order; no GPU wait on CPU producer.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 38,
+        "symbol": "void Finish(vk::Semaphore signal = nullptr, vk::Semaphore wait = nullptr);"
+      },
+      "contract": "Finish snapshots submitted tick and waits for that work.",
+      "native_mapping": "Finish waits exact issued ticket and returns native completion result.",
+      "expected_result": "Shared readback is visible after success and faulted/timed-out work cannot be read.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 42,
+        "symbol": "void WaitWorker();"
+      },
+      "contract": "WaitWorker dispatches pending commands and blocks until worker execution finishes.",
+      "native_mapping": "Worker sequence fence waits for actual command execution or propagated error.",
+      "expected_result": "Already popped CPU command still blocks waiter; pending GPU does not make CPU barrier wait.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 45,
+        "symbol": "void Wait(u64 tick);"
+      },
+      "contract": "Wait flushes an unsignaled current tick before blocking.",
+      "native_mapping": "Flush current prospective tick only; unknown future stops immediately and old faults remain observable.",
+      "expected_result": "Wait observes last/current/unknown tickets and deadline.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 48,
+        "symbol": "void DispatchWork();"
+      },
+      "contract": "DispatchWork ignores empty chunks and publishes nonempty chunks before reserving a replacement.",
+      "native_mapping": "CPU encoding chunk sequence with immutable ordered ownership transfer.",
+      "expected_result": "Empty dispatch inert; worker completes all published tasks.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 52,
+        "symbol": "void Record(T&& command) {"
+      },
+      "contract": "Record executes FIFO, moves the original command once and redispatches when the chunk fills.",
+      "native_mapping": "Type-erased unique move-only command plus bounded-size chunk dispatch.",
+      "expected_result": "Overaligned move-only capture compiles; full chunk flush retains order.",
+      "dependency_owner": "022",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC arm64 Metal 4 consumer compiles; independent range and state flag cases pass."
+    },
+    {
+      "id": "VK-022-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 61,
+        "symbol": "void MarkStateNonDirty(StateFlags flag) noexcept {"
+      },
+      "contract": "Set/clear multiple non-dirty bits and detect all-dirty selection.",
+      "native_mapping": "Maintain native pipeline and argument binding cache flags.",
+      "expected_result": "Independent dirty flags and their reset at submission.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 77,
+        "symbol": "on_submit = std::move(func);"
+      },
+      "contract": "Submit callback lets render manager end active rendering before backend commit.",
+      "native_mapping": "Producer-side callback records encoder closure in same native sequence.",
+      "expected_result": "Observe callback recording before commit and reset flags afterwards.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 82,
+        "symbol": "on_dispatch = std::move(func);"
+      },
+      "contract": "Dispatch callback flushes descriptor allocations before CPU worker reads them.",
+      "native_mapping": "Producer callback finalizes immutable binding state before chunk publication.",
+      "expected_result": "Worker never observes a partially published binding generation.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 86,
+        "symbol": "[[nodiscard]] u64 CurrentTick() const noexcept {"
+      },
+      "contract": "CurrentTick predicts current batch, IsFree consults retirement, GetMasterSemaphore supplies shared timeline.",
+      "native_mapping": "Expose checked submitted/next tick queries and one MasterSemaphore timeline for all queues.",
+      "expected_result": "Stream readiness and watch retirement respect actual feedback.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-14",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 100,
+        "symbol": "std::mutex submit_mutex;"
+      },
+      "contract": "External queue handoff serializes presentation and submission.",
+      "native_mapping": "Serialize drawable wait, commit, signal and present inside owning native worker.",
+      "expected_result": "No external queue mutation can interleave drawable handoff.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-15",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 103,
+        "symbol": "class Command {"
+      },
+      "contract": "Virtual command invocation and lifetime per FIFO queue entry; TypedCommand cannot be moved after construction.",
+      "native_mapping": "Unique-owned command vehicle preserves move-only captures; normal destruction on execute or cancellation.",
+      "expected_result": "Aligned unique ownership and exact cleanup on fault or stop.",
+      "dependency_owner": "022",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC arm64 Metal 4 consumer compiles; independent range and state flag cases pass."
+    },
+    {
+      "id": "VK-022-16",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 138,
+        "symbol": "class CommandChunk final {"
+      },
+      "contract": "Linked arena chunk tracks first/last, alignment, capacity and submit marking.",
+      "native_mapping": "Bound packet count, ordinary object allocation with C++ alignment, vector FIFO and explicit commit marker.",
+      "expected_result": "No duplicate dispatch when full; batch boundary never reorders callbacks.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-17",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 187,
+        "symbol": "void WorkerThread(std::stop_token stop_token);"
+      },
+      "contract": "Stoppable worker, buffer acquisition, submission and chunk reuse.",
+      "native_mapping": "Shared Azahar thread facilities; resource pool leases and sequenced handoff.",
+      "expected_result": "Canceled waits wake, allocator recycled only after actual retirement.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-022-18",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 196,
+        "symbol": "std::unique_ptr<MasterSemaphore> master_semaphore;"
+      },
+      "contract": "Retain timeline, pool and active work until safe; ordered queue and cache state.",
+      "native_mapping": "Own worker state and pin in-flight resources until native feedback; track stage/range hazards.",
+      "expected_result": "Pending shutdown leaves live allocation references owned by feedback.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/023/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "023/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "CONTEXT-026-022",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.h",
+        "sha256": "8cf2c87dd01ee46f55bb1278bf3bba1b67287e9180ac8ab6c8818fe35031ed84",
+        "line": 85,
+        "symbol": "class EncodingContext {"
+      },
+      "contract": "Argument table preparation requires the active batch's originating device context generation and resource pool.",
+      "native_mapping": "Validate a snapshot's WorkLease against the actual encoding context without exposing or retaining its former wrapper; return its own resource pool.",
+      "expected_result": "Ordinary Metal 4 consumers compile and the scheduler fixture links the accessors; descriptor fixture rejects foreign contexts.",
+      "dependency_owner": "026",
+      "command": "zsh docs/metaliris/022/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "022/reopen-026.log",
+      "status": "PENDING",
+      "actual_result": "Exact SDK consumer compiled, linked and passed PICA regression; cross-context native bind remains pending in Phase 027."
+    }
+  ],
+  "owner_sha256_after": "d9ebf7424af2d76c6a0ebec3ac79d58fc2a22da93084c19e054fccd9e52d1bba"
+}

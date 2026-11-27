@@ -1,0 +1,89 @@
+{
+  "phase": "055",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-055-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 46,
+        "symbol": "Empty,"
+      },
+      "contract": "Native tasks can outlive a caller, preserving originating context/work lease.",
+      "native_mapping": "Results carry originating DeviceContext::WorkLease and title epoch; raw external objects query only through the context guard.",
+      "expected_result": "Test actual foreign and stale contexts, canceled/asynchronous closure retention.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-055-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 72,
+        "symbol": ""
+      },
+      "contract": "Device generation change and context close must prevent publishing complete-looking stale libraries.",
+      "native_mapping": "Result status queries and native resource access require matching device lease. Title invalidation is separate.",
+      "expected_result": "Header compile and decision table for assigned caller contexts, pending concurrent runtime tests.",
+      "dependency_owner": "056",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-055-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_util.h",
+        "sha256": "640f04cb6cd5c507b22a88db2898de4924663dc690ccdbf71639bd6f7b8a884b",
+        "line": 7,
+        "symbol": "#include <span>"
+      },
+      "contract": "Standard library spans and native SDK only.",
+      "native_mapping": "Include shared mtl_common context and C++ standard immutable option/ticket fields.",
+      "expected_result": "Real Clang include map avoids Vulkan and other translator dependencies.",
+      "dependency_owner": "055",
+      "command": "zsh docs/metaliris/055/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "055/header.log",
+      "status": "PASS",
+      "actual_result": "Native Objective-C++ consumer and actual Metal 4 SDK descriptor compile; complete source-option key, byte signature and definition identifier CPU checks passed."
+    },
+    {
+      "id": "REOPEN-055-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_util.h",
+        "sha256": "fe8868ae7267e3133b8549ac32a1cbf9c3702247d7a9a498e6db0a9fbf1d19e2",
+        "line": 135,
+        "symbol": "class ShaderCompiler {"
+      },
+      "contract": "Native cache must bind a title-specific MTL4 pipeline data serializer to its actual source/pipeline compiler. Preserve the existing non-capturing constructor ABI.",
+      "native_mapping": "Optional SDK serializer constructor typed compile and previously checked direct source-key contracts.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "055/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Optional SDK serializer constructor typed compile and previously checked direct source-key contracts. Captured in 055/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+  "verification_updates": [
+    {
+      "trigger_owner": "091",
+      "reason": "The final source fingerprint audit found that the recorded Phase 055 source hash differed from the linked header. Re-audited the current interface and ran both real header and companion compiler consumers. The production source was unchanged during this audit.",
+      "previous_recorded_sha256": "33aa54e272a3b5dd32b41fd3ec6d6ff1762d1c06f0c7cde2bf25b7759fde5d28",
+      "source_sha256_after": "304b953ddae95fca46077123166c2268e922bce603f1765669a7aea38767c987",
+      "evidence": [
+        "055/final-consumer-audit.log",
+        "055/final-runtime-audit.log",
+        "091/link-audit.log"
+      ],
+      "result": "Header contracts and host queue/SDK behavior pass with the current header. Live shader compilation, library loading and dispatch remain pending."
+    }
+  ]
+}

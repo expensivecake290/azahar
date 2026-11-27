@@ -1,0 +1,41 @@
+{
+  "phase": "084",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-084-01",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.h",
+        "sha256": "baaf9fd93733694dea844adebf6d3db9c947ff9fff56d21d2427d3da661b2f0f",
+        "line": 33,
+        "symbol": "std::vector<DeviceInfo> EnumerateDevices();"
+      },
+      "contract": "Check real arm64 SDK and compiler dependency closure for Qt to native capture capability.",
+      "native_mapping": "Check native and feature-off compile with real Qt, link production UI and native bridge and run direct settings/lockout assertions.",
+      "expected_result": "Runtime pass without a GPU and PICA/CTest unchanged. No Vulkan binary tests.",
+      "dependency_owner": "079/084",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt native/feature-off compiled and native widget linked. Validation and capture independent, retranslate and running lockout verified. Native physical capture pending. PICA 48/801 and CTest 64 passes."
+    },
+    {
+      "id": "MTL-084-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 74,
+        "symbol": "}"
+      },
+      "contract": "Metal supports API Validation and optional trace creation through native SDK APIs.",
+      "native_mapping": "On a real Metal4 device enable/debug disable API Validation, collect a bounded native .gputrace, and check recorded queue/encoder labels and after-capture progress.",
+      "expected_result": "Metal API Validation reports real errors in a designated negative fixture, trace is loadable in Xcode, no renderer degradation from failed capture.",
+      "dependency_owner": "086/091",
+      "command": "python3 docs/metaliris/084/verify.py <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "084/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "b2a1f7e4c7a1d2b1d6b779f6e25b4f1464088d88de696992705cd1a10d975a79"
+}

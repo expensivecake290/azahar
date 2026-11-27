@@ -36,6 +36,8 @@ std::string_view GetGraphicsAPIName(GraphicsAPI api) {
         return "OpenGL";
     case GraphicsAPI::Vulkan:
         return "Vulkan";
+    case GraphicsAPI::Metal:
+        return "Metal";
     default:
         return "Invalid";
     }
@@ -102,6 +104,9 @@ void LogSettings() {
     log_setting("Renderer_ShadersAccurateMul", values.shaders_accurate_mul.GetValue());
     log_setting("Renderer_UseShaderJit", values.use_shader_jit.GetValue());
     log_setting("Renderer_UseResolutionFactor", values.resolution_factor.GetValue());
+#ifdef ENABLE_METAL
+    log_setting("Renderer_UseMetalFXSpatial", values.use_metalfx_spatial.GetValue());
+#endif
     log_setting("Renderer_SampleCount", values.antialiasing.GetValue());
     log_setting("Renderer_UseIntegerScaling", values.use_integer_scaling.GetValue());
     log_setting("Renderer_FrameLimit", values.frame_limit.GetValue());
@@ -228,6 +233,9 @@ void RestoreGlobalState(bool is_powered_on) {
     values.use_skip_duplicate_frames.SetGlobal(true);
     values.use_limit_frames_ahead_of_gpu.SetGlobal(true);
     values.resolution_factor.SetGlobal(true);
+#ifdef ENABLE_METAL
+    values.use_metalfx_spatial.SetGlobal(true);
+#endif
     values.antialiasing.SetGlobal(true);
     values.use_integer_scaling.SetGlobal(true);
     values.frame_limit.SetGlobal(true);
@@ -265,6 +273,18 @@ Settings::GraphicsAPI GetWorkingGraphicsAPI() {
 #if defined(ANDROID) && !defined(HAVE_LIBRETRO)
     if (AndroidUtils::IsUsingAngleForOpenGL()) {
         graphics_api = Settings::GraphicsAPI::Vulkan;
+    }
+#endif
+#ifdef ENABLE_METAL
+    switch (graphics_api) {
+    case GraphicsAPI::Metal:
+#ifdef ENABLE_SOFTWARE_RENDERER
+    case GraphicsAPI::Software:
+#endif
+        break;
+    default:
+        graphics_api = Settings::values.graphics_api.GetDefault();
+        break;
     }
 #endif
     return graphics_api;

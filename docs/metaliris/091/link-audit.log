@@ -1,0 +1,193 @@
++docs/metaliris/091/verify.sh:3> core=/tmp/metaliris-r12.lKARZLkI/metal 
++docs/metaliris/091/verify.sh:4> qt=/tmp/metaliris-r12.lKARZLkI/qt 
++docs/metaliris/091/verify.sh:5> output=/tmp/metaliris-r12.lKARZLkI/phase091 
++docs/metaliris/091/verify.sh:6> here=+docs/metaliris/091/verify.sh:6> dirname docs/metaliris/091/verify.sh
++docs/metaliris/091/verify.sh:6> here=docs/metaliris/091 
++docs/metaliris/091/verify.sh:8> cmake --build /tmp/metaliris-r12.lKARZLkI/metal --target host_shaders tests --parallel 8
+[1/3] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_base.cpp.o
+[2/3] Linking CXX static library src/video_core/libvideo_core.a
+[3/3] Linking CXX executable bin/Release/tests
+ld: warning: ignoring duplicate libraries: 'src/audio_core/libaudio_core.a', 'src/common/libcitra_common.a', 'src/core/libcitra_core.a', 'src/input_common/libinput_common.a', 'src/network/libnetwork.a', 'src/video_core/libvideo_core.a', 'src/web_service/libweb_service.a'
++docs/metaliris/091/verify.sh:9> cmake --build /tmp/metaliris-r12.lKARZLkI/qt --target citra_meta --parallel 8
+[1/10] Building CXX object src/video_core/CMakeFiles/video_core.dir/renderer_base.cpp.o
+[2/10] Linking CXX static library src/video_core/libvideo_core.a
+[3/10] Automatic MOC and UIC for target citra_qt
+[4/9] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/aboutdialog.cpp.o
+[5/9] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/loading_screen.cpp.o
+[6/9] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/bootmanager.cpp.o
+[7/9] Building CXX object src/citra_qt/CMakeFiles/citra_qt.dir/citra_qt.cpp.o
+[8/9] Linking CXX static library src/citra_qt/libcitra_qt.a
+[9/9] Linking CXX executable bin/Release/azahar.app/Contents/MacOS/azahar
++docs/metaliris/091/verify.sh:10> python3 docs/metaliris/091/verify.py /tmp/metaliris-r12.lKARZLkI/metal /tmp/metaliris-r12.lKARZLkI/phase091
++ /usr/bin/clang++ -I/Users/anthonygarcia/azahar/src -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_GDBSTUB -DENABLE_METAL -DENABLE_QT_TRANSLATION -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/metal/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -O3 -DNDEBUG -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -fobjc-arc -w -Wno-invalid-specialization -o /private/tmp/metaliris-r12.lKARZLkI/phase091/renderer-audit.o -c /Users/anthonygarcia/azahar/src/video_core/renderer_metal/renderer_metal.mm -MD -MF /private/tmp/metaliris-r12.lKARZLkI/phase091/renderer-audit.d
++ /usr/bin/clang++ -I/Users/anthonygarcia/azahar/src -DBOOST_ALL_NO_LIB -DBOOST_ASIO_DISABLE_CONCEPTS -DBOOST_DATE_TIME_NO_LIB -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_NO_CXX98_FUNCTION_BASE -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_NO_LIB -DENABLE_BUILTIN_KEYBLOB -DENABLE_GDBSTUB -DENABLE_METAL -DENABLE_QT_TRANSLATION -DENABLE_ROOM -DENABLE_SCRIPTING -DENABLE_SCRIPTING_SYNC -DENABLE_SDL2 -DENABLE_SOFTWARE_RENDERER -DHAVE_FASTINTERP -DMICROPROFILE_ENABLED=0 -DNDEBUG -I/tmp/metaliris-r12.lKARZLkI/source/src/. -I/tmp/metaliris-r12.lKARZLkI/metal/src/video_core/host_shaders/include -I/opt/homebrew/include/SDL2 -I/tmp/metaliris-r12.lKARZLkI/metal/src -I/tmp/metaliris-r12.lKARZLkI/source/externals/fmt/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/./microprofile -I/private/tmp/metaliris-r12.lKARZLkI/source/externals/boost -I/tmp/metaliris-r12.lKARZLkI/source/externals/xxHash/cmake_unofficial/.. -I/tmp/metaliris-r12.lKARZLkI/source/externals/./dds-ktx -I/tmp/metaliris-r12.lKARZLkI/source/externals/./json -I/tmp/metaliris-r12.lKARZLkI/source/externals/./nihstro/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/dynarmic/externals/robin-map/include -I/tmp/metaliris-r12.lKARZLkI/source/externals/oaknut/include -F/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks -x objective-c++ -O3 -DNDEBUG -std=gnu++2a -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wall -Wno-unused-command-line-argument -fstack-protector-strong -Wp,-D_GLIBCXX_ASSERTIONS -fstack-clash-protection -Werror -fobjc-arc -w -Wno-invalid-specialization -o /private/tmp/metaliris-r12.lKARZLkI/phase091/compositor-verify.o -c /Users/anthonygarcia/azahar/docs/metaliris/091/verify.mm -MD -MF /private/tmp/metaliris-r12.lKARZLkI/phase091/compositor-verify.d -UNDEBUG
++ /usr/bin/c++ /private/tmp/metaliris-r12.lKARZLkI/phase091/compositor-verify.o -O3 -DNDEBUG -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -mmacosx-version-min=26.0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -o /private/tmp/metaliris-r12.lKARZLkI/phase091/compositor-verify src/common/libcitra_common.a src/core/libcitra_core.a src/video_core/libvideo_core.a src/audio_core/libaudio_core.a -framework Cocoa -framework AVFoundation -framework IOSurface src/input_common/libinput_common.a src/core/libcitra_core.a src/video_core/libvideo_core.a src/audio_core/libaudio_core.a src/input_common/libinput_common.a externals/lodepng/liblodepng.a src/network/libnetwork.a src/web_service/libweb_service.a src/network/libnetwork.a src/web_service/libweb_service.a externals/enet/libenet.a /opt/homebrew/lib/libssl.dylib /opt/homebrew/lib/libcrypto.dylib externals/dynarmic/src/dynarmic/libdynarmic.a externals/dynarmic/externals/mcl/src/libmcl.a -framework Metal -framework MetalFX -framework QuartzCore -framework CoreGraphics -framework AppKit externals/soundtouch/libSoundTouch.a externals/teakra/src/libteakra.a externals/faad2/libfaad2.a externals/cubeb/libcubeb.a -framework AudioUnit -framework CoreAudio -framework CoreServices externals/openal-soft/libopenal.a -pthread -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit,-framework,ApplicationServices -Wl,-framework,CoreAudio -ldl -lm src/common/libcitra_common.a externals/fmt/libfmt.a externals/libboost_serialization.a externals/libboost_iostreams.a externals/cryptopp/libcryptopp.a externals/libmicrotar.a externals/libzstd_seekable.a externals/zstd/build/cmake/lib/libzstd.a externals/xxHash/cmake_unofficial/libxxhash.a /opt/homebrew/lib/libSDL2main.a /opt/homebrew/lib/libSDL2.dylib -framework Cocoa externals/libusb/libusb.a -framework CoreFoundation -framework IOKit -framework Security /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/lib/libobjc.tbd externals/catch2/src/libCatch2Main.a externals/catch2/src/libCatch2.a
+ld: warning: ignoring duplicate libraries: 'src/audio_core/libaudio_core.a', 'src/common/libcitra_common.a', 'src/core/libcitra_core.a', 'src/input_common/libinput_common.a', 'src/network/libnetwork.a', 'src/video_core/libvideo_core.a', 'src/web_service/libweb_service.a'
++ /private/tmp/metaliris-r12.lKARZLkI/phase091/compositor-verify
+PASS scanout formats, active buffers, missing right eye, checked bounds and odd screenshot rows
+PASS screen layout ordering, all stereo modes, four orientations, opacity and clipped cursor
+PASS linked native factory rejects unavailable or invalid Metal device (0 visible)
+PENDING Metal4 device, native pixel readback, MetalFX Spatial, drawable and performance
++docs/metaliris/091/verify.sh:11> ctest --test-dir /tmp/metaliris-r12.lKARZLkI/metal -C Release --output-on-failure -j 4
+Test project /tmp/metaliris-r12.lKARZLkI/metal
+      Start 69: tests
+      Start 15: Memory Basics
+      Start 13: HLERequestContext::WriteToOutgoingCommandBuffer
+      Start 14: memory.IsValidVirtualAddress
+ 1/69 Test #14: memory.IsValidVirtualAddress ...........................   Passed    0.94 sec
+      Start 12: HLERequestContext::PopulateFromIncomingCommandBuffer
+ 2/69 Test #13: HLERequestContext::WriteToOutgoingCommandBuffer ........   Passed    1.09 sec
+      Start 65: Conditional - ShaderJitTest
+ 3/69 Test #65: Conditional - ShaderJitTest ............................   Passed    0.16 sec
+      Start 54: SETEMIT - ShaderJitTest
+ 4/69 Test #15: Memory Basics ..........................................   Passed    1.26 sec
+      Start 60: Dest Mask - ShaderJitTest
+ 5/69 Test #54: SETEMIT - ShaderJitTest ................................   Passed    0.11 sec
+ 6/69 Test #60: Dest Mask - ShaderJitTest ..............................   Passed    0.11 sec
+      Start 21: float20
+      Start 55: Uniform Read - ShaderInterpreterTest
+ 7/69 Test #12: HLERequestContext::PopulateFromIncomingCommandBuffer ...   Passed    0.43 sec
+      Start 29: DP4 - ShaderInterpreterTest
+ 8/69 Test #21: float20 ................................................   Passed    0.10 sec
+ 9/69 Test #55: Uniform Read - ShaderInterpreterTest ...................   Passed    0.10 sec
+      Start 48: MIN - ShaderJitTest
+      Start 63: Nested Loop - ShaderJitTest
+10/69 Test #29: DP4 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 67: Source Swizzle - ShaderJitTest
+11/69 Test #48: MIN - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 27: DP3 - ShaderInterpreterTest
+12/69 Test #63: Nested Loop - ShaderJitTest ............................   Passed    0.09 sec
+      Start  4: ParamPackage
+13/69 Test #67: Source Swizzle - ShaderJitTest .........................   Passed    0.09 sec
+      Start 40: SGE - ShaderJitTest
+14/69 Test #69: tests ..................................................   Passed    1.62 sec
+      Start 61: MAD - ShaderInterpreterTest
+15/69 Test #27: DP3 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 66: Source Swizzle - ShaderInterpreterTest
+16/69 Test  #4: ParamPackage ...........................................   Passed    0.09 sec
+      Start 52: RSQ - ShaderJitTest
+17/69 Test #40: SGE - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 26: CALL - ShaderJitTest
+18/69 Test #61: MAD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 62: MAD - ShaderJitTest
+19/69 Test #66: Source Swizzle - ShaderInterpreterTest .................   Passed    0.09 sec
+20/69 Test #52: RSQ - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  9: CoreTiming[ChainScheduling]
+      Start 47: MIN - ShaderInterpreterTest
+21/69 Test #26: CALL - ShaderJitTest ...................................   Passed    0.09 sec
+      Start 33: LG2 - ShaderInterpreterTest
+22/69 Test #62: MAD - ShaderJitTest ....................................   Passed    0.09 sec
+      Start  6: CoreTiming[BasicOrder]
+23/69 Test  #9: CoreTiming[ChainScheduling] ............................   Passed    0.09 sec
+24/69 Test #47: MIN - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 50: RCP - ShaderJitTest
+      Start 59: Dest Mask - ShaderInterpreterTest
+25/69 Test #33: LG2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 20: float24
+26/69 Test  #6: CoreTiming[BasicOrder] .................................   Passed    0.09 sec
+      Start 24: ADD - ShaderJitTest
+27/69 Test #50: RCP - ShaderJitTest ....................................   Passed    0.09 sec
+28/69 Test #59: Dest Mask - ShaderInterpreterTest ......................   Passed    0.09 sec
+      Start 51: RSQ - ShaderInterpreterTest
+      Start 28: DP3 - ShaderJitTest
+29/69 Test #20: float24 ................................................   Passed    0.09 sec
+      Start 25: CALL - ShaderInterpreterTest
+30/69 Test #24: ADD - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 37: MUL - ShaderInterpreterTest
+31/69 Test #51: RSQ - ShaderInterpreterTest ............................   Passed    0.09 sec
+32/69 Test #28: DP3 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 39: SGE - ShaderInterpreterTest
+      Start 49: RCP - ShaderInterpreterTest
+33/69 Test #25: CALL - ShaderInterpreterTest ...........................   Passed    0.09 sec
+      Start 11: PathParser - Host file system
+34/69 Test #37: MUL - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start  7: CoreTiming[SharedSlot]
+35/69 Test #39: SGE - ShaderInterpreterTest ............................   Passed    0.09 sec
+36/69 Test #49: RCP - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start  1: BitField
+      Start 35: EX2 - ShaderInterpreterTest
+37/69 Test #11: PathParser - Host file system ..........................   Passed    0.09 sec
+      Start 34: LG2 - ShaderJitTest
+38/69 Test  #7: CoreTiming[SharedSlot] .................................   Passed    0.09 sec
+      Start  2: SplitFilename83 Sanity
+39/69 Test  #1: BitField ...............................................   Passed    0.09 sec
+40/69 Test #35: EX2 - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start  8: CoreTiming[PredictableLateness]
+      Start 53: SETEMIT - ShaderInterpreterTest
+41/69 Test #34: LG2 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 30: DP4 - ShaderJitTest
+42/69 Test  #2: SplitFilename83 Sanity .................................   Passed    0.09 sec
+      Start 64: Conditional - ShaderInterpreterTest
+43/69 Test  #8: CoreTiming[PredictableLateness] ........................   Passed    0.09 sec
+44/69 Test #53: SETEMIT - ShaderInterpreterTest ........................   Passed    0.09 sec
+      Start 38: MUL - ShaderJitTest
+      Start  3: NormalizeNFDToNFC Sanity
+45/69 Test #30: DP4 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 23: ADD - ShaderInterpreterTest
+46/69 Test #64: Conditional - ShaderInterpreterTest ....................   Passed    0.09 sec
+      Start 58: Address Register Offset - ShaderJitTest
+47/69 Test #38: MUL - ShaderJitTest ....................................   Passed    0.09 sec
+48/69 Test  #3: NormalizeNFDToNFC Sanity ...............................   Passed    0.09 sec
+      Start 57: Address Register Offset - ShaderInterpreterTest
+      Start  5: SlotVector contains
+49/69 Test #23: ADD - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 10: PathParser
+50/69 Test #58: Address Register Offset - ShaderJitTest ................   Passed    0.09 sec
+      Start 36: EX2 - ShaderJitTest
+51/69 Test  #5: SlotVector contains ....................................   Passed    0.09 sec
+      Start 44: FLR - ShaderJitTest
+52/69 Test #57: Address Register Offset - ShaderInterpreterTest ........   Passed    0.09 sec
+53/69 Test #10: PathParser .............................................   Passed    0.09 sec
+      Start 46: MAX - ShaderJitTest
+      Start 56: Uniform Read - ShaderJitTest
+54/69 Test #36: EX2 - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 31: DPH - ShaderInterpreterTest
+55/69 Test #44: FLR - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 43: FLR - ShaderInterpreterTest
+56/69 Test #46: MAX - ShaderJitTest ....................................   Passed    0.09 sec
+57/69 Test #56: Uniform Read - ShaderJitTest ...........................   Passed    0.09 sec
+      Start 41: SLT - ShaderInterpreterTest
+      Start 42: SLT - ShaderJitTest
+58/69 Test #31: DPH - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 32: DPH - ShaderJitTest
+59/69 Test #43: FLR - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 45: MAX - ShaderInterpreterTest
+60/69 Test #41: SLT - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 22: float16
+61/69 Test #42: SLT - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 16: DSP LLE vs HLE
+62/69 Test #32: DPH - ShaderJitTest ....................................   Passed    0.09 sec
+      Start 17: Verify SourceStatus::Status::last_buffer_id 1
+63/69 Test #45: MAX - ShaderInterpreterTest ............................   Passed    0.09 sec
+      Start 18: Verify SourceStatus::Status::last_buffer_id 2
+64/69 Test #22: float16 ................................................   Passed    0.09 sec
+      Start 19: DSP LLE Sanity
+65/69 Test #16: DSP LLE vs HLE .........................................***Skipped   0.14 sec
+      Start 68: AudioTest-BiquadFilter
+66/69 Test #17: Verify SourceStatus::Status::last_buffer_id 1 ..........***Skipped   0.14 sec
+67/69 Test #19: DSP LLE Sanity .........................................***Skipped   0.13 sec
+68/69 Test #18: Verify SourceStatus::Status::last_buffer_id 2 ..........***Skipped   0.13 sec
+69/69 Test #68: AudioTest-BiquadFilter .................................***Skipped   0.13 sec
+
+100% tests passed out of 69
+
+Total Test time (real) =   2.92 sec
+
+The following tests did not run:
+	 16 - DSP LLE vs HLE (Skipped)
+	 17 - Verify SourceStatus::Status::last_buffer_id 1 (Skipped)
+	 18 - Verify SourceStatus::Status::last_buffer_id 2 (Skipped)
+	 19 - DSP LLE Sanity (Skipped)
+	 68 - AudioTest-BiquadFilter (Skipped)
++docs/metaliris/091/verify.sh:12> /tmp/metaliris-r12.lKARZLkI/metal/bin/Release/tests '[video_core]' --rng-seed 225818237
+Filters: [video_core]
+Randomness seeded to: 225818237
+===============================================================================
+All tests passed (801 assertions in 48 test cases)
+
++docs/metaliris/091/verify.sh:13> python3 - /tmp/metaliris-r12.lKARZLkI/metal /tmp/metaliris-r12.lKARZLkI/qt
+PASS metal: 26 unique native source compile entries with Vulkan excluded
+PASS qt: 26 unique native source compile entries with Vulkan excluded
+PASS all 19 production MSL4 libraries match the exact generated headers
+PASS final arm64 Qt link contains actual native renderer and frameworks, without Vulkan runtime symbols
+PASS native archive references Metal4 queue creation and allocator-bound encoding without audited legacy selectors

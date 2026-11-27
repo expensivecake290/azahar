@@ -1,0 +1,58 @@
+{
+  "phase": "016",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_stream_buffer-052",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_stream_buffer.cpp",
+        "sha256": "bb3242c63c64b1c26f3314f5cdb480fd44c6a8eec0da39a85d086e35e68360c6",
+        "line": 52,
+        "symbol": "}"
+      },
+      "contract": "Shared uploader selects host-visible preferred memory and falls back",
+      "native_mapping": "Preserve shared storage for CPU paths; retry only after pressure callback releases actual memory",
+      "expected_result": "Retry accounting is atomic and preserves existing contents",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "renderer_vulkan-1335",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1335,
+        "symbol": "// the entire span of memory can be trivially imported"
+      },
+      "contract": "Screenshot imports host allocation with ownership and required span",
+      "native_mapping": "Keep full VM allocation alive through retained buffer and GPU resource lease",
+      "expected_result": "Guard pages fail while an owned page has the exact native pointer",
+      "dependency_owner": "017",
+      "command": "zsh docs/metaliris/017/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "017/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "mtl_common-043",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 43,
+        "symbol": ""
+      },
+      "contract": "Existing native work lease survives retirement",
+      "native_mapping": "Expose move-only GPU range lease to scheduler; retain buffer plus reservation until completion",
+      "expected_result": "Header CPU bounds fixture rejects overflow and checks noncopyable guard",
+      "dependency_owner": "016",
+      "command": "zsh docs/metaliris/016/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "016/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Objective-C++ header and inline range invariant fixture passed."
+    }
+  ],
+  "owner_sha256_after": "909f728e61d457777aae531ee72bf0a41464e201160e86a609eacfd8ce406531"
+}

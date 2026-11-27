@@ -1,0 +1,75 @@
+{
+  "phase": "078",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-078-01",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.h",
+        "sha256": "de52389046efec90bdcd5100bec48bec87be18e9d013a2b06280192eab5d2eea",
+        "line": 9,
+        "symbol": "void* CreateMetalLayer(WId window);"
+      },
+      "contract": "Existing raw layer helper accepts the native Qt WId and is used by non-Metal frontends.",
+      "native_mapping": "Preserve its existing declaration and consumers. The native Qt path needs an explicit owned-model bridge rather than turning a borrowed pointer into a snapshot.",
+      "expected_result": "Compile existing consumer both definitions off/on, then prove active native owned bridge.",
+      "dependency_owner": "078",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt Cocoa C++ compile flags and linked mode-on/off consumers, native CMake definition repaired and verified in all actual Qt contexts, linked native settings and PICA 48/801, CTest 64 plus 5 existing skips, neutral include closure."
+    },
+    {
+      "id": "VK-078-02",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.mm",
+        "sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+        "line": 15,
+        "symbol": "// Force-install a fresh CAMetalLayer on the view."
+      },
+      "contract": "Mac view receives native CAMetalLayer before renderer tries to present.",
+      "native_mapping": "Add public Qt bridge accepting the completed frontend-neutral SurfaceAdapter and exact Qt WId, without allocating a device or selecting a backend.",
+      "expected_result": "Test actual owned bridge in 079 with valid, zero and off-main handle.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-078-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Mac presentation accesses validated native surface rather than borrowed unrelated layer.",
+      "native_mapping": "Use an unambiguous C++ declaration conditionally visible in Metal builds and keep all AppKit in .mm or neutral Adapter.",
+      "expected_result": "Compiled native and non-Metal consumers preserve branch availability.",
+      "dependency_owner": "078",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt Cocoa C++ compile flags and linked mode-on/off consumers, native CMake definition repaired and verified in all actual Qt contexts, linked native settings and PICA 48/801, CTest 64 plus 5 existing skips, neutral include closure."
+    },
+    {
+      "id": "VK-078-DEVICE-CONSUMER",
+      "source": {
+        "path": "src/citra_qt/util/graphics_device_info.cpp",
+        "sha256": "089b66b2b9521a1df5e67b4f2893e8256dac6624f85423dafd2e8674b4fe29e7",
+        "line": 33,
+        "symbol": "#ifdef ENABLE_VULKAN"
+      },
+      "contract": "Qt setup calls an ordinary C++ API for a stable physical-device list; native definitions own SDK device support and debug capture availability.",
+      "native_mapping": "Use narrow Qt-side device info and capture declarations to adapt the existing backend-neutral native probe. Preserve actual index order including unsupported entries.",
+      "expected_result": "Compile real public C++ API for 079 native Objective-C++ implementation and 082 Qt conversion path. Device values supported/Spatial and capture availability stay independent.",
+      "dependency_owner": "078",
+      "command": "zsh docs/metaliris/078/verify.sh <native-Qt-build-dir> <scratch-dir>",
+      "evidence_path": "078/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt Cocoa C++ compile flags and linked mode-on/off consumers, native CMake definition repaired and verified in all actual Qt contexts, linked native settings and PICA 48/801, CTest 64 plus 5 existing skips, neutral include closure."
+    }
+  ],
+  "owner_sha256_after": "baaf9fd93733694dea844adebf6d3db9c947ff9fff56d21d2427d3da661b2f0f"
+}

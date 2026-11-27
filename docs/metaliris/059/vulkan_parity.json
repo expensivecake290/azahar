@@ -1,0 +1,160 @@
+{
+  "phase": "059",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-059-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 27,
+        "symbol": "class ShaderDiskCache {"
+      },
+      "contract": "Title-scoped initialization and optionally loaded pipelines; expose monotonic load results and cancellation.",
+      "native_mapping": "One immutable title/device/OS/profile identity per disk cache instance, with explicit cancellation and callback at completed records.",
+      "expected_result": "Per-field key equality and cancel/read state exposed to real callers.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-059-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 56,
+        "symbol": "enum class CacheFileType : u32 {"
+      },
+      "contract": "Vertex, fragment, geometry, and pipeline paths have distinct file types and asset eligibility.",
+      "native_mapping": "Explicit prewarm shader stages and complete pipeline records. Select exact compiled entry points from direct MSL or the owning executable native binary.",
+      "expected_result": "Typed shader-stage distinctions and every cache category preserved.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-059-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 88,
+        "symbol": "struct FileInfoEntry {"
+      },
+      "contract": "Header version, identity, driver/profile variants, and generator source version gate cache reuse.",
+      "native_mapping": "Record fixed magic, schema/generator versions, title key, compiler/driver build, concrete hardware architecture and profile identity field-by-field.",
+      "expected_result": "Native header tests perturb semantic identity fields; real file mismatch rejection in implementation.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-059-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 106,
+        "symbol": "struct VSConfigEntry {"
+      },
+      "contract": "Vertex configuration and guest instruction references must pair; missing/invalid dependencies recover cleanly.",
+      "native_mapping": "Exact pipeline records own referenced direct MSL/binary and options, including vertex layout and preamble. Persist MSL sources as native recompilation recipes.",
+      "expected_result": "Complete keys and modified direct MSL remain distinct; no anonymous stale program substituting for a matching record.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-059-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 129,
+        "symbol": "struct FSConfigEntry {"
+      },
+      "contract": "Fragment and geometry staging preserve source/driver compatibility and selected real variants.",
+      "native_mapping": "Explicit stage records and exact geometry/fragment state in the pipeline key. Native mesh/object and compute are separate prewarm roles.",
+      "expected_result": "Compile contracts expose shader variant and meaningful warmup payload under header owner.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "VK-059-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 157,
+        "symbol": "class CacheEntry {"
+      },
+      "contract": "Bound and validate binary framing, type, length, hash, versions and truncation.",
+      "native_mapping": "Header exposes explicit byte budget and typed outcomes. Portable implementation uses fixed-endian encoding, integrity and complete matching.",
+      "expected_result": "Codec size, torn writes, wrong type, mismatch, corrupt records and checksum tests.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-059-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 250,
+        "symbol": "class CacheFile {"
+      },
+      "contract": "File paths, append sequencing, producer concurrency and shutdown cannot produce a partial record.",
+      "native_mapping": "Persistent single-record transactions, bounded native archive publication and SDK load; no durable pointers or padding.",
+      "expected_result": "Check concurrently writing threads/instances and interrupted filesystem commits; previous committed entries remain.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-059-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 317,
+        "symbol": "bool InitVSCache(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Load each shader/pipeline record and preserve cancel/progress; save only cacheable artifacts.",
+      "native_mapping": "Keep cacheable decision with shader-selection owner, and invalid records never become usable hits. Store/Discard expose typed success, duplicate and ignored.",
+      "expected_result": "Per-title concurrent load, begin native build progress only on actual compile completion including archive hits.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-059-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_shader_disk_cache.h",
+        "sha256": "19bd3dec5a6bb3e0106a68258bbe460ac2a7cbd2ccee2bfb52897b95120ed98f",
+        "line": 360,
+        "symbol": "tsl::robin_map<u64, std::unique_ptr<GraphicsPipeline>, Common::IdentityHash<u64>>"
+      },
+      "contract": "Digest-only lookup and cache reconstruction must distinguish pipelines sharing subsets of state.",
+      "native_mapping": "Exact GraphicsPipelineKey comparison. Native PSO archive is an accelerator compatible with title and device; recover from missing or rejected artifact using verified native recipes.",
+      "expected_result": "Round-trip every key type and confirm correct graphics/compute artifacts on warm load.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "19a070dd2abd7ad3f5bb8b538ae5c5c82051e472ee56cd68453ea250bd2b4d76"
+}

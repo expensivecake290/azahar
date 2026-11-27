@@ -10,6 +10,10 @@
 #include <QMessageBox>
 #include <QPainter>
 #include <QWindow>
+#ifdef ENABLE_METAL
+#include <QPlatformSurfaceEvent>
+#include <QScreen>
+#endif
 #include "citra_qt/bootmanager.h"
 #include "citra_qt/citra_qt.h"
 #include "citra_qt/util/util.h"
@@ -275,6 +279,22 @@ public:
     virtual ~RenderWidget() = default;
 };
 
+#ifdef ENABLE_METAL
+class MetalRenderWidget final : public RenderWidget {
+public:
+    explicit MetalRenderWidget(GRenderWindow* parent) : RenderWidget(parent) {
+        setAttribute(Qt::WA_NativeWindow);
+        setAttribute(Qt::WA_PaintOnScreen);
+        setAttribute(Qt::WA_NoSystemBackground);
+        windowHandle()->setSurfaceType(QWindow::MetalSurface);
+    }
+
+    QPaintEngine* paintEngine() const override {
+        return nullptr;
+    }
+};
+#endif
+
 #ifdef ENABLE_OPENGL
 class OpenGLRenderWidget : public RenderWidget {
 public:
@@ -504,7 +524,16 @@ GRenderWindow::GRenderWindow(QWidget* parent_, EmuThread* emu_thread_, Core::Sys
     connect(this, &GRenderWindow::FirstFrameDisplayed, parent, &GMainWindow::OnLoadComplete);
 }
 
-GRenderWindow::~GRenderWindow() = default;
+GRenderWindow::~GRenderWindow() {
+#ifdef ENABLE_METAL
+    if (metal_surface) {
+        if (auto* window = child_widget->windowHandle()) {
+            window->removeEventFilter(this);
+        }
+        DetachMetalSurface();
+    }
+#endif
+}
 
 void GRenderWindow::MakeCurrent() {
     main_context->MakeCurrent();
@@ -527,6 +556,12 @@ void GRenderWindow::PollEvents() {
 // and hence, do not support DPI scaling ("retina" displays).
 // The result will be a viewport that is smaller than the extent of the window.
 void GRenderWindow::OnFramebufferSizeChanged() {
+#ifdef ENABLE_METAL
+    if (metal_surface) {
+        UpdateMetalSurface();
+        return;
+    }
+#endif
     // Screen changes potentially incur a change in screen DPI, hence we should update the
     // framebuffer size
     const qreal pixel_ratio = windowPixelRatio();
@@ -671,7 +706,15 @@ bool GRenderWindow::event(QEvent* event) {
         break;
     }
 
-    return QWidget::event(event);
+    const bool handled = QWidget::event(event);
+#ifdef ENABLE_METAL
+    if (metal_surface &&
+        (event->type() == QEvent::Hide || event->type() == QEvent::Show ||
+         event->type() == QEvent::WindowStateChange || event->type() == QEvent::ParentChange)) {
+        QMetaObject::invokeMethod(this, &GRenderWindow::UpdateMetalSurface, Qt::QueuedConnection);
+    }
+#endif
+    return handled;
 }
 
 void GRenderWindow::focusOutEvent(QFocusEvent* event) {
@@ -720,6 +763,13 @@ bool GRenderWindow::InitRenderTarget() {
         InitializeVulkan();
         break;
 #endif
+#ifdef ENABLE_METAL
+    case Settings::GraphicsAPI::Metal:
+        if (!InitializeMetal()) {
+            return false;
+        }
+        break;
+#endif
     default:
         LOG_CRITICAL(Frontend,
                      "Unknown or unsupported graphics API {}, falling back to available default",
@@ -730,6 +780,10 @@ bool GRenderWindow::InitRenderTarget() {
         }
 #elif ENABLE_VULKAN
         InitializeVulkan();
+#elif ENABLE_METAL
+        if (!InitializeMetal()) {
+            return false;
+        }
 #elif ENABLE_SOFTWARE_RENDERER
         InitializeSoftware();
 #else
@@ -739,8 +793,16 @@ bool GRenderWindow::InitRenderTarget() {
         break;
     }
 
-    // Update the Window System information with the new render target
-    window_info = GetWindowSystemInfo(child_widget->windowHandle());
+    // Metal uses the retained surface snapshot. Other backends still use window system info.
+#ifdef ENABLE_METAL
+    if (metal_surface) {
+        window_info = {.type = Frontend::WindowSystemType::MacOS,
+                       .render_surface_scale = static_cast<float>(windowPixelRatio())};
+    } else
+#endif
+    {
+        window_info = GetWindowSystemInfo(child_widget->windowHandle());
+    }
 
     child_widget->resize(Core::kScreenTopWidth, Core::kScreenTopHeight + Core::kScreenBottomHeight);
 
@@ -757,6 +819,15 @@ bool GRenderWindow::InitRenderTarget() {
 }
 
 void GRenderWindow::ReleaseRenderTarget() {
+#ifdef ENABLE_METAL
+    if (metal_surface) {
+        if (auto* window = child_widget->windowHandle()) {
+            window->removeEventFilter(this);
+        }
+        DetachMetalSurface();
+        metal_surface.reset();
+    }
+#endif
     if (child_widget) {
         layout()->removeWidget(child_widget);
         child_widget->deleteLater();
@@ -767,6 +838,10 @@ void GRenderWindow::ReleaseRenderTarget() {
 
 void GRenderWindow::CaptureScreenshot(u32 res_scale, const QString& screenshot_path) {
     auto& renderer = system.GPU().Renderer();
+    if (renderer.IsScreenshotPending()) {
+        LOG_WARNING(Frontend, "A screenshot is already in progress");
+        return;
+    }
     if (res_scale == 0) {
         res_scale = renderer.GetResolutionScaleFactor();
     }
@@ -864,6 +939,92 @@ void GRenderWindow::InitializeVulkan() {
     child_widget = child;
     child_widget->windowHandle()->create();
     main_context = std::make_unique<DummyContext>();
+}
+#endif
+
+#ifdef ENABLE_METAL
+bool GRenderWindow::InitializeMetal() {
+    if (QGuiApplication::platformName() != QStringLiteral("cocoa")) {
+        LOG_ERROR(Frontend, "Native Metal presentation requires the Qt Cocoa platform");
+        return false;
+    }
+
+    auto child = std::make_unique<MetalRenderWidget>(this);
+    auto* window = child->windowHandle();
+    window->create();
+    auto adapter = std::make_unique<Metal::SurfaceAdapter>();
+    if (!window->handle() || !MetalUtil::AttachMetalSurface(*adapter, window->winId())) {
+        LOG_ERROR(Frontend, "Unable to attach the native Metal layer to the Qt render window");
+        return false;
+    }
+
+    child_widget = child.release();
+    metal_surface = std::move(adapter);
+    main_context = std::make_unique<DummyContext>();
+    window->installEventFilter(this);
+    connect(window, &QWindow::screenChanged, this, &GRenderWindow::UpdateMetalSurface,
+            Qt::QueuedConnection);
+    connect(qGuiApp, &QGuiApplication::applicationStateChanged, this,
+            &GRenderWindow::UpdateMetalSurface,
+            static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    return true;
+}
+
+void GRenderWindow::UpdateMetalSurface() {
+    if (!metal_surface) {
+        return;
+    }
+    auto* window = child_widget->windowHandle();
+    if (!window || !window->handle() ||
+        !MetalUtil::AttachMetalSurface(*metal_surface, window->winId())) {
+        DetachMetalSurface();
+        return;
+    }
+
+    const auto app_state = QGuiApplication::applicationState();
+    auto surface = metal_surface->Capture({
+        .fullscreen = this->window()->isFullScreen(),
+        .suspended = !isVisible() || app_state == Qt::ApplicationSuspended ||
+                     app_state == Qt::ApplicationHidden,
+    });
+    const auto scale = windowPixelRatio();
+    if (!surface || !UpdateNativeSurface(std::move(*surface), static_cast<u32>(width() * scale),
+                                         static_cast<u32>(height() * scale))) {
+        DetachMetalSurface();
+    }
+}
+
+void GRenderWindow::DetachMetalSurface() {
+    if (!metal_surface->Detach() ||
+        !PublishNativeSurface({.suspended = true}, GetNativeSurface().layout)) {
+        LOG_ERROR(Frontend, "Unable to retire the native Metal layer for the Qt render window");
+    }
+}
+
+bool GRenderWindow::eventFilter(QObject* object, QEvent* event) {
+    if (metal_surface && object == child_widget->windowHandle()) {
+        switch (event->type()) {
+        case QEvent::PlatformSurface:
+            if (static_cast<QPlatformSurfaceEvent*>(event)->surfaceEventType() ==
+                QPlatformSurfaceEvent::SurfaceAboutToBeDestroyed) {
+                DetachMetalSurface();
+                break;
+            }
+            [[fallthrough]];
+        case QEvent::DevicePixelRatioChange:
+        case QEvent::Expose:
+        case QEvent::Hide:
+        case QEvent::Resize:
+        case QEvent::Show:
+        case QEvent::WindowStateChange:
+            QMetaObject::invokeMethod(this, &GRenderWindow::UpdateMetalSurface,
+                                      Qt::QueuedConnection);
+            break;
+        default:
+            break;
+        }
+    }
+    return QWidget::eventFilter(object, event);
 }
 #endif
 

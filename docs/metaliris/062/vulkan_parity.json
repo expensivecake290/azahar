@@ -1,0 +1,245 @@
+{
+  "phase": "062",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-062-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 34,
+        "symbol": "u32 AttribBytes(Pica::PipelineRegs::VertexAttributeFormat format, u32 size) {"
+      },
+      "contract": "Vertex stride and signed/unsigned/float conversion, including position and fixed attributes.",
+      "native_mapping": "Typed stage-in flags from exact PICA layout and direct guest program. Native dense compute for unsupported packed or indexed strip.",
+      "expected_result": "Shader source/entry/layout matrix and guest behavior at real draw owner.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-062-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 59,
+        "symbol": "constexpr std::array<vk::DescriptorSetLayoutBinding, 6> BUFFER_BINDINGS = {{"
+      },
+      "contract": "Stage-specific buffer, texture/sampler and storage bindings with evolving uniform offsets.",
+      "native_mapping": "Captured native argument snapshots at actual stages preserve resource access, byte offsets, ownership and scheduler lifetime.",
+      "expected_result": "Native encoder/argument typed signatures and slot scope, residency and asynchronous captures.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 85,
+        "symbol": "PipelineCache::PipelineCache(const Instance& instance_, Scheduler& scheduler_,"
+      },
+      "contract": "Initialize pipeline and shader workers, trivial VS and feature profile.",
+      "native_mapping": "Bounded per-title ShaderCompiler/PipelineCompiler, safe direct MSL, native vertex/mesh/compute capabilities and proven ordering.",
+      "expected_result": "Disabled/enabled worker variants and native descriptors for each route.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 149,
+        "symbol": "PipelineCache::~PipelineCache() {"
+      },
+      "contract": "Drained shutdown persists compatible driver cache.",
+      "native_mapping": "Cancel publication, wait on outstanding actual work, persist completed recipes and per-title native archives, release scopes.",
+      "expected_result": "Shutdown with pending callback and concurrent required draw, durable commit under title.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 155,
+        "symbol": "void PipelineCache::LoadCache(const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Warm and switch titles, retaining compatible current states on repeated title selection.",
+      "native_mapping": "Atomic title swap retires previous generations, initiating generation-specific warmup with actual progress while preserving title disk records.",
+      "expected_result": "Same-title reuse, concurrent switching, canceled warmup, applet and previous-title rollback.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 203,
+        "symbol": "bool PipelineCache::LoadCacheCrashed(u64 title_id) const {"
+      },
+      "contract": "Crash marker must report interrupted warmup without recurring bad builds.",
+      "native_mapping": "Native title/cache-specific marker with separate advisory lock for active versus abandoned load, clear on authorized completion and cold recovery.",
+      "expected_result": "Simulate stale and active markers, cancellation and consistent native cold build fallback.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 233,
+        "symbol": "void PipelineCache::LoadDriverPipelineDiskCache("
+      },
+      "contract": "Load drivers, validate compatibility, pure native fallback if missing/corrupt or disabled.",
+      "native_mapping": "Use typed Metal 4 archive lookup on exact title, architecture and OS build. Original MSL/library recipe compiles without archive.",
+      "expected_result": "Corrupt artifacts, separate title isolation, native retry or cold compile under SDK.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 312,
+        "symbol": "void PipelineCache::SaveDriverPipelineDiskCache() {"
+      },
+      "contract": "Title/device-specific persistence of actual compiled driver data.",
+      "native_mapping": "Bound MTL4PipelineDataSetSerializer to genuine cacheable compiler batches. Wait for SDK tasks before atomic capture.",
+      "expected_result": "Native archive capture and replay with scoped provenance.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-062-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 351,
+        "symbol": "void PipelineCache::SwitchDiskCache(u64 title_id, const std::atomic_bool& stop_loading,"
+      },
+      "contract": "Return to previous titles without cache leaks or incorrect applet state.",
+      "native_mapping": "Retire unwanted native state and reuse scoped canonical keys from prior titles while stale bundles cannot bind.",
+      "expected_result": "First title, repeated title, applet transition, compare current result generations.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 409,
+        "symbol": "bool PipelineCache::BindPipeline(PipelineInfo& info, bool wait_built) {"
+      },
+      "contract": "Wait for correct native state, no silent skip, correct shader combination.",
+      "native_mapping": "Whole-key in-flight dedup even when independent sync fallback is required; typed failures and publication under title/device scope.",
+      "expected_result": "Concurrent duplicate, configured disabled/full queue, compile failure and generation invalidation.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 430,
+        "symbol": "if (dynamic.viewport != current_dynamic.viewport || is_dirty) {"
+      },
+      "contract": "Per-draw dynamic arguments, topology, viewport, scissor and stencil state.",
+      "native_mapping": "Reuse native BindGraphicsPipeline with immutable resource snapshots, context guard and scheduler-owned references.",
+      "expected_result": "Actual depth/blend/stencil selectors and draw outputs under owning rasterizer.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-062-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 542,
+        "symbol": "ExtraVSConfig PipelineCache::CalcExtraConfig(const PicaVSConfig& config) {"
+      },
+      "contract": "Select guest VS profile, exact multiplication, optional fixed/programmable geometry, lighting handling.",
+      "native_mapping": "Use precise native MSL, typed vertex inputs and valid interpreted vertices. Ordered compute and native mesh get exact independent keys.",
+      "expected_result": "Emitted source corpus compiled in direct MSL4 with actual entry points.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    },
+    {
+      "id": "VK-062-13",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 626,
+        "symbol": "void PipelineCache::QueryBlendEmulation(const Pica::RegsInternal& regs, bool& rgb_emulation,"
+      },
+      "contract": "Independent RGB/alpha Min/Max and exact feedback state.",
+      "native_mapping": "DescribeFragment decides emulation per channel, native ROG or serial feedback; keep masks, context and sample count.",
+      "expected_result": "Adversarial blend and feedback route then exact GPU composite checks.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-062-14",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_pipeline_cache.cpp",
+        "sha256": "8fdf5d99765a9103df045bbc334b478d27fd9374caea05e7e57585c74a296572",
+        "line": 634,
+        "symbol": "bool PipelineCache::IsCacheValid(std::span<const u8> data) const {"
+      },
+      "contract": "Driver cache header validation and controlled recovery.",
+      "native_mapping": "Complete native cache identity and original MSL/binary recipe, preserve good unrelated persisted artifacts.",
+      "expected_result": "Native platform scope, corrupt loader fallback and process isolation.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/062/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "062/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native linked ABI, SDK-controlled queue/cancel/archive lifecycle oracle with real files, generated direct PICA Metal4 vertex, mesh/object, compute, feedback and blending corpus, PICA200 48 cases / 801 assertions, CTest 64 passes and five existing skips."
+    }
+  ],
+  "owner_sha256_after": "5f140c493814299c4e62e4c70cd5ca30195845621e384e7b89e9b326b9072e09"
+}

@@ -1,0 +1,160 @@
+{
+  "phase": "068",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-068-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_rasterizer.h",
+        "sha256": "3d43f733b5216b179bb1e97e185597b7ccbcdf56de0ba01a3299a281fad80188",
+        "line": 49,
+        "symbol": "}"
+      },
+      "contract": "Public contract supplies all rasterizer inputs and actual error/fallback returns.",
+      "native_mapping": "Define each Phase 067 method and integrate native instances with shared PICA and renderer.",
+      "expected_result": "Compile actual implementation and interface plus lifecycle test in 091.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration and arm64 ARC target linkage, additional FreeCam compilation, neutral dependency scan, deterministic packed/default attribute and write mask fixture, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "AZ-068-02",
+      "source": {
+        "path": "src/video_core/rasterizer_accelerated.cpp",
+        "sha256": "9700d0d9209cf238ce0d3d647fb17cd5bbd67d9f4e6ec0d57b61313fb5f739ac",
+        "line": 154,
+        "symbol": "void RasterizerAccelerated::SyncDrawUniforms() {"
+      },
+      "contract": "Use shared clipping, lighting, fog, texenv, tex unit, depth, shadow and FreeCam register uniforms.",
+      "native_mapping": "Keep base SyncDrawUniforms and consume dirty program state immediately with immutable backend snapshots.",
+      "expected_result": "Vary one register per draw, compile FreeCam.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-068-03",
+      "source": {
+        "path": "src/video_core/pica/pica_core.cpp",
+        "sha256": "619fef09a9b36a7e9502ae12b9a45b9e6c06b3f858e3a835171746baf0013648",
+        "line": 1053,
+        "symbol": "}"
+      },
+      "contract": "Existing caller declines stateful geometry acceleration and uses interpreted PICA results.",
+      "native_mapping": "Respect existing gate; fixed geometry may use native mesh/compute. Join neutral PICA output in native software-vertex pipeline without legacy execution.",
+      "expected_result": "PICA and native geometry fixtures, no point interpolation discontinuity.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-068-04",
+      "source": {
+        "path": "src/video_core/pica/vertex_loader.cpp",
+        "sha256": "c951b10f7cb0a69f51479ee154def3ae257f241a7512a99dfa44ef39757198c9",
+        "line": 24,
+        "symbol": "const auto& loader_config = attribute_config.attribute_loaders[loader];"
+      },
+      "contract": "Guest loaders contain padding, fixed data, duplicate input mapping and type conversion.",
+      "native_mapping": "Resolve actual reads with shared layout formulas and PICA defaults, flush actual regions before reading.",
+      "expected_result": "Independent expected banks for packed values and overflows.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PASS",
+      "actual_result": "CMake native registration and arm64 ARC target linkage, additional FreeCam compilation, neutral dependency scan, deterministic packed/default attribute and write mask fixture, PICA 48 cases / 801 assertions and CTest 64 passes plus 5 existing skips."
+    },
+    {
+      "id": "AZ-068-05",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/framebuffer_base.h",
+        "sha256": "b9584ea3b8f1dc584a37b76ed1a1e5e9a62d24e55e114452d7396716eac201e6",
+        "line": 78,
+        "symbol": "}"
+      },
+      "contract": "Existing cache helper computes viewport/scissor and expires dirty intervals on scope exit.",
+      "native_mapping": "Use same extent/flip math and keep resources fresh across growing surface slots.",
+      "expected_result": "Verify integration with 069 cache implementation and exact color/depth intervals.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-068-06",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 637,
+        "symbol": "typename T::Surface& RasterizerCache<T>::GetTextureCube(const TextureCubeConfig& config) {"
+      },
+      "contract": "Existing trait instantiation owns guest memory, cubes, surfaces, custom, texture and transfer semantics.",
+      "native_mapping": "Call shared native traits, no private Vulkan edge, account for potentially moving slot wrappers.",
+      "expected_result": "Actual template/link in 069 and physical sentinel checks.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-068-07",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_pipeline_cache.h",
+        "sha256": "e5daa2eb9a96e28045885db7702d156f2f114f1a1b0f197c047d09ba629ca4c9",
+        "line": 130,
+        "symbol": "PipelineCache(const PipelineCache&) = delete;"
+      },
+      "contract": "Selection/compilation is native and retains title identity across deferred binding.",
+      "native_mapping": "Capture a correct native pipeline and call typed stage snapshots, block only for real ready work; drain title through completion.",
+      "expected_result": "SDK compiler both modes and GPU title churn.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-068-08",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "2e983c7981823d32951465b9ba383d095a56ab44a0f350eafc351d174a69277b",
+        "line": 175,
+        "symbol": "TextureSurface(TextureRuntime& runtime, const VideoCore::SurfaceBase& original,"
+      },
+      "contract": "Texture lifetime belongs to texture runtime and its budget.",
+      "native_mapping": "Keep strong TextureResource in fragment and present snapshots; native pass owns attachments and resolves.",
+      "expected_result": "Dirty eviction between CPU queue and GPU works.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-068-09",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_scheduler.h",
+        "sha256": "d9ebf7424af2d76c6a0ebec3ac79d58fc2a22da93084c19e054fccd9e52d1bba",
+        "line": 94,
+        "symbol": "[[nodiscard]] u64 CurrentTick() const noexcept;"
+      },
+      "contract": "Encoding context enforces ordered byte/texture hazards and owns submission leases.",
+      "native_mapping": "Reserve exact typed GPU buffers across dispatch and draws, close scoped native encoders on dependency transition.",
+      "expected_result": "Native MTL4 API validation and stage barrier dependencies.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/068/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "068/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e6d859e35d5bba877ff91d44d5fae8f9ea1c2eaa89fb6edde9359f8b48e60644"
+}

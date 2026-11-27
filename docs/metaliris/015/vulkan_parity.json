@@ -1,0 +1,211 @@
+{
+  "phase": "015",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "pica_to_vk-015",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 15,
+        "symbol": "inline vk::Filter TextureFilterMode(TextureFilter mode) {"
+      },
+      "contract": "Nearest, linear and invalid min/mag fallback",
+      "native_mapping": "Translate to MTLSamplerMinMagFilter; invalid mode diagnoses and falls back to linear",
+      "expected_result": "Nearest and linear match concrete SDK values",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-028",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 28,
+        "symbol": "inline vk::SamplerMipmapMode TextureMipFilterMode(TextureFilter mip) {"
+      },
+      "contract": "Nearest, linear and invalid mip fallback",
+      "native_mapping": "Translate to Metal mip filter and keep disabling mips explicit",
+      "expected_result": "No-mip, nearest, linear",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-041",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 41,
+        "symbol": "inline vk::SamplerAddressMode WrapMode(Pica::TexturingRegs::TextureConfig::WrapMode mode) {"
+      },
+      "contract": "Eight wrap modes; reference approximates asymmetric modes",
+      "native_mapping": "Retain original mode with Metal-compatible address mode; select native shader addressing for asymmetry/custom borders and NPOT unsigned texel wrap",
+      "expected_result": "Compare each integer tap to existing software PICA oracle",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-060",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 60,
+        "symbol": "inline vk::BlendOp BlendEquation(Pica::FramebufferRegs::BlendEquation equation) {"
+      },
+      "contract": "Five blend equations and hardware-confirmed invalid add fallback",
+      "native_mapping": "Use exact MTLBlendOperation enum and diagnose reserved values",
+      "expected_result": "Test all eight encodings",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-079",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 79,
+        "symbol": "inline vk::BlendFactor BlendFunc(Pica::FramebufferRegs::BlendFactor factor) {"
+      },
+      "contract": "Fifteen blend factors and illegal One fallback",
+      "native_mapping": "Preserve semantic source/dest/color/alpha ordering and diagnostic",
+      "expected_result": "Test all sixteen encodings",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-106",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 106,
+        "symbol": "inline vk::LogicOp LogicOp(Pica::FramebufferRegs::LogicOp op) {"
+      },
+      "contract": "Sixteen bitwise logic ops",
+      "native_mapping": "Provide the exact lane-wise expressions for native shader specialization; no hardware logic-op claim",
+      "expected_result": "1,048,576 byte pairs checked against software PICA",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-131",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 131,
+        "symbol": "inline vk::CompareOp CompareFunc(Pica::FramebufferRegs::CompareFunc func) {"
+      },
+      "contract": "Compare enum semantics",
+      "native_mapping": "Map every compare enum explicitly to device values",
+      "expected_result": "Exhaustive SDK compare table",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-148",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 148,
+        "symbol": "inline vk::StencilOp StencilOp(Pica::FramebufferRegs::StencilAction action) {"
+      },
+      "contract": "Stencil operation semantics",
+      "native_mapping": "Map clamp and wrap increments/decrements distinctly",
+      "expected_result": "Exhaustive SDK stencil table",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-165",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 165,
+        "symbol": "inline vk::PrimitiveTopology PrimitiveTopology(Pica::PipelineRegs::TriangleTopology topology) {"
+      },
+      "contract": "Triangle list, strip, fan, programmable GS and invalid",
+      "native_mapping": "Preserve list and strip; fan explicitly expanded to native triangle list; programmable output uses the existing PICA setup contract",
+      "expected_result": "Check four legal encodings and explicit fan expansion requirement",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-180",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 180,
+        "symbol": "inline vk::CullModeFlags CullMode(Pica::RasterizerRegs::CullMode mode, bool flip_viewport) {"
+      },
+      "contract": "Keep-all variants and flipped viewport",
+      "native_mapping": "Use native cull mode with the same caller-defined viewport flip",
+      "expected_result": "Check both no-cull and front/back flips",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-194",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 194,
+        "symbol": "inline vk::FrontFace FrontFace(Pica::RasterizerRegs::CullMode mode) {"
+      },
+      "contract": "Winding state selection",
+      "native_mapping": "Use named native winding values preserving guest convention",
+      "expected_result": "Test CW and CCW",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    },
+    {
+      "id": "pica_to_vk-208",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/pica_to_vk.h",
+        "sha256": "4c0f9adf527a9735719274337261cd9204d93e94706ebe52a588262444ce6bdd",
+        "line": 208,
+        "symbol": "inline Common::Vec4f ColorRGBA8(const u32 color) {"
+      },
+      "contract": "Packed color little-endian normalized layout",
+      "native_mapping": "Preserve raw RGBA8 and map normalized channels, native representable border presets and shader fallback",
+      "expected_result": "All three exact presets and custom original bits",
+      "dependency_owner": "015",
+      "command": "zsh docs/metaliris/015/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "015/mapping.log",
+      "status": "PASS",
+      "actual_result": "Actual CPU oracle, boundary cases and ARC header consumer all passed."
+    }
+  ],
+  "owner_sha256_after": "22fd550501cc6b56b16052ae828cb2af5c9b6920953e5a7f4bfb12baef15fb83"
+}

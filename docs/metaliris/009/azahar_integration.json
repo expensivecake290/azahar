@@ -1,0 +1,58 @@
+{
+  "phase": "009",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-CHECKED-RESOURCE",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 13,
+        "symbol": "#include <vulkan/vulkan.hpp>"
+      },
+      "contract": "Native resources can fail creation and need actionable diagnostics.",
+      "native_mapping": "Use a typed helper that checks nil and turns NSError information into a native Metal error.",
+      "expected_result": "Header fixture verifies a real native queue protocol return type. Runtime checks retained success and error fields.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "AZ-DEVICE-IDENTITY",
+      "source": {
+        "path": "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLDevice.h",
+        "sha256": "b7fa0589eabb36f6281fd5967dfe704d222af997bb121cfda65a7e32ef561068",
+        "line": 474,
+        "symbol": "@property (readonly) uint64_t registryID API_AVAILABLE(macos(10.13), ios(11.0)) ;"
+      },
+      "contract": "The device registry ID identifies a Metal device across tasks.",
+      "native_mapping": "Store registry ID for diagnostics and use an independent shared context identity for authorization of work. Two contexts sharing one device remain distinct.",
+      "expected_result": "Prepare two contexts from one Metal device and reject the first context work lease in the second.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Real Metal device or dependent scheduler is unavailable; CPU diagnostics passed."
+    },
+    {
+      "id": "AZ-SUBMISSION-LEASE",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.h",
+        "sha256": "3eb6936a3b33071ed23c83cef256f6b3852fa81b86b9c7479ebe981f6214960f",
+        "line": 15,
+        "symbol": "#define VMA_STATIC_VULKAN_FUNCTIONS 0"
+      },
+      "contract": "Resources and queued work must be bound to the correct active device generation.",
+      "native_mapping": "A work lease retains context state; a move-only submission guard protects the generation across submission.",
+      "expected_result": "Check empty, stale, foreign, valid and closed lease statuses and serialize close against an active submission guard.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Real Metal device or dependent scheduler is unavailable; CPU diagnostics passed."
+    }
+  ],
+  "owner_sha256_after": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9"
+}

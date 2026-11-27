@@ -1,0 +1,41 @@
+{
+  "phase": "010",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-ALLOCATOR-DISPATCH",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.cpp",
+        "sha256": "8815646e75e49075ab2aed78ac68143f5f74cfa6d89f3ddb120931bc6d153bd9",
+        "line": 9,
+        "symbol": "#include <vk_mem_alloc.h>"
+      },
+      "contract": "Vulkan translation unit owns VMA and dynamic dispatcher storage.",
+      "native_mapping": "Use the native SDK and ARC. Resource pooling belongs to native memory phases, with no Vulkan/VMA library.",
+      "expected_result": "Native-only archive and smoke binary compile and link; inspect their symbol and library closures.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "VK-DISPATCH-IDENTITY",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_common.cpp",
+        "sha256": "8815646e75e49075ab2aed78ac68143f5f74cfa6d89f3ddb120931bc6d153bd9",
+        "line": 12,
+        "symbol": "VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE"
+      },
+      "contract": "Original loader establishes which API entry points are used.",
+      "native_mapping": "Metal device context and per-device ARC ownership are explicit. Availability comes from native SDK and device probes.",
+      "expected_result": "Native ARC runtime fixture reports a real device or exact device-dependent deferral.",
+      "dependency_owner": "010",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    }
+  ],
+  "owner_sha256_after": "d899878f2b6f538cb5c29814b5be183c6335423d95ebd1337031e1b2ac62bb93"
+}

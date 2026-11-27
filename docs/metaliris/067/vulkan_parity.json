@@ -1,0 +1,177 @@
+{
+  "phase": "067",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-067-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 37,
+        "symbol": "class RasterizerVulkan : public VideoCore::RasterizerAccelerated {"
+      },
+      "contract": "Construct from Azahar guest devices and native per-device render dependencies; own rasterizer state.",
+      "native_mapping": "Use final RasterizerMetal and move private implementation details out of the public header; lifetime arranged from instance/allocator/scheduler through cache and rendering.",
+      "expected_result": "Verify public ARC consumer, retained presentation storage and actual Phase 068 constructor/link.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-067-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 46,
+        "symbol": ""
+      },
+      "contract": "Frame tick and shader cache boot with exact progress and previous interrupted load handling.",
+      "native_mapping": "Keep shared TickFrame and DiskResourceLoadCallback lifecycle, title ID, captured native generation and interrupted marker query.",
+      "expected_result": "Exercise default/title switching and cancellation while actual draws are pending.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-067-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 50,
+        "symbol": ""
+      },
+      "contract": "Draw processed triangles plus indexed or sequential shader batch.",
+      "native_mapping": "Keep shared hardware vertex ABI for interpreted fallback and PICA draw bool contract, with native shader selection, dispatch and render output.",
+      "expected_result": "Compile override signatures and later compare native triangle list, strip, fan, shader and dispatch outputs to oracle.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-067-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 51,
+        "symbol": "void DrawTriangles() override;"
+      },
+      "contract": "Flush all/range, invalidate range or both, and clear with optional flush.",
+      "native_mapping": "Keep exact notification interface and maintain shared dirty intervals through true synchronous readback.",
+      "expected_result": "Compile callable shared interface and validate dirty interval guest writes under 069.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-067-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 56,
+        "symbol": "void ClearAll(bool flush) override;"
+      },
+      "contract": "Accelerate display transfer, texture copy and fill, with safe false fallback when exact native path unavailable.",
+      "native_mapping": "Forward typed shared transfer configs to native runtime through cache.",
+      "expected_result": "Compile real typed caller; test overlap guard pixels and all guest transfer paths.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-067-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 59,
+        "symbol": "bool AccelerateFill(const Pica::MemoryFillConfig& config) override;"
+      },
+      "contract": "Accelerate presentation of stride-clamped guest address from cached surface with rotated coordinates.",
+      "native_mapping": "Expose Retina-independent strong native surface lease plus guest normalized rectangle. Compute with clamped shared signed slicing and independent width/height scaling.",
+      "expected_result": "Check exact signed and fractional coordinate orientation and lifetime when slot evicted.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-067-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 67,
+        "symbol": "bool DiskResourcesLoadCrashed(u64 title_id) override;"
+      },
+      "contract": "Native draw state and LUT content synchronized from PICA register state and invalidation ticks.",
+      "native_mapping": "Use immutable prepared guest snapshot and exact native pass/argument layouts; integrate depth, stencil, blend, scissor and deterministic LUT upload.",
+      "expected_result": "Live clipped PICA draw and LUT changes within/around a submission.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-067-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 76,
+        "symbol": ""
+      },
+      "contract": "Bind active, disabled, cube, normal map, shadow and feedback texture units.",
+      "native_mapping": "Use typed native descriptors with capacity for every logical slot and explicit immutable copies when tile feedback cannot be used.",
+      "expected_result": "2D/cube/shadow/barrier inputs and texture read/attachment feedback depending on device capabilities.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-067-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 86,
+        "symbol": ""
+      },
+      "contract": "Uniform upload, shader selection, fixed/default attributes and vertex/index state.",
+      "native_mapping": "Keep variable scale and exact LDS sizes in private implementation; decode guest 8-/16-bit index byte order without restart and reject truncation before load.",
+      "expected_result": "Run deterministic index oracle, then scoped assembly, offsets and clipping/hardware execution.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "VK-067-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_rasterizer.h",
+        "sha256": "5047b15643aec5d338083c8a77e0083cee79de2b6628d11c7496b92ad03c3e01",
+        "line": 106,
+        "symbol": "/// Setup the fixed attribute emulation in vulkan"
+      },
+      "contract": "Software-assembled guest vertices may be sent to native rasterizing pipeline.",
+      "native_mapping": "Parent supplies interpreted HardwareVertex with all varyings and quaternion correction; use shared type and native stage-in ABI.",
+      "expected_result": "Exercise no triple missing and preserved interpolation through PICA fixture in 068.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "3d43f733b5216b179bb1e97e185597b7ccbcdf56de0ba01a3299a281fad80188"
+}

@@ -1,0 +1,92 @@
+{
+  "phase": "030",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-030-01",
+      "source": {
+        "path": "src/video_core/shader/generator/glsl_shader_decompiler.h",
+        "sha256": "9d29d385f4e37347bc1dd26a8e18fbce9ec0ae30eb057dd5999665ab5054f5cd",
+        "line": 15,
+        "symbol": "std::string DecompileProgram(const Pica::ProgramCode& program_code,"
+      },
+      "contract": "Native code must be directly emitted, with precise math and deterministic status.",
+      "native_mapping": "Expose source preamble, callable register ABI and stage-specific function/options.",
+      "expected_result": "Real consumer compiles for arm64 macOS and links shared layout checks.",
+      "dependency_owner": "030",
+      "command": "zsh docs/metaliris/030/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "030/header.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header consumer, invariant ABI offsets and raw f24 boundary oracle passed."
+    },
+    {
+      "id": "MTL-030-02",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 124,
+        "symbol": "// end instruction crashing the emulator due to the program counter"
+      },
+      "contract": "Unsupported or invalid opcodes and malformed instructions must be observable.",
+      "native_mapping": "Compile diagnostic captures PC/raw content and result reports invalid runtime control on actually executed malformed steps.",
+      "expected_result": "Generated MSL verified against invalid jump, compare and geometry tests.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-030-03",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 483,
+        "symbol": "default:"
+      },
+      "contract": "Compare swizzle, address and arithmetic behavior to trusted CPU PICA interpreter.",
+      "native_mapping": "Use real nihstro instruction decoding and MSL arithmetic contract. CPU native format and defaults are tested separately from GPU divergence.",
+      "expected_result": "PICA interpreter consumed exact supplied words and native compute readback verified when GPU exists.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-030-04",
+      "source": {
+        "path": "src/video_core/shader/shader_interpreter.cpp",
+        "sha256": "aa12206d6b6c82b3adc8a8c02a844bb672054f1b993369991bda14b6785d6621",
+        "line": 685,
+        "symbol": "(int)instr.opcode.Value().EffectiveOpCode(),"
+      },
+      "contract": "Actual call return precedence, nested loops with BREAK and alternate output banks.",
+      "native_mapping": "Expose complete state and shader status including emitter overflow, without fake outputs.",
+      "expected_result": "A single fixture emits and MSL-compiles scope paths, then compares GPU registers to interpreter.",
+      "dependency_owner": "031",
+      "command": "zsh docs/metaliris/031/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "031/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "GEOMETRY-035-030",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_decompiler.h",
+        "sha256": "6fac1a12d5f77512fed1e286285b4b4171e9d334c1a3727f5e2f79a2fd5f2596",
+        "line": 22,
+        "symbol": "struct ProgramOptions {"
+      },
+      "contract": "Mutable Fixed/Variable GS inputs write PICA uniforms per invocation, and every GS updates b15. The existing generator exposes only the immutable constant uniform address space.",
+      "native_mapping": "Native explicit constant/thread uniform selection with stable default ABI.",
+      "expected_result": "Apply controlled change, compile actual native modes and rerun the previous oracle.",
+      "dependency_owner": "035",
+      "command": "Run the prior owner verification script and new native geometry checks.",
+      "evidence_path": "031/reopen-035.log",
+      "status": "PENDING",
+      "actual_result": "The previous host and linked regressions plus both actual MSL address-space variants compiled. Native GPU effects remain pending in Phase 035."
+    }
+  ],
+  "owner_sha256_after": "83de5e2c0d6b06562000ef5da080cb20dd51d5b9df2920a26b57679046e682d3"
+}

@@ -1,0 +1,75 @@
+{
+  "phase": "059",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-059-01",
+      "source": {
+        "path": "src/video_core/rasterizer_interface.h",
+        "sha256": "9e86eb4502138c3114b2e574a249c2949c52cc08279b06dc77e8a0ccb6604b7c",
+        "line": 23,
+        "symbol": "enum class LoadCallbackStage {"
+      },
+      "contract": "Use Azahar disk-resource progress at actual disk/native work boundaries.",
+      "native_mapping": "Reference backend-neutral DiskResourceLoadCallback directly. Preload reports completed inspections; owner 062 reports real compiler completions.",
+      "expected_result": "Actual callback type/ownership compile; cancellation and repeated titles in runtime implementation.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-059-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.h",
+        "sha256": "7d4559f4a3ce7945c68ff24f30c0954e9191331220589296d0e95fdc5a48a8d8",
+        "line": 191,
+        "symbol": "}"
+      },
+      "contract": "Use full immutable graphics key and exact stages as disk rehydration input.",
+      "native_mapping": "Persist matching custom MSL source text/options or bytes of executable Metal library, and repeat all exact pipeline compatibility state.",
+      "expected_result": "Consumer compares populated records and native archive type without private backend dependency.",
+      "dependency_owner": "059",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PASS",
+      "actual_result": "Linked Objective-C++ consumer verified full cache identity, stage/pipeline record comparison, actual native MTL4 archive SDK signatures and Azahar progress ABI. PICA200 48 cases / 801 assertions and CTest 64 passes with five existing skips."
+    },
+    {
+      "id": "AZ-059-03",
+      "source": {
+        "path": "src/common/scm_rev.h",
+        "sha256": "e51f79f73eb718470735e3fa3b0e2ee2cfb552a7156388861acab35fda535771",
+        "line": 17,
+        "symbol": "extern const char g_shader_cache_version[];"
+      },
+      "contract": "Use the repository shared cache-version stamp with native schema compatibility.",
+      "native_mapping": "Accept stable build/source/driver identity in cache snapshot and prevent use under foreign device/title/profile.",
+      "expected_result": "Native source-revision validation and date/OS Darwin build consumer integration.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-059-04",
+      "source": {
+        "path": "src/common/file_util.h",
+        "sha256": "705c4dcad5056975d5ed9aa994d48560ae2769f9f52246c8c0824cb786b3912d",
+        "line": 155,
+        "symbol": "bool Rename(const std::string& srcFullPath, const std::string& destFullPath);"
+      },
+      "contract": "Azahar filesystem support and durable atomic renaming.",
+      "native_mapping": "Cache contracts own filesystem path and atomic publish with read/typed corruption outcomes.",
+      "expected_result": "Run real torn write and read-only path fixtures in implementation with no GPU requirement.",
+      "dependency_owner": "060",
+      "command": "zsh docs/metaliris/059/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "059/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "19a070dd2abd7ad3f5bb8b538ae5c5c82051e472ee56cd68453ea250bd2b4d76"
+}

@@ -1,0 +1,75 @@
+{
+  "phase": "076",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-076-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 125,
+        "symbol": "return library;"
+      },
+      "contract": "Frontend presents either a valid native surface or an explicit headless mode.",
+      "native_mapping": "Use frontend-neutral retained CAMetalLayer handle; headless is a valid published state. Keep non-Apple platform-specific surface dispatch outside this native path.",
+      "expected_result": "Compile source-compatible C++ consumer and run native headless/attach fixture.",
+      "dependency_owner": "076",
+      "command": "zsh docs/metaliris/076/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "076/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 C++20 and Objective-C++ ARC consumer builds, device-free exact odd/Retina extent, clamping and headless semantics, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 plus 5 skips."
+    },
+    {
+      "id": "VK-076-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 173,
+        "symbol": "if (window_info.type == Frontend::WindowSystemType::MacOS) {"
+      },
+      "contract": "Mac native path consumes the exact CAMetalLayer associated with a render view.",
+      "native_mapping": "Own main-thread attach/detach; adopt a real layer or install and restore an owned replacement, with no copied unowned native pointer crossing the frontend boundary.",
+      "expected_result": "AppKit fixture validates real layer/host lifetime, invalid handle and stale replacement.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/076/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "076/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-076-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 221,
+        "symbol": "extensions.push_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);"
+      },
+      "contract": "Native surface type and presentation availability are distinct from GPU/device selection.",
+      "native_mapping": "Propagate surface visible/size state, fullscreen and refresh independently through the existing snapshot contract. Reserve device/Metal4 validation for existing Instance.",
+      "expected_result": "Verify unpublished/windowless/suspended/resumed cases and native shape.",
+      "dependency_owner": "076",
+      "command": "zsh docs/metaliris/076/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "076/header.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 C++20 and Objective-C++ ARC consumer builds, device-free exact odd/Retina extent, clamping and headless semantics, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 plus 5 skips."
+    },
+    {
+      "id": "VK-076-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 290,
+        "symbol": "bool dump_command_buffers) {"
+      },
+      "contract": "Backend capability errors are explicit instead of returning invalid handles.",
+      "native_mapping": "Reject invalid host objects/geometry before mutating native state and reject off-main access. Distinguish headless from failed capture.",
+      "expected_result": "Deterministic off-main and failed input checks in actual implementation.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/076/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "076/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "6f8f46bea7bc20a0e828b8058975330cc1c2cfd5d0a4fb9ee8c316959b050ce5"
+}

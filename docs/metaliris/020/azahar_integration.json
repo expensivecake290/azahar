@@ -1,0 +1,58 @@
+{
+  "phase": "020",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_scheduler-197",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_scheduler.h",
+        "sha256": "e4ed162fbc0f79586bbd7587fcb784d645900d28f4165a21ef87713187ce5f93",
+        "line": 197,
+        "symbol": "CommandPool command_pool;"
+      },
+      "contract": "Scheduler's dedicated command allocator owner",
+      "native_mapping": "Tie each checkout to the same completion timeline and submission pin",
+      "expected_result": "Scheduler fixture uses same context, feedback and command allocator",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "vk_blit_helper-075",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_blit_helper.h",
+        "sha256": "29e04f7b63656cf902bb69cf780d7909f504a63a37927a9ea706f0cc3a789032",
+        "line": 75,
+        "symbol": "DescriptorHeap compute_provider;"
+      },
+      "contract": "Blit helper uses multiple layouts",
+      "native_mapping": "Allow each acquired table to have its own pool key and shape; never overwrite immutable table on reuse",
+      "expected_result": "Fixture mismatched layouts cannot alias cached native table",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "mtl_master_semaphore-047",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_master_semaphore.h",
+        "sha256": "5d091c0107a8923a3fce0d99bbc1ee2aa1797a00fc6615cb7056c60ecb8e7d7e",
+        "line": 47,
+        "symbol": "[[nodiscard]] CompletionStatus Wait(u64 ticket, Deadline deadline = {}) const;"
+      },
+      "contract": "Actual Metal completion and retained callback",
+      "native_mapping": "Return state owner to keep native resources alive independently of pool destruction",
+      "expected_result": "Submission pins are retained by real feedback handler until retirement",
+      "dependency_owner": "021",
+      "command": "zsh docs/metaliris/021/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "021/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "2c1371153d4e288c7df678ed2771cdbc3ec3784df2fc8bc6433209804f67dcde"
+}

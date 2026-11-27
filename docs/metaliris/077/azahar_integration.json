@@ -1,0 +1,92 @@
+{
+  "phase": "077",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-077-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_surface_adapter.h",
+        "sha256": "6f8f46bea7bc20a0e828b8058975330cc1c2cfd5d0a4fb9ee8c316959b050ce5",
+        "line": 38,
+        "symbol": "public:"
+      },
+      "contract": "Use same C++ and ARC bridge public methods, placeholder-free native ownership.",
+      "native_mapping": "Define all members and keep ObjC confined to 077.",
+      "expected_result": "Real compiler, ARC host integration and no Qt private dependency.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC and production AppKit target linkage, host real AppKit adoption/resize/restore and queued destruction, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-077-02",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.mm",
+        "sha256": "4025a5ffe4731db590b48d3278e636d0b6cf5f7fd70e9b428df0838a228c29c5",
+        "line": 14,
+        "symbol": "// MVKSurface::getNaturalExtent() if the layer is not CAMetalLayer."
+      },
+      "contract": "Existing Qt shim force-installs a CAMetalLayer when native view lacks it.",
+      "native_mapping": "Implement actual AppKit view adoption and installation reusable by a thin Qt bridge. Never modify an independently replaced view layer during cleanup.",
+      "expected_result": "Real cocoa object mutation lifecycle and direct Qt phase consumer.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-077-03",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 172,
+        "symbol": "// An empty handle selects headless rendering."
+      },
+      "contract": "EmuWindow owns synchronized publication and generation, with layout updates and separate surface lifecycle.",
+      "native_mapping": "Return exact matching immutable native geometry and stable layer token. Snapshots retain old layer while renderer's backbuffer retires.",
+      "expected_result": "Frontend publication to live dual Qt windows and handoff after aspect and graphics option changes.",
+      "dependency_owner": "081",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-077-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 83,
+        "symbol": "return {};"
+      },
+      "contract": "Tagged RetainLayer produces the only accepted surface owner.",
+      "native_mapping": "Reuse tagged shared ownership and prove actual ARC lifetimes via weak layer references and real neutral Surface constructor.",
+      "expected_result": "Attach, adopt, reassign external view layer and inspect olds release.",
+      "dependency_owner": "077",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PASS",
+      "actual_result": "Native arm64 ARC and production AppKit target linkage, host real AppKit adoption/resize/restore and queued destruction, neutral dependency closure, PICA 48 cases / 801 assertions and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-077-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_swapchain.mm",
+        "sha256": "35d626209c97f6a4b533eb4db2972f17e300b949cae94902fcc86242b24601b6",
+        "line": 52,
+        "symbol": "#endif"
+      },
+      "contract": "Presentation worker configures render properties from snapshot separate from the main AppKit layer tree.",
+      "native_mapping": "Main thread lifecycle and geometry do not touch selected renderer device or present options; worker consumes only the published traits.",
+      "expected_result": "Real refresh/resize pixel/counter consistency with 071 Apple Metal4 sink.",
+      "dependency_owner": "091",
+      "command": "zsh docs/metaliris/077/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "077/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "ea0419370c8a61f21041e18d13369c1fc45627a03f639e62bd377d9a3f438919"
+}

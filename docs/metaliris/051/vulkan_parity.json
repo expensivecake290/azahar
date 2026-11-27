@@ -1,0 +1,75 @@
+{
+  "phase": "051",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-051-01",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.frag",
+        "sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+        "line": 8,
+        "symbol": "layout (location = 0) in vec2 frag_tex_coord;"
+      },
+      "contract": "Native input interpolates source UV at location 0, preserving caller orientation and layout.",
+      "native_mapping": "Use normalized texcoord [[user(locn0)]], sampled color with no additional conversion.",
+      "expected_result": "5x3 source chart across odd 9x7 native presentation, independently expected source coordinates.",
+      "dependency_owner": "051",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-051-02",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.frag",
+        "sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+        "line": 11,
+        "symbol": "layout (push_constant, std140) uniform DrawInfo {"
+      },
+      "contract": "112-byte presentation block includes matrix, input/output resolutions, left/right ids, layer and reverse flag in order.",
+      "native_mapping": "Use native float4x4, float4 pairs and exact int32 trailing layout under constant buffer slot 0.",
+      "expected_result": "Objective-C++/MSL compile-time alignment and named fields match byte offsets.",
+      "dependency_owner": "051",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-051-03",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.frag",
+        "sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+        "line": 22,
+        "symbol": ""
+      },
+      "contract": "Reference branches dynamic array selection versus fixed case for three valid screens.",
+      "native_mapping": "Native Metal 4 texture array uses validated index and shared viewport sampler; invalid index yields deterministic opaque black without unsafe access.",
+      "expected_result": "Three distinct GPU source pixel outputs and rejected -1, 3 and large invalid IDs.",
+      "dependency_owner": "051",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-051-04",
+      "source": {
+        "path": "src/video_core/host_shaders/vulkan_present.frag",
+        "sha256": "b0bb93069f9bcaf501f41bcf944be88ae6a92922a20d47e33fe9e179abbb7cac",
+        "line": 38,
+        "symbol": "void main() {"
+      },
+      "contract": "Plain mode uses left screen id and preserves RGBA, without consulting stereo flags.",
+      "native_mapping": "Use left slot only; same global texture sampler filtering and level zero as bound by caller.",
+      "expected_result": "Three valid screens with distinct RGBA and changing irrelevant stereo fields.",
+      "dependency_owner": "051",
+      "command": "zsh docs/metaliris/verify_host_shader.sh 051 <native-build-dir> <scratch-dir>",
+      "evidence_path": "051/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e970a003499db9d13fc0af64feea7f763c70ac6da3c097dd2d45dbb481818e3b"
+}

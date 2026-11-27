@@ -1,0 +1,92 @@
+{
+  "phase": "061",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-061-01",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 46,
+        "symbol": "Empty,"
+      },
+      "contract": "Safe native object context and generation handoff.",
+      "native_mapping": "Cache creation borrows DeviceContext, records native capability provenance, and emits native lease-bound pipeline results.",
+      "expected_result": "Real SDK type-check and context-guarded renderer use.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "AZ-061-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_descriptor_update_queue.h",
+        "sha256": "c61f57604592451203785a04631e73471cee06af1e8cec1fcd01393a6513f9bd",
+        "line": 27,
+        "symbol": "private:"
+      },
+      "contract": "Argument data becomes immutable on Capture and resolves from native context.",
+      "native_mapping": "BindRender consumes retained snapshots through EncodingContext per stage. Shared PICA register and sampler slots depend on actual MSL generators.",
+      "expected_result": "Wrong generation in bound snapshots and correct residency tagging, not mutable binding reuse.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-061-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_shader_gen.h",
+        "sha256": "876af4b9f60f0c87293945f2026e261209a7b3b4c4060014aa8226567027f330",
+        "line": 31,
+        "symbol": "/// Stateful PICA geometry and framebuffer feedback that needs ordered draws cannot be partitioned"
+      },
+      "contract": "Select fixed geometry using native mesh only when ordering is equivalent.",
+      "native_mapping": "Provide deterministic route helper using existing SelectGeometryPath and require restart-free expansion when a real indexed strip references native restart sentinel.",
+      "expected_result": "Compile ordinary direct strip, single-primitive mesh, order-observable compute, programmable geometry and feedback routes.",
+      "dependency_owner": "061",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PASS",
+      "actual_result": "Linked native Objective-C++ header consumer exercised 3072 geometry routes, exact title classification and immutable resource/required pipeline API. PICA200 baseline 48 cases / 801 assertions with 64 passing CTest and five existing skips."
+    },
+    {
+      "id": "AZ-061-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/shader/msl_fs_shader_gen.h",
+        "sha256": "d5ba248cbb0bd805add44f8e5cee1c8da4044389b120934a9a5933cca9854398",
+        "line": 32,
+        "symbol": "bool texture_atomics{};"
+      },
+      "contract": "Keep full fragment contract across cache selection.",
+      "native_mapping": "Public candidate returns exact FragmentRequirements and success test, future compiler owns actual pipeline readiness, with no source through Vulkan.",
+      "expected_result": "Native feedback, stencil/blend and per-sample behavior tests attached to implementation owner.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-061-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_shader_disk_cache.h",
+        "sha256": "19a070dd2abd7ad3f5bb8b538ae5c5c82051e472ee56cd68453ea250bd2b4d76",
+        "line": 92,
+        "symbol": ""
+      },
+      "contract": "Persist title-scoped complete shader and pipeline recipes and archive.",
+      "native_mapping": "Keep native file ownership in 060 and call only through per-title cache. Use neutral Azahar progress and no artifact formats from another backend.",
+      "expected_result": "Recover interrupted warmup and verify no cross-title disk/memory reuse.",
+      "dependency_owner": "062",
+      "command": "zsh docs/metaliris/061/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "061/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "e5daa2eb9a96e28045885db7702d156f2f114f1a1b0f197c047d09ba629ca4c9"
+}

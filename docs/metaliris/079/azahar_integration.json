@@ -1,0 +1,75 @@
+{
+  "phase": "079",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-079-01",
+      "source": {
+        "path": "src/citra_qt/util/metal_util.h",
+        "sha256": "baaf9fd93733694dea844adebf6d3db9c947ff9fff56d21d2427d3da661b2f0f",
+        "line": 18,
+        "symbol": ""
+      },
+      "contract": "Qt bridge has concrete public C++ surface and native device capabilities methods.",
+      "native_mapping": "Define exact wrapper methods while preserving original Qt holder. No observer introduces Qt into core renderer.",
+      "expected_result": "Compile Qt ARC and off mode/link neutral adapter.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-079-02",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_surface_adapter.mm",
+        "sha256": "ea0419370c8a61f21041e18d13369c1fc45627a03f639e62bd377d9a3f438919",
+        "line": 77,
+        "symbol": ""
+      },
+      "contract": "Neutral surface adapter owns actual Cocoa view attach semantics and rates.",
+      "native_mapping": "One WId-to-opaque-pointer conversion with error propagation and no second retained-layer domain.",
+      "expected_result": "Verify actual native no-GPU view fixture and prior host behavior reused.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-079-03",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_platform.mm",
+        "sha256": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4",
+        "line": 43,
+        "symbol": "if (!device.hasUnifiedMemory) {"
+      },
+      "contract": "Metal device probing returns stable ordering and separate Spatial support.",
+      "native_mapping": "Convert only names/flags to Qt-friendly data; no filtering or reordering that corrupts saved physical device index. Keep actual trace support separate.",
+      "expected_result": "Compare enumerate values and empty result, then later disabled selections and visible physical GPU.",
+      "dependency_owner": "079",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    },
+    {
+      "id": "AZ-079-04",
+      "source": {
+        "path": "src/citra_qt/bootmanager.cpp",
+        "sha256": "169cba69fde9c8d234dbc89a03808095c9ff194ddbf7801d76ce3f8a602d1514",
+        "line": 470,
+        "symbol": "wsi.render_surface = MetalUtil::CreateMetalLayer(window->winId());"
+      },
+      "contract": "Future native BootManager uses explicit typed hook and stable published snapshots.",
+      "native_mapping": "Retain existing callers and connect in its owned phase.",
+      "expected_result": "Real QWindow fixture, core state and lifecycle in 081.",
+      "dependency_owner": "081",
+      "command": "zsh docs/metaliris/079/verify.sh <native-Qt-build-dir> <native-core-build-dir> <scratch-dir>",
+      "evidence_path": "079/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual Qt and citra_meta native ARC compilation and legacy-feature-off compilation, real Cocoa handle/bridge fixture, PICA 48/801 and CTest 64 passes with 5 existing skips."
+    }
+  ],
+  "owner_sha256_after": "013592956db3ee1c389d9560ba0925467d4b55f5964187ceabb677b6d1f6765e"
+}

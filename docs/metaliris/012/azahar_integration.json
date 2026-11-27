@@ -1,0 +1,41 @@
+{
+  "phase": "012",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-SURFACE-INPUT",
+      "source": {
+        "path": "src/core/frontend/emu_window.h",
+        "sha256": "a1efc3debc568ad4c7e6ea2bc103ab8cf56f243c5f2b83f76e8d892ff402a4e0",
+        "line": 170,
+        "symbol": "struct NativeSurface {"
+      },
+      "contract": "Phase 006 retains and synchronizes host surface metadata.",
+      "native_mapping": "Retain a real CAMetalLayer with ARC ownership token, validating alias pointer and owning deleter.",
+      "expected_result": "Fixture rejects alias and foreign ownership and observes layer destruction after lease release.",
+      "dependency_owner": "012",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual SDK, ARC CPU object lifetime and available platform verification passed."
+    },
+    {
+      "id": "AZ-DEVICES",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_platform.cpp",
+        "sha256": "df5d312f299c9aec9a277eb7d97b56215b4b7f5ec1841dc48946d9246d377fb7",
+        "line": 289,
+        "symbol": "Frontend::WindowSystemType window_type, bool enable_validation,"
+      },
+      "contract": "Selection needs stable IDs and required capabilities.",
+      "native_mapping": "Expose default device first. Other devices sorted by registry ID.",
+      "expected_result": "A real device list matches the native SDK identity and capability matrix.",
+      "dependency_owner": "014",
+      "command": "zsh docs/metaliris/012/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "012/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Available nil-device or capture query coverage passed; live device or later owner needed."
+    }
+  ],
+  "owner_sha256_after": "f26a4b892ca79bab4c39fe22ba532c8caf4c7e4ef496131f45c8367eee0056d4"
+}

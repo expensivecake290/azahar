@@ -1,0 +1,58 @@
+{
+  "phase": "018",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "vk_master_semaphore-042",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.h",
+        "sha256": "638f3635825e8987429386c0ce83a901492d24ac0b41b89c34f46731d528dce0",
+        "line": 42,
+        "symbol": "virtual void Wait(u64 tick) = 0;"
+      },
+      "contract": "Use SDK MTL4CommitFeedbackHandler and MTL4CommandQueue types",
+      "native_mapping": "Compile real Objective-C++ header interface; resolve dependency paths",
+      "expected_result": "Exact ARC return types and noncopyable tracker",
+      "dependency_owner": "018",
+      "command": "zsh docs/metaliris/018/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "018/header.log",
+      "status": "PASS",
+      "actual_result": "Actual ARC SDK consumer passed."
+    },
+    {
+      "id": "vk_master_semaphore-031",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_master_semaphore.h",
+        "sha256": "638f3635825e8987429386c0ce83a901492d24ac0b41b89c34f46731d528dce0",
+        "line": 31,
+        "symbol": "return KnownGpuTick() >= tick;"
+      },
+      "contract": "Test monotonicity, max ticket, faults, close, and waits",
+      "native_mapping": "Run CPU state machine and native event through actual queue only when visible",
+      "expected_result": "CPU concurrency tests pass; GPU buffer values check ordering",
+      "dependency_owner": "019",
+      "command": "zsh docs/metaliris/019/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "019/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "DEVICE-020-018",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_master_semaphore.h",
+        "sha256": "5d091c0107a8923a3fce0d99bbc1ee2aa1797a00fc6615cb7056c60ecb8e7d7e",
+        "line": 67,
+        "symbol": "explicit MasterSemaphore(id<MTLDevice> device);"
+      },
+      "contract": "A native pool must reject a completion timeline owned by another device.",
+      "native_mapping": "Expose the retained MTLDevice from the existing immutable semaphore state.",
+      "expected_result": "ARC compiler checks device accessor and scheduler may compare exact identity.",
+      "dependency_owner": "020",
+      "command": "zsh docs/metaliris/018/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "018/reopen-020.log",
+      "status": "PASS",
+      "actual_result": "Native identity accessor compiled. Live identity comparison awaits GPU."
+    }
+  ],
+  "owner_sha256_after": "c8d491b888e70ff7036b43d3a356dd00bd31f52cc989bdf9fb4b099f95762711"
+}

@@ -1,0 +1,58 @@
+{
+  "phase": "004",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-ENUM",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+        "line": 22,
+        "symbol": "enum class GraphicsAPI {"
+      },
+      "contract": "Software, OpenGL, Vulkan use stable persisted ordinals 0, 1, 2.",
+      "native_mapping": "Append Metal=3. Existing ordinals are preserved in all build variants.",
+      "expected_result": "Real header consumer asserts 0, 1, 2, 3 in all variants.",
+      "command": "python3 docs/metaliris/004/verify.py header <build-dir> off",
+      "dependency_owner": "004",
+      "evidence_path": "004/header-off.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "VK-DEFAULTS",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+        "line": 549,
+        "symbol": "#if defined(ANDROID) && defined(ENABLE_VULKAN) // Prefer Vulkan on Android, OpenGL on everything else"
+      },
+      "contract": "Existing platform rules prefer Vulkan on Android; existing bounds clamp to Vulkan.",
+      "native_mapping": "Preserve those rules outside native builds. Native build defaults to Metal and extends the accepted range through Metal.",
+      "expected_result": "Header fixture verifies Metal default and bounds, old Software default and old max.",
+      "command": "python3 docs/metaliris/004/verify.py header <build-dir> metal",
+      "dependency_owner": "005A",
+      "evidence_path": "004/header-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "VK-TEXTURE-SEPARATION",
+      "source": {
+        "path": "src/common/settings.h",
+        "sha256": "9f553d907157043f5bf91fc9259f46bafb48d5b2947d98ea230106d3026de5be",
+        "line": 591,
+        "symbol": "SwitchableSetting<TextureFilter> texture_filter{TextureFilter::NoFilter, Keys::texture_filter};"
+      },
+      "contract": "Guest texture filtering and internal resolution are distinct settings.",
+      "native_mapping": "Add native display-upscale toggle as a separate opt-in setting.",
+      "expected_result": "Texture filter defaults to NoFilter and internal resolution remains 1. Spatial defaults false.",
+      "command": "python3 docs/metaliris/004/verify.py header <build-dir> metal",
+      "dependency_owner": "005A",
+      "evidence_path": "004/header-metal.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    }
+  ],
+  "owner_sha256_after": "cc458c3fbd5e6ae2465c03cb78f567fcd148ae419e3e37baa4e5306735659b64"
+}

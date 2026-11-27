@@ -1,0 +1,41 @@
+{
+  "phase": "010",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-LEASE-API",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 43,
+        "symbol": ""
+      },
+      "contract": "Phase 009 declares an owned direct device context, lease and guard API.",
+      "native_mapping": "Implement every declaration in ARC Objective-C++ with CPU-held shared context state and scoped synchronization.",
+      "expected_result": "Link a real Objective-C++ consumer with SDK frameworks and execute diagnostics and context unit tests.",
+      "dependency_owner": "009",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real ARC header, compilation, link and available CPU diagnostics passed."
+    },
+    {
+      "id": "AZ-SCHEDULER-GUARD",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_common.h",
+        "sha256": "9f466e4734ab0d06afe054f0d28c0e8c5876f99a7d289f8c8f31e1c783fe9bc9",
+        "line": 67,
+        "symbol": "WorkLease(std::shared_ptr<State> state, u64 generation);"
+      },
+      "contract": "Lifetimes of queue submissions and pending work require protected generations.",
+      "native_mapping": "Hold a read lock for real submission, close and generation advance under exclusive lock.",
+      "expected_result": "After scheduler owner lands, verify caller holds guard until submission and retains lease through completion.",
+      "dependency_owner": "023",
+      "command": "zsh docs/metaliris/010/verify.sh <scratch-dir>",
+      "evidence_path": "010/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Real Metal device or dependent scheduler is unavailable; CPU diagnostics passed."
+    }
+  ],
+  "owner_sha256_after": "d899878f2b6f538cb5c29814b5be183c6335423d95ebd1337031e1b2ac62bb93"
+}

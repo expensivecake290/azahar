@@ -1,0 +1,228 @@
+{
+  "phase": "058",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "VK-058-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 20,
+        "symbol": "vk::ShaderStageFlagBits MakeShaderStage(std::size_t index) {"
+      },
+      "contract": "Index identifies shader stage; optional shader slots are omitted, required slots resolve before native publication.",
+      "native_mapping": "Resolve exact named libraries into MTL4 function descriptors. Validate each distinct route's stage bundle and resolve shader errors.",
+      "expected_result": "Vertex, renderless compute, mesh/object and compute-expanded draw carry only correct stages, error for an invalid scope.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 35,
+        "symbol": "u64 StaticPipelineInfo::OptimizedHash(const Instance& instance) const {"
+      },
+      "contract": "Cache lookup combines shader, layout, attachment, blend and immutable geometry/depth identity.",
+      "native_mapping": "Use full structural key with all active properties and separate effective device/title generations. Native optional archive lookup precedes compilation.",
+      "expected_result": "Duplicate in-flight requests compile once; changed key or generations cannot alias.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 48,
+        "symbol": "u16 PipelineInfo::GetFinalColorWriteMask(const Instance& instance) {"
+      },
+      "contract": "Shader-emulated NoOp avoids color but allows other outputs.",
+      "native_mapping": "NoOp maps to the independent native write mask; PICA shader output and attachment route stay intact.",
+      "expected_result": "Check disabled ALU and depth/stencil-only descriptors and resulting exact pixels on GPU.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-058-04",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 61,
+        "symbol": "Shader::Shader(const Instance& instance) : device{instance.GetDevice()} {}"
+      },
+      "contract": "Shader construction and release ensure usable modules or clear failure.",
+      "native_mapping": "Reuse native 056 for independently synchronous and async MSL, owning libraries and selecting exact entry point from actual library.",
+      "expected_result": "Use compiler errors, native nil results, and library identity, including callback completion order.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-05",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 84,
+        "symbol": "bool GraphicsPipeline::TryBuild(bool wait_built) {"
+      },
+      "contract": "The fast path may compile immediately, otherwise stage/pipeline waits and async underway paths are separate.",
+      "native_mapping": "Bound Azahar worker admission, use SDK-native asynchronous render/compute APIs inside the worker and let ordinary Build rely on independently synchronous native calls.",
+      "expected_result": "QueueFull with synchronous fallback, exact delay behavior, no partial binding and host stale result cases.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-06",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 112,
+        "symbol": "const u32 stride_alignment = instance.GetMinVertexStrideAlignment();"
+      },
+      "contract": "Guest vertex binding slots, strides, constant attributes, PICA conversion and fallbacks.",
+      "native_mapping": "Compile native MTLVertexDescriptor from active records and validate disjoint indices and extent. Native constant step uses stepRate 0 and typed PICA formats avoid reading neighboring attrs.",
+      "expected_result": "Use real descriptor inspection and actual device vertex input fixture with constant and packed stream.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-058-07",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 150,
+        "symbol": "const vk::PipelineInputAssemblyStateCreateInfo input_assembly = {"
+      },
+      "contract": "Primitive restart disabled, topology/culling/viewport flip matches guest.",
+      "native_mapping": "Select correct native topology class; handling indexed triangle strip with max index requires expansion in draw owner. Cull and front winding configured independently of blend.",
+      "expected_result": "Host binding checks both winding states; physical draw readback for direct triangle, strip, fan and restart sentinels.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-058-08",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 165,
+        "symbol": "const vk::PipelineMultisampleStateCreateInfo multisampling = {"
+      },
+      "contract": "All active render targets observe requested multisamples and full sample shading where required.",
+      "native_mapping": "Native render and mesh descriptors supply rasterSampleCount. Shader fragment logic determines per-sample access and attachment/task requirements.",
+      "expected_result": "Known sample patterns at 2x/4x with coverage and same-sample feedback.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "VK-058-09",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 171,
+        "symbol": "const auto& blending = info.state.blending;"
+      },
+      "contract": "Independent RGB/alpha factors and equations, source fallbacks, shader-emulated min/max bypass.",
+      "native_mapping": "Use exact PICA->Metal factor/equation tables, and independent One/Zero/Add identity where computed by fragment; convert component bits explicitly.",
+      "expected_result": "Inspect real descriptor values, and compare blended destination readback to independently computed expected values.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-10",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 212,
+        "symbol": "const vk::Viewport viewport = {"
+      },
+      "contract": "Viewport, clipped scissor, stencil reference and blend constants vary per draw.",
+      "native_mapping": "Use MTL4RenderCommandEncoder dynamic viewport/scissor/stencil reference/blend, native immutable depth/stencil masks and state.",
+      "expected_result": "Inspect exact native selectors/values, GPU scissor and depth/stencil outputs.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-11",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 254,
+        "symbol": "const vk::StencilOpState stencil_op_state = {"
+      },
+      "contract": "Depth test/write and both stencil faces share funcs and actions.",
+      "native_mapping": "Build one MTLDepthStencilState with separately modeled comparisons, operations, masks and depth write gating. Native depth/stencil formats are render-pass state.",
+      "expected_result": "Depth test and compare modes, all stencil actions, front/back equivalence and native output checks.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "VK-058-12",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/vk_graphics_pipeline.cpp",
+        "sha256": "7818416dd14f8bfc18b77e942949b84e39d886387f57e1504d9ff0f4c362493f",
+        "line": 287,
+        "symbol": "vk::GraphicsPipelineCreateInfo pipeline_info = {"
+      },
+      "contract": "Native render pass compatibility, successful final creation, retryable compile-required and real errors.",
+      "native_mapping": "Build complete retained bundle, native archives optional keys accelerator, typed errors, worker cancellation with native tasks and guarded successful publication.",
+      "expected_result": "Native worker equality under queue, batch archive request, generation changes, and failure without partial result.",
+      "dependency_owner": "058",
+      "command": "zsh docs/metaliris/058/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "058/runtime.log",
+      "status": "PASS",
+      "actual_result": "Actual native arm64 ARC SDK build and link, MSL4 vertex/fragment/mesh/compute executable, controlled host descriptors, sync and async full-bundle and stale-result checks, PICA200 48 cases / 801 assertions, and 64 passing CTest tests with five existing skips."
+    },
+    {
+      "id": "REOPEN-058-062",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_graphics_pipeline.mm",
+        "sha256": "d3a69638767d111db1b440da41655977d32241e0a60bb6b73c8cd625d63a67e0",
+        "line": 689,
+        "symbol": "PipelineCompiler::~PipelineCompiler() {"
+      },
+      "contract": "Native pipeline title owner requires a real worker idle barrier before serializing previously compiled pipelines without shutting down the active title.",
+      "native_mapping": "Join actual worker requests and check that a controlled in-flight SDK operation blocks the idle barrier until completion.",
+      "expected_result": "Pass actual native compiler and prior regression evidence. Leave physical hardware checks pending.",
+      "dependency_owner": "062",
+      "command": "Use phase-native SDK and runtime fixture from docs/metaliris",
+      "evidence_path": "058/reopen-062.log",
+      "status": "PASS",
+      "actual_result": "Join actual worker requests and check that a controlled in-flight SDK operation blocks the idle barrier until completion. Captured in 058/reopen-062.log."
+    }
+  ],
+  "owner_sha256_after": "666d3ddba321c4012480661ba3d1077ed2687f00fe766dd222cd51b678ab345d"
+}

@@ -1,0 +1,96 @@
+{
+  "phase": "005A",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-COMMON",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 355,
+        "symbol": "configure_file(\"common/setting_keys.h.in\" \"common/setting_keys.h\" @ONLY)"
+      },
+      "contract": "Common header emits plain and Hana keys from one canonical name.",
+      "native_mapping": "Append use_metalfx_spatial with the existing generation variables only when the native renderer build is selected.",
+      "expected_result": "Common array contains one canonical new string plus exact DEFINE_KEY output in both native configurations.",
+      "dependency_owner": "004",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-QT",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 357,
+        "symbol": "configure_file(\"citra_qt/setting_qkeys.h.in\" \"citra_qt/setting_qkeys.h\" @ONLY)"
+      },
+      "contract": "Qt common keys are emitted only when ENABLE_QT is on.",
+      "native_mapping": "Reuse DEFINE_KEY through the existing template and preserve the Qt condition.",
+      "expected_result": "Native Qt generated header has the symbol and a real Qt compiler syntax test succeeds. No Qt file is created in headless builds.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-JNI",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 360,
+        "symbol": "configure_file(\"android/app/src/main/jni/jni_setting_keys.cpp.in\" \"android/app/src/main/jni/jni_setting_keys.cpp\" @ONLY)"
+      },
+      "contract": "JNI output is tied to standalone Android only.",
+      "native_mapping": "Preserve Android output and keep the new Metal setting out of its key declarations.",
+      "expected_result": "Former and new common/JNI output for Android is byte-identical.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-LIBRETRO",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 327,
+        "symbol": "endif()"
+      },
+      "contract": "LibRetro exclusive keys remain conditional.",
+      "native_mapping": "Keep all keys and branches stable for builds without native Metal.",
+      "expected_result": "Before/after LibRetro generated arrays and declarations are byte-identical.",
+      "dependency_owner": "005A",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "CMake key generation and available real C++/Qt fixture passed. See evidence path."
+    },
+    {
+      "id": "AZ-SETTINGS-ROUNDTRIP",
+      "source": {
+        "path": "CMakeModules/GenerateSettingKeys.cmake",
+        "sha256": "a5096b12d560d498c7316fc54b03571da37715ca17880ffaf86127deabcbfeaa",
+        "line": 355,
+        "symbol": "configure_file(\"common/setting_keys.h.in\" \"common/setting_keys.h\" @ONLY)"
+      },
+      "contract": "Owners 004 and 005 use the common generated symbol; 085 provides frontend persistence.",
+      "native_mapping": "Reopen 004 and 005 on complete generation and test the actual settings consumers.",
+      "expected_result": "Native header and implementation run with real generated key. Phase 085 verifies on-disk config round-trip.",
+      "dependency_owner": "085",
+      "command": "python3 docs/metaliris/005A/verify.py <scratch-dir>",
+      "evidence_path": "005A/generate.log",
+      "status": "PASS",
+      "actual_result": "Generated key compiled and actual Qt INI missing default, on/off, inherit and independent texture setting round trips passed.",
+      "actual_evidence": [
+        "005A/generate.log",
+        "091/qt-persistence.log"
+      ]
+    }
+  ],
+  "owner_sha256_after": "b44db69c057d9ea0d6b2a3e36b7627be3621d457123f645bb304688b06cc0c93"
+}

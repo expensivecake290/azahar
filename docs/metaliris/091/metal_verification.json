@@ -1,0 +1,75 @@
+{
+  "phase": "091",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "MTL-091-01",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 110,
+        "symbol": "RendererVulkan::RendererVulkan(Core::System& system, Pica::PicaCore& pica_,"
+      },
+      "contract": "Apple SDK typed MTL4Device schedule/compile functions and native build closure in both core and Qt.",
+      "native_mapping": "Compile real Objective-C++ ARC, build native core/tests, compile native MSL4 assets, link full Qt and verify prohibited backend symbol absence. Inject no test renderer placeholder.",
+      "expected_result": "Actual native factory, no-device error fixture, deterministic geometry/framebuffer and all regressions.",
+      "dependency_owner": "001/002/003/008/087/090",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/runtime.log",
+      "status": "PASS",
+      "actual_result": "Real native Objective-C++ ARC core and Qt links, 26 unique native compile entries each, all 19 MSL4 payloads byte-identical to generated headers, native factory and deterministic scanout/orientation tests, final PICA 48/801 and CTest 64 passes with five audio skips."
+    },
+    {
+      "id": "MTL-091-02",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 747,
+        "symbol": "void RendererVulkan::DrawSingleScreen(u32 screen_id, float x, float y, float w, float h,"
+      },
+      "contract": "Render representative layouts and texture format parity with native encoder and assets.",
+      "native_mapping": "Use deterministic host fixtures and known CPU expectations, plus physical stage-validated native pixel readback for all cases.",
+      "expected_result": "Exact per-mode colors, reordered stereo, aspect ratios, opacity and cursor; record unavailable GPU if nil.",
+      "dependency_owner": "043/044/045/046/047/048/073",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-091-03",
+      "source": {
+        "path": "src/video_core/renderer_vulkan/renderer_vulkan.cpp",
+        "sha256": "9d5737f3835ab53c319ec38a6c7e88c63ce748f02f5da1a2dd80b70137e40e6a",
+        "line": 1126,
+        "symbol": "void RendererVulkan::SwapBuffers() {"
+      },
+      "contract": "Measure exact frame pacing, tool capture, simultaneous windows, reload visibility, headless and shutdown under stress with valid device.",
+      "native_mapping": "Run live apparatus on exposed Apple Silicon Metal4 and visible Cocoa session. Check physical native timings, queue order, frame distribution, draw efficiency, memory and long-duration lifetime.",
+      "expected_result": "Final acceptance requires measured hardware, SDK and all phase closures.",
+      "dependency_owner": "054/071/073/077/081/086",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "MTL-091-04",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_metalfx_spatial.h",
+        "sha256": "caeba072500926753d302a38439ae0fd3612b57d9fbea6d15c2d69d84f717331",
+        "line": 130,
+        "symbol": ""
+      },
+      "contract": "Native Metal4 spatial availability, source/destination formats and independent output residency validity.",
+      "native_mapping": "Use typed native API, normalized origin, per-eye target when physically upscaling. Reject fatal Metal4 issues and preserve output with a native ordinary path for rejected optional dispatch cases.",
+      "expected_result": "On capable device verify known-origin crop, input format, unsupported/out of memory and no output cross-eye leakage. No GPU means pending validation.",
+      "dependency_owner": "074/075",
+      "command": "zsh docs/metaliris/091/verify.sh <native core> <native Qt> <scratch>",
+      "evidence_path": "091/live.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    }
+  ],
+  "owner_sha256_after": "6d9b7cd4dfbe2c28adba030d8d3d27caddc3e64158dff4b33d7c59625e7c7792"
+}

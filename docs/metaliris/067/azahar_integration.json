@@ -1,0 +1,109 @@
+{
+  "phase": "067",
+  "source_revision": "c621eafbf316699c55f4c9c0c689d4e49498d360",
+  "rows": [
+    {
+      "id": "AZ-067-01",
+      "source": {
+        "path": "src/video_core/rasterizer_accelerated.h",
+        "sha256": "940773372c621ad590cf30e4364d9009715a6667719b6fb24b2f4070fe1f0555",
+        "line": 22,
+        "symbol": "class RasterizerAccelerated : public RasterizerInterface {"
+      },
+      "contract": "Azahar provides AddTriangle, HardwareVertex output, interpreted fallbacks, per-draw uniform synchronization and optional FreeCam.",
+      "native_mapping": "Direct inheritance reuses already-populated state and preserves FreeCam compile variants.",
+      "expected_result": "Build real native consumer both with and without ENABLE_FREECAM.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "AZ-067-02",
+      "source": {
+        "path": "src/video_core/rasterizer_interface.h",
+        "sha256": "9e86eb4502138c3114b2e574a249c2949c52cc08279b06dc77e8a0ccb6604b7c",
+        "line": 34,
+        "symbol": "public:"
+      },
+      "contract": "All required virtual signatures and bool accelerator fallback contract.",
+      "native_mapping": "Final native rasterizer overrides reusable lifecycle and cache methods without backend-specific shadow interfaces.",
+      "expected_result": "Static exact pointer types plus typed consumer for inherited API.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    },
+    {
+      "id": "AZ-067-03",
+      "source": {
+        "path": "src/video_core/rasterizer_cache/rasterizer_cache.h",
+        "sha256": "14a4e50d3ecac67bc83fa7857e42b66e1b79e6c14bb53be02f5c13c6f8d655be",
+        "line": 721,
+        "symbol": "FramebufferHelper<T> RasterizerCache<T>::GetFramebufferSurfaces(bool using_color_fb,"
+      },
+      "contract": "Shared framebuffer cache selects guest viewport, retention, dirty ownership and transfer fallback.",
+      "native_mapping": "Keep shared traits for framebuffer pointer and interval ownership, separately pass native arguments for rendering.",
+      "expected_result": "Link concrete cache specialization in 069 and compare selected region validity.",
+      "dependency_owner": "069",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-067-04",
+      "source": {
+        "path": "src/video_core/pica/pica_core.cpp",
+        "sha256": "619fef09a9b36a7e9502ae12b9a45b9e6c06b3f858e3a835171746baf0013648",
+        "line": 1053,
+        "symbol": "}"
+      },
+      "contract": "PICA controls hardware attempt and interprets fallback then consumes output triangles.",
+      "native_mapping": "Return false before queuing observable draw for a declined path. Preserve guest shader fallback, no Metal legacy calls.",
+      "expected_result": "Use PICA baseline and physical forced route fixture; preserve 0xff/0xffff inclusive indexing even when route changes.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-067-05",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_pipeline_cache.h",
+        "sha256": "e5daa2eb9a96e28045885db7702d156f2f114f1a1b0f197c047d09ba629ca4c9",
+        "line": 113,
+        "symbol": "[[nodiscard]] explicit operator bool() const noexcept {"
+      },
+      "contract": "Select native vertex/mesh/compute routes and synchronous fallback tied to real shader state.",
+      "native_mapping": "Use pure native pipeline cache and actual Threaded presentation scheduling; constructor dependencies explicitly typed.",
+      "expected_result": "Draw each route under Metal 4 API validation and compiler saturation.",
+      "dependency_owner": "068",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PENDING",
+      "actual_result": "Exact remaining verification is recorded in progress.json."
+    },
+    {
+      "id": "AZ-067-06",
+      "source": {
+        "path": "src/video_core/renderer_metal/mtl_texture_runtime.h",
+        "sha256": "2e983c7981823d32951465b9ba383d095a56ab44a0f350eafc351d174a69277b",
+        "line": 185,
+        "symbol": "[[nodiscard]] TextureResource Resource("
+      },
+      "contract": "Export strong image handle suitable for deferred screen compositor.",
+      "native_mapping": "Return TextureResource with normalized sample rectangle and preserve allocator/scheduler lease after cache invalidation.",
+      "expected_result": "ARC copy/move structural contract; real later producer/consumer storage lease test.",
+      "dependency_owner": "067",
+      "command": "zsh docs/metaliris/067/verify.sh <native-build-dir> <scratch-dir>",
+      "evidence_path": "067/header.log",
+      "status": "PASS",
+      "actual_result": "Actual Apple arm64 ARC header consumer compiled, including FreeCam; exhaustive 65536 unsigned indexes, truncation and rotated normalized coordinates ran; transitive dependency audit clean; PICA 48 cases / 801 assertions and CTest 64 passes plus 5 skips."
+    }
+  ],
+  "owner_sha256_after": "3d43f733b5216b179bb1e97e185597b7ccbcdf56de0ba01a3299a281fad80188"
+}

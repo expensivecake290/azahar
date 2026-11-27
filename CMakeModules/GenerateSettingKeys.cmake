@@ -166,6 +166,13 @@ foreach(KEY IN ITEMS
     endif()
 endforeach()
 
+# Native Metal setting keys
+if (ENABLE_METAL)
+    set(KEY "use_metalfx_spatial")
+    set(SETTING_KEY_LIST "${SETTING_KEY_LIST}\n\"${KEY}\",")
+    set(SETTING_KEY_DEFINITIONS "${SETTING_KEY_DEFINITIONS}\nDEFINE_KEY(${KEY})")
+endif()
+
 # Qt exclusive setting keys
 # Note: A lot of these are very generic because our Qt settings are currently put under groups:
 #       E.g. UILayout\geometry
